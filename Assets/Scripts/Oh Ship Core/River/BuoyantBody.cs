@@ -25,6 +25,9 @@ public class BuoyantBody : MonoBehaviour
         }
     }
 }
+/// <summary>
+/// Allows the user to edit the buoyancy points of a BuoyantBody in the scene.
+/// </summary>
 [CustomEditor(typeof(BuoyantBody))]
 public class BuoyantBodyEditor : Editor
 {
