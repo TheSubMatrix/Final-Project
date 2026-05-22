@@ -4,8 +4,10 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class BuoyantBody : MonoBehaviour
+
 {
     [SerializeField] float m_waterHeight;
+    [SerializeField] float m_buoyancy = 4;
     Rigidbody m_rigidbody;
     void Start()
     {
@@ -14,6 +16,6 @@ public class BuoyantBody : MonoBehaviour
     void FixedUpdate()
     {
         if(m_rigidbody.position.y >= m_waterHeight) return;
-        m_rigidbody.AddForce((Mathf.Abs(m_rigidbody.position.y - m_waterHeight) + 9.8f) * Vector3.up);
+        m_rigidbody.AddForce(((Mathf.Abs(m_rigidbody.position.y - m_waterHeight) * m_buoyancy) + 9.8f) * Vector3.up);
     }
 }
