@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.VFX;
 
-namespace VFXSystem
+namespace MatrixUtils.VFXSystem
 {
     public class VFXManager : PersistentSingleton<VFXManager>
     {

@@ -1,7 +1,6 @@
-using AudioSystem;
 using UnityEngine;
 
-namespace AudioSystem
+namespace MatrixUtils.AudioSystem
 {
     public class SoundBuilder
     {

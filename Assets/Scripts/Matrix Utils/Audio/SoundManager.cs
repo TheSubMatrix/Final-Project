@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace AudioSystem
+namespace MatrixUtils.AudioSystem
 {
     public class SoundManager : PersistentSingleton<SoundManager>
     {

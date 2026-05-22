@@ -4,7 +4,7 @@ using MatrixUtils.Attributes;
 using UnityEngine;
 using UnityEngine.VFX;
 
-namespace VFXSystem
+namespace MatrixUtils.VFXSystem
 {
     [Serializable]
     public class VFXData

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ShaderGraph.Helpers
+namespace MatrixUtils.ShaderHelpers
 {
     [AddComponentMenu("UI/Effects/Normalized Position As UV0.ZW", 82)]
     public class NormalizedPositionAsUV0ZW : BaseMeshEffect

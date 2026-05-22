@@ -4,7 +4,7 @@ using MatrixUtils.Extensions;
 using UnityEngine;
 using UnityEngine.VFX;
 
-namespace VFXSystem
+namespace MatrixUtils.VFXSystem
 {
     [RequireComponent(typeof(VisualEffect))]
     public class VFXEmitter : MonoBehaviour

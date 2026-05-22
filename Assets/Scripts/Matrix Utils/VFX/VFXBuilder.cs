@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.VFX;
 
-namespace VFXSystem
+namespace MatrixUtils.VFXSystem
 {
     public class VFXBuilder
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using MatrixUtils.Extensions;
 using UnityEngine;
-namespace AudioSystem
+namespace MatrixUtils.AudioSystem
 {
     [RequireComponent(typeof(AudioSource))]
     public class SoundEmitter : MonoBehaviour

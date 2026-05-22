@@ -1,0 +1,25 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerController : MonoBehaviour
+{
+    Rigidbody m_rigidbody;
+    Vector2 m_desiredMovement;
+    [SerializeField] float m_acceleration;
+    [SerializeField] float m_deceleration;
+    [SerializeField] float m_moveSpeed;
+
+    public void OnMovementInputChanged(InputAction.CallbackContext context) => m_desiredMovement = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1) * m_moveSpeed;
+    void Start() => m_rigidbody = GetComponent<Rigidbody>();
+    
+    void FixedUpdate()
+    {
+        Vector3 flattenedVelocity = new(m_rigidbody.linearVelocity.x, 0, m_rigidbody.linearVelocity.z);
+        float forwardVelocity  = Vector3.Dot(Vector3.forward, flattenedVelocity);
+        float sidewaysVelocity = Vector3.Dot(Vector3.right,   flattenedVelocity);
+        Vector2 currentOrientedVelocity = new(sidewaysVelocity, forwardVelocity);
+        float rateOfChange = currentOrientedVelocity.magnitude < m_desiredMovement.magnitude ? m_acceleration : m_deceleration;
+        Vector2 newOrientedVelocity = Vector2.MoveTowards(currentOrientedVelocity, m_desiredMovement, rateOfChange * Time.fixedDeltaTime);
+        m_rigidbody.linearVelocity = new(newOrientedVelocity.x, m_rigidbody.linearVelocity.y, newOrientedVelocity.y);
+    }
+}
