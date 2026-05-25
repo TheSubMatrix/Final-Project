@@ -38,7 +38,6 @@ public class BuoyantBody : MonoBehaviour
 [CustomEditor(typeof(BuoyantBody))]
 public class BuoyantBodyEditor : Editor
 {
-    int m_selectedIndex = -1;
 
     public void OnSceneGUI()
     {
@@ -49,17 +48,9 @@ public class BuoyantBodyEditor : Editor
         {
             SerializedProperty point = buoyancyPoints.GetArrayElementAtIndex(i).FindPropertyRelative("LocalPosition");
             Vector3 worldPosition = objectTransform.TransformPoint(point.vector3Value);
-            Vector3 updatedPosition = worldPosition;
-            bool isSelected = i == m_selectedIndex;
             float size = buoyancyPoints.GetArrayElementAtIndex(i).FindPropertyRelative("Radius").floatValue * 2;
-            Handles.color = m_selectedIndex == i ? Color.yellow : Color.cyan;
             EditorGUI.BeginChangeCheck();
-            if(isSelected)
-            {
-                updatedPosition = Handles.DoPositionHandle(worldPosition, Quaternion.identity);
-                Handles.SphereHandleCap(0, worldPosition, Quaternion.identity, size, EventType.Repaint);
-            }
-            else if(Handles.Button(worldPosition, Quaternion.identity, size, size, Handles.SphereHandleCap)) m_selectedIndex = i;
+            Vector3 updatedPosition = Handles.FreeMoveHandle(worldPosition, size, Vector3.one * 0.1f, Handles.SphereHandleCap);
             if (!EditorGUI.EndChangeCheck()) continue;
             point.vector3Value = objectTransform.InverseTransformPoint(updatedPosition);
             serializedObject.ApplyModifiedProperties();
