@@ -24,30 +24,42 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: d893f6a5a559cc44db4d47042430f5dd, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _ALPHATEST_ON
-  - _SURFACE_TYPE_TRANSPARENT
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _RECEIVE_SHADOWS_OFF
+  - _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
+  stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  - SHADOWCASTER
-  - DepthOnly
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _SampleTexture2D_40ef71b8e42e4c598b68fcd4839ae50d_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: f8f77288b53782a4e9dab62cf889f939, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_80294c30c66b41c7958da79ea8fb1ef8_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: dc3554a8d0634cf4db967452fabb3a28, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_83a85a30c08d4a5a8e20f3c0479219b0_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: dc3554a8d0634cf4db967452fabb3a28, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_bf3fa94d821747eda93304b55ef5ee8e_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: f8f77288b53782a4e9dab62cf889f939, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_e5edef9204f74529aa67519a567607ec_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: dc3554a8d0634cf4db967452fabb3a28, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_e847101d474744268fed19a8c030a836_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: f8f77288b53782a4e9dab62cf889f939, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -73,7 +85,7 @@ Material:
     - _Cull: 1
     - _DstBlend: 10
     - _DstBlendAlpha: 10
-    - _Height: 0.25
+    - _Height: 0.79
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 0
