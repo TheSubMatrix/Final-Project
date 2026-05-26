@@ -16,20 +16,20 @@ public class BuoyantBody : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Vector3 totalAngularDrag = Vector3.zero;
         foreach (BuoyancyPoint point in m_buoyancyPoints)
         {
             Vector3 globalPointPosition = transform.TransformPoint(point.LocalPosition);
             float depth = m_waterHeight - globalPointPosition.y;
             if (depth <= 0) continue;
             float submersion = Mathf.Clamp01(depth / point.Radius);
-            float buoyancyForce = submersion * point.PointBuoyancy;
-            m_rigidbody.AddForceAtPosition(buoyancyForce * Vector3.up, globalPointPosition);
+            m_rigidbody.AddForceAtPosition(submersion * point.PointBuoyancy * Vector3.up, globalPointPosition);
             Vector3 pointVelocity = m_rigidbody.GetPointVelocity(globalPointPosition);
-            m_rigidbody.AddForceAtPosition(-pointVelocity * (submersion * point.LinearDrag), globalPointPosition);
-            totalAngularDrag += -m_rigidbody.angularVelocity * (submersion * point.AngularDrag);
+            Vector3 verticalVel = Vector3.Project(pointVelocity, Vector3.up);
+            Vector3 longitudinalVel = Vector3.Project(pointVelocity, transform.forward);
+            Vector3 lateralVel = pointVelocity - verticalVel - longitudinalVel;
+            Vector3 drag = submersion * (verticalVel * point.Drag.y + longitudinalVel * point.Drag.x + lateralVel * point.Drag.z);
+            m_rigidbody.AddForceAtPosition(-drag, globalPointPosition);
         }
-        m_rigidbody.AddTorque(totalAngularDrag);
     }
 }
 /// <summary>

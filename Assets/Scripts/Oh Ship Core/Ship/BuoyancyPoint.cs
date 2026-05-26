@@ -21,11 +21,7 @@ internal struct BuoyancyPoint
     /// </summary>
     [FormerlySerializedAs("m_radius")] public float Radius;
     /// <summary>
-    /// The linear drag force applied to the point in fluid
+    /// The drag force applied to the point on each axis at this point.
     /// </summary>
-    [FormerlySerializedAs("m_linearDrag")] public float LinearDrag;
-    /// <summary>
-    /// The angular drag force applied to the point in fluid
-    /// </summary>
-    [FormerlySerializedAs("m_angularDrag")] public float AngularDrag;
+    public Vector3 Drag;
 }
