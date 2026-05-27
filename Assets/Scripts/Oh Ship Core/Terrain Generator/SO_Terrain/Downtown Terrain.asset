@@ -27,3 +27,20 @@ MonoBehaviour:
     m_stagingEntry:
       Key: 2b
       Value: {fileID: 0}
+  terrainOptions:
+  - currentTileKey: 0
+    tileOptions:
+    - 1a
+    - 1b
+  - currentTileKey: 1a
+    tileOptions:
+    - 2a
+  - currentTileKey: 2a
+    tileOptions:
+    - 0
+  - currentTileKey: 1b
+    tileOptions:
+    - 2b
+  - currentTileKey: 2b
+    tileOptions:
+    - 0

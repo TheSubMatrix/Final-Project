@@ -10,27 +10,27 @@ public class TerrainSpawner : MonoBehaviour
 {
     [SerializeField] SO_WaterPathingTerrain usableTerrain;
     
-    private Dictionary<string, GameObject> _TerrainDictionary;
+    private Dictionary<string, GameObject> _terrainDictionary;
     
     public static Action<GameObject> OnCleanupTerrain;
     
-    private TerrainSelector _terrainSelector = new TerrainSelector();
+    private readonly TerrainSelector _terrainSelector = new TerrainSelector();
     
-    public List<GameObject> _spawnedTerrains = new List<GameObject>();
+    public List<GameObject> spawnedTerrains = new List<GameObject>();
 
     private string _currentTileKey = "0";
 
     void Awake()
     {
-        _TerrainDictionary = usableTerrain.possibleTiles;
+        _terrainDictionary = usableTerrain.possibleTiles;
     }
     void Start()
     {
 
-        if (_TerrainDictionary.TryGetValue(_currentTileKey, out GameObject terrain))
+        if (_terrainDictionary.TryGetValue(_currentTileKey, out GameObject terrain))
         {
             GameObject tile = Instantiate(terrain, new Vector3(0, 0, 0), Quaternion.identity);
-            _spawnedTerrains.Add(tile);
+            spawnedTerrains.Add(tile);
         }
 
         
@@ -40,31 +40,33 @@ public class TerrainSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_spawnedTerrains.Count >= 4)
+        if (spawnedTerrains.Count >= 4)
         {
-            if (_spawnedTerrains[0])
+            if (spawnedTerrains[0] != null)
             {
-              //  Debug.Log($"Destroying Terrain Key: {_currentTileKey}");
-                Destroy(_spawnedTerrains[0]);
-                _spawnedTerrains.RemoveAt(0);
+              
+                Destroy(spawnedTerrains[0]);
+                spawnedTerrains.RemoveAt(0);
             }
             
         }
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            Debug.Log("Spawning Terrain");
-            Bounds testBounds = new Bounds();
-            string currentTileKey = _terrainSelector.PickNextTile(_currentTileKey);
+            string currentTileKey = _terrainSelector.PickNextTile(_currentTileKey, usableTerrain.terrainOptions);
             
-            if (_TerrainDictionary.TryGetValue(currentTileKey, out GameObject terrain))
+            if (_terrainDictionary.TryGetValue(currentTileKey, out GameObject terrain))
             {
-               
-                GameObject tile = Instantiate(terrain, _spawnedTerrains[0].transform.Find("Exit Point").localPosition, Quaternion.identity);
-                _spawnedTerrains.Add(tile);
+                Vector3 spawnLocation = spawnedTerrains[^1].transform.Find("Exit Point").position;
+                GameObject tile = Instantiate(terrain, Vector3.zero, Quaternion.identity);
+                tile.transform.position = spawnLocation - tile.transform.Find("Entry Point").position;
+                spawnedTerrains.Add(tile);
+                
+                _currentTileKey = currentTileKey;
+                
                 Debug.Log($"Spawned Terrain Key: {currentTileKey}");
             }
             
-            _currentTileKey = currentTileKey;
+            
         }
     }
     
