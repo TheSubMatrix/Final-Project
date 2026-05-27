@@ -7,7 +7,7 @@ public class PlayerInteraction : MonoBehaviour
     bool aIsLoaded = false;
     private string currentPlayer = "";
     [SerializeField] private Camera cam;
-
+    [SerializeField] private Transform spawnPoint;
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -16,6 +16,8 @@ public class PlayerInteraction : MonoBehaviour
     void Start()
     {
         //cam = GetComponent<Camera>();
+        spawnPoint = GameObject.FindWithTag("Spawn").transform;
+        gameObject.transform.position = spawnPoint.position;
 
         SetCameras();
     }
@@ -24,7 +26,7 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
         //aIsLoaded = SceneManager.GetSceneByName("Scene A").isLoaded;
-        //bIsLoaded = SceneManager.GetSceneByName("Scene B").isLoaded;
+        //bIsLoaded = SceneManager.GetSceneByName("Scen
 
         currentPlayer = gameObject.tag;
     }
