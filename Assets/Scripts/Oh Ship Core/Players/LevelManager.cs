@@ -9,6 +9,8 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         //GameObject.FindWithTag("Player").transform.position = spawnPoint.position;
+        //spawnPoint = GameObject.FindWithTag("Spawn").transform;
+        //gameObject.transform.position = spawnPoint.position;
     }
 
     // Update is called once per frame
