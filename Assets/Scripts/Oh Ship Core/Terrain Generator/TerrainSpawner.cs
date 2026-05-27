@@ -33,6 +33,8 @@ public class TerrainSpawner : MonoBehaviour
             _spawnedTerrains.Add(tile);
         }
 
+        
+
     }
 
     // Update is called once per frame
@@ -51,12 +53,13 @@ public class TerrainSpawner : MonoBehaviour
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             Debug.Log("Spawning Terrain");
-            
+            Bounds testBounds = new Bounds();
             string currentTileKey = _terrainSelector.PickNextTile(_currentTileKey);
             
             if (_TerrainDictionary.TryGetValue(currentTileKey, out GameObject terrain))
             {
-                GameObject tile = Instantiate(terrain, new Vector3(0, 0, 0), Quaternion.identity);
+               
+                GameObject tile = Instantiate(terrain, _spawnedTerrains[0].transform.Find("Exit Point").localPosition, Quaternion.identity);
                 _spawnedTerrains.Add(tile);
                 Debug.Log($"Spawned Terrain Key: {currentTileKey}");
             }
