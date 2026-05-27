@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+/// <summary>
+/// Handle player movement through taking input from via <see cref="IPlayerControllable"/> from any <see cref="IPlayerController"/>
+/// </summary>
 public class PlayerMovement : MonoBehaviour, IPlayerControllable
 {
     Rigidbody m_rigidbody;
@@ -23,7 +25,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerControllable
         Vector2 newOrientedVelocity = Vector2.MoveTowards(currentOrientedVelocity, m_desiredMovement, rateOfChange * Time.fixedDeltaTime);
         m_rigidbody.linearVelocity = new(newOrientedVelocity.x, m_rigidbody.linearVelocity.y, newOrientedVelocity.y);
     }
-
+    /// <inheritdoc/>
     public void OnControlRequested(IPlayerController player)
     {
         if (!player.ChangeInputActions(m_requiredInputAction))
@@ -36,7 +38,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerControllable
         movementAction.performed += OnMovementInputChanged;
         movementAction.canceled += OnMovementInputChanged;
     }
-
+    /// <inheritdoc/>
     public void OnControlReleased()
     {
         InputAction movementAction = m_requiredInputAction.FindAction("Move");

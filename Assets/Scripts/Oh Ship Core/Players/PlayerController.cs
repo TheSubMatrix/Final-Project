@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
     [SerializeField] PlayerInput m_playerInput;
     [SerializeField] InterfaceReference<IPlayerControllable> m_defaultControllable;
     IPlayerControllable m_currentControlledEntity;
-    
+    /// <inheritdoc/>
     public void ChangeControlledEntity(IPlayerControllable controllable)
     {
         if (m_currentControlledEntity == controllable) return;
@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
         m_currentControlledEntity = controllable ?? m_defaultControllable.Value;
         m_currentControlledEntity.OnControlRequested(this);
     }
-
+    /// <inheritdoc/>
     public bool ChangeInputActions(InputActionAsset actions)
     {
         if (actions is null) return false;
