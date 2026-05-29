@@ -1,6 +1,17 @@
-using UnityEngine;
-
+/// <summary>
+/// Represents an object that can be interacted with by an <see cref="IInteractor"/>
+/// </summary>
 public interface IInteractable
 {
-    void Interact(GameObject interactor);
+    /// <summary>
+    /// Begins an interaction with the <see cref="IInteractor"/>
+    /// </summary>
+    /// <param name="interactor">The <see cref="IInteractor"/> to begin the interaction with</param>
+    /// <returns>An <see cref="InteractionSession"/> representing the current state of the interaction</returns>
+    InteractionSession BeginInteraction(IInteractor interactor);
+    /// <summary>
+    /// Ends an interaction with the <see cref="IInteractor"/> 
+    /// </summary>
+    /// <param name="session">The <see cref="InteractionSession"/> to end</param>
+    void EndInteraction(InteractionSession session);
 }
