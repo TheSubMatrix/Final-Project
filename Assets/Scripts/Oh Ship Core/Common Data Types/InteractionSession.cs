@@ -1,5 +1,4 @@
 using System;
-using UnityEngine.Events;
 
 /// <summary>
 /// Represents an ongoing interaction between an <see cref="IInteractor"/> and an <see cref="IInteractable"/>
