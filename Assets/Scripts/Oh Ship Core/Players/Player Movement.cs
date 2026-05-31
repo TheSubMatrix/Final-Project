@@ -33,7 +33,12 @@ public class PlayerMovement : MonoBehaviour
         float forwardVelocity  = Vector3.Dot(m_lookYaw * Vector3.forward, flattenedVelocity);
         float sidewaysVelocity = Vector3.Dot(m_lookYaw * Vector3.right,   flattenedVelocity);
         Vector2 currentOrientedVelocity = new(sidewaysVelocity, forwardVelocity);
-        float rateOfChange = currentOrientedVelocity.magnitude < m_desiredMovement.magnitude ? m_acceleration : m_deceleration;
+        
+        bool isStopping = m_desiredMovement.sqrMagnitude < 0.001f;
+        float rateOfChange = isStopping ? m_deceleration : m_acceleration;
+        
+        
+       // float rateOfChange = currentOrientedVelocity.magnitude < m_desiredMovement.magnitude ? m_acceleration : m_deceleration;
         Vector2 newOrientedVelocity = Vector2.MoveTowards(currentOrientedVelocity, m_desiredMovement, rateOfChange * Time.fixedDeltaTime);
         Vector3 worldVelocity = m_lookYaw * new Vector3(newOrientedVelocity.x, 0, newOrientedVelocity.y);
         m_rigidbody.linearVelocity = new(worldVelocity.x, m_rigidbody.linearVelocity.y, worldVelocity.z);

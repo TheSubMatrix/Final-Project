@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073802bb2ca7e5b44858c269e43f0c7d, type: 3}
+  m_Name: Outskirts Terrain
+  m_EditorClassIdentifier: OhShip.Core::SO_WaterPathingTerrain
+  possibleTiles:
+    m_list:
+    - Key: 0
+      Value: {fileID: 6391674034811827859, guid: 0d4a873d65fd96d44b98ee8643dc0f2e, type: 3}
+    - Key: 1a
+      Value: {fileID: 6548873801928446179, guid: a9f17fa89dfa0034ca53ea79497806e9, type: 3}
+    - Key: 1b
+      Value: {fileID: 2059876966515475463, guid: 1df6df5e20508e0469579f9f5d6e40d7, type: 3}
+    - Key: 2a
+      Value: {fileID: 2595504169671314060, guid: 0e9422e6b933ef547b29dbd0ad63d24b, type: 3}
+    - Key: 2b
+      Value: {fileID: 338637226201706878, guid: 4ec82dff917564f4e819310d495bbe46, type: 3}
+    m_stagingEntry:
+      Key: 2b
+      Value: {fileID: 0}
+  terrainOptions:
+  - currentTileKey: 0
+    tileOptions:
+    - 1a
+    - 1b
+  - currentTileKey: 1a
+    tileOptions:
+    - 2a
+  - currentTileKey: 1b
+    tileOptions:
+    - 2b
+  - currentTileKey: 2a
+    tileOptions:
+    - 0
+  - currentTileKey: 2b
+    tileOptions:
+    - 0
