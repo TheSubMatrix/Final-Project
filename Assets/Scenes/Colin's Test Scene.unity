@@ -583,9 +583,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c20ee1b8bce6c4e923477e56cddfeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Ship::ShipMovement
-  m_rudder: 0
-  m_leftThrottle: 0
-  m_rightThrottle: 0
+  <Rudder>k__BackingField: 0
+  <LeftThrottle>k__BackingField: 0
+  <RightThrottle>k__BackingField: 0
   m_rigidbody: {fileID: 288862750}
   m_leftWheelPowerPoint: {fileID: 116540597}
   m_rightWheelPowerPoint: {fileID: 1105327444}
@@ -881,7 +881,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1219,7 +1219,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 2051537735393309202, guid: fe2e2657b69f9ca4aa4fb8b9c1fbde16, type: 3}
+  m_PlayerPrefab: {fileID: 7018359044322210830, guid: cf6642d7c13093e4fa74658ce76738b5, type: 3}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -1238,7 +1238,7 @@ Transform:
   m_GameObject: {fileID: 1145903433}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

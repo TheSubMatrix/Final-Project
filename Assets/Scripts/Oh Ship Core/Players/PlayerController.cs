@@ -16,12 +16,15 @@ public class PlayerController : MonoBehaviour, IPlayerController
         m_currentControlledEntity.OnControlRequested(this);
     }
     /// <inheritdoc/>
-    public bool ChangeInputActions(InputActionAsset actions)
+    public bool ChangeInputActionMap(string actions, out InputActionMap newMap)
     {
+        newMap = null;
         if (actions is null) return false;
-        if(m_playerInput.actions) m_playerInput.actions.Disable();
-        if(!actions.enabled) actions.Enable();
-        m_playerInput.actions = actions;
+        m_playerInput.currentActionMap?.Disable();
+        newMap = m_playerInput.actions.FindActionMap(actions);
+        if (newMap is null) return false;
+        m_playerInput.SwitchCurrentActionMap(actions);
+        newMap.Enable();
         return true;
     }
 

@@ -4,13 +4,14 @@ using UnityEngine.InputSystem;
 
 public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllable
 {
-    [SerializeField] InputActionAsset m_helmControlsAsset;
+    [SerializeField] string m_helmControlActionMap = "Helm";
+    
     [SerializeField] float m_helmThrottleSpeed = 0.5f;
     [SerializeField] float m_helmRudderSpeed = 0.5f;
     [SerializeField, RequiredField] ShipMovement m_shipMovement;
     IPlayerController m_activePlayerController;
     Vector2 m_input = Vector2.zero;
-    
+    InputActionMap m_activeActionMap;
     ///<inheritdoc/>
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
@@ -38,14 +39,15 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     public void OnControlRequested(IPlayerController player)
     {
         m_activePlayerController = player;
-        if (!player.ChangeInputActions(m_helmControlsAsset))
+        
+        if (!player.ChangeInputActionMap(m_helmControlActionMap, out InputActionMap map))
         {
             Debug.LogError("Failed to assign input actions to player, reverting control to default.");
             player.ChangeControlledEntity(null);
             return;
         }
-        m_helmControlsAsset.Enable();
-        InputAction movementAction = m_helmControlsAsset.FindAction("Move");
+        m_activeActionMap = map;
+        InputAction movementAction = m_activeActionMap.FindAction("Move");
         movementAction.performed += HandleMovementInput;
         movementAction.canceled += HandleMovementInput;
     }
@@ -55,10 +57,10 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         m_input = Vector2.zero;
         Update();
         m_activePlayerController = null;
-        m_helmControlsAsset.Disable();
-        InputAction movementAction = m_helmControlsAsset.FindAction("Move");
+        InputAction movementAction = m_activeActionMap.FindAction("Move");
         movementAction.performed -= HandleMovementInput;
         movementAction.canceled -= HandleMovementInput;
+        m_activeActionMap = null;
     }
     ///<inheritdoc/>
     public IPlayerController GetActivePlayerController() => m_activePlayerController;

@@ -9,10 +9,6 @@ public interface IPlayerController
     /// </summary>
     /// <param name="controllable">The <see cref="IPlayerControllable"/> we want to have control over</param>
     void ChangeControlledEntity(IPlayerControllable controllable);
-    /// <summary>
-    /// Changes the <see cref="InputActionAsset"/> used by the controlled object.
-    /// </summary>
-    /// <param name="actions">The <see cref="InputActionAsset"/> we want to swap to</param>
-    /// <returns>A bool indicating a successful map swap</returns>
-    public bool ChangeInputActions(InputActionAsset actions);
+    
+    public bool ChangeInputActionMap(string actions, out InputActionMap newMap);
 }
