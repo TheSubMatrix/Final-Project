@@ -29,7 +29,6 @@ public class PlayerMovement : MonoBehaviour, IPlayerControllable
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody>();
-        m_camera = GetComponentInChildren<Camera>().transform;
     }
 
     void FixedUpdate()
