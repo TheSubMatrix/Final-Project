@@ -11,7 +11,6 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     /// </summary>
     [SerializeField] float m_interactionRange = 2;
     InteractionSession m_session;
-    
     /// <inheritdoc/>
     public bool IsInteracting() => m_session?.IsActive is true;
     /// <inheritdoc/>
@@ -24,12 +23,14 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
         SubscribeToSession();
         return true;
     }
+    /// <inheritdoc/>
+    public GameObject GetAssociatedGameObject() => gameObject;
+
     /// <summary>
     /// Attempts to begin an interaction with the nearest <see cref="IInteractable"/> in the <see cref="m_interactionRange"/>
     /// </summary>
-    public void OnInteractionButtonPressed(InputAction.CallbackContext context)
+    public void OnInteractionButtonPressed()
     {
-        if (!context.performed) return;
         if (IsInteracting())
         {
             EndActiveInteraction();

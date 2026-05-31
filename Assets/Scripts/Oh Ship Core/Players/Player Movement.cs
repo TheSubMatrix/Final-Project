@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -5,11 +6,10 @@ using UnityEngine.Serialization;
 /// <summary>
 /// Handle player movement through taking input from via <see cref="IPlayerControllable"/> from any <see cref="IPlayerController"/>
 /// </summary>
-public class PlayerMovement : MonoBehaviour, IPlayerControllable
+public class PlayerMovement : MonoBehaviour
 {
     Rigidbody m_rigidbody;
     Vector2 m_desiredMovement;
-    [SerializeField] InputActionAsset m_requiredInputAction;
     [SerializeField] float m_acceleration;
     [SerializeField] float m_deceleration;
     [SerializeField] float m_moveSpeed;
@@ -18,14 +18,10 @@ public class PlayerMovement : MonoBehaviour, IPlayerControllable
     float m_lookPitch;
     Quaternion m_lookYaw = Quaternion.identity;
     Vector2 m_currentLookInput;
-    
-    void OnMovementInputChanged(InputAction.CallbackContext context) => m_desiredMovement = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1) * m_moveSpeed;
+    IPlayerController m_playerController;
+    public void OnMovementInputChanged(Vector2 input) => m_desiredMovement = Vector2.ClampMagnitude(input, 1) * m_moveSpeed;
+    public void OnLookInputChanged(Vector2 input) => m_currentLookInput = input;
 
-    public void OnLookInputChanged(InputAction.CallbackContext context)
-    {
-        m_currentLookInput = context.ReadValue<Vector2>();
-    }
-    
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody>();
@@ -48,39 +44,5 @@ public class PlayerMovement : MonoBehaviour, IPlayerControllable
         m_lookYaw *= Quaternion.Euler(0, m_currentLookInput.x * m_lookSensitivity * Time.deltaTime, 0);
         m_lookPitch = Mathf.Clamp(m_lookPitch - m_currentLookInput.y * m_lookSensitivity * Time.deltaTime, -90, 90);
         m_camera.rotation = m_lookYaw * Quaternion.Euler(m_lookPitch, 0, 0);
-    }
-    /// <inheritdoc/>
-    public void OnControlRequested(IPlayerController player)
-    {
-        if (!player.ChangeInputActions(m_requiredInputAction))
-        {
-            Debug.LogError("Failed to assign input actions to player, reverting control to default.");
-            player.ChangeControlledEntity(null);
-            return;
-        }
-
-        m_requiredInputAction.Enable();
-
-        InputAction movementAction = m_requiredInputAction.FindAction("Move");
-        movementAction.performed += OnMovementInputChanged;
-        movementAction.canceled += OnMovementInputChanged;
-
-        InputAction lookAction = m_requiredInputAction.FindAction("Look");
-
-        lookAction.performed += OnLookInputChanged;
-        lookAction.canceled += OnLookInputChanged;
-    }
-    /// <inheritdoc/>
-    public void OnControlReleased()
-    {
-        m_requiredInputAction.Disable();
-
-        InputAction movementAction = m_requiredInputAction.FindAction("Move");
-        movementAction.performed -= OnMovementInputChanged;
-        movementAction.canceled -= OnMovementInputChanged;
-
-        InputAction lookAction = m_requiredInputAction.FindAction("Look");
-        lookAction.performed -= OnLookInputChanged;
-        lookAction.canceled -= OnLookInputChanged;
     }
 }

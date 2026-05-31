@@ -1,23 +1,30 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ShipMovement : MonoBehaviour
 {
-    [SerializeField, Range(-1 , 1)] float m_rudder;
-    [SerializeField, Range(-1, 1)] float m_leftThrottle;
-    [SerializeField, Range(-1, 1)] float m_rightThrottle;
+    [field:SerializeField, Range(-1 , 1)]public float Rudder{ get; private set;}
+    [field:SerializeField, Range(-1 , 1)]public float LeftThrottle{ get; private set;}
+    [field:SerializeField, Range(-1 , 1)]public float RightThrottle{ get; private set;}
+
     [SerializeField] Rigidbody m_rigidbody;
     [SerializeField] Transform m_leftWheelPowerPoint;
     [SerializeField] Transform m_rightWheelPowerPoint;
     [SerializeField] Transform m_rudderPoint;
     [SerializeField] AnimationCurve m_rudderEffectiveness;
     [SerializeField] AnimationCurve m_throttleEffectiveness;
-    
+    public void SetRudder(float rudder) => Rudder = Mathf.Clamp(rudder, -1 , 1);
+    public void SetThrottles(float leftThrottle, float rightThrottle)
+    {
+        LeftThrottle = Mathf.Clamp(leftThrottle, -1, 1);
+        RightThrottle = Mathf.Clamp(rightThrottle, -1, 1);
+    }
     
     void FixedUpdate()
     {
-        m_rigidbody.AddForceAtPosition(m_leftWheelPowerPoint.forward * m_throttleEffectiveness.Evaluate(m_leftThrottle), m_leftWheelPowerPoint.position, ForceMode.Force);
-        m_rigidbody.AddForceAtPosition(m_rightWheelPowerPoint.forward * m_throttleEffectiveness.Evaluate(m_rightThrottle), m_rightWheelPowerPoint.position, ForceMode.Force);
-        ApplyRudderForce(m_rudder);
+        m_rigidbody.AddForceAtPosition(m_leftWheelPowerPoint.forward * m_throttleEffectiveness.Evaluate(LeftThrottle), m_leftWheelPowerPoint.position, ForceMode.Force);
+        m_rigidbody.AddForceAtPosition(m_rightWheelPowerPoint.forward * m_throttleEffectiveness.Evaluate(RightThrottle), m_rightWheelPowerPoint.position, ForceMode.Force);
+        ApplyRudderForce(Rudder);
     }
 
     void ApplyRudderForce(float rudderInput)

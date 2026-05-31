@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,5 +23,11 @@ public class PlayerController : MonoBehaviour, IPlayerController
         if(!actions.enabled) actions.Enable();
         m_playerInput.actions = actions;
         return true;
+    }
+
+    void Start()
+    {
+        if(m_defaultControllable.Value is null) return;
+        ChangeControlledEntity(m_defaultControllable.Value);
     }
 }
