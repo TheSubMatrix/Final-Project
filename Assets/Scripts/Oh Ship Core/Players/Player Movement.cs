@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
+
 /// <summary>
 /// Handle player movement through taking input from via <see cref="IPlayerControllable"/> from any <see cref="IPlayerController"/>
 /// </summary>
@@ -11,52 +13,43 @@ public class PlayerMovement : MonoBehaviour, IPlayerControllable
     [SerializeField] float m_acceleration;
     [SerializeField] float m_deceleration;
     [SerializeField] float m_moveSpeed;
-
-
-    [SerializeField] private Transform cameraTurn;
-    [SerializeField] private float lookSens = 30f;
-    private Vector2 m_lookInput;
-    private float pitch;
-    Camera cam;
-
+    [FormerlySerializedAs("cameraTurn")] [SerializeField] Transform m_camera;
+    [FormerlySerializedAs("lookSens")] [SerializeField] float m_lookSensitivity = 30f;
+    float m_lookPitch;
+    Quaternion m_lookYaw = Quaternion.identity;
+    Vector2 m_currentLookInput;
+    
     void OnMovementInputChanged(InputAction.CallbackContext context) => m_desiredMovement = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1) * m_moveSpeed;
 
     public void OnLookInputChanged(InputAction.CallbackContext context)
     {
-        Debug.Log("Look callback fired");
-        m_lookInput = context.ReadValue<Vector2>();
+        m_currentLookInput = context.ReadValue<Vector2>();
     }
+    
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody>();
-        cameraTurn = GetComponentInChildren<Camera>().transform;
+        m_camera = GetComponentInChildren<Camera>().transform;
     }
 
     void FixedUpdate()
     {
         Vector3 flattenedVelocity = new(m_rigidbody.linearVelocity.x, 0, m_rigidbody.linearVelocity.z);
-        float forwardVelocity  = Vector3.Dot(Vector3.forward, flattenedVelocity);
-        float sidewaysVelocity = Vector3.Dot(Vector3.right,   flattenedVelocity);
+        float forwardVelocity  = Vector3.Dot(m_lookYaw * Vector3.forward, flattenedVelocity);
+        float sidewaysVelocity = Vector3.Dot(m_lookYaw * Vector3.right,   flattenedVelocity);
         Vector2 currentOrientedVelocity = new(sidewaysVelocity, forwardVelocity);
         float rateOfChange = currentOrientedVelocity.magnitude < m_desiredMovement.magnitude ? m_acceleration : m_deceleration;
         Vector2 newOrientedVelocity = Vector2.MoveTowards(currentOrientedVelocity, m_desiredMovement, rateOfChange * Time.fixedDeltaTime);
-        m_rigidbody.linearVelocity = new(newOrientedVelocity.x, m_rigidbody.linearVelocity.y, newOrientedVelocity.y);
-
-        transform.Rotate(Vector3.up, m_lookInput.x * lookSens * Time.fixedDeltaTime);
-        pitch -= m_lookInput.y * lookSens * Time.fixedDeltaTime;
-        pitch = Mathf.Clamp(pitch, -60f, 60f);
-        cameraTurn.localRotation = Quaternion.Euler(pitch, 0, 0);
+        Vector3 worldVelocity = m_lookYaw * new Vector3(newOrientedVelocity.x, 0, newOrientedVelocity.y);
+        m_rigidbody.linearVelocity = new(worldVelocity.x, m_rigidbody.linearVelocity.y, worldVelocity.z);
     }
 
-    void Update()
+    void LateUpdate()
     {
-        Debug.Log("LOOK: " + m_lookInput);
-
-        Debug.Log(m_requiredInputAction.enabled);
-        Debug.Log(m_requiredInputAction.FindAction("Look").enabled);
-        Debug.Log(m_requiredInputAction.FindAction("Look").actionMap.enabled);
+        m_lookYaw *= Quaternion.Euler(0, m_currentLookInput.x * m_lookSensitivity * Time.deltaTime, 0);
+        m_lookPitch = Mathf.Clamp(m_lookPitch - m_currentLookInput.y * m_lookSensitivity * Time.deltaTime, -90, 90);
+        m_camera.rotation = m_lookYaw * Quaternion.Euler(m_lookPitch, 0, 0);
     }
-
     /// <inheritdoc/>
     public void OnControlRequested(IPlayerController player)
     {
