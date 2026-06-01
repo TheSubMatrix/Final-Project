@@ -58,7 +58,7 @@ public class PlayerInteractions : MonoBehaviour
         GameObject boatObj = GameObject.FindWithTag("Boat");
         boatRb = boatObj.GetComponent<Rigidbody>();
 
-        FixedJoint joint = boatObj.AddComponent<SpringJoint>();
+        FixedJoint joint = boatObj.AddComponent<FixedJoint>();
 
         joint.connectedBody = rb;
     }
