@@ -13,8 +13,16 @@ MonoBehaviour:
   m_Name: Port Terrain
   m_EditorClassIdentifier: OhShip.Core::SO_WaterPathingTerrain
   possibleTiles:
-    m_list: []
+    m_list:
+    - Key: 0
+      Value: {fileID: 4976636802877380923, guid: da2af4206f028044db62626aeac10aa3, type: 3}
+    - Key: 1
+      Value: {fileID: 4451731503813034650, guid: 0ee33036efb5c624e86b57d082b5aaf7, type: 3}
     m_stagingEntry:
-      Key: 
+      Key: 1
       Value: {fileID: 0}
-  terrainOptions: []
+  terrainOptions:
+  - currentTileKey: 0
+    tileOptions:
+    - 1
+  startingTileKey: 0

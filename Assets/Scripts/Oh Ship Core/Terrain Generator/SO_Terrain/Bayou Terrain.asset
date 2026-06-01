@@ -13,8 +13,36 @@ MonoBehaviour:
   m_Name: Bayou Terrain
   m_EditorClassIdentifier: OhShip.Core::SO_WaterPathingTerrain
   possibleTiles:
-    m_list: []
+    m_list:
+    - Key: 0
+      Value: {fileID: 8485982451696245205, guid: b693f7b690c6e914594d651b54787ca8, type: 3}
+    - Key: 1
+      Value: {fileID: 5716394018233189384, guid: caabf650decb5eb458196ed1b352c933, type: 3}
+    - Key: 2a
+      Value: {fileID: 2162803523485023206, guid: 74b1e7ced0495da41902060240842528, type: 3}
+    - Key: 2b
+      Value: {fileID: 351419851059731117, guid: d0acdfda584cf4a47ab56c72dcdf7efb, type: 3}
+    - Key: 2c
+      Value: {fileID: 6464868106508655346, guid: 3ed8ec1a3c6db9e4bb7b772d50c50c2c, type: 3}
     m_stagingEntry:
       Key: 
       Value: {fileID: 0}
-  terrainOptions: []
+  terrainOptions:
+  - currentTileKey: 0
+    tileOptions:
+    - 1
+  - currentTileKey: 1
+    tileOptions:
+    - 2a
+    - 2b
+    - 2c
+  - currentTileKey: 2a
+    tileOptions:
+    - 1
+  - currentTileKey: 2b
+    tileOptions:
+    - 1
+  - currentTileKey: 2c
+    tileOptions:
+    - 1
+  startingTileKey: 
