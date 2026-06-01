@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 94534563}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 66, y: 4.4, z: 0}
+  m_LocalPosition: {x: -0.77, y: 3.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -308,6 +308,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &260838606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 260838607}
+  - component: {fileID: 260838608}
+  m_Layer: 0
+  m_Name: BoatBackCollision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &260838607
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260838606}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.00091094966, y: 0.0874, z: -0.5354}
+  m_LocalScale: {x: 0.26439294, y: 0.011769846, z: 0.08070601}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2023906171}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &260838608
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260838606}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1536406, y: 2.4112713, z: 0.3353771}
+  m_Center: {x: -0.0028530557, y: 0.7056362, z: 0.0043790718}
 --- !u!1001 &401581848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -394,6 +447,18 @@ PrefabInstance:
       addedObject: {fileID: 1098259403}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b8daf882b1e4f2142b7ee89306d8a32c, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 260838607}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b8daf882b1e4f2142b7ee89306d8a32c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 557543545}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b8daf882b1e4f2142b7ee89306d8a32c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 529335342}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b8daf882b1e4f2142b7ee89306d8a32c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 456424265}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b8daf882b1e4f2142b7ee89306d8a32c, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1509291216}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b8daf882b1e4f2142b7ee89306d8a32c, type: 3}
       insertIndex: -1
@@ -438,6 +503,59 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b8daf882b1e4f2142b7ee89306d8a32c, type: 3}
   m_PrefabInstance: {fileID: 401581848}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &456424264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 456424265}
+  - component: {fileID: 456424266}
+  m_Layer: 0
+  m_Name: BoatFrontCollision (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &456424265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456424264}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0028215, y: 0.1289, z: 0.5444}
+  m_LocalScale: {x: 0.071355164, y: 0.011769846, z: 0.08070601}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2023906171}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &456424266
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456424264}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1536406, y: 2.4112713, z: 0.3353771}
+  m_Center: {x: -0.0028530557, y: 0.7056362, z: 0.0043790718}
 --- !u!1 &473566592
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,6 +849,112 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.5408592, z: 14.86068}
   m_Center: {x: 0, y: -0.63088083, z: 0.17765045}
+--- !u!1 &529335341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 529335342}
+  - component: {fileID: 529335343}
+  m_Layer: 0
+  m_Name: BoatFrontCollision (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &529335342
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529335341}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.49489763, z: 0, w: 0.8689513}
+  m_LocalPosition: {x: 0.0914, y: 0.1289, z: 0.4545}
+  m_LocalScale: {x: 0.21908921, y: 0.011769846, z: 0.08070601}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2023906171}
+  m_LocalEulerAnglesHint: {x: 0, y: 59.326, z: 0}
+--- !u!65 &529335343
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529335341}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1536406, y: 2.4112713, z: 0.3353771}
+  m_Center: {x: -0.0028530557, y: 0.7056362, z: 0.0043790718}
+--- !u!1 &557543544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 557543545}
+  - component: {fileID: 557543546}
+  m_Layer: 0
+  m_Name: BoatFrontCollision (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &557543545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557543544}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.4949002, z: -0, w: 0.86894983}
+  m_LocalPosition: {x: -0.0902, y: 0.1289, z: 0.4558}
+  m_LocalScale: {x: 0.21908921, y: 0.011769846, z: 0.08070601}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2023906171}
+  m_LocalEulerAnglesHint: {x: 0, y: -59.326, z: 0}
+--- !u!65 &557543546
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557543544}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1536406, y: 2.4112713, z: 0.3353771}
+  m_Center: {x: -0.0028530557, y: 0.7056362, z: 0.0043790718}
 --- !u!1 &566261998
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,13 +1185,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098259402}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.1781379, y: -0, z: -0, w: 0.9840056}
-  m_LocalPosition: {x: 0.0009109497, y: 0.0878, z: -0.0469}
-  m_LocalScale: {x: 0.26439294, y: 0.015384615, z: 0.14}
+  m_LocalRotation: {x: -0.34060097, y: -0, z: -0, w: 0.94020796}
+  m_LocalPosition: {x: 0.00091094966, y: 0.0874, z: -0.0095}
+  m_LocalScale: {x: 0.26439294, y: 0.011769846, z: 0.08070601}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2023906171}
-  m_LocalEulerAnglesHint: {x: -20.523, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -39.827, y: 0, z: 0}
 --- !u!65 &1098259404
 BoxCollider:
   m_ObjectHideFlags: 0
