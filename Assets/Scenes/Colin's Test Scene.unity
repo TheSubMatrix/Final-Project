@@ -150,6 +150,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &133934343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 133934344}
+  m_Layer: 0
+  m_Name: Rudder Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &133934344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133934343}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.122, z: -0.4559}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2023906171}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &137599086
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +308,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &219193802 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 901897122485332503, guid: 4e05564a69e988b46be32717efa4124a, type: 3}
+  m_PrefabInstance: {fileID: 958189070}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &219193806
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219193802}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.045512505, y: 0.04554251, z: 0.026296102}
+  m_Center: {x: 0.0000000018626451, y: -0.00000002142042, z: -0.00000001071021}
+--- !u!114 &219193807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219193802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01eef7a931e5e2c478db2b203d1750cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::HelmInteractable
+  m_helmControlActionMap: Helm
+  m_helmThrottleSpeed: 0.5
+  m_helmRudderSpeed: 0.5
+  m_shipMovement: {fileID: 2023906176}
 --- !u!1001 &401581848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -363,6 +436,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b8daf882b1e4f2142b7ee89306d8a32c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 528249913}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b8daf882b1e4f2142b7ee89306d8a32c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1840052232}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b8daf882b1e4f2142b7ee89306d8a32c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 133934344}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b8daf882b1e4f2142b7ee89306d8a32c, type: 3}
       insertIndex: -1
@@ -564,7 +643,6 @@ Transform:
   - {fileID: 1761186170}
   - {fileID: 566261999}
   - {fileID: 676043296}
-  - {fileID: 765597508}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &473566599
@@ -580,11 +658,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Ship::ShipMovement
   <Rudder>k__BackingField: 0
-  <LeftThrottle>k__BackingField: 0
-  <RightThrottle>k__BackingField: 0
+  <Throttle>k__BackingField: 0
   m_rigidbody: {fileID: 473566594}
-  m_leftWheelPowerPoint: {fileID: 676043296}
-  m_rightWheelPowerPoint: {fileID: 765597508}
+  m_wheelPowerPoint: {fileID: 676043296}
   m_rudderPoint: {fileID: 566261999}
   m_rudderEffectiveness:
     serializedVersion: 2
@@ -728,7 +804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 676043296}
   m_Layer: 0
-  m_Name: Engine L
+  m_Name: Engine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -743,38 +819,7 @@ Transform:
   m_GameObject: {fileID: 676043295}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 473566598}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &765597507
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 765597508}
-  m_Layer: 0
-  m_Name: Engine R
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &765597508
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 765597507}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.46666667, y: 0, z: 0}
+  m_LocalPosition: {x: 0.03333336, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -847,7 +892,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4e05564a69e988b46be32717efa4124a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2106111592}
+    - targetCorrespondingSourceObject: {fileID: 901897122485332503, guid: 4e05564a69e988b46be32717efa4124a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 219193806}
+    - targetCorrespondingSourceObject: {fileID: 901897122485332503, guid: 4e05564a69e988b46be32717efa4124a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 219193807}
   m_SourcePrefab: {fileID: 100100000, guid: 4e05564a69e988b46be32717efa4124a, type: 3}
 --- !u!1 &978650933
 GameObject:
@@ -1017,13 +1071,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098259402}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.39323354, y: -0, z: -0, w: 0.9194387}
-  m_LocalPosition: {x: 0.0009109497, y: 0.08873159, z: -0.0020718134}
-  m_LocalScale: {x: 0.26439294, y: 0.015384615, z: 0.06979064}
+  m_LocalRotation: {x: -0.1781379, y: -0, z: -0, w: 0.9840056}
+  m_LocalPosition: {x: 0.0009109497, y: 0.0878, z: -0.0469}
+  m_LocalScale: {x: 0.26439294, y: 0.015384615, z: 0.14}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2023906171}
-  m_LocalEulerAnglesHint: {x: -46.312, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -20.523, y: 0, z: 0}
 --- !u!65 &1098259404
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1239,6 +1293,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1408826029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4e05564a69e988b46be32717efa4124a, type: 3}
+  m_PrefabInstance: {fileID: 958189070}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1509291215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1558,6 +1617,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1840052231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1840052232}
+  m_Layer: 0
+  m_Name: Wheel Power Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1840052232
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840052231}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2023906171}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2023906171 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b8daf882b1e4f2142b7ee89306d8a32c, type: 3}
@@ -1660,12 +1750,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Ship::ShipMovement
   <Rudder>k__BackingField: 0
-  <LeftThrottle>k__BackingField: 0
-  <RightThrottle>k__BackingField: 0
-  m_rigidbody: {fileID: 0}
-  m_leftWheelPowerPoint: {fileID: 0}
-  m_rightWheelPowerPoint: {fileID: 0}
-  m_rudderPoint: {fileID: 0}
+  <Throttle>k__BackingField: 0
+  m_rigidbody: {fileID: 2023906178}
+  m_wheelPowerPoint: {fileID: 1840052232}
+  m_rudderPoint: {fileID: 133934344}
   m_rudderEffectiveness:
     serializedVersion: 2
     m_Curve:
@@ -1728,31 +1816,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: OhShip.Core.Ship::BuoyantBody
   m_waterHeight: 0
   m_buoyancyPoints:
-  - PointBuoyancy: 7
+  - PointBuoyancy: 9
     LocalPosition: {x: 0.15, y: -0.06, z: -0.4810457}
     Radius: 2
     Drag: {x: 0.4, y: 0.2, z: 0.4}
-  - PointBuoyancy: 7
-    LocalPosition: {x: -0.15, y: -0.06, z: -0.48105833}
+  - PointBuoyancy: 9
+    LocalPosition: {x: -0.16824266, y: -0.05769817, z: -0.4804802}
     Radius: 2
     Drag: {x: 0.4, y: 0.2, z: 0.4}
-  - PointBuoyancy: 7
+  - PointBuoyancy: 9
     LocalPosition: {x: -0.15, y: -0.06, z: 0.19}
     Radius: 2
     Drag: {x: 0.4, y: 0.2, z: 0.4}
-  - PointBuoyancy: 7
+  - PointBuoyancy: 9
     LocalPosition: {x: 0.15, y: -0.06, z: 0.19}
     Radius: 2
     Drag: {x: 0.4, y: 0.2, z: 0.4}
-  - PointBuoyancy: 7
+  - PointBuoyancy: 9
     LocalPosition: {x: 0.00025162514, y: -0.06, z: 0.42563418}
     Radius: 2
     Drag: {x: 0.4, y: 0.2, z: 0.4}
-  - PointBuoyancy: 7
+  - PointBuoyancy: 9
     LocalPosition: {x: 0.15, y: -0.06, z: -0.14}
     Radius: 2
     Drag: {x: 0.4, y: 0.2, z: 0.4}
-  - PointBuoyancy: 7
+  - PointBuoyancy: 9
     LocalPosition: {x: -0.15, y: -0.06, z: -0.14}
     Radius: 2
     Drag: {x: 0.4, y: 0.2, z: 0.4}
@@ -1780,7 +1868,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!4 &2106111591 stripped
@@ -1788,6 +1876,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4e05564a69e988b46be32717efa4124a, type: 3}
   m_PrefabInstance: {fileID: 958189070}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2106111592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408826029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01eef7a931e5e2c478db2b203d1750cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::HelmInteractable
+  m_helmControlActionMap: Helm
+  m_helmThrottleSpeed: 0.5
+  m_helmRudderSpeed: 0.5
+  m_shipMovement: {fileID: 2023906176}
 --- !u!4 &8095789118943845862
 Transform:
   m_ObjectHideFlags: 0
