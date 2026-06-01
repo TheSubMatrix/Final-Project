@@ -55,18 +55,9 @@ public class PlayerInteractions : MonoBehaviour
         spawnPoint = GameObject.FindWithTag(spawnTag).transform;
         rb.position = spawnPoint.position;
 
-        //GameObject boatObj = GameObject.FindWithTag("Boat");
-
-        //GameObject parentObject = transform.parent.gameObject;
-
-        //parentObject.transform.SetParent(boatObj.transform);
-        //boatRb = boatObj.GetComponent<Rigidbody>();
-
-        //FixedJoint joint = boatObj.AddComponent<FixedJoint>();
-
-        //joint.connectedBody = rb;
     }
 
+    /*
     void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.tag == "Boat")
@@ -82,6 +73,8 @@ public class PlayerInteractions : MonoBehaviour
             gameObject.transform.SetParent(null);
         }
     }
+
+    */
 
     void CheckDoorEntry(Collider door)
     {
