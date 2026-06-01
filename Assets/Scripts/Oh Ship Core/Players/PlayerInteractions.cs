@@ -9,6 +9,8 @@ public class PlayerInteractions : MonoBehaviour
 
     bool inSceneA = false;
     bool inSceneB = false;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -46,8 +48,11 @@ public class PlayerInteractions : MonoBehaviour
 
     void Spawn(string spawnTag)
     {
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        rb.linearVelocity = Vector3.zero;
+
         spawnPoint = GameObject.FindWithTag(spawnTag).transform;
-        gameObject.transform.position = spawnPoint.position;
+        rb.position = spawnPoint.position;
     }
 
     void CheckDoorEntry(Collider door)
