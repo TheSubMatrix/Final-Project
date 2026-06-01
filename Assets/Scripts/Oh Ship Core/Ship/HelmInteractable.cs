@@ -12,28 +12,28 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     IPlayerController m_activePlayerController;
     Vector2 m_input = Vector2.zero;
     InputActionMap m_activeActionMap;
+    InteractionSession m_currentInteractionSession;
     ///<inheritdoc/>
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
-        Debug.Log("Helm Interactable Interacted");
         IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         IPlayerController controller = oldControllable.GetActivePlayerController();
         controller.ChangeControlledEntity(this);
-        InteractionSession session = new(interactor, this);
-        session.OnEnded += () => controller.ChangeControlledEntity(oldControllable);
-        return session;
+        m_currentInteractionSession = new(interactor, this);
+        m_currentInteractionSession.OnEnded += () => controller.ChangeControlledEntity(oldControllable);
+        return m_currentInteractionSession;
     }
 
     void Update()
     {
         if(m_activePlayerController is null) return;
         m_shipMovement.SetRudder(m_shipMovement.Rudder + m_input.x * Time.deltaTime * m_helmRudderSpeed);
-        m_shipMovement.SetThrottles(m_shipMovement.LeftThrottle + m_input.y * Time.deltaTime * m_helmThrottleSpeed, m_shipMovement.RightThrottle + m_input.y * Time.deltaTime * m_helmThrottleSpeed);
+        m_shipMovement.SetThrottle(m_shipMovement.Throttle + m_input.y * Time.deltaTime * m_helmThrottleSpeed);
     }
     ///<inheritdoc/>
     public void EndInteraction(InteractionSession session)
     {
-        
+        m_currentInteractionSession = null;
     }
     ///<inheritdoc/>
     public void OnControlRequested(IPlayerController player)
@@ -50,6 +50,8 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         InputAction movementAction = m_activeActionMap.FindAction("Move");
         movementAction.performed += HandleMovementInput;
         movementAction.canceled += HandleMovementInput;
+        InputAction interactAction = m_activeActionMap.FindAction("Interact");
+        interactAction.performed += HandleInteract;
     }
     ///<inheritdoc/>
     public void OnControlReleased()
@@ -60,11 +62,13 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         InputAction movementAction = m_activeActionMap.FindAction("Move");
         movementAction.performed -= HandleMovementInput;
         movementAction.canceled -= HandleMovementInput;
+        InputAction interactAction = m_activeActionMap.FindAction("Interact");
+        interactAction.performed -= HandleInteract;
         m_activeActionMap = null;
     }
     ///<inheritdoc/>
     public IPlayerController GetActivePlayerController() => m_activePlayerController;
 
     void HandleMovementInput(InputAction.CallbackContext context) => m_input = context.ReadValue<Vector2>();
-
+    void HandleInteract(InputAction.CallbackContext context) => m_currentInteractionSession.End();
 }
