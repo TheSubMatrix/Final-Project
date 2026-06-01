@@ -21,21 +21,16 @@ public class PlayerMovement : MonoBehaviour
     IPlayerController m_playerController;
     public void OnMovementInputChanged(Vector2 input) => m_desiredMovement = Vector2.ClampMagnitude(input, 1) * m_moveSpeed;
     public void OnLookInputChanged(Vector2 input) => m_currentLookInput = input;
-
-    void Start()
-    {
-        m_rigidbody = GetComponent<Rigidbody>();
-    }
+    void Start() => m_rigidbody = GetComponent<Rigidbody>();
 
     void FixedUpdate()
     {
         Vector3 flattenedVelocity = new(m_rigidbody.linearVelocity.x, 0, m_rigidbody.linearVelocity.z);
         float forwardVelocity  = Vector3.Dot(m_lookYaw * Vector3.forward, flattenedVelocity);
         float sidewaysVelocity = Vector3.Dot(m_lookYaw * Vector3.right,   flattenedVelocity);
-        Vector2 currentOrientedVelocity = new(sidewaysVelocity, forwardVelocity);
-        float rateOfChange = currentOrientedVelocity.magnitude < m_desiredMovement.magnitude ? m_acceleration : m_deceleration;
-        Vector2 newOrientedVelocity = Vector2.MoveTowards(currentOrientedVelocity, m_desiredMovement, rateOfChange * Time.fixedDeltaTime);
-        Vector3 worldVelocity = m_lookYaw * new Vector3(newOrientedVelocity.x, 0, newOrientedVelocity.y);
+        float newForward  = Mathf.MoveTowards(forwardVelocity,  m_desiredMovement.y, GetRate(forwardVelocity,  m_desiredMovement.y) * Time.fixedDeltaTime);
+        float newSideways = Mathf.MoveTowards(sidewaysVelocity, m_desiredMovement.x, GetRate(sidewaysVelocity, m_desiredMovement.x) * Time.fixedDeltaTime);
+        Vector3 worldVelocity = m_lookYaw * new Vector3(newSideways, 0, newForward);
         m_rigidbody.linearVelocity = new(worldVelocity.x, m_rigidbody.linearVelocity.y, worldVelocity.z);
     }
 
@@ -45,4 +40,5 @@ public class PlayerMovement : MonoBehaviour
         m_lookPitch = Mathf.Clamp(m_lookPitch - m_currentLookInput.y * m_lookSensitivity * Time.deltaTime, -90, 90);
         m_camera.rotation = m_lookYaw * Quaternion.Euler(m_lookPitch, 0, 0);
     }
+    float GetRate(float current, float desired) => Mathf.Abs(current) < Mathf.Abs(desired) || !Mathf.Approximately(Mathf.Sign(current), Mathf.Sign(desired)) ? m_acceleration : m_deceleration;
 }
