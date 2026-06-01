@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     bool onGround;
 
     Rigidbody m_rigidbody;
-    Rigidbody boatRb;
     Vector2 m_desiredMovement;
     [SerializeField] float m_acceleration;
     [SerializeField] float m_deceleration;
@@ -29,17 +28,11 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody>();
-        GameObject boatObj = GameObject.FindWithTag("Boat");
-        boatRb = boatObj.GetComponent<Rigidbody>();
-
-        FixedJoint joint = boatObj.AddComponent<FixedJoint>();
-
-        joint.connectedBody = m_rigidbody;
     }
 
     void Awake()
     {
-        OnValidate();
+        //OnValidate();
     }
 
     void FixedUpdate()
@@ -61,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
     }
     float GetRate(float current, float desired) => Mathf.Abs(current) < Mathf.Abs(desired) || !Mathf.Approximately(Mathf.Sign(current), Mathf.Sign(desired)) ? m_acceleration : m_deceleration;
 
+    /*
     void OnValidate()
     {
         minGroundDotProduct = Mathf.Cos(maxGroundAngle * Mathf.Deg2Rad);
@@ -78,5 +72,5 @@ public class PlayerMovement : MonoBehaviour
             Vector3 normal = collision.GetContact(i).normal;
             onGround |= normal.y >= minGroundDotProduct;
         }
-    }
+    }*/
 }

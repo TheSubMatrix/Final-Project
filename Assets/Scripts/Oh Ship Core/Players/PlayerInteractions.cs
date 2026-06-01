@@ -55,12 +55,16 @@ public class PlayerInteractions : MonoBehaviour
         spawnPoint = GameObject.FindWithTag(spawnTag).transform;
         rb.position = spawnPoint.position;
 
-        GameObject boatObj = GameObject.FindWithTag("Boat");
-        boatRb = boatObj.GetComponent<Rigidbody>();
+        //GameObject boatObj = GameObject.FindWithTag("Boat");
 
-        FixedJoint joint = boatObj.AddComponent<FixedJoint>();
+        //GameObject parentObject = transform.parent.gameObject;
 
-        joint.connectedBody = rb;
+        //parentObject.transform.SetParent(boatObj.transform);
+        //boatRb = boatObj.GetComponent<Rigidbody>();
+
+        //FixedJoint joint = boatObj.AddComponent<FixedJoint>();
+
+        //joint.connectedBody = rb;
     }
 
     void CheckDoorEntry(Collider door)
