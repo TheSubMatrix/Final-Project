@@ -11,6 +11,8 @@ public class ShipMovement : MonoBehaviour
     [SerializeField] Transform m_rudderPoint;
     [SerializeField] AnimationCurve m_rudderEffectiveness;
     [SerializeField] AnimationCurve m_throttleEffectiveness;
+
+    [SerializeField] private float m_rudderTurnMultiplier = 10;
     public void SetRudder(float rudder) => Rudder = Mathf.Clamp(rudder, -1 , 1);
     public void SetThrottle(float throttle)
     {
@@ -19,7 +21,7 @@ public class ShipMovement : MonoBehaviour
     
     void FixedUpdate()
     {
-        m_rigidbody.AddForceAtPosition(m_wheelPowerPoint.forward * m_throttleEffectiveness.Evaluate(Throttle), m_wheelPowerPoint.position, ForceMode.Force);
+        m_rigidbody.AddForceAtPosition(m_wheelPowerPoint.forward * m_throttleEffectiveness.Evaluate(Throttle * 2), m_wheelPowerPoint.position, ForceMode.Force);
         ApplyRudderForce(Rudder);
     }
 
@@ -30,6 +32,7 @@ public class ShipMovement : MonoBehaviour
         float forwardSpeed = Vector3.Dot(m_rigidbody.linearVelocity, flatForward);
         float rudderEffectiveness = m_rudderEffectiveness.Evaluate(forwardSpeed);
         Vector3 rudderForce = flatRight * (rudderInput * rudderEffectiveness);
-        m_rigidbody.AddForceAtPosition(rudderForce, m_rudderPoint.position, ForceMode.Force);
+        m_rigidbody.AddForceAtPosition(rudderForce * (m_rudderTurnMultiplier * 100), m_rudderPoint.position, ForceMode.Force);
+        
     }
 }
