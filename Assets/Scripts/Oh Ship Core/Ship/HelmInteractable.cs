@@ -34,7 +34,6 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     public void OnControlRequested(IPlayerController player)
     {
         m_activePlayerController = player;
-        
         if (!player.ChangeInputActionMap(m_helmControlActionMap, out InputActionMap map))
         {
             Debug.LogError("Failed to assign input actions to player, reverting control to default.");
