@@ -42,6 +42,7 @@ public class TerrainSpawner : MonoBehaviour
             GameObject tile = Instantiate(terrain, new Vector3(0, 0, 0), Quaternion.identity);
             spawnedTerrains.Add(tile);
         }
+        SpawnTerrainTile();
     }
 
     // Update is called once per frame
@@ -60,21 +61,7 @@ public class TerrainSpawner : MonoBehaviour
         }
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            
-            string currentTileKey = _terrainSelector.PickNextTile(_currentTileKey, _currentTileSet.terrainOptions);
-            
-            if (_terrainDictionary.TryGetValue(currentTileKey, out GameObject terrain))
-            {
-                Vector3 spawnLocation = spawnedTerrains[^1].transform.Find("Exit Point").position;
-                GameObject tile = Instantiate(terrain, Vector3.zero, Quaternion.identity);
-                tile.transform.position = spawnLocation - tile.transform.Find("Entry Point").position;
-                spawnedTerrains.Add(tile);
-                
-                Debug.Log($"Spawned Terrain Key: {_currentTileKey}");
-                _currentTileKey = currentTileKey;
-                
-                Debug.Log($"Spawned Terrain Key: {_currentTileKey}");
-            }
+            SpawnTerrainTile();
         }
         
        // if (Time.time % 5 <= .1 && !_terrainHasSwapped)
@@ -111,6 +98,24 @@ public class TerrainSpawner : MonoBehaviour
         _currentTileSet = _terrainSwaper.changeCurrentTerrainTiles(_currentTileSet, newTerrainSet);
         _terrainDictionary = _currentTileSet.possibleTiles;
         _currentTileKey = "0";
+    }
+
+    private void SpawnTerrainTile()
+    {
+        string currentTileKey = _terrainSelector.PickNextTile(_currentTileKey, _currentTileSet.terrainOptions);
+            
+        if (_terrainDictionary.TryGetValue(currentTileKey, out GameObject terrain))
+        {
+            Vector3 spawnLocation = spawnedTerrains[^1].transform.Find("Exit Point").position;
+            GameObject tile = Instantiate(terrain, Vector3.zero, Quaternion.identity);
+            tile.transform.position = spawnLocation - tile.transform.Find("Entry Point").position;
+            spawnedTerrains.Add(tile);
+                
+            Debug.Log($"Spawned Terrain Key: {_currentTileKey}");
+            _currentTileKey = currentTileKey;
+                
+            Debug.Log($"Spawned Terrain Key: {_currentTileKey}");
+        }
     }
 
     IEnumerator ToggleBool()
