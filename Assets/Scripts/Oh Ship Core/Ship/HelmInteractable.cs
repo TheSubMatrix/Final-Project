@@ -31,11 +31,6 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         m_shipMovement.SetThrottle(m_shipMovement.Throttle + m_input.y * Time.deltaTime * m_helmThrottleSpeed);
     }
     ///<inheritdoc/>
-    public void EndInteraction(InteractionSession session)
-    {
-        m_currentInteractionSession = null;
-    }
-    ///<inheritdoc/>
     public void OnControlRequested(IPlayerController player)
     {
         m_activePlayerController = player;

@@ -9,9 +9,4 @@ public interface IInteractable
     /// <param name="interactor">The <see cref="IInteractor"/> to begin the interaction with</param>
     /// <returns>An <see cref="InteractionSession"/> representing the current state of the interaction</returns>
     InteractionSession BeginInteraction(IInteractor interactor);
-    /// <summary>
-    /// Ends an interaction with the <see cref="IInteractor"/> 
-    /// </summary>
-    /// <param name="session">The <see cref="InteractionSession"/> to end</param>
-    void EndInteraction(InteractionSession session);
 }

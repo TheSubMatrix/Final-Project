@@ -58,7 +58,6 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
         if (!IsInteracting()) return;
         InteractionSession session = m_session;
         m_session = null;
-        session.Target.EndInteraction(session);
         session.End();
     }
     void OnDisable() => EndActiveInteraction();

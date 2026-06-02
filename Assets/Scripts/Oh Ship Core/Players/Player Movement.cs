@@ -94,9 +94,6 @@ public class PlayerMovement : MonoBehaviour
         {
             contactNormal.Normalize();
         }
-
-
-        Debug.Log(connectedBody);
     }
 
     void ClearState()

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 
 public class PlayerController : MonoBehaviour, IPlayerController
 {
@@ -27,10 +28,17 @@ public class PlayerController : MonoBehaviour, IPlayerController
         newMap.Enable();
         return true;
     }
+    /// <inheritdoc/>
+    public bool GetCurrentInputActionMap(out InputActionMap currentMap)
+    {
+        currentMap = m_playerInput.currentActionMap;
+        return currentMap != null;
+    }
 
     void Start()
     {
         if(m_defaultControllable.Value is null) return;
         ChangeControlledEntity(m_defaultControllable.Value);
+        m_playerInput.uiInputModule = FindFirstObjectByType<InputSystemUIInputModule>();
     }
 }

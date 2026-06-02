@@ -22,7 +22,7 @@ public class BuoyantBody : MonoBehaviour
             float depth = m_waterHeight - globalPointPosition.y;
             if (depth <= 0) continue;
             float submersion = Mathf.Clamp01(depth / point.Radius);
-            m_rigidbody.AddForceAtPosition(submersion * point.PointBuoyancy * Vector3.up, globalPointPosition);
+            m_rigidbody.AddForceAtPosition(Vector3.up * (submersion * point.PointBuoyancy * Physics.gravity.magnitude * m_rigidbody.mass), globalPointPosition);
             Vector3 pointVelocity = m_rigidbody.GetPointVelocity(globalPointPosition);
             Vector3 verticalVel = Vector3.Project(pointVelocity, Vector3.up);
             Vector3 longitudinalVel = Vector3.Project(pointVelocity, transform.forward);

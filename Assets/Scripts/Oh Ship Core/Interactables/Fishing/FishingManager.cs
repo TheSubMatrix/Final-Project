@@ -34,11 +34,6 @@ public class FishingManager : MonoBehaviour, IInteractable
        return  new InteractionSession(interactor, this);
     }
 
-    public void EndInteraction(InteractionSession session)
-    {
-        Debug.Log("End Interaction");
-    }
-
     private void Update()
     {
         _isHoldingButton = Keyboard.current.spaceKey.isPressed;
