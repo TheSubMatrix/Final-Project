@@ -2,14 +2,15 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class FishingManager : MonoBehaviour, IInteractable
 {
+    [SerializeField] private string _fishingControlActionMap = "Fishing";
     private RectTransform greenZone;
     private RectTransform playerFishingIcon;
     private Slider fishingProgressBar;
-   private RectTransform usableFishingArea;
-    
+    private RectTransform usableFishingArea;
     [SerializeField] private float speedOfFishIcon;
     
     [Range(0f, 1f)]
@@ -18,68 +19,53 @@ public class FishingManager : MonoBehaviour, IInteractable
     private bool _isHoldingButton = false;
     private float _minOfUsableFishingSpace;
     private float _maxOfUsableFishingSpace;
-    
     private float _halfHeightOfFish;
     private FishingUI _fishingUI;
+    private InputActionMap _activeActionMap;
+    private InteractionSession _currentInteractionSession;
+    private IPlayerController _playerController;
     
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
         Debug.Log("Beginning Interaction");
-        GameObject player = interactor.GetAssociatedGameObject().transform.root.gameObject;
-        Debug.Log(player);
-        _fishingUI = player.GetComponentInChildren<FishingUI>();
-        if (_fishingUI == null)
-        {
-            Debug.Log("No FishingUI found");
-        }
-        else
-        {
-            Debug.Log("Found FishingUI");
-            Debug.Log(_fishingUI);
-        }
-        greenZone = _fishingUI.GreenZone;
-        playerFishingIcon = _fishingUI.PlayerFishingIcon;
-        fishingProgressBar = _fishingUI.FishingProgressBar;
-        usableFishingArea = _fishingUI.UsableFishingArea;
+        _playerController = interactor.GetAssociatedGameObject().transform.root.GetComponent<IPlayerController>();
+       
+        SetUpFishingMinigame(interactor);
+
+        _currentInteractionSession = new InteractionSession(interactor, this);
+        _currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(null);
         
-        _fishingUI.DisplayFishingUI();
-       
-        (_minOfUsableFishingSpace,_maxOfUsableFishingSpace) = GetMaxAndMinOfIcon(usableFishingArea);
-      var (bottomOfFishIcon, topOfFishIcon) = GetMaxAndMinOfIcon(playerFishingIcon);
-         _halfHeightOfFish = (topOfFishIcon - bottomOfFishIcon) / 2;
-    
-        Vector3 startPos = playerFishingIcon.position;
-        startPos.y = _minOfUsableFishingSpace + _halfHeightOfFish;
-        playerFishingIcon.position = startPos;
-        CheckFishingProgress(fishingProgressBar);
-       return  new InteractionSession(interactor, this);
-       
-     
-    }
-
-    public InteractionSession EndInteraction(IInteractor interactor)
-    {
-        Debug.Log("Ending Interaction");
-        _fishingUI.DisplayFishingUI();
-        _fishingUI = null;
+        ChangeInputMaps();
         
-        return  new InteractionSession(interactor, this);
+        return _currentInteractionSession;
     }
 
-    private void Update()
+    private void ChangeInputMaps()
     {
-        //_isHoldingButton = Keyboard.current.spaceKey.isPressed;
-       // StartFishing(playerFishingIcon, usableFishingArea);
-       
-    }
+       // _playerController = playerController;
+        
+        Debug.Log(_playerController);
 
+        if (!_playerController.ChangeInputActionMap(_fishingControlActionMap, out InputActionMap map))
+        {
+            Debug.LogError("Failed to assign input actions to player, reverting control to default.");
+            _playerController.ChangeControlledEntity(null);
+            return;
+        }
+        _activeActionMap = map;
+        InputAction reelFishAction = _activeActionMap.FindAction("Reel Fish");
+        reelFishAction.performed += HandleFishingInput;
+        reelFishAction.canceled += HandleFishingInput;
+        
+        InputAction interactAction = _activeActionMap.FindAction("Interact");
+        interactAction.performed += HandleInteract;
+
+    }
 
     private bool FishingIconOverlap(RectTransform fishIcon, RectTransform greenZone)
     {
         var (bottomOfFishIcon, topOfFishIcon) = GetMaxAndMinOfIcon(fishIcon);
         var (bottomOfGreenZoneIcon, topOfGreenZoneIcon) = GetMaxAndMinOfIcon(greenZone);
-        
-        
         
         if ((bottomOfGreenZoneIcon <= bottomOfFishIcon && topOfFishIcon <= topOfGreenZoneIcon))
         {
@@ -96,8 +82,23 @@ public class FishingManager : MonoBehaviour, IInteractable
 
         return (worldCorners[0].y, worldCorners[1].y);
     }
-
     
+    private (float min, float max) GetMaxAndMinOfIconLocal(RectTransform incomingIcon)
+    {
+        Vector3[] worldCorners = new Vector3[4];
+        incomingIcon.GetLocalCorners(worldCorners);
+
+        return (worldCorners[0].y, worldCorners[1].y);
+    }
+
+
+    private void Update()
+    {
+        if(_playerController == null) return;
+        StartFishing();
+        CheckFishingProgress(fishingProgressBar);
+    }
+
     private void CheckFishingProgress(Slider incomingSlider)
     {
 
@@ -113,20 +114,55 @@ public class FishingManager : MonoBehaviour, IInteractable
         
     }
 
+    private void HandleInteract(InputAction.CallbackContext context) => _currentInteractionSession.End();
 
-    private void StartFishing(RectTransform incomingFishingIcon, RectTransform incomingUsableFishingSpace)
+
+    private void HandleFishingInput(InputAction.CallbackContext context)
     {
-        var (bottomOfFishArea, topOfFishArea) = GetMaxAndMinOfIcon(incomingUsableFishingSpace);
-        
+        _isHoldingButton = context.performed;
+    }
+    private void StartFishing()
+    {
+        var (bottomOfFishArea, topOfFishArea) = GetMaxAndMinOfIconLocal(usableFishingArea);
         float directionOfFish = _isHoldingButton ? speedOfFishIcon : -speedOfFishIcon;
-        
-        Vector3 worldPos = incomingFishingIcon.position;
-        worldPos.y += directionOfFish * Time.deltaTime;
-        worldPos.y = Mathf.Clamp(worldPos.y, 
-            bottomOfFishArea + _halfHeightOfFish, 
+        Vector3 localPos = playerFishingIcon.localPosition;
+        localPos.y += directionOfFish * Time.deltaTime;       
+       
+        localPos.y = Mathf.Clamp(localPos.y, 
+             bottomOfFishArea+ _halfHeightOfFish, 
             topOfFishArea - _halfHeightOfFish);
         
-        incomingFishingIcon.position = worldPos;
+        playerFishingIcon.localPosition = localPos;
     }
+
+    private void SetUpUIElements(IInteractor interactor)
+    {
+        GameObject player = interactor.GetAssociatedGameObject().transform.root.gameObject;
+        _fishingUI = player.GetComponentInChildren<FishingUI>();
+        
+        greenZone = _fishingUI.GreenZone;
+        playerFishingIcon = _fishingUI.PlayerFishingIcon;
+        fishingProgressBar = _fishingUI.FishingProgressBar;
+        usableFishingArea = _fishingUI.UsableFishingArea;
+        
+        _fishingUI.DisplayFishingUI();
+    }
+
+    private void SetUpFishingMinigame(IInteractor interactor)
+    {
+        SetUpUIElements(interactor);
+        Canvas.ForceUpdateCanvases();
+        
+        (_minOfUsableFishingSpace,_maxOfUsableFishingSpace) = GetMaxAndMinOfIcon(usableFishingArea);
+        var (bottomOfFishIcon, topOfFishIcon) = GetMaxAndMinOfIcon(playerFishingIcon);
+        _halfHeightOfFish = (topOfFishIcon - bottomOfFishIcon) / 2;
+        
+        Debug.Log(_halfHeightOfFish);
     
+        Vector3 startPos = playerFishingIcon.position;
+        startPos.y = _minOfUsableFishingSpace + _halfHeightOfFish;
+        playerFishingIcon.position = startPos;
+        CheckFishingProgress(fishingProgressBar);
+       
+    }
 }
