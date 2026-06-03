@@ -124,15 +124,10 @@ public class FishingManager : MonoBehaviour, IInteractable
     private void StartFishing()
     {
         var (bottomOfFishArea, topOfFishArea) = GetMaxAndMinOfIconLocal(usableFishingArea);
-        Debug.Log($"Bottom: {bottomOfFishArea}, Top: {topOfFishArea}");
-        Debug.Log($"Local pos Y: {playerFishingIcon.localPosition.y}");
-        
         float directionOfFish = _isHoldingButton ? speedOfFishIcon : -speedOfFishIcon;
-        Debug.Log(_isHoldingButton ? "Holding" : "Released");
         Vector3 localPos = playerFishingIcon.localPosition;
         localPos.y += directionOfFish * Time.deltaTime;       
-        /*Vector3 worldPos = playerFishingIcon.position;
-        worldPos.y += directionOfFish * Time.deltaTime;*/
+       
         localPos.y = Mathf.Clamp(localPos.y, 
              bottomOfFishArea+ _halfHeightOfFish, 
             topOfFishArea - _halfHeightOfFish);
