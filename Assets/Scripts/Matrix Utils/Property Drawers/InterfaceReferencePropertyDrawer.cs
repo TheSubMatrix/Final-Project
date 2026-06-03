@@ -14,7 +14,8 @@ using Object = UnityEngine.Object;
 public class InterfaceReferenceDrawer : PropertyDrawer {
     const string UnderlyingValueFieldName = "m_underlyingValue";
 
-    public override VisualElement CreatePropertyGUI(SerializedProperty property) {
+    public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    {
         VisualElement container = new();
         SerializedProperty underlyingProperty = property.FindPropertyRelative(UnderlyingValueFieldName);
 
@@ -34,23 +35,47 @@ public class InterfaceReferenceDrawer : PropertyDrawer {
             allowSceneObjects = true,
             value = underlyingProperty.objectReferenceValue
         };
-
         bool isUpdating = false;
-        string propertyPath = underlyingProperty.propertyPath;
-        SerializedObject serializedObject = underlyingProperty.serializedObject;
+        SerializedObject so = underlyingProperty.serializedObject;
+        string path = underlyingProperty.propertyPath;
+
+        SerializedProperty GetFreshProperty() {
+            so.Update();
+            return so.FindProperty(path);
+        }
 
         objectField.RegisterValueChangedCallback(evt => {
             if (isUpdating) return;
-
             isUpdating = true;
-            serializedObject.Update();
-            SerializedProperty prop = serializedObject.FindProperty(propertyPath);
-            HandleObjectAssignment(evt.newValue, prop, args, objectField);
+
+            SerializedProperty prop = GetFreshProperty();
+            if (prop != null) {
+                HandleObjectAssignment(evt.newValue, prop, args, objectField);
+            }
+
             isUpdating = false;
         });
 
-        Undo.undoRedoEvent += OnUndoRedo;
+        void OnUndoRedo(in UndoRedoInfo info) {
+            if (so.targetObject == null) return;
 
+            EditorApplication.delayCall += () => {
+                if (so.targetObject == null) return;
+
+                isUpdating = true;
+                SerializedProperty prop = GetFreshProperty();
+
+                if (prop != null) {
+                    objectField.SetValueWithoutNotify(null);
+                    objectField.value = prop.objectReferenceValue;
+                    container.MarkDirtyRepaint();
+                }
+
+                isUpdating = false;
+            };
+        }
+
+        Undo.undoRedoEvent += OnUndoRedo;
         container.RegisterCallback<DetachFromPanelEvent>(_ => {
             Undo.undoRedoEvent -= OnUndoRedo;
         });
@@ -59,29 +84,7 @@ public class InterfaceReferenceDrawer : PropertyDrawer {
         container.Add(CreateInterfaceLabel(args.InterfaceType.Name, objectField));
 
         return container;
-
-        // Handle undo/redo for nested properties
-        void OnUndoRedo(in UndoRedoInfo info) {
-	        if (serializedObject.targetObject == null) return;
-
-	        EditorApplication.delayCall += () => {
-		        if (serializedObject.targetObject == null) return;
-
-		        isUpdating = true;
-		        serializedObject.Update();
-		        SerializedProperty prop = serializedObject.FindProperty(propertyPath);
-
-		        if (prop != null) {
-			        Object newValue = prop.objectReferenceValue;
-			        objectField.SetValueWithoutNotify(null);
-			        objectField.value = newValue;
-			        container.MarkDirtyRepaint();
-		        }
-
-		        isUpdating = false;
-	        };
         }
-    }
 
     static void HandleObjectAssignment(Object assignedObject, SerializedProperty property, InterfaceArgs args, ObjectField field) {
         if (assignedObject == null) {

@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(connectedBody.name);
+
     }
 
 
@@ -125,9 +125,6 @@ public class PlayerMovement : MonoBehaviour
             connectionVelocity = connectionMovement / Time.fixedDeltaTime;
 
             platformYaw = connectedBody.transform.eulerAngles.y;
-
-            float yawDelta = Mathf.DeltaAngle(pastPlatformYaw, platformYaw);
-            m_lookYaw = Quaternion.Euler(0f, yawDelta, 0f) * m_lookYaw;
         }
         connectionWorldPos = m_rigidbody.position;
         connectionLocalPos = connectedBody.transform.InverseTransformPoint(connectionWorldPos);
@@ -144,17 +141,17 @@ public class PlayerMovement : MonoBehaviour
         float currentX = Vector3.Dot(m_lookYaw * Vector3.forward, xAxis);
         float currentZ = Vector3.Dot(m_lookYaw * Vector3.right, zAxis);
 
-        
+        /*
         float yawDelta = Mathf.DeltaAngle(pastPlatformYaw, platformYaw);
-        Quaternion platformRotation = Quaternion.Euler(0f, yawDelta, 0f);
+        Quaternion yawRot = Quaternion.Euler(0f, yawDelta, 0f);
 
         Vector3 offset = m_rigidbody.position - connectedBody.position;
-        Vector3 rotatedOffset = platformRotation * offset;
+        Vector3 rotatedOffset = yawRot * offset;
         Vector3 rotationVelocity = (rotatedOffset - offset) / Time.fixedDeltaTime;
 
         float rotationVelocityX = Vector3.Dot(m_lookYaw * Vector3.forward, rotationVelocity);
         float rotationVelocityZ = Vector3.Dot(m_lookYaw * Vector3.right, rotationVelocity);
-        
+        */
 
         float forwardVelocity = currentX - connectionVelocityX;
         float sidewaysVelocity = currentZ - connectionVelocityZ;

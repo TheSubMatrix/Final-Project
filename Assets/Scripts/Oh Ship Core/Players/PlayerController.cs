@@ -7,6 +7,11 @@ public class PlayerController : MonoBehaviour, IPlayerController
 {
     [SerializeField] PlayerInput m_playerInput;
     [SerializeField] InterfaceReference<IPlayerControllable> m_defaultControllable;
+    public IPlayerControllable DefaultControllable
+    {
+        get => m_defaultControllable.Value;
+        set => m_defaultControllable.Value = value;
+    }
     IPlayerControllable m_currentControlledEntity;
     /// <inheritdoc/>
     public void ChangeControlledEntity(IPlayerControllable controllable)
@@ -38,8 +43,6 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     void Start()
     {
-        if(m_defaultControllable.Value is null) return;
-        ChangeControlledEntity(m_defaultControllable.Value);
         m_playerInput.uiInputModule = FindFirstObjectByType<InputSystemUIInputModule>();
     }
 }
