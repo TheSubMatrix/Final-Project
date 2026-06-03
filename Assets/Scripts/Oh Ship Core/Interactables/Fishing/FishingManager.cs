@@ -40,15 +40,6 @@ public class FishingManager : MonoBehaviour, IInteractable
         return _currentInteractionSession;
     }
 
-    public InteractionSession EndInteraction(IInteractor interactor)
-    {
-        Debug.Log("Ending Interaction");
-        _fishingUI.DisplayFishingUI();
-        _fishingUI = null;
-        
-        return  new InteractionSession(interactor, this);
-    }
-
     private void ChangeInputMaps()
     {
        // _playerController = playerController;
@@ -71,23 +62,10 @@ public class FishingManager : MonoBehaviour, IInteractable
 
     }
 
-    public void OnControlReleased()
-    {
-        _playerController = null;
-        InputAction movementAction = _activeActionMap.FindAction("Reel Fish");
-        movementAction.performed -= HandleFishingInput;
-        movementAction.canceled -= HandleFishingInput;
-        InputAction interactAction = _activeActionMap.FindAction("Interact");
-        interactAction.performed -= HandleInteract;
-        _activeActionMap = null;
-    }
-
     private bool FishingIconOverlap(RectTransform fishIcon, RectTransform greenZone)
     {
         var (bottomOfFishIcon, topOfFishIcon) = GetMaxAndMinOfIcon(fishIcon);
         var (bottomOfGreenZoneIcon, topOfGreenZoneIcon) = GetMaxAndMinOfIcon(greenZone);
-        
-        
         
         if ((bottomOfGreenZoneIcon <= bottomOfFishIcon && topOfFishIcon <= topOfGreenZoneIcon))
         {
@@ -104,8 +82,23 @@ public class FishingManager : MonoBehaviour, IInteractable
 
         return (worldCorners[0].y, worldCorners[1].y);
     }
-
     
+    private (float min, float max) GetMaxAndMinOfIconLocal(RectTransform incomingIcon)
+    {
+        Vector3[] worldCorners = new Vector3[4];
+        incomingIcon.GetLocalCorners(worldCorners);
+
+        return (worldCorners[0].y, worldCorners[1].y);
+    }
+
+
+    private void Update()
+    {
+        if(_playerController == null) return;
+        StartFishing();
+        CheckFishingProgress(fishingProgressBar);
+    }
+
     private void CheckFishingProgress(Slider incomingSlider)
     {
 
@@ -126,23 +119,20 @@ public class FishingManager : MonoBehaviour, IInteractable
 
     private void HandleFishingInput(InputAction.CallbackContext context)
     {
-        Debug.Log("Fishing Input Started");
-        StartFishing(playerFishingIcon,usableFishingArea);
+        _isHoldingButton = context.performed;
     }
-    private void StartFishing(RectTransform incomingFishingIcon, RectTransform incomingUsableFishingSpace)
+    private void StartFishing()
     {
-        Debug.Log("Begun Reeling Fish");
-        var (bottomOfFishArea, topOfFishArea) = GetMaxAndMinOfIcon(incomingUsableFishingSpace);
-        
+        var (bottomOfFishArea, topOfFishArea) = GetMaxAndMinOfIconLocal(usableFishingArea);
         float directionOfFish = _isHoldingButton ? speedOfFishIcon : -speedOfFishIcon;
-        
-        Vector3 worldPos = incomingFishingIcon.position;
-        worldPos.y += directionOfFish * Time.deltaTime;
-        worldPos.y = Mathf.Clamp(worldPos.y, 
-            bottomOfFishArea + _halfHeightOfFish, 
+        Vector3 localPos = playerFishingIcon.localPosition;
+        localPos.y += directionOfFish * Time.deltaTime;       
+       
+        localPos.y = Mathf.Clamp(localPos.y, 
+             bottomOfFishArea+ _halfHeightOfFish, 
             topOfFishArea - _halfHeightOfFish);
         
-        incomingFishingIcon.position = worldPos;
+        playerFishingIcon.localPosition = localPos;
     }
 
     private void SetUpUIElements(IInteractor interactor)
@@ -161,10 +151,13 @@ public class FishingManager : MonoBehaviour, IInteractable
     private void SetUpFishingMinigame(IInteractor interactor)
     {
         SetUpUIElements(interactor);
+        Canvas.ForceUpdateCanvases();
         
         (_minOfUsableFishingSpace,_maxOfUsableFishingSpace) = GetMaxAndMinOfIcon(usableFishingArea);
         var (bottomOfFishIcon, topOfFishIcon) = GetMaxAndMinOfIcon(playerFishingIcon);
         _halfHeightOfFish = (topOfFishIcon - bottomOfFishIcon) / 2;
+        
+        Debug.Log(_halfHeightOfFish);
     
         Vector3 startPos = playerFishingIcon.position;
         startPos.y = _minOfUsableFishingSpace + _halfHeightOfFish;
