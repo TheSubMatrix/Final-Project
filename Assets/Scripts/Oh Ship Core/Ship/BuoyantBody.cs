@@ -32,6 +32,7 @@ public class BuoyantBody : MonoBehaviour
         }
     }
 }
+#if UNITY_EDITOR
 /// <summary>
 /// Allows the user to edit the buoyancy points of a <see cref="BuoyantBody"/> in the scene.
 /// </summary>
@@ -57,3 +58,4 @@ public class BuoyantBodyEditor : Editor
         }
     }
 }
+#endif
