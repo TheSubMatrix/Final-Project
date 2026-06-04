@@ -8,8 +8,4 @@ public class SimpleInteractable : MonoBehaviour, IInteractable
         return new(interactor, this);
     }
 
-    public void EndInteraction(InteractionSession session)
-    {
-        Debug.Log("Simple Interactable Ended Interaction");
-    }
 }

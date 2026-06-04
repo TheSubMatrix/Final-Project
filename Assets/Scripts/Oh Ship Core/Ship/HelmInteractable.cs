@@ -20,7 +20,7 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         IPlayerController controller = oldControllable.GetActivePlayerController();
         controller.ChangeControlledEntity(this);
         m_currentInteractionSession = new(interactor, this);
-        m_currentInteractionSession.OnEnded += () => controller.ChangeControlledEntity(oldControllable);
+        m_currentInteractionSession.OnEnded += () => controller.ChangeControlledEntity(oldControllable); 
         return m_currentInteractionSession;
     }
 

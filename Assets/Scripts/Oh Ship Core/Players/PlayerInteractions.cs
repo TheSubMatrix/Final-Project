@@ -55,25 +55,6 @@ public class PlayerInteractions : MonoBehaviour
 
     }
 
-    /*
-    void OnCollisionEnter(Collision other)
-    {
-        if(other.gameObject.tag == "Boat")
-        {
-            gameObject.transform.SetParent(other.transform);
-        }
-    }
-
-    void OnCollisionExit(Collision other)
-    {
-        if(other.gameObject.tag == "Boat")
-        {
-            gameObject.transform.SetParent(null);
-        }
-    }
-
-    */
-
     void CheckDoorEntry(Collider door)
     {
         if (door.gameObject.tag == "Bottom")
