@@ -42,14 +42,13 @@ public class PlayerControlRouter : MonoBehaviour, IPlayerControllable
         InputAction movementAction = m_activeActionMap.FindAction("Move");
         movementAction.performed -= OnMovementInputChanged;
         movementAction.canceled -= OnMovementInputChanged;
-
+        m_onMovementInputChanged.Invoke(Vector2.zero);
         InputAction lookAction = m_activeActionMap.FindAction("Look");
         lookAction.performed -= OnLookInputChanged;
         lookAction.canceled -= OnLookInputChanged;
-        
+        m_onLookInputChanged.Invoke(Vector2.zero);
         InputAction interactAction = m_activeActionMap.FindAction("Interact");
         interactAction.performed -= OnInteract;
-        
         m_playerController = null;
         m_activeActionMap = null;
     }
