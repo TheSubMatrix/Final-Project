@@ -1,4 +1,6 @@
-﻿using UnityEngine.InputSystem;
+﻿using System.Diagnostics.Contracts;
+using UnityEngine;
+using UnityEngine.InputSystem;
 /// <summary>
 /// Represents a player's control of an object. Allows the player to request control of an object and to change the <see cref="InputActionAsset"/> used by the object.
 /// </summary>
@@ -22,4 +24,6 @@ public interface IPlayerController
     /// <param name="currentMap">The current map used by the <see cref="IPlayerController"/></param>
     /// <returns>Whether the result is valid</returns>
     public bool GetCurrentInputActionMap(out InputActionMap currentMap);
+
+    public GameObject GetAssociatedGameObject();
 }

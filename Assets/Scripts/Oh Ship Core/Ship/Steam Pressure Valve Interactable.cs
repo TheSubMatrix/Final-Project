@@ -62,4 +62,9 @@ public class SteamPressureValveInteractable : MonoBehaviour, IInteractable, IPla
         
     }
     void HandleInteract(InputAction.CallbackContext context) => m_currentInteractionSession.End();
+
+    public GameObject GetAssociatedGameObject()
+    {
+        return gameObject;
+    }
 }

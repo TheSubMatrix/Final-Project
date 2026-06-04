@@ -24,12 +24,15 @@ public class FishingManager : MonoBehaviour, IInteractable
     private InputActionMap _activeActionMap;
     private InteractionSession _currentInteractionSession;
     private IPlayerController _playerController;
+    private IPlayerControllable _playerControllable;
     
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
         Debug.Log("Beginning Interaction");
-        _playerController = interactor.GetAssociatedGameObject().transform.root.GetComponent<IPlayerController>();
-       
+
+        _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
+        _playerController = _playerControllable.GetActivePlayerController();
+
         SetUpFishingMinigame(interactor);
 
         _currentInteractionSession = new InteractionSession(interactor, this);
@@ -42,10 +45,6 @@ public class FishingManager : MonoBehaviour, IInteractable
 
     private void ChangeInputMaps()
     {
-       // _playerController = playerController;
-        
-        Debug.Log(_playerController);
-
         if (!_playerController.ChangeInputActionMap(_fishingControlActionMap, out InputActionMap map))
         {
             Debug.LogError("Failed to assign input actions to player, reverting control to default.");
@@ -137,9 +136,13 @@ public class FishingManager : MonoBehaviour, IInteractable
 
     private void SetUpUIElements(IInteractor interactor)
     {
-        GameObject player = interactor.GetAssociatedGameObject().transform.root.gameObject;
+
+        GameObject player = _playerController.GetAssociatedGameObject();
+
         _fishingUI = player.GetComponentInChildren<FishingUI>();
         
+        //_fishingUI = interactor.GetComponentInChildren<FishingUI>();
+
         greenZone = _fishingUI.GreenZone;
         playerFishingIcon = _fishingUI.PlayerFishingIcon;
         fishingProgressBar = _fishingUI.FishingProgressBar;
@@ -157,7 +160,7 @@ public class FishingManager : MonoBehaviour, IInteractable
         var (bottomOfFishIcon, topOfFishIcon) = GetMaxAndMinOfIcon(playerFishingIcon);
         _halfHeightOfFish = (topOfFishIcon - bottomOfFishIcon) / 2;
         
-        Debug.Log(_halfHeightOfFish);
+        
     
         Vector3 startPos = playerFishingIcon.position;
         startPos.y = _minOfUsableFishingSpace + _halfHeightOfFish;

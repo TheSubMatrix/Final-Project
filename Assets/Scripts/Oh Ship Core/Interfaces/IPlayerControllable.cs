@@ -1,4 +1,5 @@
 using System.Diagnostics.Contracts;
+using UnityEngine;
 
 /// <summary>
 /// An interface for objects that can be controlled by a player. Handles what happens when a player requests control or releases it.
@@ -17,4 +18,6 @@ public interface IPlayerControllable
 
     /// <returns>The <see cref="IPlayerController"/> currently controlling this object</returns>
     [Pure] IPlayerController GetActivePlayerController();
+
+    [Pure] GameObject GetAssociatedGameObject();
 }

@@ -54,4 +54,9 @@ public class PlayerControlRouter : MonoBehaviour, IPlayerControllable
     }
     /// <inheritdoc/>
     [Pure, CanBeNull] public IPlayerController GetActivePlayerController() => m_playerController;
+
+    public GameObject GetAssociatedGameObject()
+    {
+        return gameObject;
+    }
 }
