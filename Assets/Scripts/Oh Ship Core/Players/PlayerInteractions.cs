@@ -1,6 +1,4 @@
-using Unity.Multiplayer.PlayMode;
 using UnityEngine;
-using static Codice.Client.Common.EventTracking.TrackFeatureUseEvent.Features.DesktopGUI.Filters;
 
 public class PlayerInteractions : MonoBehaviour
 {
