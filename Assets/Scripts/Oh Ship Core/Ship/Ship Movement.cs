@@ -28,11 +28,10 @@ public class ShipMovement : MonoBehaviour
     void ApplyRudderForce(float rudderInput)
     {
         Vector3 flatForward = Vector3.ProjectOnPlane(m_rigidbody.transform.forward, Vector3.up).normalized;
-        Vector3 flatRight = Vector3.ProjectOnPlane(m_rigidbody.transform.right, Vector3.up).normalized;
+        Vector3 flatLeft = Vector3.ProjectOnPlane(-m_rigidbody.transform.right, Vector3.up).normalized;
         float forwardSpeed = Vector3.Dot(m_rigidbody.linearVelocity, flatForward);
-        Mathf.Abs(forwardSpeed);
         float rudderEffectiveness = m_rudderEffectiveness.Evaluate(forwardSpeed);
-        Vector3 rudderForce = flatRight * (rudderInput * rudderEffectiveness);
+        Vector3 rudderForce = flatLeft * (rudderInput * rudderEffectiveness);
         m_rigidbody.AddForceAtPosition(rudderForce * (m_rudderTurnMultiplier * 100), m_rudderPoint.position, ForceMode.Force);
         
     }
