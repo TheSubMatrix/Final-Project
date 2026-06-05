@@ -31,6 +31,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable
     private RectTransform _playerFishingIcon;
     private Slider _fishingProgressBar;
     private RectTransform _usableFishingArea;
+    private Transform holdingObjectTransform = null;
     
     private void Start()
     {
@@ -38,6 +39,13 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable
     }
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
+        if (holdingObjectTransform != null && holdingObjectTransform.childCount > 0)
+        {
+            InteractionSession session = new InteractionSession(interactor, this);
+            session.End();
+            return session;
+        }
+        
         Debug.Log("Beginning Interaction");
 
         _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
@@ -139,7 +147,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable
         int index = UnityEngine.Random.Range(0, usableFishesToCatch.Length);
         GameObject player = _playerControllable.GetAssociatedGameObject();
 
-        Transform holdingObjectTransform = player.GetComponentInChildren<HeldObjectLocation>().transform;
+        holdingObjectTransform = player.GetComponentInChildren<HeldObjectLocation>().transform;
         
         GameObject caughtFish = Instantiate(usableFishesToCatch[index], holdingObjectTransform.position,holdingObjectTransform.rotation);
         caughtFish.transform.SetParent(holdingObjectTransform);
