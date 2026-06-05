@@ -31,7 +31,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable
     private RectTransform _playerFishingIcon;
     private Slider _fishingProgressBar;
     private RectTransform _usableFishingArea;
-    private Transform holdingObjectTransform = null;
+    private Transform _holdingObjectTransform;
     
     private void Start()
     {
@@ -39,13 +39,6 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable
     }
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
-        if (holdingObjectTransform != null && holdingObjectTransform.childCount > 0)
-        {
-            InteractionSession session = new InteractionSession(interactor, this);
-            session.End();
-            return session;
-        }
-        
         Debug.Log("Beginning Interaction");
 
         _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
@@ -91,8 +84,9 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable
 
     private void SetUpFishingMinigame()
     {
+        _isHoldingButton = false;
         SetUpUIElements();
-        Canvas.ForceUpdateCanvases();
+      //  Canvas.ForceUpdateCanvases();
         
         FishingMiniGameData data = new FishingMiniGameData();
         data.PlayerFishingIcon = _playerFishingIcon;
@@ -147,10 +141,10 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable
         int index = UnityEngine.Random.Range(0, usableFishesToCatch.Length);
         GameObject player = _playerControllable.GetAssociatedGameObject();
 
-        holdingObjectTransform = player.GetComponentInChildren<HeldObjectLocation>().transform;
+        _holdingObjectTransform = player.GetComponentInChildren<HeldObjectLocation>().transform;
         
-        GameObject caughtFish = Instantiate(usableFishesToCatch[index], holdingObjectTransform.position,holdingObjectTransform.rotation);
-        caughtFish.transform.SetParent(holdingObjectTransform);
+        GameObject caughtFish = Instantiate(usableFishesToCatch[index], _holdingObjectTransform.position,_holdingObjectTransform.rotation);
+        caughtFish.transform.SetParent(_holdingObjectTransform);
         _currentInteractionSession.End();
     }
 

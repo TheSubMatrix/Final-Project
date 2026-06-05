@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
@@ -11,6 +12,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     /// </summary>
     [SerializeField] float m_interactionRange = 2;
     InteractionSession m_session;
+    private HeldObjectLocation m_heldObjectLocation;
     /// <inheritdoc/>
     public bool IsInteracting() => m_session?.IsActive is true;
     /// <inheritdoc/>
@@ -31,11 +33,12 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     /// </summary>
     public void OnInteractionButtonPressed()
     {
-        if (IsInteracting())
+        if (IsInteracting() || m_heldObjectLocation.IsHoldingObjectInHand)
         {
             EndActiveInteraction();
             return;
         }
+        
         if (!Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, m_interactionRange)) return;
         if (!hit.collider.TryGetComponent(out IInteractable interactable)) return;
         m_session = interactable.BeginInteraction(this);
@@ -62,4 +65,10 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
         session.End();
     }
     void OnDisable() => EndActiveInteraction();
+
+
+    private void Start()
+    {
+        m_heldObjectLocation = GetComponentInChildren<HeldObjectLocation>();
+    }
 }

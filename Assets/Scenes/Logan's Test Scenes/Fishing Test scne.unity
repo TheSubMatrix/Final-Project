@@ -1954,7 +1954,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1880292840478827165, guid: bb2e48ad728a6f74688836e3a48e85cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.832
+      value: -4.09
       objectReference: {fileID: 0}
     - target: {fileID: 1880292840478827165, guid: bb2e48ad728a6f74688836e3a48e85cd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1991,6 +1991,10 @@ PrefabInstance:
     - target: {fileID: 1880292840478827165, guid: bb2e48ad728a6f74688836e3a48e85cd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158069241636036103, guid: bb2e48ad728a6f74688836e3a48e85cd, type: 3}
+      propertyPath: _speedOfFishIcon
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7158069241636036103, guid: bb2e48ad728a6f74688836e3a48e85cd, type: 3}
       propertyPath: usableFishesToCatch.Array.size

@@ -22,6 +22,7 @@ public class PlayerControlRouter : MonoBehaviour, IPlayerControllable
             player.ChangeControlledEntity(null);
             return;
         }
+        
         m_activeActionMap = map;
         m_playerController = player;
 
