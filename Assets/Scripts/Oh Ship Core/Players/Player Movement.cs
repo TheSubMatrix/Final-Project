@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Range(0f, 90f)] float maxGroundAngle = 25f;
     float minGroundDotProduct;
     bool onGround;
+    int stepsSinceLastGrounded;
+    bool OnGround => groundContactCount > 0;
 
     Rigidbody connectedBody, pastConnectedBody;
     int groundContactCount;
@@ -40,7 +42,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-
+        OnValidate();
+    }
+    private void OnValidate()
+    {
+        minGroundDotProduct = Mathf.Cos(maxGroundAngle * Mathf.Deg2Rad);
     }
 
     void FixedUpdate()
@@ -106,6 +112,19 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateState()
     {
+        stepsSinceLastGrounded += 1;
+        if(onGround || SnapToGround())
+        {
+            stepsSinceLastGrounded = 0;
+        }
+        if (groundContactCount > 1)
+        {
+            contactNormal.Normalize();
+        }
+        else
+        {
+            contactNormal = Vector3.up;
+        }
         velocity = m_rigidbody.linearVelocity;
         if (connectedBody)
         {
@@ -172,6 +191,33 @@ public class PlayerMovement : MonoBehaviour
     Vector3 ProjectOnContactPlane(Vector3 vector)
     {
         return vector - contactNormal * Vector3.Dot(vector, contactNormal);
+    }
+
+    bool SnapToGround()
+    {
+        if (stepsSinceLastGrounded > 1)
+        {
+            return false;
+        }
+        if (!Physics.Raycast(m_rigidbody.position, Vector3.down, out RaycastHit hit))
+        {
+            return false;
+        }
+        if (hit.normal.y < minGroundDotProduct)
+        {
+            return false;
+        }
+            return false;
+        /*
+        groundContactCount = 1;
+        contactNormal = hit.normal;
+        float dot = Vector3.Dot(velocity, hit.normal);
+        if (dot > 0f)
+        {
+            velocity = (velocity - hit.normal * dot).normalized * speed;
+        }
+        return true;
+        */
     }
 
 }
