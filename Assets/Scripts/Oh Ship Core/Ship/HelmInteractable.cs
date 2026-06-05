@@ -16,6 +16,14 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     ///<inheritdoc/>
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
+        if (interactor.IsHoldingObject())
+        {
+            Debug.Log("Something in yur hand");
+            m_currentInteractionSession = new(interactor, this);
+            m_currentInteractionSession.End();
+            return m_currentInteractionSession;
+        }
+        
         IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         IPlayerController controller = oldControllable.GetActivePlayerController();
         controller.ChangeControlledEntity(this);

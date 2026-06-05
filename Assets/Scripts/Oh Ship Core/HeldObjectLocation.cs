@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HeldObjectLocation: MonoBehaviour
 {
-    public bool IsHoldingObjectInHand => transform.childCount > 0;
+    public bool hasSomethingInHand => transform.childCount > 0;
 
 
 

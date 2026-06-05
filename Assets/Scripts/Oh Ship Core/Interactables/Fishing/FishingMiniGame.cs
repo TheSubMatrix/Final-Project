@@ -19,11 +19,9 @@ public class FishingMiniGame
         _data.FishingProgressBar.value = 0;
         var (bottomOfFishIcon, topOfFishIcon) = GetMaxAndMinOfIconWorld(_data.PlayerFishingIcon);
         _halfHeightOfFishingIcon = (topOfFishIcon - bottomOfFishIcon) / 2;
-        Debug.Log("Half Height: " + _halfHeightOfFishingIcon);
         
         var (minOfUsableFishingSpace,maxOfUsableFishingSpace) = GetMaxAndMinOfIconLocal(_data.UsableFishingArea);
         Vector3 startPos = _data.PlayerFishingIcon.localPosition;
-        Debug.Log("Start Position: " + startPos);
         startPos.y = minOfUsableFishingSpace + _halfHeightOfFishingIcon;
         _data.PlayerFishingIcon.localPosition = startPos;
         CheckFishingProgress(_data.FishingProgressBar);
@@ -56,8 +54,6 @@ public class FishingMiniGame
         
         _data.PlayerFishingIcon.localPosition = localPos;
     }
-
-    
 
     private void CheckFishingProgress(Slider incomingSlider)
     {

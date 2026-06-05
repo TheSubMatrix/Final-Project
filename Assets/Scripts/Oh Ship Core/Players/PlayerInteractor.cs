@@ -12,7 +12,9 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     /// </summary>
     [SerializeField] float m_interactionRange = 2;
     InteractionSession m_session;
-    private HeldObjectLocation m_heldObjectLocation;
+    HeldObjectLocation m_heldObjectLocation;
+    
+    public bool IsHoldingObject() => m_heldObjectLocation.hasSomethingInHand;
     /// <inheritdoc/>
     public bool IsInteracting() => m_session?.IsActive is true;
     /// <inheritdoc/>
@@ -33,7 +35,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     /// </summary>
     public void OnInteractionButtonPressed()
     {
-        if (IsInteracting() || m_heldObjectLocation.IsHoldingObjectInHand)
+        if (IsInteracting())
         {
             EndActiveInteraction();
             return;
