@@ -22,9 +22,9 @@ public class ShipHole : MonoBehaviour, IInteractable
 
         session.OnEnded += () =>
         {
-            m_repairTimer.OnTimerStop -= HandleRepairEnd;
-            m_repairTimer.Pause();
             m_currentInteraction = null;
+            if (m_repairTimer is null) return;
+            m_repairTimer.Pause();
         };
 
         m_repairTimer.OnTimerStop += HandleRepairEnd;
@@ -35,6 +35,7 @@ public class ShipHole : MonoBehaviour, IInteractable
 
     void HandleRepairEnd()
     {
+        if (m_repairTimer is null) return;
         if (m_repairTimer.IsFinished)
         {
             m_onRepairComplete?.Invoke();

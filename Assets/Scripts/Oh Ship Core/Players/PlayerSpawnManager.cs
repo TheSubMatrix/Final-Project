@@ -40,6 +40,7 @@ public class PlayerSpawnManager : MonoBehaviour
             return false;
         }
         result = array[Random.Range(0, array.Length)];
+        Debug.Log($"Selected {result}");
         return true;
     }
 }
