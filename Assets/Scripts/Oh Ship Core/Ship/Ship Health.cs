@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using MatrixUtils.Attributes;
 using UnityEngine;
@@ -21,7 +22,7 @@ public class ShipHealth : MonoBehaviour, IDamageable
     }
     void Update()
     {
-        m_fillPercentage = Mathf.Clamp01(m_fillPercentage + m_holeCount * 0.5f * Time.deltaTime);
+        m_fillPercentage = Mathf.Clamp01(m_fillPercentage +(m_holeCount * 0.005f * Time.deltaTime));
     }
     /// <inheritdoc/>
     public void Damage(uint amount)
@@ -44,5 +45,9 @@ public class ShipHealth : MonoBehaviour, IDamageable
             selectedHole.gameObject.SetActive(true);
         }
     }
-    
+    void OnGUI()
+    {
+        if (GUI.Button(new Rect(10, 10, 150, 40), "Deal Damage"))
+            Damage(1);
+    }
 }
