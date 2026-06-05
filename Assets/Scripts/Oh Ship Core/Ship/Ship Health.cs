@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MatrixUtils.Attributes;
+using MatrixUtils.GenericDatatypes;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -10,7 +11,7 @@ public class ShipHealth : MonoBehaviour, IDamageable
     RandomBag<Transform> m_availableHoles;
     [SerializeField] ShipHole m_holePrefab;
     IObjectPool<ShipHole> m_shipHoles;
-    [SerializeField, ReadOnly] float m_fillPercentage;
+    [SerializeField] Observer<float> m_fillPercentage = new(0);
     uint m_holeCount;
     void Awake()
     {
@@ -19,10 +20,11 @@ public class ShipHealth : MonoBehaviour, IDamageable
         (
             createFunc: () => Instantiate(m_holePrefab)
         );
+        m_fillPercentage.Notify();
     }
     void Update()
     {
-        m_fillPercentage = Mathf.Clamp01(m_fillPercentage +(m_holeCount * 0.005f * Time.deltaTime));
+        m_fillPercentage.Value = Mathf.Clamp01(m_holeCount > 0 ? m_fillPercentage +(m_holeCount * 0.005f * Time.deltaTime) : m_fillPercentage+ -0.05f * Time.deltaTime);
     }
     /// <inheritdoc/>
     public void Damage(uint amount)
