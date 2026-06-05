@@ -19,9 +19,24 @@ public class ShipMovement : MonoBehaviour
         Throttle = Mathf.Clamp(throttle, -1, 1);
     }
     
+    private SteamPressureSystem m_steamPressureSystem;
+    private float m_steamPressure;
+
+    void Start()
+    {
+         m_steamPressure = m_steamPressureSystem != null ? m_steamPressureSystem.SteamPressure : 0.5f;
+        if (m_steamPressureSystem == null)
+        {
+            Debug.LogWarning("No SteamPressureSystem found on ship!");
+        }
+            
+    }
+    
     void FixedUpdate()
     {
-        m_rigidbody.AddForceAtPosition(m_wheelPowerPoint.forward * m_throttleEffectiveness.Evaluate(Throttle * 2), m_wheelPowerPoint.position, ForceMode.Force);
+        if (m_steamPressureSystem == null) return;
+        
+        m_rigidbody.AddForceAtPosition(m_wheelPowerPoint.forward * m_throttleEffectiveness.Evaluate(Throttle * 2) * (m_steamPressure + 0.5f), m_wheelPowerPoint.position, ForceMode.Force);
         ApplyRudderForce(Rudder);
     }
 

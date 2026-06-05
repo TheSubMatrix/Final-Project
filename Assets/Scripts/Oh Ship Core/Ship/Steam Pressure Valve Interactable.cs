@@ -9,6 +9,8 @@ public class SteamPressureValveInteractable : MonoBehaviour, IInteractable, IPla
     IPlayerController m_activePlayerController;
     [SerializeField] string m_pressureControlActionMap = "Adjust Pressure";
     [SerializeField] SteamPressureSystem m_pressureSystem;
+    [SerializeField] float steamPressureOffset = .5f;
+    
     InteractionSession m_currentInteractionSession;
     /// <inheritdoc/>
     public InteractionSession BeginInteraction(IInteractor interactor)
@@ -55,11 +57,11 @@ public class SteamPressureValveInteractable : MonoBehaviour, IInteractable, IPla
 
     void HandleIncreasePressure(InputAction.CallbackContext context)
     {
-        
+        m_pressureSystem.IncreaseSteamPressure(steamPressureOffset);
     }
     void HandleDecreasePressure(InputAction.CallbackContext context)
     {
-        
+        m_pressureSystem.DecreaseSteamPressure(steamPressureOffset);
     }
     void HandleInteract(InputAction.CallbackContext context) => m_currentInteractionSession.End();
 
