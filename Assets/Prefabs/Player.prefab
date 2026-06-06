@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8637963116083372980}
   - component: {fileID: 4283127309468755903}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Holding Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 8658532052230713583}
   - component: {fileID: 3890149404350108893}
   - component: {fileID: 3994179610541121624}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 7380261991574393363}
   - component: {fileID: 7268588531060575580}
   - component: {fileID: 191865983446707255}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player Look Cam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,3 +355,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Players::PlayerInteractor
   m_interactionRange: 2
+  m_interactionLayer:
+    serializedVersion: 2
+    m_Bits: 1

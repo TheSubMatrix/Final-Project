@@ -8,7 +8,7 @@ public interface IInteractor
 {
     /// <returns>Whether the <see cref="IInteractor"/> is interacting with a <see cref="IInteractable"/></returns>
     [Pure] bool IsInteracting();
-    
+    // :( This is a hack to handle holding objects
     bool IsHoldingObject();
     /// <returns>The current <see cref="InteractionSession"/> if the <see cref="IInteractor"/> is interacting with a <see cref="IInteractable"/></returns>
     [Pure] InteractionSession GetSession();

@@ -11,6 +11,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     /// The range in which the player can interact with an <see cref="IInteractable"/>
     /// </summary>
     [SerializeField] float m_interactionRange = 2;
+    [SerializeField] LayerMask m_interactionLayer;
     InteractionSession m_session;
     HeldObjectLocation m_heldObjectLocation;
     
@@ -41,7 +42,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
             return;
         }
         
-        if (!Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, m_interactionRange)) return;
+        if (!Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, m_interactionRange, m_interactionLayer)) return;
         if (!hit.collider.TryGetComponent(out IInteractable interactable)) return;
         m_session = interactable.BeginInteraction(this);
         if (m_session is not { IsActive: true }) return;
