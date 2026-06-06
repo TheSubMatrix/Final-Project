@@ -24,6 +24,6 @@ public interface IPlayerController
     /// <param name="currentMap">The current map used by the <see cref="IPlayerController"/></param>
     /// <returns>Whether the result is valid</returns>
     public bool GetCurrentInputActionMap(out InputActionMap currentMap);
-
+    /// <returns>The <see cref="GameObject"/> associated with this <see cref="IPlayerController"/></returns>
     public GameObject GetAssociatedGameObject();
 }

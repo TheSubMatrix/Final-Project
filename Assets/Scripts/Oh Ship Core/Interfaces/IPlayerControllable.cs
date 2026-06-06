@@ -15,9 +15,8 @@ public interface IPlayerControllable
     /// Called when a player releases control of this object.
     /// </summary>
     void OnControlReleased();
-
     /// <returns>The <see cref="IPlayerController"/> currently controlling this object</returns>
     [Pure] IPlayerController GetActivePlayerController();
-
+    /// <returns>The <see cref="GameObject"/> associated with this <see cref="IPlayerControllable"/></returns>
     [Pure] GameObject GetAssociatedGameObject();
 }
