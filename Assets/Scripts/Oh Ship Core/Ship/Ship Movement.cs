@@ -24,7 +24,7 @@ public class ShipMovement : MonoBehaviour
 
     void Start()
     {
-         m_steamPressure = m_steamPressureSystem != null ? m_steamPressureSystem.SteamPressure : 0.5f;
+        m_steamPressureSystem = GetComponent<SteamPressureSystem>();
         if (m_steamPressureSystem == null)
         {
             Debug.LogWarning("No SteamPressureSystem found on ship!");
@@ -36,7 +36,9 @@ public class ShipMovement : MonoBehaviour
     {
         if (m_steamPressureSystem == null) return;
         
-        m_rigidbody.AddForceAtPosition(m_wheelPowerPoint.forward * m_throttleEffectiveness.Evaluate(Throttle * 2) * (m_steamPressure + 0.5f), m_wheelPowerPoint.position, ForceMode.Force);
+        m_steamPressure = m_steamPressureSystem.SteamPressure;
+        m_rigidbody.AddForceAtPosition(m_wheelPowerPoint.forward * m_throttleEffectiveness.Evaluate(Throttle * 2) * (m_steamPressure), m_wheelPowerPoint.position, ForceMode.Force);
+        Debug.Log($"Throttle: {Throttle}, Pressure: {m_steamPressureSystem.SteamPressure}, Force: {m_throttleEffectiveness.Evaluate(Throttle * 2) * (m_steamPressure)}");
         ApplyRudderForce(Rudder);
     }
 

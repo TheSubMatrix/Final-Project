@@ -12,15 +12,15 @@ public class SteamPressureSystem : MonoBehaviour
         private set => _steamPressure = Mathf.Clamp(value, 0, 1);
     }
     
-    private float _steamPressure;
+    private float _steamPressure = 1;
     
-    [SerializeField] private float rateOfPressureLoss = 0.01f;
+    [SerializeField] private float rateOfPressureLoss = 0.5f;
 
 
     private void Update()
     {
         SteamPressure -= rateOfPressureLoss * Time.deltaTime;
-        Debug.Log(_steamPressure);
+       
     }
 
     public void DecreaseSteamPressure(float amount)
