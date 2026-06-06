@@ -6,6 +6,8 @@ Shader "Fullscreen/Outlines"
         _ShapeRatio ("ShapeRatio", Float) = 1.6
         _Alpha ("Alpha", Float) = 2.5
         _EdgeColor ("EdgeColor", Color) = (0,0,0,1)
+        _NormalSensitivity ("NormalSensitivity", Float) = 1
+        _DepthSensitivity ("DepthSensitivity", Float) = 1
     }
 
     SubShader
@@ -30,6 +32,9 @@ Shader "Fullscreen/Outlines"
             float _ShapeRatio;
             float _Alpha;
             float4 _EdgeColor;
+            float _NormalSensitivity;
+            float _DepthSensitivity;
+
             struct VertexToFragment
             {
                 float4 PositionCS : SV_POSITION;
@@ -44,13 +49,14 @@ Shader "Fullscreen/Outlines"
                 output.Texcoord = GetFullScreenTriangleTexCoord(input.vertexID);
                 float3 viewPos = ComputeViewSpacePosition(output.Texcoord, 1.0, UNITY_MATRIX_I_P);
                 output.ViewSpaceDir = viewPos;
-                
                 return output;
             }
+
             float InverseLerp(float a, float b, float v)
             {
                 return (v - a) / (b - a);
             }
+
             float4 Fragment(VertexToFragment input) : SV_Target
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
@@ -73,14 +79,19 @@ Shader "Fullscreen/Outlines"
                         depthSamples -= LinearEyeDepth(SampleSceneDepth(samplePosition), _ZBufferParams);
                     }
                 }
+                
                 normalSamples += SampleSceneNormals(input.Texcoord) * centerWeight;
                 depthSamples += LinearEyeDepth(SampleSceneDepth(input.Texcoord), _ZBufferParams) * centerWeight;
                 centerWeight = 1 / centerWeight;
                 normalSamples *= centerWeight;
                 depthSamples *= centerWeight;
+
                 float normalEdge = max(normalSamples.x, max(normalSamples.y, normalSamples.z));
-                normalEdge = InverseLerp(0.15, 0.2, normalEdge);
-                depthSamples = InverseLerp(2, 10, depthSamples);
+                depthSamples *= _DepthSensitivity;
+                normalEdge *= _NormalSensitivity;
+                normalEdge = saturate(InverseLerp(0.15, 0.2, normalEdge));
+                depthSamples = saturate(InverseLerp(2, 10, depthSamples));
+
                 float edge = max(normalEdge, depthSamples);
                 return lerp(SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_LinearClamp, input.Texcoord), _EdgeColor, saturate(edge));
             }

@@ -18,7 +18,7 @@ MonoBehaviour:
   requirements: 3
   passMaterial: {fileID: 2100000, guid: 6e2e068c13b15444784242128912849c, type: 2}
   passIndex: 0
-  bindDepthStencilAttachment: 1
+  bindDepthStencilAttachment: 0
   m_Version: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -62,9 +62,9 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_DefaultStencilState:
     overrideStencilState: 0
-    stencilReference: 1
-    stencilCompareFunction: 3
-    passOperation: 2
+    stencilReference: 7
+    stencilCompareFunction: 6
+    passOperation: 0
     failOperation: 0
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
@@ -73,5 +73,5 @@ MonoBehaviour:
   m_CopyDepthMode: 0
   m_DepthAttachmentFormat: 0
   m_DepthTextureFormat: 0
-  m_AccurateGbufferNormals: 0
+  m_AccurateGbufferNormals: 1
   m_IntermediateTextureMode: 0
