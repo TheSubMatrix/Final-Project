@@ -19,8 +19,6 @@ _Shadow_Tint("Shadow Tint", Color) = (0, 0, 0, 1)
 [Toggle(_MAIN_LIGHT_SHADOWS_CASCADE)]_MAIN_LIGHT_SHADOWS_CASCADE("Main Light Shadows Cascade", Float) = 1
 [Toggle(_ADDITIONAL_LIGHT_SHADOWS)]_ADDITIONAL_LIGHT_SHADOWS("Additional Light Shadows", Float) = 1
 [Toggle(_SHADOWS_SOFT)]_SHADOWS_SOFT("Shadows Soft", Float) = 0
-_Stencil("Stencil", Int) = 0
-_StencilComp("StencilComp", Int) = 0
 [HideInInspector]_CastShadows("_CastShadows", Float) = 1
 [HideInInspector]_Surface("_Surface", Float) = 0
 [HideInInspector]_Blend("_Blend", Float) = 0
@@ -316,8 +314,6 @@ float4 _Mask_TexelSize;
 float4 _Color;
 float _Smoothness;
 float4 _Shadow_Tint;
-float _Stencil;
-float _StencilComp;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -2227,8 +2223,6 @@ float4 _Mask_TexelSize;
 float4 _Color;
 float _Smoothness;
 float4 _Shadow_Tint;
-float _Stencil;
-float _StencilComp;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -2565,8 +2559,6 @@ float4 _Mask_TexelSize;
 float4 _Color;
 float _Smoothness;
 float4 _Shadow_Tint;
-float _Stencil;
-float _StencilComp;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -2730,6 +2722,18 @@ Pass
 Cull [_Cull]
 ZTest LEqual
 ZWrite On
+
+        // Stencil Buffer Setup
+        Stencil
+        {
+            Ref [_StencilRef]
+            ReadMask [_StencilReadMask]
+            WriteMask [_StencilWriteMask]
+            Comp [_StencilComp]
+            Pass [_StencilPass]
+            Fail [_StencilFail]
+            ZFail [_StencilZFail]
+        }
 
 // Debug
 // <None>
@@ -2913,8 +2917,6 @@ float4 _Mask_TexelSize;
 float4 _Color;
 float _Smoothness;
 float4 _Shadow_Tint;
-float _Stencil;
-float _StencilComp;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -3264,8 +3266,6 @@ float4 _Mask_TexelSize;
 float4 _Color;
 float _Smoothness;
 float4 _Shadow_Tint;
-float _Stencil;
-float _StencilComp;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -3686,8 +3686,6 @@ float4 _Mask_TexelSize;
 float4 _Color;
 float _Smoothness;
 float4 _Shadow_Tint;
-float _Stencil;
-float _StencilComp;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -5595,8 +5593,6 @@ float4 _Mask_TexelSize;
 float4 _Color;
 float _Smoothness;
 float4 _Shadow_Tint;
-float _Stencil;
-float _StencilComp;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -5979,8 +5975,6 @@ float4 _Mask_TexelSize;
 float4 _Color;
 float _Smoothness;
 float4 _Shadow_Tint;
-float _Stencil;
-float _StencilComp;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 

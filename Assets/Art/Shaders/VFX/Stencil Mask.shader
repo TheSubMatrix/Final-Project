@@ -20,5 +20,17 @@ Shader "Custom/Stencil Mask"
                 Pass Replace
             }
         }
+        Pass
+        {
+            Tags{ "LightMode" = "DepthNormals"}
+            ColorMask 0
+            ZWrite Off
+            Stencil
+            {
+                Ref [_StencilRef]
+                Comp Always
+                Pass Replace
+            }
+        }
     }
 }

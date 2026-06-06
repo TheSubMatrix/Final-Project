@@ -187,70 +187,135 @@ namespace ShaderGraphExtension
 
         static bool AddStencilCode(List<string> shaderFile)
         {
-            bool stencilAdded = false;
+            bool anyStencilAdded = false;
 
+            // Passes to inject stencil into, identified by their Name tag content
+            HashSet<string> targetPassNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                "Universal Forward",
+                "DepthNormals",
+                "DepthNormalsOnly",
+            };
+
+            bool foundAnyNamedPass = false;
             for (int i = 0; i < shaderFile.Count; i++)
             {
-                bool isMainPass = false;
+                if (shaderFile[i].Trim() != "Pass")
+                    continue;
 
-                if (shaderFile[i].Trim() == "Pass")
+                // Scan ahead to find this pass's Name tag and check if it's a target
+                bool isTargetPass = false;
+                for (int j = i + 1; j < Math.Min(i + 25, shaderFile.Count); j++)
                 {
-                    for (int j = i; j < Math.Min(i + 25, shaderFile.Count); j++)
+                    string trimmed = shaderFile[j].Trim();
+
+                    // Stop scanning if we hit the opening brace of the pass body
+                    // (Name should appear before HLSLPROGRAM)
+                    if (trimmed == "HLSLPROGRAM")
+                        break;
+
+                    foreach (string targetName in targetPassNames)
                     {
-                        string line = shaderFile[j].Trim();
-                        if (line.Contains("\"Universal Forward\"") || 
-                            line.Contains("Name \"Universal Forward\"") ||
-                            line.Contains("SHADERPASS_FORWARD") ||
-                            line.Contains("SHADERPASS SHADERPASS_UNLIT"))
+                        if (trimmed.Contains($"\"{targetName}\""))
                         {
-                            isMainPass = true;
+                            isTargetPass = true;
+                            foundAnyNamedPass = true;
                             break;
                         }
                     }
-                    
-                    if (!stencilAdded && !isMainPass)
-                        isMainPass = true;
 
-                    if (isMainPass)
+                    if (isTargetPass)
+                        break;
+                }
+
+                if (!isTargetPass)
+                    continue;
+
+                // Find the insertion point within this pass (before the debug/separator comment)
+                int insertPosition = -1;
+                for (int j = i + 1; j < Math.Min(i + 50, shaderFile.Count); j++)
+                {
+                    string trimmed = shaderFile[j].Trim();
+                    if (trimmed.StartsWith("// Debug") || trimmed.StartsWith("// --------------------------------------------------"))
                     {
-                        int insertPosition = -1;
-                        for (int j = i + 1; j < Math.Min(i + 50, shaderFile.Count); j++)
-                        {
-                            string line = shaderFile[j].Trim();
-                            if (line.Contains("// Debug") || line.Contains("// --------------------------------------------------"))
-                            {
-                                insertPosition = j;
-                                break;
-                            }
-                        }
-
-                        if (insertPosition != -1)
-                        {
-                            List<string> stencilCode = new List<string>
-                            {
-                                "        // Stencil Buffer Setup",
-                                "        Stencil",
-                                "        {",
-                                "            Ref [_StencilRef]",
-                                "            ReadMask [_StencilReadMask]",
-                                "            WriteMask [_StencilWriteMask]",
-                                "            Comp [_StencilComp]",
-                                "            Pass [_StencilPass]", 
-                                "            Fail [_StencilFail]", 
-                                "            ZFail [_StencilZFail]",
-                                "        }",
-                                ""
-                            };
-
-                            shaderFile.InsertRange(insertPosition, stencilCode);
-                            stencilAdded = true;
-                            i = insertPosition + stencilCode.Count;
-                        }
+                        insertPosition = j;
+                        break;
                     }
                 }
+
+                if (insertPosition == -1)
+                    continue;
+
+                List<string> stencilCode = new List<string>
+                {
+                    "        // Stencil Buffer Setup",
+                    "        Stencil",
+                    "        {",
+                    "            Ref [_StencilRef]",
+                    "            ReadMask [_StencilReadMask]",
+                    "            WriteMask [_StencilWriteMask]",
+                    "            Comp [_StencilComp]",
+                    "            Pass [_StencilPass]",
+                    "            Fail [_StencilFail]",
+                    "            ZFail [_StencilZFail]",
+                    "        }",
+                    ""
+                };
+
+                shaderFile.InsertRange(insertPosition, stencilCode);
+                anyStencilAdded = true;
+
+                // Skip past the inserted lines to avoid re-scanning them
+                i = insertPosition + stencilCode.Count;
             }
 
-            return stencilAdded;
+            // Original fallback: if no named passes matched at all, inject into the first Pass found.
+            // This preserves the old behaviour for unlit/custom graphs that may lack Name tags.
+            if (!foundAnyNamedPass && !anyStencilAdded)
+            {
+                for (int i = 0; i < shaderFile.Count; i++)
+                {
+                    if (shaderFile[i].Trim() != "Pass")
+                        continue;
+
+                    int insertPosition = -1;
+                    for (int j = i + 1; j < Math.Min(i + 50, shaderFile.Count); j++)
+                    {
+                        string trimmed = shaderFile[j].Trim();
+                        if (trimmed.StartsWith("// Debug") || trimmed.StartsWith("// --------------------------------------------------"))
+                        {
+                            insertPosition = j;
+                            break;
+                        }
+                    }
+
+                    if (insertPosition == -1)
+                        continue;
+
+                    List<string> stencilCode = new List<string>
+                    {
+                        "        // Stencil Buffer Setup",
+                        "        Stencil",
+                        "        {",
+                        "            Ref [_StencilRef]",
+                        "            ReadMask [_StencilReadMask]",
+                        "            WriteMask [_StencilWriteMask]",
+                        "            Comp [_StencilComp]",
+                        "            Pass [_StencilPass]",
+                        "            Fail [_StencilFail]",
+                        "            ZFail [_StencilZFail]",
+                        "        }",
+                        ""
+                    };
+
+                    shaderFile.InsertRange(insertPosition, stencilCode);
+                    return true;
+                }
+
+                return false;
+            }
+
+            return anyStencilAdded;
         }
 
         static void CreateShaderAssetFile(string path, List<string> content)
