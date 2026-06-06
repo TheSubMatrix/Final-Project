@@ -1,10 +1,45 @@
 using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Represents an ongoing interaction between an <see cref="IInteractor"/> and an <see cref="IInteractable"/>
 /// </summary>
 public class InteractionSession
 {
+    readonly Dictionary<Type, Delegate> m_events = new();
+    /// <summary>
+    /// Subscribes a handler to an event on the event bus for this <see cref="InteractionSession"/>
+    /// </summary>
+    /// <param name="handler">The <see cref="Action"/> to add to the handler</param>
+    /// <typeparam name="T">The <see cref="Type"/> that this action returns</typeparam>
+    public void Subscribe<T>(Action<T> handler)
+    {
+        Type key = typeof(T);
+        if (m_events.TryGetValue(key, out Delegate existing)) m_events[key] = Delegate.Combine(existing, handler);
+        else m_events[key] = handler;
+    }
+    /// <summary>
+    /// Unsubscribes a handler from an event on the event bus for this <see cref="InteractionSession"/>
+    /// </summary>
+    /// <param name="handler">The <see cref="Action"/> to remove from the found handler</param>
+    /// <typeparam name="T">The <see cref="Type"/> that this action returns</typeparam>
+    public void Unsubscribe<T>(Action<T> handler)
+    {
+        Type key = typeof(T);
+        if (!m_events.TryGetValue(key, out Delegate existing)) return;
+        Delegate updated = Delegate.Remove(existing, handler);
+        if (updated is null) m_events.Remove(key);
+        else m_events[key] = updated;
+    }
+    /// <summary>
+    /// Publishes an event on the event bus for this <see cref="InteractionSession"/> to all subscribers.
+    /// </summary>
+    /// <param name="payload">The payload to invoke the event with</param>
+    /// <typeparam name="T">The <see cref="Type"/> that this action should invoke with</typeparam>
+    public void Publish<T>(T payload)
+    {
+        if (m_events.TryGetValue(typeof(T), out Delegate handler)) ((Action<T>)handler).Invoke(payload);
+    }
     /// <summary>
     /// The <see cref="IInteractor"/> that is currently interacting with the <see cref="Target"/>
     /// </summary>
@@ -59,4 +94,5 @@ public class InteractionSession
         OnEnded = null;
         OnTransferred = null;
     }
+    
 }

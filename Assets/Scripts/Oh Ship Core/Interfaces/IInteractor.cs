@@ -7,7 +7,7 @@ using UnityEngine;
 public interface IInteractor
 {
     /// <returns>Whether the <see cref="IInteractor"/> is interacting with a <see cref="IInteractable"/></returns>
-    bool IsInteracting();
+    [Pure] bool IsInteracting();
     
     bool IsHoldingObject();
     /// <returns>The current <see cref="InteractionSession"/> if the <see cref="IInteractor"/> is interacting with a <see cref="IInteractable"/></returns>
