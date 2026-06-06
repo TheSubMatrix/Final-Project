@@ -1,11 +1,13 @@
+using System;
 using MatrixUtils.Attributes;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllable
 {
     [SerializeField] string m_helmControlActionMap = "Helm";
-    
+    [SerializeField] CinemachineCamera m_helmCamera;
     [SerializeField] float m_helmThrottleSpeed = 0.5f;
     [SerializeField] float m_helmRudderSpeed = 0.5f;
     [SerializeField, RequiredField] ShipMovement m_shipMovement;
@@ -16,15 +18,11 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     ///<inheritdoc/>
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
-        if (interactor.IsHoldingObject())
-        {
-            Debug.Log("Something in yur hand");
-            m_currentInteractionSession = new(interactor, this);
-            m_currentInteractionSession.End();
-            return m_currentInteractionSession;
-        }
-        
+        if(interactor.IsInteracting() || m_currentInteractionSession is { IsActive: true }) return null;   
         IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
+        CinemachineCamera playerCam = interactor.GetAssociatedGameObject().GetComponent<CinemachineCamera>();
+        m_helmCamera.OutputChannel = playerCam.OutputChannel;
+        m_helmCamera.Priority = 10;
         IPlayerController controller = oldControllable.GetActivePlayerController();
         controller.ChangeControlledEntity(this);
         m_currentInteractionSession = new(interactor, this);
@@ -59,14 +57,16 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     public void OnControlReleased()
     {
         m_input = Vector2.zero;
+        m_helmCamera.Priority = 0;
         Update();
-        m_activePlayerController = null;
+        if (!m_activePlayerController.GetCurrentInputActionMap(out InputActionMap map)) return;
         InputAction movementAction = m_activeActionMap.FindAction("Move");
         movementAction.performed -= HandleMovementInput;
         movementAction.canceled -= HandleMovementInput;
         InputAction interactAction = m_activeActionMap.FindAction("Interact");
         interactAction.performed -= HandleInteract;
         m_activeActionMap = null;
+        m_activePlayerController = null;
     }
     ///<inheritdoc/>
     public IPlayerController GetActivePlayerController() => m_activePlayerController;
