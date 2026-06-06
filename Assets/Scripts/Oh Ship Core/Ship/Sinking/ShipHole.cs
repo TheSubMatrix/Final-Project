@@ -16,7 +16,7 @@ public class ShipHole : MonoBehaviour, IInteractable
     /// <inheritdoc/>
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
-        if (m_currentInteraction != null) return null;
+        if (m_currentInteraction is {IsActive: false}) return null;
         InteractionSession session = new(interactor, this);
         m_currentInteraction = session;
 
