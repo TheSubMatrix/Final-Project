@@ -2972,7 +2972,7 @@ Rigidbody:
   m_Mass: 100
   m_LinearDamping: 0.2
   m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_CenterOfMass: {x: 0, y: -1, z: -1.725}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -2981,7 +2981,7 @@ Rigidbody:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
+  m_ImplicitCom: 0
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -3014,6 +3014,18 @@ MonoBehaviour:
         - m_Target: {fileID: 810086723}
           m_TargetAssemblyTypeName: WaterFillController, OhShip.Core.Ship
           m_MethodName: UpdateWaterFill
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2023906177}
+          m_TargetAssemblyTypeName: BuoyantBody, OhShip.Core.Ship
+          m_MethodName: UpdateSinkPercentage
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
