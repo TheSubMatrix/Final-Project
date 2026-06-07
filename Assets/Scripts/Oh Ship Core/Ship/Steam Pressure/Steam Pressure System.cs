@@ -5,7 +5,6 @@ using UnityEngine;
 /// </summary>
 public class SteamPressureSystem : MonoBehaviour
 {
-    
     public float SteamPressure
     {
         get => _steamPressure;

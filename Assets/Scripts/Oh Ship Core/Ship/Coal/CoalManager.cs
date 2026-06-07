@@ -1,0 +1,123 @@
+using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
+
+public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable
+{
+    
+    [SerializeField] private SO_CoalData _coalData;
+    [SerializeField] private int _howManyInputs = 5;
+    [SerializeField] private string m_coalMiniGameActionMap = "Shovel Coal";
+    [Range(0.1f,1)]
+    [SerializeField] private float m_amountOfPressureToSend = .2f;
+
+    [SerializeField] SteamPressureSystem m_steamPressureSystem;
+    
+    private IPlayerController m_activePlayerController;
+    private InteractionSession m_currentInteractionSession;
+    public string[] m_inputsForQTE;
+    private int m_index;
+    private int m_correctInputCounter;
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public InteractionSession BeginInteraction(IInteractor interactor)
+    {
+       IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
+       IPlayerController controller = oldControllable.GetActivePlayerController();
+       controller.ChangeControlledEntity(this);
+
+       m_currentInteractionSession = new InteractionSession(interactor, this);
+       m_currentInteractionSession.OnEnded += () => controller.ChangeControlledEntity(oldControllable);
+       m_inputsForQTE = new string[_howManyInputs];
+       m_index = 0;
+       for (var i = 0; i < _howManyInputs; i++)
+       {
+           int randomInput = Random.Range(0,_coalData.PossibleInputs.Length);
+           m_inputsForQTE[i] = _coalData.PossibleInputs[randomInput];
+       }
+       
+       return m_currentInteractionSession;
+    }
+
+    public void OnControlRequested(IPlayerController player)
+    {
+        m_activePlayerController = player;
+        
+        if (!player.ChangeInputActionMap(m_coalMiniGameActionMap, out InputActionMap map))
+        {
+            Debug.LogError("Failed to assign input actions to player, reverting control to default.");
+            player.ChangeControlledEntity(null);
+            return;
+        }
+
+        InputAction leftButton = map.FindAction("Left");
+        leftButton.performed += QTEButtonPressed;
+        InputAction rightButton = map.FindAction("Right");
+        rightButton.performed += QTEButtonPressed;
+        InputAction downButton = map.FindAction("Down");
+        downButton.performed += QTEButtonPressed;
+        InputAction interact = map.FindAction("Interact");
+        interact.performed += HandleInteract;
+    }
+
+    void QTEButtonPressed(InputAction.CallbackContext context)
+    {
+        
+        if (context.action.name == m_inputsForQTE[m_index])
+        {
+            Debug.Log("Correct");
+            m_correctInputCounter++;
+        }
+        else
+        {
+            Debug.Log("Incorrect");
+        }
+        m_index++;
+        
+        if(m_index >= m_inputsForQTE.Length)
+        {
+            Debug.Log("Inputs completed");
+            m_amountOfPressureToSend *=  ((float)m_correctInputCounter / m_inputsForQTE.Length);
+            m_steamPressureSystem.IncreaseSteamPressure(m_amountOfPressureToSend);
+            Debug.Log("Sent " + m_amountOfPressureToSend + " of pressure");
+            m_currentInteractionSession.End();
+        }
+    }
+
+    public void OnControlReleased()
+    {
+        if (m_activePlayerController == null) throw new("Player controller is null, cannot release control.");
+        if (!m_activePlayerController.GetCurrentInputActionMap(out InputActionMap map)) throw new("Player controller is not null, but input action map is null...");
+        
+        InputAction leftButton = map.FindAction("Left");
+        leftButton.performed -= QTEButtonPressed;
+        InputAction rightButton = map.FindAction("Right");
+        rightButton.performed -= QTEButtonPressed;
+        InputAction downButton = map.FindAction("Down");
+        downButton.performed -= QTEButtonPressed;
+        InputAction interact = map.FindAction("Interact");
+        interact.performed -= HandleInteract;
+        
+        m_activePlayerController = null;
+    }
+
+    public IPlayerController GetActivePlayerController() => m_activePlayerController;
+    
+
+    public GameObject GetAssociatedGameObject() => gameObject;
+    
+    void HandleInteract(InputAction.CallbackContext context) => m_currentInteractionSession.End();
+    
+}
+
+
