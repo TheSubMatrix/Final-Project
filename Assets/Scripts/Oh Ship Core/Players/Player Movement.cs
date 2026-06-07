@@ -88,11 +88,15 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 normal = collision.GetContact(i).normal;
 
-            groundContactCount += 1;
-            contactNormal += normal;
-            if(!connectedBody)
+            if (normal.y >= minGroundDotProduct)
             {
-                connectedBody = collision.rigidbody;
+                groundContactCount++;
+                contactNormal += normal;
+                groundContactCount += 1;
+                if (!connectedBody)
+                {
+                    connectedBody = collision.rigidbody;
+                }
             }
         }
 
@@ -117,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
         {
             stepsSinceLastGrounded = 0;
         }
+
         if (groundContactCount > 1)
         {
             contactNormal.Normalize();
@@ -193,13 +198,13 @@ public class PlayerMovement : MonoBehaviour
         return vector - contactNormal * Vector3.Dot(vector, contactNormal);
     }
 
-    bool SnapToGround()
+    bool SnapToGround()//determines whether player should be clipped to the ground
     {
         if (stepsSinceLastGrounded > 1)
         {
             return false;
         }
-        if (!Physics.Raycast(m_rigidbody.position, Vector3.down, out RaycastHit hit))
+        if (!Physics.Raycast(m_rigidbody.position, Vector3.down, out RaycastHit hit, 1.5f))
         {
             return false;
         }
@@ -207,17 +212,18 @@ public class PlayerMovement : MonoBehaviour
         {
             return false;
         }
-            return false;
-        /*
+
+        
         groundContactCount = 1;
         contactNormal = hit.normal;
         float dot = Vector3.Dot(velocity, hit.normal);
         if (dot > 0f)
         {
-            velocity = (velocity - hit.normal * dot).normalized * speed;
+            velocity = velocity - hit.normal * dot;
+            m_rigidbody.linearVelocity = velocity;
         }
         return true;
-        */
+        
     }
 
 }
