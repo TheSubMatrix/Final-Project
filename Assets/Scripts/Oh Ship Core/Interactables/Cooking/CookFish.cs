@@ -17,8 +17,6 @@ public class CookFish : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //cookedAmount = material.GetFloat("_Cooked_Amount");
-        Debug.Log("Cook:" + cookedAmount);
         CheckForStove();
         CheckCookedStatus();
 
@@ -51,7 +49,10 @@ public class CookFish : MonoBehaviour
     void EndCooking()
     {
         isCooking = false;
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        material.SetFloat("_Cooked_Amount", 0f);
+        cookedAmount = 0f;
+
     }
 
     private void CheckCookedStatus()
