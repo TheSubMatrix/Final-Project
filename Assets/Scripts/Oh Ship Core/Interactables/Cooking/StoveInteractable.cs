@@ -29,7 +29,6 @@ public class StoveInteractable : MonoBehaviour, IInteractable
         {
             fishToCook.SetActive(true);
         }
-        Debug.Log("Stove interacted");
         return m_currentInteractionSession;
     }
 }
