@@ -2,49 +2,82 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class PromptDisplay : MonoBehaviour
+public class PromptDisplay : MonoBehaviour, IPromptDisplay
 {
     [SerializeField] Camera m_connectedCamera;
     [SerializeField] RectTransform m_promptContainer;
+    [SerializeField] float m_referenceDistance = 2f;
     [SerializeField] SerializableDictionary<string, GameObject> m_promptPrefabs = new();
-    readonly Dictionary<IPromptProvider, RectTransform> m_activePrompts = new();
-    readonly Dictionary<string, ObjectPool<RectTransform>> m_pools = new();
+    readonly Dictionary<IPromptProvider, PromptInfo> m_activePrompts = new();
+    readonly Dictionary<string, ObjectPool<PromptInfo>> m_pools = new();
 
     void Start()
     {
-        foreach (KeyValuePair<string, GameObject> promptPrefab in m_promptPrefabs)
+        foreach ((string key, GameObject value) in m_promptPrefabs)
         {
-            m_pools.Add(promptPrefab.Key, new(
-                () => Instantiate(promptPrefab.Value).GetComponent<RectTransform>(),
-                rectTransform => rectTransform.gameObject.SetActive(true), 
-                rectTransform => rectTransform.gameObject.SetActive(false)
-            ));
+            ObjectPool<PromptInfo> info = new(
+                createFunc: () =>
+                {
+                    GameObject instance = Instantiate(value, m_promptContainer);
+                    return new()
+                    {
+                        Prompt = instance.GetComponent<RectTransform>(),
+                        CanvasGroup = instance.GetComponent<CanvasGroup>() ?? instance.AddComponent<CanvasGroup>(),
+                        Widget = key
+                    };
+                },
+                actionOnGet:     info => { info.CanvasGroup.alpha = 1f; info.CanvasGroup.blocksRaycasts = true; },
+                actionOnRelease: info => { info.CanvasGroup.alpha = 0f; info.CanvasGroup.blocksRaycasts = false; },
+                actionOnDestroy: info => Destroy(info.Prompt.gameObject)
+            );
+            PromptInfo item = info.Get();
+            info.Release(item);
+            m_pools.Add(key, info);
         }
-    }
-    public void AddPrompt(IPromptProvider promptProvider)
-    {
-        if (m_activePrompts.ContainsKey(promptProvider)) return;
-        if(!m_pools.TryGetValue(promptProvider.GetRequestedWidgetName(), out ObjectPool<RectTransform> pool)) return;
-        RectTransform promptRect = pool.Get();
-        promptProvider.GetPromptData().Apply(promptRect.gameObject);
-        m_activePrompts.Add(promptProvider, promptRect);
-    }
-
-    public void RemovePrompt(IPromptProvider promptProvider)
-    {
-        if (!m_activePrompts.Remove(promptProvider, out RectTransform promptRect)) return;
-        if (m_pools.TryGetValue(promptProvider.GetRequestedWidgetName(), out ObjectPool<RectTransform> pool)) pool.Release(promptRect);
+        
     }
 
     void Update()
     {
         if (m_activePrompts.Count <= 0) return;
-        foreach (KeyValuePair<IPromptProvider, RectTransform> prompt in m_activePrompts)
+        foreach (KeyValuePair<IPromptProvider, PromptInfo> prompt in m_activePrompts)
         {
-            Vector3 screenPos = m_connectedCamera.WorldToScreenPoint(prompt.Key.GetRequestedWorldPosition());
+            Vector3 worldPos = prompt.Key.GetRequestedWorldPosition();
+            Vector3 screenPos = m_connectedCamera.WorldToScreenPoint(worldPos);
             RectTransformUtility.ScreenPointToLocalPointInRectangle(m_promptContainer, screenPos, m_connectedCamera, out Vector2 localPoint);
-            prompt.Value.anchoredPosition = localPoint;
+            prompt.Value.Prompt.anchoredPosition = localPoint;
+            float distance = Vector3.Distance(m_connectedCamera.transform.position, worldPos);
+            prompt.Value.Prompt.localScale = Vector3.one * (m_referenceDistance / distance);
         }
     }
 
+    public void ShowPrompt(IPromptProvider prompt)
+    {
+        if (prompt is null) return;
+        if (m_activePrompts.ContainsKey(prompt)) return;
+        if (!m_pools.TryGetValue(prompt.GetPromptData().AssociatedWidget, out ObjectPool<PromptInfo> pool)) return;
+        PromptInfo info = pool.Get();
+        prompt.GetPromptData().Apply(info.Prompt.gameObject);
+        Vector3 worldPos = prompt.GetRequestedWorldPosition();
+        Vector3 screenPos = m_connectedCamera.WorldToScreenPoint(worldPos);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(m_promptContainer, screenPos, m_connectedCamera, out Vector2 localPoint);
+        info.Prompt.anchoredPosition = localPoint;
+        float distance = Vector3.Distance(m_connectedCamera.transform.position, worldPos);
+        info.Prompt.localScale = Vector3.one * (m_referenceDistance / distance);
+        m_activePrompts.Add(prompt, info);
+    }
+
+    public void HidePrompt(IPromptProvider prompt)
+    {
+        if (prompt is null) return;
+        if (!m_activePrompts.Remove(prompt, out PromptInfo info)) return;
+        if (m_pools.TryGetValue(info.Widget, out ObjectPool<PromptInfo> pool)) pool.Release(info);
+    }
+
+    class PromptInfo
+    {
+        public RectTransform Prompt;
+        public string Widget;
+        public CanvasGroup CanvasGroup;
+    }
 }

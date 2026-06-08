@@ -8,6 +8,5 @@ using UnityEngine;
 public interface IPromptProvider
 {
     [Pure] public PromptData GetPromptData();
-    [Pure] public string GetRequestedWidgetName();
     [Pure] public Vector3 GetRequestedWorldPosition();
 }
