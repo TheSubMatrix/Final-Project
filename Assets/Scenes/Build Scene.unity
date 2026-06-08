@@ -734,8 +734,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core::FishingManager
   _fishingControlActionMap: Fishing
-  speedOfFishIcon: 15
-  progressSpeed: 0.3
+  _speedOfFishIcon: 0
+  _progressSpeed: 0
+  usableFishesToCatch: []
 --- !u!135 &520249270
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1299,6 +1300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Ship::HelmInteractable
   m_helmControlActionMap: Helm
+  m_helmCamera: {fileID: 0}
   m_helmThrottleSpeed: 0.5
   m_helmRudderSpeed: 0.5
   m_shipMovement: {fileID: 2023906176}
@@ -1752,8 +1754,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core::FishingManager
   _fishingControlActionMap: Fishing
-  speedOfFishIcon: 10
-  progressSpeed: 0.542
+  _speedOfFishIcon: 0
+  _progressSpeed: 0
+  usableFishesToCatch: []
 --- !u!135 &2000419482
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1841,7 +1844,7 @@ Transform:
   m_GameObject: {fileID: 2000419480}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.832, y: 2.847, z: 195.30664}
+  m_LocalPosition: {x: 3.3, y: 2.847, z: 195.30664}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

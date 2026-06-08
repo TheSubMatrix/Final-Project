@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 909950348196475505}
   - component: {fileID: 516618295073171922}
   - component: {fileID: 2323848049264358641}
+  - component: {fileID: 5977374323443710325}
   m_Layer: 0
   m_Name: HUD
   m_TagString: Untagged
@@ -122,6 +123,18 @@ MonoBehaviour:
   usableFishingArea: {fileID: 4066827101344750233}
   fishingProgress: {fileID: 6168488388207074278}
   fishingUI: {fileID: 5492496889448183806}
+--- !u!114 &5977374323443710325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76386826010707498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7aabc26d980ff4f878565b1e0a1263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::CoalUIManager
 --- !u!1 &406728449185655719
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,6 +958,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 01f1ccc8-738d-40af-8236-fa1ef90f058a
     m_ActionName: 'Fishing/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 057c96ab-444e-4f49-a49a-0462e558a044
+    m_ActionName: 'Shovel Coal/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 19042cca-ba51-4f48-8cb8-7032b650d57e
+    m_ActionName: 'Shovel Coal/Left[/Keyboard/a]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 11ba4aad-4945-4619-8fdc-4d474171ee39
+    m_ActionName: 'Shovel Coal/Right[/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e01aeb04-9036-4f5d-96dc-7ac92f69d1ce
+    m_ActionName: 'Shovel Coal/Down[/Keyboard/s]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
