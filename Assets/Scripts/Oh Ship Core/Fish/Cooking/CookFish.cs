@@ -6,7 +6,6 @@ public class CookFish : MonoBehaviour
     Material material;
     float cookedAmount;
     bool isCooking = false;
-    bool burned = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -41,7 +40,6 @@ public class CookFish : MonoBehaviour
 
         if(cookedAmount >= 0.7f)
         {
-            burned = true;
             StartCoroutine(Burn());
         }
     }
