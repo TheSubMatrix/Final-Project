@@ -19,6 +19,7 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable
     public string[] m_inputsForQTE;
     private int m_index;
     private int m_correctInputCounter;
+    private CoalUI m_coalUI;
     void Start()
     {
         
@@ -45,6 +46,8 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable
            int randomInput = Random.Range(0,_coalData.PossibleInputs.Length);
            m_inputsForQTE[i] = _coalData.PossibleInputs[randomInput];
        }
+       
+       SetUpUIConnection();
        
        return m_currentInteractionSession;
     }
@@ -118,6 +121,12 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable
     
     void HandleInteract(InputAction.CallbackContext context) => m_currentInteractionSession.End();
     
+    private void SetUpUIConnection()
+    {
+        GameObject player = m_activePlayerController.GetAssociatedGameObject();
+        
+        m_coalUI = player.GetComponentInChildren<CoalUI>();
+    }
 }
 
 

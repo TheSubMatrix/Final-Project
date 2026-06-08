@@ -5,8 +5,8 @@ public class PlayerInteractions : MonoBehaviour
     private string currentPlayer = "";
     [SerializeField] private Transform spawnPoint;
 
-    bool inSceneA = false;
-    bool inSceneB = false;
+    //bool inSceneA = false;
+    //bool inSceneB = false;
     Rigidbody boatRb;
 
 
@@ -15,7 +15,7 @@ public class PlayerInteractions : MonoBehaviour
     {
 
         SetPlayers();
-        inSceneA = true;
+        //inSceneA = true;
         Spawn("SpawnSceneA");
         
     }
