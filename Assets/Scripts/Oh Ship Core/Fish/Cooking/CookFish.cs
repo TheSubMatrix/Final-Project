@@ -14,6 +14,10 @@ public class CookFish : MonoBehaviour
     [SerializeField] StatData statToModify;
 
     InteractionSession m_currentInteractionSession;
+
+    StatBroker mediator;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,10 +36,6 @@ public class CookFish : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-
-    }
 
     private void StartCooking()
     {
@@ -47,6 +47,7 @@ public class CookFish : MonoBehaviour
 
         if(cookedAmount >= 0.7f)
         {
+            isCooking = false;
             isReady = true;
             StartCoroutine(Burn());
         }
@@ -54,7 +55,6 @@ public class CookFish : MonoBehaviour
 
     void EndCooking()
     {
-        isCooking = false;
         isReady = false;
         isBurnt = true;
     }
@@ -98,17 +98,17 @@ public class CookFish : MonoBehaviour
     {
         if (interactor.IsInteracting() || m_currentInteractionSession is { IsActive: true }) return null;
 
-        if (isCooking)
+        if (isBurnt)
         {
-            return null;
+            Discard();
         }
         else if(isReady)
         {
             Eat();
         }
-        else if(isBurnt)
+        else if(isCooking)
         {
-            Discard();
+            return null;
         }
         return m_currentInteractionSession;
     }
@@ -118,8 +118,10 @@ public class CookFish : MonoBehaviour
         //sets stats
         Func<float, float> Add = (x) => x + 5;
         modifier = new SimpleStatModifier(Add, statToModify);
-        stats.Mediator.AddModifier(modifier);
+        mediator = stats.broker;
+        mediator.AddModifier(modifier);
         isReady = false;
+        gameObject.SetActive(false);
 
     }
 
