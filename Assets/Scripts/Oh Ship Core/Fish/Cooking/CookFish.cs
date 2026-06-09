@@ -26,6 +26,8 @@ public class CookFish : MonoBehaviour, IInteractable
     {
         material = GetComponent<Renderer>().material;
         cookedAmount = material.GetFloat("_Cooked_Amount");
+        
+        
     }
 
     // Update is called once per frame
@@ -109,16 +111,20 @@ public class CookFish : MonoBehaviour, IInteractable
     {
         if (interactor.IsInteracting() || m_currentInteractionSession is { IsActive: true }) return null;
 
+        Debug.Log("Begin interaction");
         if (isBurnt)
         {
-            Discard();
+            Debug.Log("Discard Fish");
+            Eat();
         }
         else if(isReady)
         {
+            Debug.Log("Eat Fish");
             Eat();
         }
         else if(isCooking)
         {
+            Debug.Log("Still Cooking");
             return null;
         }
         return m_currentInteractionSession;
@@ -128,13 +134,13 @@ public class CookFish : MonoBehaviour, IInteractable
     {
         Func<float, float> Add = (x) => x + 5;
         modifier = new SimpleStatModifier(Add, hungerStatToModify);
-        mediator = stats.broker;
-        mediator.AddModifier(modifier);
-
-        Debug.Log(hungerStatToModify);
-        EndCooking();
-        gameObject.SetActive(false);
-
+        stats.broker.AddModifier(modifier);
+        Debug.Log(modifier);
+        
+        Discard();
+        
+    
+        Debug.Log("Fish Eaten");
     }
 
     private void Discard()

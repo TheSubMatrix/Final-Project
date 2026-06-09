@@ -15,9 +15,9 @@ public class StatBroker
     /// <param name="query">A <see cref="StatQuery"/> defined by the value we are querying</param>
     public void PerformStatQuery(object sender, StatQuery query)
     {
-        Debug.Log("Query");
+        //Debug.Log("Query");
         m_queries.Invoke(sender, query);
-        Debug.Log("Sender:" + sender + "Query:" + query);
+       // Debug.Log("Sender:" + sender + "Query:" + query);
     }
     /// <summary>
     /// Adds a <see cref="StatModifier"/> to the <see cref="StatBroker"/>. Will be applied to any <see cref="StatQuery"/> sent to the <see cref="PerformStatQuery"/> method.

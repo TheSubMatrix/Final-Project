@@ -11,10 +11,13 @@ public class Stats: MonoBehaviour
 
 
     private Dictionary<StatData, float> stats;
-
-
-    private void Update()
+    
+    private void Start()
     {
+        
+    }
+    private void Update()
+    { 
         StatQuery value = new StatQuery(hungerStat, 1f);
         broker.PerformStatQuery(this, value);
         Debug.Log(value.Value);
