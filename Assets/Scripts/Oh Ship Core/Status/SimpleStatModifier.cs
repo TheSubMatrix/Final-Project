@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 /// <summary>
 /// A simple stat modifier that applies a function to the value of a stat via a passed in <see cref="Func{T, TResult}"/> and accompanying <see cref="StatData"/>
 /// </summary>
@@ -19,6 +20,7 @@ public class SimpleStatModifier : StatModifier
     /// <inheritdoc/>
     public override void Handle(object sender, StatQuery query)
     {
+        Debug.Log("handled");
         if (query.Data != m_stat) return;
         query.Value = m_modifier(query.Value);
     }

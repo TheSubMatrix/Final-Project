@@ -7,19 +7,25 @@ using UnityEngine;
 public class StatBroker
 {
     readonly LinkedList<StatModifier> m_modifiers = new();
-    EventHandler<StatQuery> m_queries;
+    EventHandler<StatQuery> m_queries = delegate { };
     /// <summary>
     /// Performs a <see cref="StatQuery"/> to get the current value of a stat with <see cref="StatModifier"/>s applied.
     /// </summary>
     /// <param name="sender">The <see cref="object"/> that sent the <see cref="StatQuery"/></param>
     /// <param name="query">A <see cref="StatQuery"/> defined by the value we are querying</param>
-    public void PerformStatQuery(object sender, StatQuery query) => m_queries?.Invoke(sender, query);
+    public void PerformStatQuery(object sender, StatQuery query)
+    {
+        Debug.Log("Query");
+        m_queries.Invoke(sender, query);
+        Debug.Log("Sender:" + sender + "Query:" + query);
+    }
     /// <summary>
     /// Adds a <see cref="StatModifier"/> to the <see cref="StatBroker"/>. Will be applied to any <see cref="StatQuery"/> sent to the <see cref="PerformStatQuery"/> method.
     /// </summary>
     /// <param name="modifier">The <see cref="StatModifier"/> to add</param>
     public void AddModifier(StatModifier modifier)
     {
+        Debug.Log("modify");
         modifier.OnDisposed += _ =>
         {
             m_modifiers.Remove(modifier);

@@ -2,16 +2,19 @@ using System.Collections;
 using UnityEngine;
 using System;
 
-public class CookFish : MonoBehaviour
+public class CookFish : MonoBehaviour, IInteractable
 {
     Material material;
     float cookedAmount;
     bool isCooking = false;
     bool isReady = false;
     bool isBurnt = false;
+    bool isBurning = false;
+
+
     [SerializeField] Stats stats;
     [SerializeField] SimpleStatModifier modifier;
-    [SerializeField] StatData statToModify;
+    [SerializeField] StatData hungerStatToModify;
 
     InteractionSession m_currentInteractionSession;
 
@@ -45,18 +48,25 @@ public class CookFish : MonoBehaviour
             material.SetFloat("_Cooked_Amount", cookedAmount);
         }
 
-        if(cookedAmount >= 0.7f)
+        if(cookedAmount >= 0.7f && !isReady)
         {
             isCooking = false;
             isReady = true;
-            StartCoroutine(Burn());
+            if(!isBurning)
+            {
+                StartCoroutine(Burn());
+            }
         }
     }
 
     void EndCooking()
     {
         isReady = false;
-        isBurnt = true;
+        isBurnt = false;
+        isBurning = false;
+        gameObject.SetActive(false);
+        material.SetFloat("_Cooked_Amount", 0f);
+        cookedAmount = 0f;
     }
 
 
@@ -83,13 +93,14 @@ public class CookFish : MonoBehaviour
 
     private IEnumerator Burn()
     {
+        isBurning = true;
         yield return new WaitForSeconds(3);
         cookedAmount += 0.1f * Time.deltaTime;
         material.SetFloat("_Cooked_Amount", cookedAmount);
 
         if(cookedAmount >= 1)
         {
-            EndCooking();
+            isBurnt = true;
         }
 
     }
@@ -115,21 +126,20 @@ public class CookFish : MonoBehaviour
 
     private void Eat()
     {
-        //sets stats
         Func<float, float> Add = (x) => x + 5;
-        modifier = new SimpleStatModifier(Add, statToModify);
+        modifier = new SimpleStatModifier(Add, hungerStatToModify);
         mediator = stats.broker;
         mediator.AddModifier(modifier);
-        isReady = false;
+
+        Debug.Log(hungerStatToModify);
+        EndCooking();
         gameObject.SetActive(false);
 
     }
 
     private void Discard()
     {
-        gameObject.SetActive(false);
-        material.SetFloat("_Cooked_Amount", 0f);
-        cookedAmount = 0f;
+        EndCooking();
     }
 
 }
