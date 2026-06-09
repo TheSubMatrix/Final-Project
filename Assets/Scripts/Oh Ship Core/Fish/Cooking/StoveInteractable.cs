@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class StoveInteractable : MonoBehaviour, IInteractable
+public class StoveInteractable : MonoBehaviour, IInteractable, IPromptProvider
 {
     InteractionSession m_currentInteractionSession;
     [SerializeField] private GameObject fishToCook;
+    private readonly string _widgetForPrompt = "interact";
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,5 +31,15 @@ public class StoveInteractable : MonoBehaviour, IInteractable
             fishToCook.SetActive(true);
         }
         return m_currentInteractionSession;
+    }
+
+    public PromptData GetPromptData()
+    {
+        return new PromptData { AssociatedWidget = _widgetForPrompt };
+    }
+
+    public Vector3 GetRequestedWorldPosition()
+    {
+       return transform.position;
     }
 }

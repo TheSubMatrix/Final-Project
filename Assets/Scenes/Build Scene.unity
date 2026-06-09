@@ -326,7 +326,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: OhShip.Core.Ship::HatchInteractable
   m_promptData:
     rid: 5995184129677721665
-  m_widgetPosition: {fileID: 0}
   m_outPosition: {fileID: 1590068417}
   references:
     version: 2
@@ -2188,7 +2187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1099986028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2293,7 +2292,7 @@ Transform:
   m_GameObject: {fileID: 1099986027}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 2.82, z: 197.77}
+  m_LocalPosition: {x: -1.5, y: 2.82, z: -9.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2938,6 +2937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01eef7a931e5e2c478db2b203d1750cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Ship::HelmInteractable
+  _widgetForPrompt: interact
   m_helmControlActionMap: Helm
   m_helmCamera: {fileID: 783160305}
   m_helmThrottleSpeed: 0.5
@@ -3386,7 +3386,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: OhShip.Core.Ship::HatchInteractable
   m_promptData:
     rid: -2
-  m_widgetPosition: {fileID: 0}
   m_outPosition: {fileID: 440789812}
   references:
     version: 2
