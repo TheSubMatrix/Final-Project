@@ -10,9 +10,11 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable
     [SerializeField] private int _howManyInputs = 5;
     [SerializeField] private string m_coalMiniGameActionMap = "Shovel Coal";
     [Range(0.1f,1)]
-    [SerializeField] private float m_amountOfPressureToSend = .2f;
+    [SerializeField] private float m_amountOfPressureToSendReference = .2f;
 
     [SerializeField] SteamPressureSystem m_steamPressureSystem;
+    [SerializeField] private float m_timeLimitReference = 10f;
+    
     
     private IPlayerController m_activePlayerController;
     private IPlayerControllable m_activePlayerControl;
@@ -21,7 +23,8 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable
     private int m_index;
     private int m_correctInputCounter;
     private CoalUI m_coalUI;
-
+    private float m_timeLimit;
+    private float m_pressureToSend;
     public InteractionSession BeginInteraction(IInteractor interactor)
     { 
         m_activePlayerControl = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
@@ -33,6 +36,8 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable
         m_inputsForQTE = new string[_howManyInputs];
         m_index = 0;
         m_correctInputCounter = 0;
+        m_timeLimit = m_timeLimitReference;
+        m_pressureToSend = m_amountOfPressureToSendReference;
         for (var i = 0; i < _howManyInputs; i++)
         {
             int randomInput = Random.Range(0,_coalData.PossibleInputs.Length);
@@ -83,11 +88,23 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable
         if(m_index >= m_inputsForQTE.Length)
         {
             Debug.Log("Inputs completed");
-            m_amountOfPressureToSend *=  ((float)m_correctInputCounter / m_inputsForQTE.Length);
-            m_steamPressureSystem.IncreaseSteamPressure(m_amountOfPressureToSend);
-            Debug.Log("Sent " + m_amountOfPressureToSend + " of pressure");
+            m_pressureToSend *=  ((float)m_correctInputCounter / m_inputsForQTE.Length);
+            m_steamPressureSystem.IncreaseSteamPressure(m_pressureToSend);
+            Debug.Log("Sent " + m_pressureToSend + " of pressure");
             m_currentInteractionSession.End();
         }
+    }
+
+    private void Update()
+    {
+        if (m_activePlayerController == null) return;
+        
+        m_timeLimit -= Time.deltaTime;
+        if (m_timeLimit <= 0f)
+        {
+            m_currentInteractionSession.End();
+        }
+        
     }
 
     public void OnControlReleased()
