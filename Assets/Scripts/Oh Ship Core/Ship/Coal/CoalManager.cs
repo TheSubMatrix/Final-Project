@@ -15,41 +15,33 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable
     [SerializeField] SteamPressureSystem m_steamPressureSystem;
     
     private IPlayerController m_activePlayerController;
+    private IPlayerControllable m_activePlayerControl;
     private InteractionSession m_currentInteractionSession;
     public string[] m_inputsForQTE;
     private int m_index;
     private int m_correctInputCounter;
     private CoalUI m_coalUI;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public InteractionSession BeginInteraction(IInteractor interactor)
-    {
-       IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
-       IPlayerController controller = oldControllable.GetActivePlayerController();
-       controller.ChangeControlledEntity(this);
+    { 
+        m_activePlayerControl = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
+        m_activePlayerController = m_activePlayerControl.GetActivePlayerController();
+        m_activePlayerController.ChangeControlledEntity(this);
 
-       m_currentInteractionSession = new InteractionSession(interactor, this);
-       m_currentInteractionSession.OnEnded += () => controller.ChangeControlledEntity(oldControllable);
-       m_inputsForQTE = new string[_howManyInputs];
-       m_index = 0;
-       for (var i = 0; i < _howManyInputs; i++)
-       {
-           int randomInput = Random.Range(0,_coalData.PossibleInputs.Length);
-           m_inputsForQTE[i] = _coalData.PossibleInputs[randomInput].InputName;
-       }
+        m_currentInteractionSession = new InteractionSession(interactor, this);
+        m_currentInteractionSession.OnEnded += () => m_activePlayerController.ChangeControlledEntity(m_activePlayerControl);
+        m_inputsForQTE = new string[_howManyInputs];
+        m_index = 0;
+        m_correctInputCounter = 0;
+        for (var i = 0; i < _howManyInputs; i++)
+        {
+            int randomInput = Random.Range(0,_coalData.PossibleInputs.Length);
+            m_inputsForQTE[i] = _coalData.PossibleInputs[randomInput].InputName;
+        }
        
-       SetUpUIConnection();
+        SetUpUIConnection();
        
-       return m_currentInteractionSession;
+        return m_currentInteractionSession;
     }
 
     public void OnControlRequested(IPlayerController player)
@@ -75,15 +67,16 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable
 
     void QTEButtonPressed(InputAction.CallbackContext context)
     {
-        
         if (context.action.name == m_inputsForQTE[m_index])
         {
             Debug.Log("Correct");
+            m_coalUI.CorrectButtonPressed(m_index);
             m_correctInputCounter++;
         }
         else
         {
             Debug.Log("Incorrect");
+            m_coalUI.IncorrectButtonPressed(m_index);
         }
         m_index++;
         
@@ -110,7 +103,7 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable
         downButton.performed -= QTEButtonPressed;
         InputAction interact = map.FindAction("Interact");
         interact.performed -= HandleInteract;
-        
+        m_coalUI.HideUI();
         m_activePlayerController = null;
     }
 
@@ -126,6 +119,8 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable
         GameObject player = m_activePlayerController.GetAssociatedGameObject();
         
         m_coalUI = player.GetComponentInChildren<CoalUI>();
+        
+        m_coalUI.DisplayPasswordVisuals(m_inputsForQTE);
     }
 }
 

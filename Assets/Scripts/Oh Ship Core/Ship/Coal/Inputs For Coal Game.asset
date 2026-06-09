@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Inputs For Coal Game
   m_EditorClassIdentifier: OhShip.Core::SO_CoalData
   possibleInputs:
-  - Left
-  - Right
-  - Down
+  - inputName: Down
+    sprite: {fileID: 0}
+  - inputName: Left
+    sprite: {fileID: 0}
+  - inputName: Right
+    sprite: {fileID: 0}

@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 909950348196475505}
   - component: {fileID: 516618295073171922}
   - component: {fileID: 2323848049264358641}
+  - component: {fileID: 2400102220761178692}
   m_Layer: 0
   m_Name: HUD
   m_TagString: Untagged
@@ -112,6 +113,7 @@ RectTransform:
   - {fileID: 6496976497301595500}
   - {fileID: 6117573877186419468}
   - {fileID: 6737274739267150252}
+  - {fileID: 6793417347549582877}
   m_Father: {fileID: 8736593093941987598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -199,6 +201,20 @@ MonoBehaviour:
   usableFishingArea: {fileID: 4066827101344750233}
   fishingProgress: {fileID: 6168488388207074278}
   fishingUI: {fileID: 5492496889448183806}
+--- !u!114 &2400102220761178692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76386826010707498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7aabc26d980ff4f878565b1e0a1263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::CoalUI
+  coalData: {fileID: 11400000, guid: 5b9bff5cc8012614bb90892cd53274d3, type: 2}
+  coalQTEVisualPrefab: {fileID: 1851840883060254805, guid: e96df8df8caa39c43a85f9bd71f1479e, type: 3}
 --- !u!1 &406728449185655719
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,6 +290,68 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &720204017180283248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6793417347549582877}
+  - component: {fileID: 5622144707875575269}
+  m_Layer: 0
+  m_Name: Coal Inputs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6793417347549582877
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720204017180283248}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1717653135362322777}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 540}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5622144707875575269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720204017180283248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
+  m_Padding:
+    m_Left: -180
+    m_Right: 0
+    m_Top: 462
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &1447475600237692604
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,8 +380,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447475600237692604}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.9997973, z: 0, w: -0.020134805}
-  m_LocalPosition: {x: -3.7118683, y: 4.71, z: 182.35103}
+  m_LocalRotation: {x: 0.01974858, y: 0.3237152, z: -0.0067583774, w: 0.94592434}
+  m_LocalPosition: {x: 21.581429, y: 5.81, z: 195.70267}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -340,11 +418,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 5000
-  field of view: 60
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60.000004
   orthographic: 0
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
