@@ -1,5 +1,4 @@
-﻿using OhShip.ShipCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>

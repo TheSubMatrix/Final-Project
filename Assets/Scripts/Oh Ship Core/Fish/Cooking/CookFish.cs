@@ -1,11 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using Codice.CM.Common;
 using System;
-using System.Collections.Generic;
-using UnityEngine.UIElements;
-using System.Runtime.CompilerServices;
-using OhShip.ShipCore;
 
 public class CookFish : MonoBehaviour
 {
@@ -16,6 +11,7 @@ public class CookFish : MonoBehaviour
     bool isBurnt = false;
     [SerializeField] Stats stats;
     [SerializeField] SimpleStatModifier modifier;
+    [SerializeField] StatData statToModify;
     StatBroker statBroker;
 
     InteractionSession m_currentInteractionSession;
@@ -126,8 +122,8 @@ public class CookFish : MonoBehaviour
     private void Eat()
     {
         //sets stats
-        Func<float, float> Add = (x, y) => x + 5;
-        modifier = new SimpleStatModifier(Add, StatData stat)
+        Func<float, float> Add = (x) => x + 5;
+        modifier = new SimpleStatModifier(Add, statToModify);
         stats.Mediator.AddModifier(modifier);
 
     }
