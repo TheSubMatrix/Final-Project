@@ -11,14 +11,12 @@ _Rim_Light("Rim Light", Range(0, 1)) = 0
 [NoScaleOffset]_Base("Base", 2D) = "white" {}
 _Color("Color", Color) = (1, 1, 1, 1)
 [Normal][NoScaleOffset]_Normal("Normal", 2D) = "bump" {}
-[NoScaleOffset]_Mask("Mask", 2D) = "white" {}
-_Smoothness("Smoothness", Float) = 0
-_Shadow_Tint("Shadow Tint", Color) = (0, 0, 0, 1)
+[NoScaleOffset]_Metallic_Smoothness("Metallic / Smoothness", 2D) = "black" {}
 [Toggle(_MAIN_LIGHT_SHADOWS)]_MAIN_LIGHT_SHADOWS("Main Light Shadows", Float) = 1
 [Toggle(_MAIN_LIGHT_SHADOWS_SCREEN)]_MAIN_LIGHT_SHADOWS_SCREEN("Main Light Shadows Screen", Float) = 0
 [Toggle(_MAIN_LIGHT_SHADOWS_CASCADE)]_MAIN_LIGHT_SHADOWS_CASCADE("Main Light Shadows Cascade", Float) = 1
 [Toggle(_ADDITIONAL_LIGHT_SHADOWS)]_ADDITIONAL_LIGHT_SHADOWS("Additional Light Shadows", Float) = 1
-[Toggle(_SHADOWS_SOFT)]_SHADOWS_SOFT("Shadows Soft", Float) = 0
+[Toggle(_SHADOWS_SOFT)]_SHADOWS_SOFT("Shadows Soft", Float) = 1
 [HideInInspector]_CastShadows("_CastShadows", Float) = 1
 [HideInInspector]_Surface("_Surface", Float) = 0
 [HideInInspector]_Blend("_Blend", Float) = 0
@@ -111,11 +109,12 @@ HLSLPROGRAM
 #pragma shader_feature_local_fragment _ _ALPHAPREMULTIPLY_ON
 #pragma shader_feature_local_fragment _ _ALPHAMODULATE_ON
 #pragma shader_feature_local_fragment _ _ALPHATEST_ON
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS
-#pragma shader_feature_local _ _ADDITIONAL_LIGHT_SHADOWS
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_CASCADE
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_SCREEN
-#pragma shader_feature_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS
+#pragma multi_compile_local _ _ADDITIONAL_LIGHT_SHADOWS
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
+#pragma multi_compile_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
@@ -310,10 +309,8 @@ float _Posterization_Sharpness;
 float _Rim_Light;
 float4 _Base_TexelSize;
 float4 _Normal_TexelSize;
-float4 _Mask_TexelSize;
 float4 _Color;
-float _Smoothness;
-float4 _Shadow_Tint;
+float4 _Metallic_Smoothness_TexelSize;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -324,8 +321,8 @@ TEXTURE2D(_Base);
 SAMPLER(sampler_Base);
 TEXTURE2D(_Normal);
 SAMPLER(sampler_Normal);
-TEXTURE2D(_Mask);
-SAMPLER(sampler_Mask);
+TEXTURE2D(_Metallic_Smoothness);
+SAMPLER(sampler_Metallic_Smoothness);
 
 // Graph Includes
 #include_with_pragmas "Assets/Art/Shaders/Custom Lighting/Components/Debug/DebugLightingComplexity.hlsl"
@@ -1913,7 +1910,14 @@ float _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_R_4_Float = _SampleTextu
 float _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_G_5_Float = _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_RGBA_0_Vector4.g;
 float _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_B_6_Float = _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_RGBA_0_Vector4.b;
 float _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_A_7_Float = _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_RGBA_0_Vector4.a;
-float _Property_377af61eea864234856e0089c586da2a_Out_0_Float = _Smoothness;
+UnityTexture2D _Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D = UnityBuildTexture2DStructInternal(_Metallic_Smoothness, sampler_Metallic_Smoothness, _Metallic_Smoothness_TexelSize, float4(1, 1, 0, 0), float4(0, 0, 0, 0));
+float4 _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4 = SAMPLE_TEXTURE2D(_Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D.tex, _Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D.samplerstate, _Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D.GetTransformedUV(IN.uv0.xy) );
+if (_Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D.hdrDecode.x > 0)
+_SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4 = DecodeHDRSample(_SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4, _Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D.hdrDecode);
+float _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_R_4_Float = _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4.r;
+float _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_G_5_Float = _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4.g;
+float _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_B_6_Float = _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4.b;
+float _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_A_7_Float = _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4.a;
 float _Property_723bcef9d5144a12a1dca50553bdb967_Out_0_Float = _Transition_Sharpness;
 float _Property_fbfc24be29d34dac98d3e99017691876_Out_0_Float = _Posterization;
 float _Property_046028dd74834f0aaeb44803d6ad4c72_Out_0_Float = _Posterization_Sharpness;
@@ -1932,7 +1936,7 @@ _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2.PixelPosition = IN.PixelPosi
 _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2.uv1 = IN.uv1;
 _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2.uv2 = IN.uv2;
 float3 _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2_Color_2_Vector3;
-SG_CellLightingModel_28d05442c333727418ac448845e1326b_float((_Multiply_61f37827eac943e8ae93f89ea0e75526_Out_2_Vector4.xyz), (_SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_RGBA_0_Vector4.xyz), true, float(0), _Property_377af61eea864234856e0089c586da2a_Out_0_Float, float4 (0, 0, 0, 0), float(1), _Property_723bcef9d5144a12a1dca50553bdb967_Out_0_Float, _Property_fbfc24be29d34dac98d3e99017691876_Out_0_Float, _Property_046028dd74834f0aaeb44803d6ad4c72_Out_0_Float, _Property_6cbdfa1aaa89402a8ef11aa9addda98f_Out_0_Float, _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2, _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2_Color_2_Vector3);
+SG_CellLightingModel_28d05442c333727418ac448845e1326b_float((_Multiply_61f37827eac943e8ae93f89ea0e75526_Out_2_Vector4.xyz), (_SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_RGBA_0_Vector4.xyz), true, _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_R_4_Float, _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_A_7_Float, float4 (0, 0, 0, 0), float(1), _Property_723bcef9d5144a12a1dca50553bdb967_Out_0_Float, _Property_fbfc24be29d34dac98d3e99017691876_Out_0_Float, _Property_046028dd74834f0aaeb44803d6ad4c72_Out_0_Float, _Property_6cbdfa1aaa89402a8ef11aa9addda98f_Out_0_Float, _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2, _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2_Color_2_Vector3);
 surface.BaseColor = _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2_Color_2_Vector3;
 surface.Alpha = _SampleTexture2D_15b841c98d0e4154a8e7bbaf00d21e3a_A_7_Float;
 surface.AlphaClipThreshold = float(0.5);
@@ -2067,11 +2071,12 @@ HLSLPROGRAM
 
 // Keywords
 #pragma shader_feature_local_fragment _ _ALPHATEST_ON
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS
-#pragma shader_feature_local _ _ADDITIONAL_LIGHT_SHADOWS
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_CASCADE
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_SCREEN
-#pragma shader_feature_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS
+#pragma multi_compile_local _ _ADDITIONAL_LIGHT_SHADOWS
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
+#pragma multi_compile_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
@@ -2219,10 +2224,8 @@ float _Posterization_Sharpness;
 float _Rim_Light;
 float4 _Base_TexelSize;
 float4 _Normal_TexelSize;
-float4 _Mask_TexelSize;
 float4 _Color;
-float _Smoothness;
-float4 _Shadow_Tint;
+float4 _Metallic_Smoothness_TexelSize;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -2233,8 +2236,8 @@ TEXTURE2D(_Base);
 SAMPLER(sampler_Base);
 TEXTURE2D(_Normal);
 SAMPLER(sampler_Normal);
-TEXTURE2D(_Mask);
-SAMPLER(sampler_Mask);
+TEXTURE2D(_Metallic_Smoothness);
+SAMPLER(sampler_Metallic_Smoothness);
 
 // Graph Includes
 // GraphIncludes: <None>
@@ -2410,11 +2413,12 @@ HLSLPROGRAM
 
 // Keywords
 #pragma shader_feature_local_fragment _ _ALPHATEST_ON
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS
-#pragma shader_feature_local _ _ADDITIONAL_LIGHT_SHADOWS
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_CASCADE
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_SCREEN
-#pragma shader_feature_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS
+#pragma multi_compile_local _ _ADDITIONAL_LIGHT_SHADOWS
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
+#pragma multi_compile_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
@@ -2555,10 +2559,8 @@ float _Posterization_Sharpness;
 float _Rim_Light;
 float4 _Base_TexelSize;
 float4 _Normal_TexelSize;
-float4 _Mask_TexelSize;
 float4 _Color;
-float _Smoothness;
-float4 _Shadow_Tint;
+float4 _Metallic_Smoothness_TexelSize;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -2569,8 +2571,8 @@ TEXTURE2D(_Base);
 SAMPLER(sampler_Base);
 TEXTURE2D(_Normal);
 SAMPLER(sampler_Normal);
-TEXTURE2D(_Mask);
-SAMPLER(sampler_Mask);
+TEXTURE2D(_Metallic_Smoothness);
+SAMPLER(sampler_Metallic_Smoothness);
 
 // Graph Includes
 // GraphIncludes: <None>
@@ -2755,11 +2757,12 @@ HLSLPROGRAM
 #pragma shader_feature_local_fragment _ _ALPHAPREMULTIPLY_ON
 #pragma shader_feature_local_fragment _ _ALPHAMODULATE_ON
 #pragma shader_feature_local_fragment _ _ALPHATEST_ON
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS
-#pragma shader_feature_local _ _ADDITIONAL_LIGHT_SHADOWS
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_CASCADE
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_SCREEN
-#pragma shader_feature_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS
+#pragma multi_compile_local _ _ADDITIONAL_LIGHT_SHADOWS
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
+#pragma multi_compile_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
@@ -2913,10 +2916,8 @@ float _Posterization_Sharpness;
 float _Rim_Light;
 float4 _Base_TexelSize;
 float4 _Normal_TexelSize;
-float4 _Mask_TexelSize;
 float4 _Color;
-float _Smoothness;
-float4 _Shadow_Tint;
+float4 _Metallic_Smoothness_TexelSize;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -2927,8 +2928,8 @@ TEXTURE2D(_Base);
 SAMPLER(sampler_Base);
 TEXTURE2D(_Normal);
 SAMPLER(sampler_Normal);
-TEXTURE2D(_Mask);
-SAMPLER(sampler_Mask);
+TEXTURE2D(_Metallic_Smoothness);
+SAMPLER(sampler_Metallic_Smoothness);
 
 // Graph Includes
 // GraphIncludes: <None>
@@ -3105,11 +3106,12 @@ HLSLPROGRAM
 // Keywords
 #pragma multi_compile_vertex _ _CASTING_PUNCTUAL_LIGHT_SHADOW
 #pragma shader_feature_local_fragment _ _ALPHATEST_ON
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS
-#pragma shader_feature_local _ _ADDITIONAL_LIGHT_SHADOWS
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_CASCADE
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_SCREEN
-#pragma shader_feature_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS
+#pragma multi_compile_local _ _ADDITIONAL_LIGHT_SHADOWS
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
+#pragma multi_compile_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
@@ -3262,10 +3264,8 @@ float _Posterization_Sharpness;
 float _Rim_Light;
 float4 _Base_TexelSize;
 float4 _Normal_TexelSize;
-float4 _Mask_TexelSize;
 float4 _Color;
-float _Smoothness;
-float4 _Shadow_Tint;
+float4 _Metallic_Smoothness_TexelSize;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -3276,8 +3276,8 @@ TEXTURE2D(_Base);
 SAMPLER(sampler_Base);
 TEXTURE2D(_Normal);
 SAMPLER(sampler_Normal);
-TEXTURE2D(_Mask);
-SAMPLER(sampler_Mask);
+TEXTURE2D(_Metallic_Smoothness);
+SAMPLER(sampler_Metallic_Smoothness);
 
 // Graph Includes
 // GraphIncludes: <None>
@@ -3463,11 +3463,12 @@ HLSLPROGRAM
 #pragma shader_feature_local_fragment _ _ALPHAPREMULTIPLY_ON
 #pragma shader_feature_local_fragment _ _ALPHAMODULATE_ON
 #pragma shader_feature_local_fragment _ _ALPHATEST_ON
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS
-#pragma shader_feature_local _ _ADDITIONAL_LIGHT_SHADOWS
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_CASCADE
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_SCREEN
-#pragma shader_feature_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS
+#pragma multi_compile_local _ _ADDITIONAL_LIGHT_SHADOWS
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
+#pragma multi_compile_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
@@ -3682,10 +3683,8 @@ float _Posterization_Sharpness;
 float _Rim_Light;
 float4 _Base_TexelSize;
 float4 _Normal_TexelSize;
-float4 _Mask_TexelSize;
 float4 _Color;
-float _Smoothness;
-float4 _Shadow_Tint;
+float4 _Metallic_Smoothness_TexelSize;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -3696,8 +3695,8 @@ TEXTURE2D(_Base);
 SAMPLER(sampler_Base);
 TEXTURE2D(_Normal);
 SAMPLER(sampler_Normal);
-TEXTURE2D(_Mask);
-SAMPLER(sampler_Mask);
+TEXTURE2D(_Metallic_Smoothness);
+SAMPLER(sampler_Metallic_Smoothness);
 
 // Graph Includes
 #include_with_pragmas "Assets/Art/Shaders/Custom Lighting/Components/Debug/DebugLightingComplexity.hlsl"
@@ -5285,7 +5284,14 @@ float _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_R_4_Float = _SampleTextu
 float _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_G_5_Float = _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_RGBA_0_Vector4.g;
 float _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_B_6_Float = _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_RGBA_0_Vector4.b;
 float _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_A_7_Float = _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_RGBA_0_Vector4.a;
-float _Property_377af61eea864234856e0089c586da2a_Out_0_Float = _Smoothness;
+UnityTexture2D _Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D = UnityBuildTexture2DStructInternal(_Metallic_Smoothness, sampler_Metallic_Smoothness, _Metallic_Smoothness_TexelSize, float4(1, 1, 0, 0), float4(0, 0, 0, 0));
+float4 _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4 = SAMPLE_TEXTURE2D(_Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D.tex, _Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D.samplerstate, _Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D.GetTransformedUV(IN.uv0.xy) );
+if (_Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D.hdrDecode.x > 0)
+_SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4 = DecodeHDRSample(_SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4, _Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D.hdrDecode);
+float _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_R_4_Float = _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4.r;
+float _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_G_5_Float = _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4.g;
+float _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_B_6_Float = _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4.b;
+float _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_A_7_Float = _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4.a;
 float _Property_723bcef9d5144a12a1dca50553bdb967_Out_0_Float = _Transition_Sharpness;
 float _Property_fbfc24be29d34dac98d3e99017691876_Out_0_Float = _Posterization;
 float _Property_046028dd74834f0aaeb44803d6ad4c72_Out_0_Float = _Posterization_Sharpness;
@@ -5304,7 +5310,7 @@ _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2.PixelPosition = IN.PixelPosi
 _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2.uv1 = IN.uv1;
 _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2.uv2 = IN.uv2;
 float3 _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2_Color_2_Vector3;
-SG_CellLightingModel_28d05442c333727418ac448845e1326b_float((_Multiply_61f37827eac943e8ae93f89ea0e75526_Out_2_Vector4.xyz), (_SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_RGBA_0_Vector4.xyz), true, float(0), _Property_377af61eea864234856e0089c586da2a_Out_0_Float, float4 (0, 0, 0, 0), float(1), _Property_723bcef9d5144a12a1dca50553bdb967_Out_0_Float, _Property_fbfc24be29d34dac98d3e99017691876_Out_0_Float, _Property_046028dd74834f0aaeb44803d6ad4c72_Out_0_Float, _Property_6cbdfa1aaa89402a8ef11aa9addda98f_Out_0_Float, _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2, _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2_Color_2_Vector3);
+SG_CellLightingModel_28d05442c333727418ac448845e1326b_float((_Multiply_61f37827eac943e8ae93f89ea0e75526_Out_2_Vector4.xyz), (_SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_RGBA_0_Vector4.xyz), true, _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_R_4_Float, _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_A_7_Float, float4 (0, 0, 0, 0), float(1), _Property_723bcef9d5144a12a1dca50553bdb967_Out_0_Float, _Property_fbfc24be29d34dac98d3e99017691876_Out_0_Float, _Property_046028dd74834f0aaeb44803d6ad4c72_Out_0_Float, _Property_6cbdfa1aaa89402a8ef11aa9addda98f_Out_0_Float, _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2, _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2_Color_2_Vector3);
 surface.BaseColor = _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2_Color_2_Vector3;
 surface.Alpha = _SampleTexture2D_15b841c98d0e4154a8e7bbaf00d21e3a_A_7_Float;
 surface.AlphaClipThreshold = float(0.5);
@@ -5435,11 +5441,12 @@ HLSLPROGRAM
 
 // Keywords
 #pragma shader_feature_local_fragment _ _ALPHATEST_ON
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS
-#pragma shader_feature_local _ _ADDITIONAL_LIGHT_SHADOWS
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_CASCADE
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_SCREEN
-#pragma shader_feature_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS
+#pragma multi_compile_local _ _ADDITIONAL_LIGHT_SHADOWS
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
+#pragma multi_compile_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
@@ -5589,10 +5596,8 @@ float _Posterization_Sharpness;
 float _Rim_Light;
 float4 _Base_TexelSize;
 float4 _Normal_TexelSize;
-float4 _Mask_TexelSize;
 float4 _Color;
-float _Smoothness;
-float4 _Shadow_Tint;
+float4 _Metallic_Smoothness_TexelSize;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -5603,8 +5608,8 @@ TEXTURE2D(_Base);
 SAMPLER(sampler_Base);
 TEXTURE2D(_Normal);
 SAMPLER(sampler_Normal);
-TEXTURE2D(_Mask);
-SAMPLER(sampler_Mask);
+TEXTURE2D(_Metallic_Smoothness);
+SAMPLER(sampler_Metallic_Smoothness);
 
 // Graph Includes
 // GraphIncludes: <None>
@@ -5776,11 +5781,12 @@ HLSLPROGRAM
 
 // Keywords
 #pragma shader_feature_local_fragment _ _ALPHATEST_ON
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS
-#pragma shader_feature_local _ _ADDITIONAL_LIGHT_SHADOWS
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_CASCADE
-#pragma shader_feature_local _ _MAIN_LIGHT_SHADOWS_SCREEN
-#pragma shader_feature_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS
+#pragma multi_compile_local _ _ADDITIONAL_LIGHT_SHADOWS
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
+#pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
+#pragma multi_compile_local _ _SHADOWS_SOFT
+#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
@@ -5971,10 +5977,8 @@ float _Posterization_Sharpness;
 float _Rim_Light;
 float4 _Base_TexelSize;
 float4 _Normal_TexelSize;
-float4 _Mask_TexelSize;
 float4 _Color;
-float _Smoothness;
-float4 _Shadow_Tint;
+float4 _Metallic_Smoothness_TexelSize;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -5985,8 +5989,8 @@ TEXTURE2D(_Base);
 SAMPLER(sampler_Base);
 TEXTURE2D(_Normal);
 SAMPLER(sampler_Normal);
-TEXTURE2D(_Mask);
-SAMPLER(sampler_Mask);
+TEXTURE2D(_Metallic_Smoothness);
+SAMPLER(sampler_Metallic_Smoothness);
 
 // Graph Includes
 #include_with_pragmas "Assets/Art/Shaders/Custom Lighting/Components/Debug/DebugLightingComplexity.hlsl"
@@ -7574,7 +7578,14 @@ float _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_R_4_Float = _SampleTextu
 float _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_G_5_Float = _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_RGBA_0_Vector4.g;
 float _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_B_6_Float = _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_RGBA_0_Vector4.b;
 float _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_A_7_Float = _SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_RGBA_0_Vector4.a;
-float _Property_377af61eea864234856e0089c586da2a_Out_0_Float = _Smoothness;
+UnityTexture2D _Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D = UnityBuildTexture2DStructInternal(_Metallic_Smoothness, sampler_Metallic_Smoothness, _Metallic_Smoothness_TexelSize, float4(1, 1, 0, 0), float4(0, 0, 0, 0));
+float4 _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4 = SAMPLE_TEXTURE2D(_Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D.tex, _Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D.samplerstate, _Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D.GetTransformedUV(IN.uv0.xy) );
+if (_Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D.hdrDecode.x > 0)
+_SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4 = DecodeHDRSample(_SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4, _Property_92e95d909f834786a128db3d4630a44b_Out_0_Texture2D.hdrDecode);
+float _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_R_4_Float = _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4.r;
+float _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_G_5_Float = _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4.g;
+float _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_B_6_Float = _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4.b;
+float _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_A_7_Float = _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_RGBA_0_Vector4.a;
 float _Property_723bcef9d5144a12a1dca50553bdb967_Out_0_Float = _Transition_Sharpness;
 float _Property_fbfc24be29d34dac98d3e99017691876_Out_0_Float = _Posterization;
 float _Property_046028dd74834f0aaeb44803d6ad4c72_Out_0_Float = _Posterization_Sharpness;
@@ -7593,7 +7604,7 @@ _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2.PixelPosition = IN.PixelPosi
 _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2.uv1 = IN.uv1;
 _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2.uv2 = IN.uv2;
 float3 _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2_Color_2_Vector3;
-SG_CellLightingModel_28d05442c333727418ac448845e1326b_float((_Multiply_61f37827eac943e8ae93f89ea0e75526_Out_2_Vector4.xyz), (_SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_RGBA_0_Vector4.xyz), true, float(0), _Property_377af61eea864234856e0089c586da2a_Out_0_Float, float4 (0, 0, 0, 0), float(1), _Property_723bcef9d5144a12a1dca50553bdb967_Out_0_Float, _Property_fbfc24be29d34dac98d3e99017691876_Out_0_Float, _Property_046028dd74834f0aaeb44803d6ad4c72_Out_0_Float, _Property_6cbdfa1aaa89402a8ef11aa9addda98f_Out_0_Float, _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2, _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2_Color_2_Vector3);
+SG_CellLightingModel_28d05442c333727418ac448845e1326b_float((_Multiply_61f37827eac943e8ae93f89ea0e75526_Out_2_Vector4.xyz), (_SampleTexture2D_eebaaac4fc7646cd9dd1dc98f73fce90_RGBA_0_Vector4.xyz), true, _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_R_4_Float, _SampleTexture2D_39011eb6ea1b455e8843a5d0dd69b733_A_7_Float, float4 (0, 0, 0, 0), float(1), _Property_723bcef9d5144a12a1dca50553bdb967_Out_0_Float, _Property_fbfc24be29d34dac98d3e99017691876_Out_0_Float, _Property_046028dd74834f0aaeb44803d6ad4c72_Out_0_Float, _Property_6cbdfa1aaa89402a8ef11aa9addda98f_Out_0_Float, _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2, _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2_Color_2_Vector3);
 surface.BaseColor = _CellLightingModel_684ca3aa931641dd8fe7ae7f209f79d2_Color_2_Vector3;
 surface.Alpha = _SampleTexture2D_15b841c98d0e4154a8e7bbaf00d21e3a_A_7_Float;
 surface.AlphaClipThreshold = float(0.5);
