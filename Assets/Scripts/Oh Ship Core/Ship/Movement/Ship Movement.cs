@@ -34,9 +34,16 @@ public class ShipMovement : MonoBehaviour
     
     void FixedUpdate()
     {
-        if (m_steamPressureSystem == null) return;
-        
-        m_steamPressure = m_steamPressureSystem.SteamPressure;
+        if (m_steamPressureSystem == null)
+        {
+            Debug.LogWarning("No SteamPressureSystem found on ship!");
+            m_steamPressure = 1;
+        }
+        else
+        {
+            m_steamPressure = m_steamPressureSystem.SteamPressure;
+        }
+
         m_rigidbody.AddForceAtPosition(m_wheelPowerPoint.forward * m_throttleEffectiveness.Evaluate(Throttle * 2) * (m_steamPressure), m_wheelPowerPoint.position, ForceMode.Force);
        // Debug.Log(m_steamPressureSystem.SteamPressure);
          //Debug.Log($"Throttle: {Throttle}, Pressure: {m_steamPressureSystem.SteamPressure}, Force: {m_throttleEffectiveness.Evaluate(Throttle * 2) * (m_steamPressure)}");

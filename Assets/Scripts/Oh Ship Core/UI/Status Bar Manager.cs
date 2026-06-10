@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class StatusBarManager : MonoBehaviour
 {
-    [SerializeField] StatusBar m_healthBar;
+    [SerializeField] StatusBar m_hungerBar;
     [SerializeField] StatusBar m_thirstBar;
-    public void UpdateHealthBar(float healthPercentage) => m_healthBar.UpdateFillPercentage(healthPercentage);
+    public void UpdateHungerBar(float hungerPercentage) => m_hungerBar.UpdateFillPercentage(hungerPercentage);
     public void UpdateThirstBar(float thirstPercentage) => m_thirstBar.UpdateFillPercentage(thirstPercentage);
     
     [Serializable]
@@ -15,7 +15,9 @@ public class StatusBarManager : MonoBehaviour
         public Image Fill;
         public void UpdateFillPercentage(float fill)
         {
-            Fill.fillAmount = Mathf.Clamp01(fill);
+            Debug.Log("fill");
+            //Fill.fillAmount = Mathf.Clamp01(fill);
+            Fill.fillAmount = fill;
         }
     }
 }

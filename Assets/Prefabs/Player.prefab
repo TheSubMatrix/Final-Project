@@ -266,6 +266,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_onPlayerControlStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -862725965146413658}
+        m_TargetAssemblyTypeName: HungerAndThirst, OhShip.Core.Status
+        m_MethodName: OnPlayerControllerConnected
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_onPlayerControlEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -862725965146413658}
+        m_TargetAssemblyTypeName: HungerAndThirst, OhShip.Core.Status
+        m_MethodName: OnPlayerControllerDisconnected
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-862725965146413658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +310,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: OhShip.Core.Status::Stats
   hungerStat: {fileID: 11400000, guid: 0b06704c34e3c0d4db2b5e73d2fe0837, type: 2}
   thirstStat: {fileID: 11400000, guid: 36b8ea26a78295d4581d6e98ea864b90, type: 2}
+  hunger:
+    m_value: 0
+    m_onValueChanged:
+      m_PersistentCalls:
+        m_Calls: []
+  thirst:
+    m_value: 0
+    m_onValueChanged:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &5183295149400410213
 GameObject:
   m_ObjectHideFlags: 0

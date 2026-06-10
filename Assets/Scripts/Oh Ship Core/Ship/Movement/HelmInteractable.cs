@@ -3,8 +3,9 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllable
+public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllable, IPromptProvider
 {
+    [SerializeField] private string _widgetForPrompt = "interact";
     [SerializeField] string m_helmControlActionMap = "Helm";
     [SerializeField] CinemachineCamera m_helmCamera;
     [SerializeField] float m_helmThrottleSpeed = 0.5f;
@@ -80,8 +81,9 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     void HandleInteract(InputAction.CallbackContext context) => m_currentInteractionSession.End();
     void HandleLookInput(InputAction.CallbackContext context) => m_lookInput = context.ReadValue<Vector2>();
 
-    public GameObject GetAssociatedGameObject()
-    {
-        return gameObject;
-    }
+    public GameObject GetAssociatedGameObject() => gameObject;
+
+    public PromptData GetPromptData() => new() {AssociatedWidget = _widgetForPrompt};
+
+    public Vector3 GetRequestedWorldPosition() => transform.position;
 }

@@ -2,20 +2,20 @@ using System.Collections;
 using UnityEngine;
 using System;
 
-public class CookFish : MonoBehaviour
+public class CookFish : MonoBehaviour, IInteractable
 {
     Material material;
     float cookedAmount;
     bool isCooking = false;
     bool isReady = false;
     bool isBurnt = false;
-    [SerializeField] Stats stats;
-    [SerializeField] SimpleStatModifier modifier;
-    [SerializeField] StatData statToModify;
+    bool isBurning = false;
+    bool invoked = false;
 
+
+    [SerializeField] HungerAndThirst stats;
     InteractionSession m_currentInteractionSession;
-
-    StatBroker mediator;
+    HungerAndThirst hungerAndThirst;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,6 +23,7 @@ public class CookFish : MonoBehaviour
     {
         material = GetComponent<Renderer>().material;
         cookedAmount = material.GetFloat("_Cooked_Amount");
+        
     }
 
     // Update is called once per frame
@@ -39,24 +40,51 @@ public class CookFish : MonoBehaviour
 
     private void StartCooking()
     {
-        if(cookedAmount < 0.7f)
+        if(cookedAmount < 0.5f)
         {
-            cookedAmount += 0.1f * Time.deltaTime;
-            material.SetFloat("_Cooked_Amount", cookedAmount);
+            ChangeColor();
         }
-
-        if(cookedAmount >= 0.7f)
+        else if(cookedAmount >= 0.5f)
         {
             isCooking = false;
             isReady = true;
-            StartCoroutine(Burn());
+            if(!isBurning)
+            {
+                if(!invoked)
+                {
+                    invoked = true;
+                    StartCoroutine(Burn());
+                }
+            }
+            else if(isBurning)
+            {
+                ChangeColor();
+            }
         }
+
+        if (cookedAmount >= 1)
+        {
+            isBurnt = true;
+            isReady = false;
+            isBurning = false;
+        }
+    }
+
+    void ChangeColor()
+    {
+        cookedAmount += 0.1f * Time.deltaTime;
+        material.SetFloat("_Cooked_Amount", cookedAmount);
     }
 
     void EndCooking()
     {
         isReady = false;
-        isBurnt = true;
+        isBurnt = false;
+        isBurning = false;
+        invoked = false;
+        gameObject.SetActive(false);
+        material.SetFloat("_Cooked_Amount", 0f);
+        cookedAmount = 0f;
     }
 
 
@@ -84,13 +112,8 @@ public class CookFish : MonoBehaviour
     private IEnumerator Burn()
     {
         yield return new WaitForSeconds(3);
-        cookedAmount += 0.1f * Time.deltaTime;
-        material.SetFloat("_Cooked_Amount", cookedAmount);
+        isBurning = true;
 
-        if(cookedAmount >= 1)
-        {
-            EndCooking();
-        }
 
     }
 
@@ -98,16 +121,21 @@ public class CookFish : MonoBehaviour
     {
         if (interactor.IsInteracting() || m_currentInteractionSession is { IsActive: true }) return null;
 
+        hungerAndThirst = interactor.GetAssociatedGameObject().transform.root.GetComponentInChildren<HungerAndThirst>();
+        Debug.Log("Begin interaction");
         if (isBurnt)
         {
-            Discard();
+            Debug.Log("Discard Fish");
+            EndCooking();
         }
         else if(isReady)
         {
+            Debug.Log("Eat Fish");
             Eat();
         }
         else if(isCooking)
         {
+            Debug.Log("Still Cooking");
             return null;
         }
         return m_currentInteractionSession;
@@ -115,21 +143,11 @@ public class CookFish : MonoBehaviour
 
     private void Eat()
     {
-        //sets stats
-        Func<float, float> Add = (x) => x + 5;
-        modifier = new SimpleStatModifier(Add, statToModify);
-        mediator = stats.broker;
-        mediator.AddModifier(modifier);
-        isReady = false;
-        gameObject.SetActive(false);
-
-    }
-
-    private void Discard()
-    {
-        gameObject.SetActive(false);
-        material.SetFloat("_Cooked_Amount", 0f);
-        cookedAmount = 0f;
+        Debug.Log("eat");
+        hungerAndThirst.Hunger.Value += 0.2f;
+        EndCooking();
+    
+        Debug.Log("Fish Eaten");
     }
 
 }

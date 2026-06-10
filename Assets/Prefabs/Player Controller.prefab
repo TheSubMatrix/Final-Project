@@ -380,8 +380,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447475600237692604}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.01974858, y: 0.3237152, z: -0.0067583774, w: 0.94592434}
-  m_LocalPosition: {x: 21.581429, y: 5.81, z: 195.70267}
+  m_LocalRotation: {x: 0, y: -0.9997973, z: 0, w: -0.020134805}
+  m_LocalPosition: {x: -0.35679853, y: 4.71, z: -108.73897}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -418,11 +418,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60.000004
+  near clip plane: 0.1
+  far clip plane: 5000
+  field of view: 60
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -661,7 +661,7 @@ MonoBehaviour:
   m_promptPrefabs:
     m_list:
     - Key: interact
-      Value: {fileID: 8003670585129197401, guid: fff787d9ba517e147a28af4e422538fa, type: 3}
+      Value: {fileID: 8003670585129197401, guid: b96b2ffdefe04284ca5843ab991994e7, type: 3}
     m_stagingEntry:
       Key: interact
       Value: {fileID: 0}
@@ -830,7 +830,7 @@ GameObject:
   - component: {fileID: 8300379753438098068}
   - component: {fileID: 2178574117351041313}
   m_Layer: 0
-  m_Name: Health BG
+  m_Name: Hunger BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1260,7 +1260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34324b8a0eb8e84f9baa16a01699944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.UI::StatusBarManager
-  m_healthBar:
+  m_hungerBar:
     Fill: {fileID: 4908978144014546517}
   m_thirstBar:
     Fill: {fileID: 633532795064907851}
