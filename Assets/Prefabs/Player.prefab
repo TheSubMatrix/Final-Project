@@ -205,7 +205,7 @@ MonoBehaviour:
   maxGroundAngle: 25
   m_acceleration: 20
   m_deceleration: 30
-  m_moveSpeed: 5
+  m_moveSpeed: 7
   m_camera: {fileID: 7380261991574393363}
   m_lookSensitivity: 30
 --- !u!114 &3994179610541121624
@@ -308,18 +308,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1007cccdcb598e64dbe9e9adfe889ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Status::Stats
-  hungerStat: {fileID: 11400000, guid: 0b06704c34e3c0d4db2b5e73d2fe0837, type: 2}
-  thirstStat: {fileID: 11400000, guid: 36b8ea26a78295d4581d6e98ea864b90, type: 2}
-  hunger:
+  Hunger:
     m_value: 0
     m_onValueChanged:
       m_PersistentCalls:
         m_Calls: []
-  thirst:
+  Thirst:
     m_value: 0
     m_onValueChanged:
       m_PersistentCalls:
         m_Calls: []
+  m_manager: {fileID: 0}
 --- !u!1 &5183295149400410213
 GameObject:
   m_ObjectHideFlags: 0

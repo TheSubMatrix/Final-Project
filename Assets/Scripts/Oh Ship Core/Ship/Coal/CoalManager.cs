@@ -14,7 +14,7 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
 
     [SerializeField] SteamPressureSystem m_steamPressureSystem;
     [SerializeField] private float m_timeLimitReference = 10f;
-    
+    [SerializeField] private Transform _promptVisualLocation;
     
     private IPlayerController m_activePlayerController;
     private IPlayerControllable m_activePlayerControl;
@@ -147,7 +147,8 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
 
     public Vector3 GetWidgetWorldPosition()
     {
-        return transform.position;
+        Transform positionValue = _promptVisualLocation != null ? _promptVisualLocation : transform;
+        return positionValue.position;
     }
 }
 
