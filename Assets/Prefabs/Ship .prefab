@@ -2372,31 +2372,31 @@ MonoBehaviour:
   m_waterHeight: 0
   m_buoyancyPoints:
   - PointBuoyancy: 0.5
-    LocalPosition: {x: 2.5, y: -0.8, z: 6}
+    LocalPosition: {x: 2.5, y: 1, z: 6}
     Radius: 2
     Drag: {x: 0.4, y: 0.5, z: 0.2}
   - PointBuoyancy: 0.5
-    LocalPosition: {x: -2.5, y: -0.8, z: 6}
+    LocalPosition: {x: -2.5, y: 1, z: 6}
     Radius: 2
     Drag: {x: 0.4, y: 0.5, z: 0.2}
   - PointBuoyancy: 0.5
-    LocalPosition: {x: -2.5, y: -0.8, z: -2}
+    LocalPosition: {x: -2.5, y: 1, z: -2}
     Radius: 2
     Drag: {x: 0.4, y: 0.5, z: 0.2}
   - PointBuoyancy: 0.5
-    LocalPosition: {x: 2.5, y: -0.8, z: -2}
+    LocalPosition: {x: 2.5, y: 1, z: -2}
     Radius: 2
     Drag: {x: 0.4, y: 0.5, z: 0.2}
   - PointBuoyancy: 0.5
-    LocalPosition: {x: 2.5, y: -0.8, z: -10}
+    LocalPosition: {x: 2.5, y: 1, z: -10}
     Radius: 2
     Drag: {x: 0.4, y: 0.5, z: 0.2}
   - PointBuoyancy: 0.5
-    LocalPosition: {x: -2.5, y: -0.8, z: -10}
+    LocalPosition: {x: -2.5, y: 1, z: -10}
     Radius: 2
     Drag: {x: 0.4, y: 0.5, z: 0.2}
   - PointBuoyancy: 0.5
-    LocalPosition: {x: 0, y: -0.8, z: 11}
+    LocalPosition: {x: 0, y: 1, z: 11}
     Radius: 2
     Drag: {x: 0.4, y: 0.5, z: 0.2}
 --- !u!114 &6315079195521403227
@@ -2411,8 +2411,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c20ee1b8bce6c4e923477e56cddfeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Ship::ShipMovement
-  <Rudder>k__BackingField: 0
-  <Throttle>k__BackingField: 0
+  <Rudder>k__BackingField:
+    m_value: 0
+    m_onValueChanged:
+      m_PersistentCalls:
+        m_Calls: []
+  <Throttle>k__BackingField:
+    m_value: 0
+    m_onValueChanged:
+      m_PersistentCalls:
+        m_Calls: []
   m_rigidbody: {fileID: 8119851664354631541}
   m_wheelPowerPoint: {fileID: 1907087247233322412}
   m_rudderPoint: {fileID: 7959187600267199001}
