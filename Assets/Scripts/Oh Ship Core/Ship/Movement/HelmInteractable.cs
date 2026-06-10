@@ -81,18 +81,9 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     void HandleInteract(InputAction.CallbackContext context) => m_currentInteractionSession.End();
     void HandleLookInput(InputAction.CallbackContext context) => m_lookInput = context.ReadValue<Vector2>();
 
-    public GameObject GetAssociatedGameObject()
-    {
-        return gameObject;
-    }
+    public GameObject GetAssociatedGameObject() => gameObject;
 
-    public PromptData GetPromptData()
-    {
-        return new PromptData{AssociatedWidget = _widgetForPrompt};
-    }
+    public PromptData GetPromptData() => new() {AssociatedWidget = _widgetForPrompt};
 
-    public Vector3 GetRequestedWorldPosition()
-    {
-        return transform.position;
-    }
+    public Vector3 GetRequestedWorldPosition() => transform.position;
 }
