@@ -10,6 +10,7 @@ public class CookFish : MonoBehaviour, IInteractable
     bool isReady = false;
     bool isBurnt = false;
     bool isBurning = false;
+    bool invoked = false;
 
 
     [SerializeField] Stats stats;
@@ -27,7 +28,6 @@ public class CookFish : MonoBehaviour, IInteractable
         material = GetComponent<Renderer>().material;
         cookedAmount = material.GetFloat("_Cooked_Amount");
         
-        
     }
 
     // Update is called once per frame
@@ -44,21 +44,40 @@ public class CookFish : MonoBehaviour, IInteractable
 
     private void StartCooking()
     {
-        if(cookedAmount < 0.7f)
+        if(cookedAmount < 0.5f)
         {
-            cookedAmount += 0.1f * Time.deltaTime;
-            material.SetFloat("_Cooked_Amount", cookedAmount);
+            ChangeColor();
         }
-
-        if(cookedAmount >= 0.7f && !isReady)
+        else if(cookedAmount >= 0.5f)
         {
             isCooking = false;
             isReady = true;
             if(!isBurning)
             {
-                StartCoroutine(Burn());
+                if(!invoked)
+                {
+                    invoked = true;
+                    StartCoroutine(Burn());
+                }
+            }
+            else if(isBurning)
+            {
+                ChangeColor();
             }
         }
+
+        if (cookedAmount >= 1)
+        {
+            isBurnt = true;
+            isReady = false;
+            isBurning = false;
+        }
+    }
+
+    void ChangeColor()
+    {
+        cookedAmount += 0.1f * Time.deltaTime;
+        material.SetFloat("_Cooked_Amount", cookedAmount);
     }
 
     void EndCooking()
@@ -66,6 +85,7 @@ public class CookFish : MonoBehaviour, IInteractable
         isReady = false;
         isBurnt = false;
         isBurning = false;
+        invoked = false;
         gameObject.SetActive(false);
         material.SetFloat("_Cooked_Amount", 0f);
         cookedAmount = 0f;
@@ -95,15 +115,9 @@ public class CookFish : MonoBehaviour, IInteractable
 
     private IEnumerator Burn()
     {
-        isBurning = true;
         yield return new WaitForSeconds(3);
-        cookedAmount += 0.1f * Time.deltaTime;
-        material.SetFloat("_Cooked_Amount", cookedAmount);
+        isBurning = true;
 
-        if(cookedAmount >= 1)
-        {
-            isBurnt = true;
-        }
 
     }
 
@@ -115,7 +129,7 @@ public class CookFish : MonoBehaviour, IInteractable
         if (isBurnt)
         {
             Debug.Log("Discard Fish");
-            Eat();
+            EndCooking();
         }
         else if(isReady)
         {
@@ -132,20 +146,15 @@ public class CookFish : MonoBehaviour, IInteractable
 
     private void Eat()
     {
+        Debug.Log("eat");
         Func<float, float> Add = (x) => x + 5;
         modifier = new SimpleStatModifier(Add, hungerStatToModify);
         stats.broker.AddModifier(modifier);
         Debug.Log(modifier);
-        
-        Discard();
+        EndCooking();
         
     
         Debug.Log("Fish Eaten");
-    }
-
-    private void Discard()
-    {
-        EndCooking();
     }
 
 }
