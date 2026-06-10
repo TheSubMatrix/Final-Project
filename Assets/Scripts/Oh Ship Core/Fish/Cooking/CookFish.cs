@@ -33,6 +33,7 @@ public class CookFish : MonoBehaviour, IInteractable
 
         if(isCooking)
         {
+            Debug.Log("Cooking");
             StartCooking();
         }
     }
@@ -103,6 +104,7 @@ public class CookFish : MonoBehaviour, IInteractable
             {
                 if(!isCooking)
                 {
+                    Debug.Log("Switch to true");
                     isCooking = true;
                 }
             }
