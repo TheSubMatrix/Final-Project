@@ -21,7 +21,7 @@ public class HungerAndThirst: MonoBehaviour
     { 
         StatQuery value = new StatQuery(hungerStat, 1f);
         broker.PerformStatQuery(this, value);
-        Debug.Log(value.Value);
+       // Debug.Log(value.Value);
     }
 
     public void OnPlayerControllerConnected(IPlayerController controller)
