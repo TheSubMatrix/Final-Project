@@ -707,13 +707,33 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4008023720064035824, guid: 8ae74b2343224904785bec0e280f08d4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 278568655179826878}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4866578782889051117, guid: 8ae74b2343224904785bec0e280f08d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3410272372005455507}
   m_SourcePrefab: {fileID: 100100000, guid: 8ae74b2343224904785bec0e280f08d4, type: 3}
 --- !u!4 &3505395028408485536 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4008023720064035824, guid: 8ae74b2343224904785bec0e280f08d4, type: 3}
   m_PrefabInstance: {fileID: 520999608696237392}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4950434540091535037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4866578782889051117, guid: 8ae74b2343224904785bec0e280f08d4, type: 3}
+  m_PrefabInstance: {fileID: 520999608696237392}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3410272372005455507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950434540091535037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!1001 &538458721785736808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -772,13 +792,153 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7445259148544122110, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5705533768488895479}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3146617646647520440, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1245687040280560156}
+    - targetCorrespondingSourceObject: {fileID: 166850766897801918, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4548455063061899635}
+    - targetCorrespondingSourceObject: {fileID: 351738376958170442, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3115358363872470388}
+    - targetCorrespondingSourceObject: {fileID: 8555656959758247958, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6281823864418489378}
+    - targetCorrespondingSourceObject: {fileID: 6947327751977354557, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6394026087590213695}
+    - targetCorrespondingSourceObject: {fileID: 8834291639871372014, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4062111056863709718}
+    - targetCorrespondingSourceObject: {fileID: 5705646432815316066, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5705817677375823848}
   m_SourcePrefab: {fileID: 100100000, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
+--- !u!1 &259341165315832610 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 351738376958170442, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
+  m_PrefabInstance: {fileID: 538458721785736808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3115358363872470388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259341165315832610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &371609339519960278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 166850766897801918, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
+  m_PrefabInstance: {fileID: 538458721785736808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4548455063061899635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371609339519960278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &3230195076438770384 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3146617646647520440, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
+  m_PrefabInstance: {fileID: 538458721785736808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1245687040280560156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3230195076438770384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &5212488213067829770 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5705646432815316066, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
+  m_PrefabInstance: {fileID: 538458721785736808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5705817677375823848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5212488213067829770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!4 &6929389345745728150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7445259148544122110, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
   m_PrefabInstance: {fileID: 538458721785736808}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7426753075922938709 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6947327751977354557, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
+  m_PrefabInstance: {fileID: 538458721785736808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6394026087590213695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426753075922938709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &8197450679716071038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8555656959758247958, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
+  m_PrefabInstance: {fileID: 538458721785736808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6281823864418489378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8197450679716071038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &9070610471782159494 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8834291639871372014, guid: afdf9061055f0164babc1a9111d4bbd1, type: 3}
+  m_PrefabInstance: {fileID: 538458721785736808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4062111056863709718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9070610471782159494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!1001 &632078190143827084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1015,11 +1175,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1738034009877250915, guid: 3b862cea1c9680f4bb7f3a72389c007b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1738034009877250915, guid: 3b862cea1c9680f4bb7f3a72389c007b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -152.4
+      value: -150.4
       objectReference: {fileID: 0}
     - target: {fileID: 1738034009877250915, guid: 3b862cea1c9680f4bb7f3a72389c007b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1117,8 +1277,148 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8586909931948909692, guid: 021292b931dde9c49afabe95b4466375, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1214612331510853615}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1013857433037986766, guid: 021292b931dde9c49afabe95b4466375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2385064384110088612}
+    - targetCorrespondingSourceObject: {fileID: 3081683064614930560, guid: 021292b931dde9c49afabe95b4466375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 279167438630554818}
+    - targetCorrespondingSourceObject: {fileID: 801275654554969824, guid: 021292b931dde9c49afabe95b4466375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 434219199584605466}
+    - targetCorrespondingSourceObject: {fileID: 692083576093939098, guid: 021292b931dde9c49afabe95b4466375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4948623476982879902}
+    - targetCorrespondingSourceObject: {fileID: 9222252328116099875, guid: 021292b931dde9c49afabe95b4466375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7731707863828012768}
+    - targetCorrespondingSourceObject: {fileID: 6449971933101610842, guid: 021292b931dde9c49afabe95b4466375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6217017824890235253}
+    - targetCorrespondingSourceObject: {fileID: 2630468494198055422, guid: 021292b931dde9c49afabe95b4466375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5279235552558640149}
   m_SourcePrefab: {fileID: 100100000, guid: 021292b931dde9c49afabe95b4466375, type: 3}
+--- !u!1 &1364702385292320843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1013857433037986766, guid: 021292b931dde9c49afabe95b4466375, type: 3}
+  m_PrefabInstance: {fileID: 2081107644845947781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2385064384110088612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364702385292320843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &1547921297631243807 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 692083576093939098, guid: 021292b931dde9c49afabe95b4466375, type: 3}
+  m_PrefabInstance: {fileID: 2081107644845947781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4948623476982879902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547921297631243807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &1729144307443473765 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 801275654554969824, guid: 021292b931dde9c49afabe95b4466375, type: 3}
+  m_PrefabInstance: {fileID: 2081107644845947781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &434219199584605466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729144307443473765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &3901738004935455493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3081683064614930560, guid: 021292b931dde9c49afabe95b4466375, type: 3}
+  m_PrefabInstance: {fileID: 2081107644845947781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &279167438630554818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3901738004935455493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &4062485771107195515 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2630468494198055422, guid: 021292b931dde9c49afabe95b4466375, type: 3}
+  m_PrefabInstance: {fileID: 2081107644845947781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5279235552558640149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062485771107195515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &4999966647577390303 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6449971933101610842, guid: 021292b931dde9c49afabe95b4466375, type: 3}
+  m_PrefabInstance: {fileID: 2081107644845947781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6217017824890235253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4999966647577390303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &7142024842328760486 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9222252328116099875, guid: 021292b931dde9c49afabe95b4466375, type: 3}
+  m_PrefabInstance: {fileID: 2081107644845947781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7731707863828012768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7142024842328760486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!4 &7767373957433581561 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8586909931948909692, guid: 021292b931dde9c49afabe95b4466375, type: 3}
@@ -1182,13 +1482,293 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5771734258818778357, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 792852029825104231}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1825559449400341643, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2891558235840875082}
+    - targetCorrespondingSourceObject: {fileID: 5220150269869077666, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3621893414605910523}
+    - targetCorrespondingSourceObject: {fileID: 1540852451549615907, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6404541070928491943}
+    - targetCorrespondingSourceObject: {fileID: 2966236202809394657, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8366834093283223190}
+    - targetCorrespondingSourceObject: {fileID: 8751719192220278474, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2085755407278486473}
+    - targetCorrespondingSourceObject: {fileID: 6046364444497771661, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7537412949712911415}
+    - targetCorrespondingSourceObject: {fileID: 5590786402293638647, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2113481899977949583}
+    - targetCorrespondingSourceObject: {fileID: 1596349219889214569, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2733284898634130476}
+    - targetCorrespondingSourceObject: {fileID: 2556565018803515845, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 337580010512646424}
+    - targetCorrespondingSourceObject: {fileID: 8772997097192066758, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8142453711110824757}
+    - targetCorrespondingSourceObject: {fileID: 1040088450599177604, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 331808279034001813}
+    - targetCorrespondingSourceObject: {fileID: 9123174935167411786, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2548942153736633847}
+    - targetCorrespondingSourceObject: {fileID: 3391838038145224076, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1782169047313898909}
+    - targetCorrespondingSourceObject: {fileID: 2704589361289792100, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4367924413420039293}
   m_SourcePrefab: {fileID: 100100000, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+--- !u!1 &487595507785491853 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1825559449400341643, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+  m_PrefabInstance: {fileID: 2274873212472660230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2891558235840875082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487595507785491853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &699929354360841583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1596349219889214569, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+  m_PrefabInstance: {fileID: 2274873212472660230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2733284898634130476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699929354360841583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &789198687398757925 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1540852451549615907, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+  m_PrefabInstance: {fileID: 2274873212472660230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6404541070928491943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789198687398757925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &1296715416823880834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1040088450599177604, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+  m_PrefabInstance: {fileID: 2274873212472660230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &331808279034001813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296715416823880834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &3495852809968016522 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3391838038145224076, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+  m_PrefabInstance: {fileID: 2274873212472660230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1782169047313898909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3495852809968016522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &3943967167324067047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2966236202809394657, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+  m_PrefabInstance: {fileID: 2274873212472660230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8366834093283223190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3943967167324067047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &4186474719224437602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2704589361289792100, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+  m_PrefabInstance: {fileID: 2274873212472660230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4367924413420039293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186474719224437602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &4389680827836211395 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2556565018803515845, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+  m_PrefabInstance: {fileID: 2274873212472660230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &337580010512646424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389680827836211395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &5510428262501412235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6046364444497771661, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+  m_PrefabInstance: {fileID: 2274873212472660230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7537412949712911415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5510428262501412235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!4 &5731015897433544179 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5771734258818778357, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
   m_PrefabInstance: {fileID: 2274873212472660230}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5910851085806335217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5590786402293638647, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+  m_PrefabInstance: {fileID: 2274873212472660230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2113481899977949583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5910851085806335217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &6332142581807883684 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5220150269869077666, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+  m_PrefabInstance: {fileID: 2274873212472660230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3621893414605910523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6332142581807883684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &6993525510820771660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9123174935167411786, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+  m_PrefabInstance: {fileID: 2274873212472660230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2548942153736633847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993525510820771660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &7362834821641838528 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8772997097192066758, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+  m_PrefabInstance: {fileID: 2274873212472660230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8142453711110824757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7362834821641838528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &7414511714273464268 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8751719192220278474, guid: dcadc99309f9f0343a8b154208cf37d4, type: 3}
+  m_PrefabInstance: {fileID: 2274873212472660230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2085755407278486473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7414511714273464268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!1001 &2519858366206364831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1317,13 +1897,93 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7858220281471670099, guid: 09d9f437778e5f54e95c295fc8549ba1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6706763458383432479}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6031414903723712292, guid: 09d9f437778e5f54e95c295fc8549ba1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1971604996954209627}
+    - targetCorrespondingSourceObject: {fileID: 8534278032360880197, guid: 09d9f437778e5f54e95c295fc8549ba1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8521601684815890807}
+    - targetCorrespondingSourceObject: {fileID: 7497238582947682308, guid: 09d9f437778e5f54e95c295fc8549ba1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4833378679674330257}
+    - targetCorrespondingSourceObject: {fileID: 4154327062421443880, guid: 09d9f437778e5f54e95c295fc8549ba1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7075442254697361918}
   m_SourcePrefab: {fileID: 100100000, guid: 09d9f437778e5f54e95c295fc8549ba1, type: 3}
+--- !u!1 &1936601685423985886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4154327062421443880, guid: 09d9f437778e5f54e95c295fc8549ba1, type: 3}
+  m_PrefabInstance: {fileID: 2542020903142851062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7075442254697361918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936601685423985886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &5425879120095582706 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7497238582947682308, guid: 09d9f437778e5f54e95c295fc8549ba1, type: 3}
+  m_PrefabInstance: {fileID: 2542020903142851062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4833378679674330257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5425879120095582706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!4 &5641061161317242533 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7858220281471670099, guid: 09d9f437778e5f54e95c295fc8549ba1, type: 3}
   m_PrefabInstance: {fileID: 2542020903142851062}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6136376784401775027 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8534278032360880197, guid: 09d9f437778e5f54e95c295fc8549ba1, type: 3}
+  m_PrefabInstance: {fileID: 2542020903142851062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8521601684815890807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6136376784401775027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &8139395877589507794 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6031414903723712292, guid: 09d9f437778e5f54e95c295fc8549ba1, type: 3}
+  m_PrefabInstance: {fileID: 2542020903142851062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1971604996954209627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8139395877589507794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!1001 &3906532096830815806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1382,13 +2042,153 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1080325282727777254, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4825492331250356402}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7252984020069165540, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6896026754040795209}
+    - targetCorrespondingSourceObject: {fileID: 5905849752607839497, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1855809089745699297}
+    - targetCorrespondingSourceObject: {fileID: 1080225418374218033, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2167766677677313181}
+    - targetCorrespondingSourceObject: {fileID: 6652522714041784408, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5401920561444064855}
+    - targetCorrespondingSourceObject: {fileID: 4710557682387604438, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8953776345671457108}
+    - targetCorrespondingSourceObject: {fileID: 763180860865544305, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4890235495581357916}
+    - targetCorrespondingSourceObject: {fileID: 1519937432148678439, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7182372385721965817}
   m_SourcePrefab: {fileID: 100100000, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
+--- !u!1 &2531354167646726425 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1519937432148678439, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
+  m_PrefabInstance: {fileID: 3906532096830815806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7182372385721965817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2531354167646726425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!4 &4091762293101030872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1080325282727777254, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
   m_PrefabInstance: {fileID: 3906532096830815806}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4092489437962321679 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1080225418374218033, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
+  m_PrefabInstance: {fileID: 3906532096830815806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2167766677677313181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4092489437962321679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &4368938922886544975 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 763180860865544305, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
+  m_PrefabInstance: {fileID: 3906532096830815806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4890235495581357916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4368938922886544975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &5949550563968260058 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7252984020069165540, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
+  m_PrefabInstance: {fileID: 3906532096830815806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6896026754040795209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5949550563968260058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &7476821119388347191 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5905849752607839497, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
+  m_PrefabInstance: {fileID: 3906532096830815806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1855809089745699297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7476821119388347191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &7666331733103388262 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6652522714041784408, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
+  m_PrefabInstance: {fileID: 3906532096830815806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5401920561444064855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666331733103388262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &8604559744439447016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4710557682387604438, guid: f68b10212ada6584582c9a0236a9b87d, type: 3}
+  m_PrefabInstance: {fileID: 3906532096830815806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8953776345671457108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8604559744439447016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!1001 &3951326138671604235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1517,13 +2317,113 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2591146810239416422, guid: 2254b5a9a7797a244a7c3f60c9bb9fc1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3371879494673801576}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6907230180770913771, guid: 2254b5a9a7797a244a7c3f60c9bb9fc1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1416520378269540599}
+    - targetCorrespondingSourceObject: {fileID: 2601981958887382901, guid: 2254b5a9a7797a244a7c3f60c9bb9fc1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 119697540909058061}
+    - targetCorrespondingSourceObject: {fileID: 4419733637850540413, guid: 2254b5a9a7797a244a7c3f60c9bb9fc1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3335272060445492578}
+    - targetCorrespondingSourceObject: {fileID: 7060495729075590572, guid: 2254b5a9a7797a244a7c3f60c9bb9fc1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6035744175626412044}
+    - targetCorrespondingSourceObject: {fileID: 4282450549335828828, guid: 2254b5a9a7797a244a7c3f60c9bb9fc1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3699537527365697114}
   m_SourcePrefab: {fileID: 100100000, guid: 2254b5a9a7797a244a7c3f60c9bb9fc1, type: 3}
+--- !u!1 &6008852801686106 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4282450549335828828, guid: 2254b5a9a7797a244a7c3f60c9bb9fc1, type: 3}
+  m_PrefabInstance: {fileID: 4286031636968383238}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3699537527365697114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6008852801686106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &445019924343753339 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4419733637850540413, guid: 2254b5a9a7797a244a7c3f60c9bb9fc1, type: 3}
+  m_PrefabInstance: {fileID: 4286031636968383238}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3335272060445492578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445019924343753339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!4 &1769511525252520800 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2591146810239416422, guid: 2254b5a9a7797a244a7c3f60c9bb9fc1, type: 3}
   m_PrefabInstance: {fileID: 4286031636968383238}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2262799184176561267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2601981958887382901, guid: 2254b5a9a7797a244a7c3f60c9bb9fc1, type: 3}
+  m_PrefabInstance: {fileID: 4286031636968383238}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &119697540909058061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2262799184176561267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &6521458988521928362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7060495729075590572, guid: 2254b5a9a7797a244a7c3f60c9bb9fc1, type: 3}
+  m_PrefabInstance: {fileID: 4286031636968383238}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6035744175626412044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6521458988521928362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &7250903496258698989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6907230180770913771, guid: 2254b5a9a7797a244a7c3f60c9bb9fc1, type: 3}
+  m_PrefabInstance: {fileID: 4286031636968383238}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1416520378269540599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7250903496258698989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!1001 &4975784268581816444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1722,13 +2622,153 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8996015093561637145, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5789508809297268878}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7698913419821535060, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6853765870284366452}
+    - targetCorrespondingSourceObject: {fileID: 8481561193913012216, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6075500530552264440}
+    - targetCorrespondingSourceObject: {fileID: 2883789608218292405, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4096015343247052908}
+    - targetCorrespondingSourceObject: {fileID: 646940485005962989, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1789862154739920849}
+    - targetCorrespondingSourceObject: {fileID: 2842571807714102500, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 982579870077922247}
+    - targetCorrespondingSourceObject: {fileID: 385636139781005415, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4141175283308664483}
+    - targetCorrespondingSourceObject: {fileID: 4322458584080552369, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2962542137388349719}
   m_SourcePrefab: {fileID: 100100000, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
+--- !u!1 &2360816095843876778 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7698913419821535060, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
+  m_PrefabInstance: {fileID: 5339937983887782142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6853765870284366452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2360816095843876778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!4 &3945999198825220583 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8996015093561637145, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
   m_PrefabInstance: {fileID: 5339937983887782142}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4589110545773461254 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8481561193913012216, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
+  m_PrefabInstance: {fileID: 5339937983887782142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6075500530552264440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589110545773461254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &4819170169138339347 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 646940485005962989, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
+  m_PrefabInstance: {fileID: 5339937983887782142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1789862154739920849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4819170169138339347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &5710928589991186585 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 385636139781005415, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
+  m_PrefabInstance: {fileID: 5339937983887782142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4141175283308664483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5710928589991186585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &7070090747674837067 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2883789608218292405, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
+  m_PrefabInstance: {fileID: 5339937983887782142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4096015343247052908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7070090747674837067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &7883993917021617178 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2842571807714102500, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
+  m_PrefabInstance: {fileID: 5339937983887782142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &982579870077922247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7883993917021617178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &8207582050086723919 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4322458584080552369, guid: 25f6dc130f0c5f944b7d394a19f83648, type: 3}
+  m_PrefabInstance: {fileID: 5339937983887782142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2962542137388349719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8207582050086723919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!1001 &5477300979358097683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1787,13 +2827,153 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1407970578228049851, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7313486915120768811}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8142776240645752034, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 15547136613429055}
+    - targetCorrespondingSourceObject: {fileID: 1619052184500534110, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4753346803301749096}
+    - targetCorrespondingSourceObject: {fileID: 874551527202267890, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 64357940175373760}
+    - targetCorrespondingSourceObject: {fileID: 5232288083102068351, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6453733791695937467}
+    - targetCorrespondingSourceObject: {fileID: 4324321638285727479, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1553813982865115618}
+    - targetCorrespondingSourceObject: {fileID: 3408145179269017224, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7267595250823782663}
+    - targetCorrespondingSourceObject: {fileID: 8982511519447910541, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 549886031227954593}
   m_SourcePrefab: {fileID: 100100000, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
+--- !u!1 &333154714705661804 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5232288083102068351, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
+  m_PrefabInstance: {fileID: 5477300979358097683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6453733791695937467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333154714705661804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &3506899596108753310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8982511519447910541, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
+  m_PrefabInstance: {fileID: 5477300979358097683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &549886031227954593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3506899596108753310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &4396564239501207025 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8142776240645752034, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
+  m_PrefabInstance: {fileID: 5477300979358097683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &15547136613429055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4396564239501207025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &4620780914440618977 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 874551527202267890, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
+  m_PrefabInstance: {fileID: 5477300979358097683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &64357940175373760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4620780914440618977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &6519892136659294797 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1619052184500534110, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
+  m_PrefabInstance: {fileID: 5477300979358097683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4753346803301749096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6519892136659294797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!4 &6884128061196998312 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1407970578228049851, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
   m_PrefabInstance: {fileID: 5477300979358097683}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7156045824198430619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3408145179269017224, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
+  m_PrefabInstance: {fileID: 5477300979358097683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7267595250823782663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7156045824198430619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &8070551304697001956 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4324321638285727479, guid: 108dab7120f04bb4a92ec6c778c996a6, type: 3}
+  m_PrefabInstance: {fileID: 5477300979358097683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1553813982865115618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8070551304697001956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!1001 &5546071559294764555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1852,13 +3032,153 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1425158285938915759, guid: 95508d0802b091942a88cb583522794a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5535070914079133430}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7863516545679391032, guid: 95508d0802b091942a88cb583522794a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5290929326399371056}
+    - targetCorrespondingSourceObject: {fileID: 1553347391678797675, guid: 95508d0802b091942a88cb583522794a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6225289387944595565}
+    - targetCorrespondingSourceObject: {fileID: 7974885338605279213, guid: 95508d0802b091942a88cb583522794a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 71724424007677283}
+    - targetCorrespondingSourceObject: {fileID: 3292378805993197317, guid: 95508d0802b091942a88cb583522794a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4429367274750314731}
+    - targetCorrespondingSourceObject: {fileID: 7445367510740181914, guid: 95508d0802b091942a88cb583522794a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8733861762051376087}
+    - targetCorrespondingSourceObject: {fileID: 4838161753579625748, guid: 95508d0802b091942a88cb583522794a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6613273845189621445}
+    - targetCorrespondingSourceObject: {fileID: 9135642167596255765, guid: 95508d0802b091942a88cb583522794a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6252636992350948099}
   m_SourcePrefab: {fileID: 100100000, guid: 95508d0802b091942a88cb583522794a, type: 3}
+--- !u!1 &1140255997321272095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4838161753579625748, guid: 95508d0802b091942a88cb583522794a, type: 3}
+  m_PrefabInstance: {fileID: 5546071559294764555}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6613273845189621445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140255997321272095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &2438496958143872819 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7863516545679391032, guid: 95508d0802b091942a88cb583522794a, type: 3}
+  m_PrefabInstance: {fileID: 5546071559294764555}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5290929326399371056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2438496958143872819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &2475820104804241894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7974885338605279213, guid: 95508d0802b091942a88cb583522794a, type: 3}
+  m_PrefabInstance: {fileID: 5546071559294764555}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &71724424007677283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2475820104804241894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &3144877030165603729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7445367510740181914, guid: 95508d0802b091942a88cb583522794a, type: 3}
+  m_PrefabInstance: {fileID: 5546071559294764555}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8733861762051376087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3144877030165603729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &3620833167504493598 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9135642167596255765, guid: 95508d0802b091942a88cb583522794a, type: 3}
+  m_PrefabInstance: {fileID: 5546071559294764555}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6252636992350948099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3620833167504493598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &6447188240907768160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1553347391678797675, guid: 95508d0802b091942a88cb583522794a, type: 3}
+  m_PrefabInstance: {fileID: 5546071559294764555}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6225289387944595565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6447188240907768160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!4 &6859183837725769636 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1425158285938915759, guid: 95508d0802b091942a88cb583522794a, type: 3}
   m_PrefabInstance: {fileID: 5546071559294764555}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7009707299725281550 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3292378805993197317, guid: 95508d0802b091942a88cb583522794a, type: 3}
+  m_PrefabInstance: {fileID: 5546071559294764555}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4429367274750314731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7009707299725281550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!1001 &5827997434456718019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1987,8 +3307,148 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 114768268140513028, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4244336350591897596}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5758073287574861620, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6494838193202766030}
+    - targetCorrespondingSourceObject: {fileID: 5367428131265490021, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1788360217373528659}
+    - targetCorrespondingSourceObject: {fileID: 2304646510483606938, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3922692779281844636}
+    - targetCorrespondingSourceObject: {fileID: 5432106525667995150, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4328421116930033161}
+    - targetCorrespondingSourceObject: {fileID: 4914305696162979019, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2238171421204461080}
+    - targetCorrespondingSourceObject: {fileID: 7741728261104383036, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3085704980878864713}
+    - targetCorrespondingSourceObject: {fileID: 9050126351230075825, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3581621667838356406}
   m_SourcePrefab: {fileID: 100100000, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
+--- !u!1 &1173512538952678112 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4914305696162979019, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
+  m_PrefabInstance: {fileID: 6087241143941375531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2238171421204461080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173512538952678112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &1986915043091157279 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5758073287574861620, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
+  m_PrefabInstance: {fileID: 6087241143941375531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6494838193202766030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986915043091157279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &2163652941699877454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5367428131265490021, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
+  m_PrefabInstance: {fileID: 6087241143941375531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1788360217373528659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2163652941699877454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &2240683250131470373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5432106525667995150, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
+  m_PrefabInstance: {fileID: 6087241143941375531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4328421116930033161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2240683250131470373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &3018177449050252698 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9050126351230075825, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
+  m_PrefabInstance: {fileID: 6087241143941375531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3581621667838356406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3018177449050252698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &4542475367494849047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7741728261104383036, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
+  m_PrefabInstance: {fileID: 6087241143941375531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3085704980878864713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4542475367494849047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &5440777554283506609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2304646510483606938, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
+  m_PrefabInstance: {fileID: 6087241143941375531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3922692779281844636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5440777554283506609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!4 &6191750954703135023 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 114768268140513028, guid: e71d3115c1794f34ea449ce1a3c58305, type: 3}
@@ -2332,13 +3792,153 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4844348849976594948, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1904946474928088705}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8166665150710892106, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7147000459273431396}
+    - targetCorrespondingSourceObject: {fileID: 5653390228061078870, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1346571144503965130}
+    - targetCorrespondingSourceObject: {fileID: 3800746688140127957, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6250640103987851124}
+    - targetCorrespondingSourceObject: {fileID: 8285447747930648878, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4943162856508068945}
+    - targetCorrespondingSourceObject: {fileID: 3007432218387510518, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3633301750203709319}
+    - targetCorrespondingSourceObject: {fileID: 4785756747147200780, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2270100018682642253}
+    - targetCorrespondingSourceObject: {fileID: 2161309132180421220, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5779519262230032875}
   m_SourcePrefab: {fileID: 100100000, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
+--- !u!1 &1773277762121606246 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8285447747930648878, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
+  m_PrefabInstance: {fileID: 7665162225407808840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4943162856508068945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773277762121606246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &1960740124279149314 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8166665150710892106, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
+  m_PrefabInstance: {fileID: 7665162225407808840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7147000459273431396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960740124279149314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &2599914107214893086 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5653390228061078870, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
+  m_PrefabInstance: {fileID: 7665162225407808840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1346571144503965130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2599914107214893086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &2885202114568494148 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4785756747147200780, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
+  m_PrefabInstance: {fileID: 7665162225407808840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2270100018682642253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2885202114568494148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!4 &2979894156421334860 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4844348849976594948, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
   m_PrefabInstance: {fileID: 7665162225407808840}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4889972160164110782 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3007432218387510518, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
+  m_PrefabInstance: {fileID: 7665162225407808840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3633301750203709319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4889972160164110782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &6836137230117469085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3800746688140127957, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
+  m_PrefabInstance: {fileID: 7665162225407808840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6250640103987851124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6836137230117469085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &8619506347102646060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2161309132180421220, guid: e21398bb853290745b6c45a1ee58003a, type: 3}
+  m_PrefabInstance: {fileID: 7665162225407808840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5779519262230032875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8619506347102646060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!1001 &8472660836310490191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2397,8 +3997,28 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2983430299192132447, guid: 7b68860f2464e2949b51146db59a677d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4809877717949408778}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5547955012830876661, guid: 7b68860f2464e2949b51146db59a677d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3299117576396039166}
   m_SourcePrefab: {fileID: 100100000, guid: 7b68860f2464e2949b51146db59a677d, type: 3}
+--- !u!1 &4137325449389232058 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5547955012830876661, guid: 7b68860f2464e2949b51146db59a677d, type: 3}
+  m_PrefabInstance: {fileID: 8472660836310490191}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3299117576396039166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4137325449389232058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!4 &6697897384377753360 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2983430299192132447, guid: 7b68860f2464e2949b51146db59a677d, type: 3}
@@ -2462,13 +4082,173 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1647010777867742423, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5260072908015155616}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6274534526649180815, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1559353183278476698}
+    - targetCorrespondingSourceObject: {fileID: 330861120582313786, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2354308206334143058}
+    - targetCorrespondingSourceObject: {fileID: 7676383495110529308, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 38267586730972509}
+    - targetCorrespondingSourceObject: {fileID: 9144673716612588437, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1736562257787055239}
+    - targetCorrespondingSourceObject: {fileID: 2035056721325862180, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 479326866235325578}
+    - targetCorrespondingSourceObject: {fileID: 6565147427968304175, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2097849959549539100}
+    - targetCorrespondingSourceObject: {fileID: 3410936494225362848, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7987818778802612774}
+    - targetCorrespondingSourceObject: {fileID: 1502199031697048278, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6749336951478649576}
   m_SourcePrefab: {fileID: 100100000, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+--- !u!1 &639562777460888532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9144673716612588437, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+  m_PrefabInstance: {fileID: 8505125679549198401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1736562257787055239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639562777460888532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &2058066553310093661 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7676383495110529308, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+  m_PrefabInstance: {fileID: 8505125679549198401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &38267586730972509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058066553310093661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &2385739391622189774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6274534526649180815, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+  m_PrefabInstance: {fileID: 8505125679549198401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1559353183278476698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2385739391622189774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &3248309686185489518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6565147427968304175, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+  m_PrefabInstance: {fileID: 8505125679549198401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2097849959549539100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3248309686185489518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &6439674768310222817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3410936494225362848, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+  m_PrefabInstance: {fileID: 8505125679549198401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7987818778802612774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6439674768310222817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!4 &6976952330455276694 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1647010777867742423, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
   m_PrefabInstance: {fileID: 8505125679549198401}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7120372091553591959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1502199031697048278, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+  m_PrefabInstance: {fileID: 8505125679549198401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6749336951478649576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7120372091553591959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &7653234179835108709 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2035056721325862180, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+  m_PrefabInstance: {fileID: 8505125679549198401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &479326866235325578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7653234179835108709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &8259376119042463611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 330861120582313786, guid: 8a45bcec464f62944afbc41f919064c2, type: 3}
+  m_PrefabInstance: {fileID: 8505125679549198401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2354308206334143058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8259376119042463611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!1001 &8644006552743756778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2527,13 +4307,153 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1617508887898174463, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1321410126497633253}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 663092387448675285, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4807229968425467107}
+    - targetCorrespondingSourceObject: {fileID: 7755734100352813865, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5372403648227069172}
+    - targetCorrespondingSourceObject: {fileID: 6296863194008155111, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1542070863900525740}
+    - targetCorrespondingSourceObject: {fileID: 4371309879439582207, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8291287473341960573}
+    - targetCorrespondingSourceObject: {fileID: 3989870119768961200, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 197042299396119602}
+    - targetCorrespondingSourceObject: {fileID: 5886800822799584802, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1354591972053597029}
+    - targetCorrespondingSourceObject: {fileID: 2737376032240317494, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6863546663347501637}
   m_SourcePrefab: {fileID: 100100000, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
+--- !u!1 &2041337053078685891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7755734100352813865, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
+  m_PrefabInstance: {fileID: 8644006552743756778}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5372403648227069172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041337053078685891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &2348448668621123597 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6296863194008155111, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
+  m_PrefabInstance: {fileID: 8644006552743756778}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1542070863900525740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2348448668621123597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &2758366818585447880 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5886800822799584802, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
+  m_PrefabInstance: {fileID: 8644006552743756778}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1354591972053597029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2758366818585447880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &4659945325257487194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3989870119768961200, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
+  m_PrefabInstance: {fileID: 8644006552743756778}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &197042299396119602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4659945325257487194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &5431249915761532949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4371309879439582207, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
+  m_PrefabInstance: {fileID: 8644006552743756778}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8291287473341960573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5431249915761532949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
+--- !u!1 &5911171147112314844 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2737376032240317494, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
+  m_PrefabInstance: {fileID: 8644006552743756778}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6863546663347501637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5911171147112314844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!4 &7027627430760542229 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1617508887898174463, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
   m_PrefabInstance: {fileID: 8644006552743756778}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9135104524138321983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 663092387448675285, guid: 9c0a76dc59823424180318f11eeed174, type: 3}
+  m_PrefabInstance: {fileID: 8644006552743756778}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4807229968425467107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9135104524138321983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::CollisionDamager
 --- !u!1001 &9034226491721098312
 PrefabInstance:
   m_ObjectHideFlags: 0
