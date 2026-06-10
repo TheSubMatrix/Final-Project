@@ -3598,7 +3598,7 @@ PrefabInstance:
     - target: {fileID: 3436595338835689683, guid: 04ba7d3379c622f4d84369a0030280c3, type: 3}
       propertyPath: stats
       value: 
-      objectReference: {fileID: 1835623809}
+      objectReference: {fileID: 0}
     - target: {fileID: 3436595338835689683, guid: 04ba7d3379c622f4d84369a0030280c3, type: 3}
       propertyPath: hungerStatToModify
       value: 
@@ -3691,52 +3691,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2012729435}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!1 &1835623808
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1835623810}
-  - component: {fileID: 1835623809}
-  m_Layer: 0
-  m_Name: STATS
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1835623809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1835623808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1007cccdcb598e64dbe9e9adfe889ce0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OhShip.Core.Status::Stats
-  hungerStat: {fileID: 11400000, guid: 0b06704c34e3c0d4db2b5e73d2fe0837, type: 2}
-  thirstStat: {fileID: 11400000, guid: 36b8ea26a78295d4581d6e98ea864b90, type: 2}
---- !u!4 &1835623810
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1835623808}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.50965, y: 3.21186, z: -20.59248}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1843489239 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3957782524123411102, guid: a157b0e77816f4b3d9b422f3d6f8c55a, type: 3}
@@ -4439,7 +4393,6 @@ SceneRoots:
   - {fileID: 5447446474344813716}
   - {fileID: 316152876746161919}
   - {fileID: 814305517399181944}
-  - {fileID: 1835623810}
   - {fileID: 7919203004348812857}
   - {fileID: 252533541}
   - {fileID: 1058698509}
