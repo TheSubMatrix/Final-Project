@@ -1131,7 +1131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01eef7a931e5e2c478db2b203d1750cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Ship::HelmInteractable
-  _widgetForPrompt: interact
+  m_widgetForPrompt: interact
   m_helmControlActionMap: Helm
   m_helmCamera: {fileID: 709593152}
   m_helmThrottleSpeed: 0.5
@@ -1612,6 +1612,18 @@ PrefabInstance:
       propertyPath: m_outPosition
       value: 
       objectReference: {fileID: 1981515670}
+    - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_buoyancyPoints.Array.data[4].LocalPosition.x
+      value: 3.5004396
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_buoyancyPoints.Array.data[4].LocalPosition.y
+      value: -0.79979986
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_buoyancyPoints.Array.data[4].LocalPosition.z
+      value: -10.000178
+      objectReference: {fileID: 0}
     - target: {fileID: 7196852406926485525, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_Name
       value: 'Ship '
@@ -1683,7 +1695,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7542275446007984815, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       insertIndex: -1
       addedObject: {fileID: 787566209}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8545757794186054356, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1920507449}
   m_SourcePrefab: {fileID: 100100000, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
 --- !u!4 &1920507446 stripped
 Transform:
@@ -1701,6 +1716,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c20ee1b8bce6c4e923477e56cddfeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Ship::ShipMovement
+--- !u!1 &1920507448 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8545757794186054356, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+  m_PrefabInstance: {fileID: 1920507445}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1920507449
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920507448}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7fbb353175c6640a5894c7bf9b7a67b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1951877584
 GameObject:
   m_ObjectHideFlags: 0
