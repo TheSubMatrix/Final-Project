@@ -147,7 +147,7 @@ public class CookFish : MonoBehaviour, IInteractable
     private void Eat()
     {
         Debug.Log("eat");
-        Func<float, float> Add = (x) => x + 5;
+        Func<float, float> Add = (x) => x + 10f;
         modifier = new SimpleStatModifier(Add, hungerStatToModify);
         stats.broker.AddModifier(modifier);
         Debug.Log(modifier);

@@ -1,4 +1,18 @@
 {
-	"name": "OhShip.Core.Status",
-	"references":[ "MatrixUtils.GenericDatatypes", "OhShip.Core" ]
+    "name": "OhShip.Core.Status",
+    "rootNamespace": "",
+    "references": [
+        "MatrixUtils.GenericDatatypes",
+        "OhShip.Core",
+        "OhShip.Core.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
