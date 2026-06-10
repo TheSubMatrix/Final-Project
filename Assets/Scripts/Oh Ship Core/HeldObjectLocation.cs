@@ -4,7 +4,13 @@ public class HeldObjectLocation: MonoBehaviour
 {
     public bool hasSomethingInHand => transform.childCount > 0;
 
-
+    public void DestroyObjectsInHand()
+    {
+        foreach(Transform child in transform)
+            {
+            Destroy(child.gameObject);
+            }
+    }
 
 
 
@@ -18,7 +24,7 @@ public class HeldObjectLocation: MonoBehaviour
   ヽ＿＿＿＞､＿＿／
     ｜( 王 ﾉ〈
     /ﾐ`ー―彡\
- |  ╰    ╯  |
+ | ╰    ╯  |
  |     /\   |
  |    /  \  |
  |  /    \ |                  */
