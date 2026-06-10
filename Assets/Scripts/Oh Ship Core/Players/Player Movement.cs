@@ -10,9 +10,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField, Range(0f, 90f)] float maxGroundAngle = 25f;
     float minGroundDotProduct;
-    bool onGround;
     int stepsSinceLastGrounded;
-    bool OnGround => groundContactCount > 0;
+    bool onGround => groundContactCount > 0;
 
     Rigidbody connectedBody, pastConnectedBody;
     int groundContactCount;
@@ -92,7 +91,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 groundContactCount++;
                 contactNormal += normal;
-                groundContactCount += 1;
                 if (!connectedBody)
                 {
                     connectedBody = collision.rigidbody;
@@ -100,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (groundContactCount > 1)
+        if (groundContactCount > 0)
         {
             contactNormal.Normalize();
         }
@@ -109,9 +107,9 @@ public class PlayerMovement : MonoBehaviour
     void ClearState()
     {
         groundContactCount = 0;
-        contactNormal = connectionVelocity = Vector3.zero;
         pastConnectedBody = connectedBody;
         connectedBody = null;
+        connectionVelocity = Vector3.zero;
     }
 
     void UpdateState()
@@ -160,15 +158,22 @@ public class PlayerMovement : MonoBehaviour
 
     void AdjustVelocityAndRotation()
     {
-        if(connectedBody)
+
+        if (onGround)
         {
-            Vector3 xAxis = ProjectOnContactPlane(Vector3.right).normalized;
-            Vector3 zAxis = ProjectOnContactPlane(Vector3.forward).normalized;
+            velocity = Vector3.ProjectOnPlane(m_rigidbody.linearVelocity, contactNormal);
+            m_rigidbody.linearVelocity = velocity;
+        }
+
+        if (connectedBody)
+        {
+            Vector3 xAxis = ProjectOnContactPlane(m_lookYaw * Vector3.right).normalized;
+            Vector3 zAxis = ProjectOnContactPlane(m_lookYaw * Vector3.forward).normalized;
 
             float connectionVelocityX = Vector3.Dot(m_lookYaw * Vector3.forward, connectionVelocity);
             float connectionVelocityZ = Vector3.Dot(m_lookYaw * Vector3.right, connectionVelocity);
-            float currentX = Vector3.Dot(m_lookYaw * Vector3.forward, xAxis);
-            float currentZ = Vector3.Dot(m_lookYaw * Vector3.right, zAxis);
+            float currentX = Vector3.Dot(velocity - connectionVelocity, xAxis);
+            float currentZ = Vector3.Dot(velocity - connectionVelocity, zAxis);
 
 
             float yawDelta = Mathf.DeltaAngle(pastPlatformYaw, platformYaw);
@@ -186,8 +191,15 @@ public class PlayerMovement : MonoBehaviour
             float sidewaysVelocity = currentZ - connectionVelocityZ;
             float newForward = Mathf.MoveTowards(forwardVelocity, m_desiredMovement.y, GetRate(forwardVelocity, m_desiredMovement.y)) + connectionVelocityX;
             float newSideways = Mathf.MoveTowards(sidewaysVelocity, m_desiredMovement.x, GetRate(sidewaysVelocity, m_desiredMovement.x)) + connectionVelocityZ;
+
+
             Vector3 worldVelocity = m_lookYaw * new Vector3(newSideways, 0, newForward);
             m_rigidbody.linearVelocity = new(worldVelocity.x, m_rigidbody.linearVelocity.y, worldVelocity.z);
+
+            if (onGround)
+            {
+                m_rigidbody.linearVelocity = Vector3.ProjectOnPlane(m_rigidbody.linearVelocity, contactNormal);
+            }
         }
 
     }
@@ -216,11 +228,11 @@ public class PlayerMovement : MonoBehaviour
         
         groundContactCount = 1;
         contactNormal = hit.normal;
-        float dot = Vector3.Dot(velocity, hit.normal);
-        if (dot > 0f)
+        float dot = Vector3.Dot(m_rigidbody.linearVelocity, hit.normal);
+        if (dot < 0f)
         {
-            velocity = velocity - hit.normal * dot;
-            m_rigidbody.linearVelocity = velocity;
+            Vector3 correction = hit.normal * dot;
+            m_rigidbody.linearVelocity -= correction;
         }
         return true;
         

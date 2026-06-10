@@ -1,8 +1,9 @@
 ﻿using System;
 using MatrixUtils.Timers;
 using UnityEngine;
-public class ShipHole : MonoBehaviour, IInteractable
+public class ShipHole : MonoBehaviour, IInteractable, IPromptProvider
 {
+    [SerializeField] private string _widgetForPrompt = "interact";
     Action m_onRepairComplete;
     [SerializeField] float m_repairTime;
     CountdownTimer m_repairTimer;
@@ -43,5 +44,15 @@ public class ShipHole : MonoBehaviour, IInteractable
             return;
         }
         m_repairTimer.Pause();
+    }
+
+    public PromptData GetPromptData()
+    {
+        return new PromptData{AssociatedWidget =  _widgetForPrompt};
+    }
+
+    public Vector3 GetWidgetWorldPosition()
+    {
+        return transform.position;
     }
 }
