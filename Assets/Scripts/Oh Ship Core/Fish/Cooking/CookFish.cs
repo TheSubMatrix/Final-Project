@@ -14,12 +14,8 @@ public class CookFish : MonoBehaviour, IInteractable
 
 
     [SerializeField] HungerAndThirst stats;
-    [SerializeField] SimpleStatModifier modifier;
-    [SerializeField] StatData hungerStatToModify;
-
     InteractionSession m_currentInteractionSession;
-
-    StatBroker mediator;
+    HungerAndThirst hungerAndThirst;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -125,6 +121,7 @@ public class CookFish : MonoBehaviour, IInteractable
     {
         if (interactor.IsInteracting() || m_currentInteractionSession is { IsActive: true }) return null;
 
+        hungerAndThirst = interactor.GetAssociatedGameObject().transform.root.GetComponentInChildren<HungerAndThirst>();
         Debug.Log("Begin interaction");
         if (isBurnt)
         {
@@ -147,12 +144,8 @@ public class CookFish : MonoBehaviour, IInteractable
     private void Eat()
     {
         Debug.Log("eat");
-        Func<float, float> Add = (x) => x + 10f;
-        modifier = new SimpleStatModifier(Add, hungerStatToModify);
-        stats.broker.AddModifier(modifier);
-        Debug.Log(modifier);
+        hungerAndThirst.Hunger.Value += 0.2f;
         EndCooking();
-        
     
         Debug.Log("Fish Eaten");
     }
