@@ -13,7 +13,6 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ADDITIONAL_LIGHT_SHADOWS
-  - _CLUSTER_LIGHT_LOOP
   - _MAIN_LIGHT_SHADOWS
   - _MAIN_LIGHT_SHADOWS_CASCADE
   - _SHADOWS_SOFT
@@ -114,7 +113,7 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
-    - _CLUSTER_LIGHT_LOOP: 1
+    - _CLUSTER_LIGHT_LOOP: 0
     - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -139,6 +138,7 @@ Material:
     - _Posterization_Sharpness: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _REFLECTION_PROBE_ATLAS: 0
     - _ReceiveShadows: 1
     - _Rim_Light: 0
     - _SHADOWS_SOFT: 1

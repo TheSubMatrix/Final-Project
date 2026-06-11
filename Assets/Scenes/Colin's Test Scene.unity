@@ -1354,6 +1354,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -36.649, y: 0, z: 0}
+--- !u!4 &1488679393 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 458687639193111246, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+  m_PrefabInstance: {fileID: 64166526}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1516143894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,6 +1898,10 @@ PrefabInstance:
       propertyPath: m_steamPressureSystem
       value: 
       objectReference: {fileID: 234644764}
+    - target: {fileID: 6606207833672605985, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
+      propertyPath: m_outPosition
+      value: 
+      objectReference: {fileID: 1488679393}
     - target: {fileID: 8046818099032151866, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
       propertyPath: m_Center.z
       value: -0.41

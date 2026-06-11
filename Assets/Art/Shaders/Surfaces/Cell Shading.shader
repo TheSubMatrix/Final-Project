@@ -114,7 +114,6 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
 #pragma multi_compile_local _ _SHADOWS_SOFT
-#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
@@ -2076,7 +2075,6 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
 #pragma multi_compile_local _ _SHADOWS_SOFT
-#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
@@ -2418,7 +2416,6 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
 #pragma multi_compile_local _ _SHADOWS_SOFT
-#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
@@ -2762,7 +2759,6 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
 #pragma multi_compile_local _ _SHADOWS_SOFT
-#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
@@ -3111,7 +3107,6 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
 #pragma multi_compile_local _ _SHADOWS_SOFT
-#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
@@ -3468,7 +3463,6 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
 #pragma multi_compile_local _ _SHADOWS_SOFT
-#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
@@ -5446,7 +5440,6 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
 #pragma multi_compile_local _ _SHADOWS_SOFT
-#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
@@ -5786,7 +5779,6 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_CASCADE
 #pragma multi_compile_local _ _MAIN_LIGHT_SHADOWS_SCREEN
 #pragma multi_compile_local _ _SHADOWS_SOFT
-#pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
 
 
 
