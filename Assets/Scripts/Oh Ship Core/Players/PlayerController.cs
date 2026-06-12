@@ -44,10 +44,8 @@ public class PlayerController : MonoBehaviour, IPlayerController
     void Start()
     {
         m_playerInput.uiInputModule = FindFirstObjectByType<InputSystemUIInputModule>();
+        DontDestroyOnLoad(gameObject);
     }
 
-    public GameObject GetAssociatedGameObject()
-    {
-        return gameObject;
-    }
+    public GameObject GetAssociatedGameObject() => gameObject;
 }

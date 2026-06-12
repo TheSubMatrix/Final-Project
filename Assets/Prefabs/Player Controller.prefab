@@ -462,7 +462,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -1442,6 +1442,7 @@ GameObject:
   - component: {fileID: 8736593093941987598}
   - component: {fileID: 4035068529157208647}
   - component: {fileID: 6458058972835549999}
+  - component: {fileID: 5954883951056569811}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Player
@@ -1594,7 +1595,7 @@ MonoBehaviour:
     m_ActionName: 'Shovel Coal/Down[/Keyboard/s]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 4627006073778995294}
 --- !u!114 &6458058972835549999
@@ -1612,6 +1613,19 @@ MonoBehaviour:
   m_playerInput: {fileID: 4035068529157208647}
   m_defaultControllable:
     m_underlyingValue: {fileID: 0}
+--- !u!114 &5954883951056569811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7018359044322210830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd2a128e1108ed40a690d779eee30f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Players::PlayerControllerDataStore
+  CharacterSelection: 
 --- !u!1 &7198155490071200253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1777,7 +1791,7 @@ MonoBehaviour:
   m_ScrollWheelAction: {fileID: -3456651082645493620, guid: 0f2aaf25f341e1843bac8e2259f7d29a, type: 3}
   m_TrackedDevicePositionAction: {fileID: 9001410169960888870, guid: 0f2aaf25f341e1843bac8e2259f7d29a, type: 3}
   m_TrackedDeviceOrientationAction: {fileID: -2077494494857644997, guid: 0f2aaf25f341e1843bac8e2259f7d29a, type: 3}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
   m_ScrollDeltaPerTick: 6

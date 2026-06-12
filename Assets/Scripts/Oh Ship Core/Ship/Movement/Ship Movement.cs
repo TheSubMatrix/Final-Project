@@ -15,11 +15,8 @@ public class ShipMovement : MonoBehaviour
     
     [SerializeField] private float m_rudderTurnMultiplier = 10;
     public void SetRudder(float rudder) => Rudder.Value = Mathf.Clamp(rudder, -1 , 1);
-    public void SetThrottle(float throttle)
-    {
-        Throttle.Value = Mathf.Clamp(throttle, -1, 1);
-    }
-    
+    public void SetThrottle(float throttle) => Throttle.Value = Mathf.Clamp(throttle, -1, 1);
+
     private SteamPressureSystem m_steamPressureSystem;
     private float m_steamPressure;
 
@@ -38,6 +35,7 @@ public class ShipMovement : MonoBehaviour
     {
         if (!m_steamPressureSystem)
         {
+            // :-(
             Debug.LogWarning("No SteamPressureSystem found on ship!");
             m_steamPressure = 1;
         }
