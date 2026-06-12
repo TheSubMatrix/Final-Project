@@ -8,7 +8,7 @@ public class PlayerLookRaycaster : MonoBehaviour
     IPromptDisplay m_highlighted;
     IPromptProvider m_currentProvider;
     
-    void Update()
+    void FixedUpdate()
     {
         IPromptProvider provider = null;
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, m_promptRange, m_layersToCheck)) hit.collider.TryGetComponent(out provider);

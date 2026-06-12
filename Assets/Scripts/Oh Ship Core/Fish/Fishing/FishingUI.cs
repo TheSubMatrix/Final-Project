@@ -27,7 +27,7 @@ public class FishingUI : MonoBehaviour
 
     public void HideFishingUI()
     {
-        Debug.Log("HideFishingUI");
+       // Debug.Log("HideFishingUI");
         fishingUI.SetActive(false);
     }
 }

@@ -30,7 +30,7 @@ public class PoliceBoatManager : MonoBehaviour
         if (other.CompareTag(_playerTag))
         {
             Debug.Log("Hit the player");
-            _transitionEvent.Invoke();
+            _transitionEvent?.Invoke();
         }
     }
 }
