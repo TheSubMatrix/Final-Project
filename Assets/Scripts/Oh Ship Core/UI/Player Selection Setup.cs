@@ -6,8 +6,9 @@ public class PlayerSelectionSetup : MonoBehaviour
 {
     [Inject] IPlayerSelectionHandler m_playerSelectionHandler;
     [SerializeField] PlayerSelectionCard m_playerSelectionCardPrefab;
+    [SerializeField] private Transform m_selectionMovementZoneLocation;
     public void SetupCardSelection(PlayerInput playerInput)
     {
-        PlayerSelectionCard card = Instantiate(m_playerSelectionCardPrefab, transform);
+        PlayerSelectionCard card = Instantiate(m_playerSelectionCardPrefab, m_selectionMovementZoneLocation);
     }
 }

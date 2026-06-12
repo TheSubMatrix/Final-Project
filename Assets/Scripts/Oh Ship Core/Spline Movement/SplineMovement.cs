@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.Splines;
 
-public class SplineMovement
+public abstract partial class SplineMovement
 {
     private Spline _spline;
-    private float _speed;
-    
+    [SerializeField] private  float _speed;
+    private float _underBellyProgress;
+
+
+    //private partial void MoveAlongSpline();
+
 }
