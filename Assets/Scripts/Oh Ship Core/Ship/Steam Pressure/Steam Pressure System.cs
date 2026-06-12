@@ -7,30 +7,30 @@ public class SteamPressureSystem : MonoBehaviour
 {
     public float SteamPressure
     {
-        get => _steamPressure;
-        private set => _steamPressure = Mathf.Clamp(value, 0, 1);
+        get => m_steamPressure;
+        private set => m_steamPressure = Mathf.Clamp(value, 0, 1);
     }
+
+    float m_steamPressure = 1;
     
-    private float _steamPressure = 1;
-    
-    [SerializeField] private float rateOfPressureLoss = 0.5f;
+    [SerializeField] float m_rateOfPressureLoss = 0.5f;
 
 
     private void Update()
     {
-        SteamPressure -= rateOfPressureLoss * Time.deltaTime;
+        SteamPressure -= m_rateOfPressureLoss * Time.deltaTime;
        
     }
 
     public void DecreaseSteamPressure(float amount)
     {
         SteamPressure -= amount;
-        Debug.Log(_steamPressure);
+        Debug.Log(m_steamPressure);
     }
     
     public void IncreaseSteamPressure(float amount)
     {
         SteamPressure += amount;
-        Debug.Log(_steamPressure);
+        Debug.Log(m_steamPressure);
     }
 }
