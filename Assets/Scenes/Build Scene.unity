@@ -1132,6 +1132,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1738034009877250915, guid: 3b862cea1c9680f4bb7f3a72389c007b, type: 3}
   m_PrefabInstance: {fileID: 1222262702}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1279128174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1279128175}
+  m_Layer: 0
+  m_Name: Widget Position Display
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1279128175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279128174}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.054, y: -0.194, z: -0.0369}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8555958230085264158}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1302088947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1658,7 +1689,7 @@ PrefabInstance:
       objectReference: {fileID: 691929295}
     - target: {fileID: 224249087986601852, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000018262972
+      value: 0.00000065946415
       objectReference: {fileID: 0}
     - target: {fileID: 224249087986601852, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1666,7 +1697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224249087986601852, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.077999
+      value: 7.078003
       objectReference: {fileID: 0}
     - target: {fileID: 224249087986601852, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1766,7 +1797,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b1aa66268261d4a47b9f014ea729e4f1, type: 2}
     - target: {fileID: 4550476056004219639, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000018262972
+      value: 0.00000065946415
       objectReference: {fileID: 0}
     - target: {fileID: 4550476056004219639, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1774,7 +1805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4550476056004219639, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.077999
+      value: 7.078003
       objectReference: {fileID: 0}
     - target: {fileID: 4550476056004219639, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1794,7 +1825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5364675004547868672, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000018262972
+      value: 0.00000065946415
       objectReference: {fileID: 0}
     - target: {fileID: 5364675004547868672, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1802,7 +1833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5364675004547868672, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.077999
+      value: 7.078003
       objectReference: {fileID: 0}
     - target: {fileID: 5364675004547868672, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4354,10 +4385,11 @@ Transform:
   m_GameObject: {fileID: 160476669220698539}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000007259495, y: -0.00000035018232, z: 0.20299022, w: 0.9791808}
-  m_LocalPosition: {x: -3.5358176, y: 3.3579998, z: -8.274123}
+  m_LocalPosition: {x: -3.4, y: 3.3579998, z: -7.842}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1279128175}
   m_Father: {fileID: 1603220460}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 23.424}
 --- !u!114 &8555958230085264159
@@ -4374,12 +4406,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: OhShip.Core.Fish::FishingManager
   _widgetForPrompt: interact
   _fishingControlActionMap: Fishing
+  m_widgetPosition: {fileID: 1279128175}
   _speedOfFishIcon: 10
   _progressSpeed: 0.5
   usableFishesToCatch:
   - {fileID: 276882282827626246, guid: 49e661ea9653096489ad007683b1ff73, type: 3}
---- !u!64 &8555958230085264160
-MeshCollider:
+--- !u!65 &8555958230085264160
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4396,10 +4429,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7206472575975855354, guid: 58a7f11a6508e734fb0afe95f49cee5a, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.252127, y: 1.5336968, z: 0.33868393}
+  m_Center: {x: -0.04345748, y: 0.0000000028686393, z: 0.0005013646}
 --- !u!1 &8977507401496505381
 GameObject:
   m_ObjectHideFlags: 0

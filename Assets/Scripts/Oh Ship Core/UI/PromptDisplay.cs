@@ -46,8 +46,8 @@ public class PromptDisplay : MonoBehaviour, IPromptDisplay
             Vector3 screenPos = m_connectedCamera.WorldToScreenPoint(worldPos);
             RectTransformUtility.ScreenPointToLocalPointInRectangle(m_promptContainer, screenPos, m_connectedCamera, out Vector2 localPoint);
             prompt.Value.Prompt.anchoredPosition = localPoint;
-            float distance = Vector3.Distance(m_connectedCamera.transform.position, worldPos);
-            prompt.Value.Prompt.localScale = Vector3.one * (m_referenceDistance / distance);
+         //   float distance = Vector3.Distance(m_connectedCamera.transform.position, worldPos);
+          //  prompt.Value.Prompt.localScale = Vector3.one * (m_referenceDistance / distance);
         }
     }
 
@@ -62,8 +62,8 @@ public class PromptDisplay : MonoBehaviour, IPromptDisplay
         Vector3 screenPos = m_connectedCamera.WorldToScreenPoint(worldPos);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(m_promptContainer, screenPos, m_connectedCamera, out Vector2 localPoint);
         info.Prompt.anchoredPosition = localPoint;
-        float distance = Vector3.Distance(m_connectedCamera.transform.position, worldPos);
-        info.Prompt.localScale = Vector3.one * (m_referenceDistance / distance);
+       // float distance = Vector3.Distance(m_connectedCamera.transform.position, worldPos);
+        //info.Prompt.localScale = Vector3.one * (m_referenceDistance / distance);
         m_activePrompts.Add(prompt, info);
     }
 
@@ -71,6 +71,7 @@ public class PromptDisplay : MonoBehaviour, IPromptDisplay
     {
         if (prompt is null) return;
         if (!m_activePrompts.Remove(prompt, out PromptInfo info)) return;
+        Debug.Log("Hide Prompt");
         if (m_pools.TryGetValue(info.Widget, out ObjectPool<PromptInfo> pool)) pool.Release(info);
     }
 

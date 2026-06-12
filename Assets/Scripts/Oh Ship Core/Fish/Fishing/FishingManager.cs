@@ -10,7 +10,8 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
 {
     [SerializeField] private string _widgetForPrompt = "interact";
     [SerializeField] private string _fishingControlActionMap = "Fishing";
-    
+    [SerializeField] Transform m_widgetPosition;
+
     [SerializeField] private float _speedOfFishIcon;
     
     [Range(0f, 1f)]
@@ -167,6 +168,6 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
 
     public Vector3 GetWidgetWorldPosition()
     {
-        return transform.position;
+        return m_widgetPosition.position;
     }
 }
