@@ -27,7 +27,7 @@ public class SteamPressureValveInteractable : MonoBehaviour, IInteractable, IPla
     public void OnControlRequested(IPlayerController player)
     {
         m_activePlayerController = player;
-        if (!player.ChangeInputActionMap(m_pressureControlActionMap, out InputActionMap map))
+        if (!player.TryChangeInputActionMap(m_pressureControlActionMap, out InputActionMap map))
         {
             Debug.LogError("Failed to assign input actions to player, reverting control to default.");
             player.ChangeControlledEntity(null);
@@ -45,7 +45,7 @@ public class SteamPressureValveInteractable : MonoBehaviour, IInteractable, IPla
     {
         Debug.Log("OnControlReleased");
         if (m_activePlayerController == null) throw new("Player controller is null, cannot release control.");
-        if (!m_activePlayerController.GetCurrentInputActionMap(out InputActionMap map)) throw new("Player controller is not null, but input action map is null...");
+        if (!m_activePlayerController.TryGetCurrentInputActionMap(out InputActionMap map)) throw new("Player controller is not null, but input action map is null...");
         InputAction increasePressureAction = map.FindAction("Increase Pressure");
         increasePressureAction.performed -= HandleIncreasePressure;
         InputAction decreasePressureAction = map.FindAction("Decrease Pressure");

@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
         m_currentControlledEntity.OnControlRequested(this);
     }
     /// <inheritdoc/>
-    public bool ChangeInputActionMap(string actions, out InputActionMap newMap)
+    public bool TryChangeInputActionMap(string actions, out InputActionMap newMap)
     {
         newMap = null;
         if (actions is null) return false;
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
         return true;
     }
     /// <inheritdoc/>
-    public bool GetCurrentInputActionMap(out InputActionMap currentMap)
+    public bool TryGetCurrentInputActionMap(out InputActionMap currentMap)
     {
         currentMap = m_playerInput.currentActionMap;
         return currentMap != null;
@@ -48,4 +48,11 @@ public class PlayerController : MonoBehaviour, IPlayerController
     }
 
     public GameObject GetAssociatedGameObject() => gameObject;
+    public bool TryGetPlayerIndex(out int playerIndex)
+    {
+        playerIndex = -1;
+        if (m_playerInput == null) return false;
+        playerIndex = m_playerInput.playerIndex;
+        return true;
+    }
 }

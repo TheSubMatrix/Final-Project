@@ -53,7 +53,7 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
     {
         m_activePlayerController = player;
         
-        if (!player.ChangeInputActionMap(m_coalMiniGameActionMap, out InputActionMap map))
+        if (!player.TryChangeInputActionMap(m_coalMiniGameActionMap, out InputActionMap map))
         {
             Debug.LogError("Failed to assign input actions to player, reverting control to default.");
             player.ChangeControlledEntity(null);
@@ -110,7 +110,7 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
     public void OnControlReleased()
     {
         if (m_activePlayerController == null) throw new("Player controller is null, cannot release control.");
-        if (!m_activePlayerController.GetCurrentInputActionMap(out InputActionMap map)) throw new("Player controller is not null, but input action map is null...");
+        if (!m_activePlayerController.TryGetCurrentInputActionMap(out InputActionMap map)) throw new("Player controller is not null, but input action map is null...");
         
         InputAction leftButton = map.FindAction("Left");
         leftButton.performed -= QTEButtonPressed;

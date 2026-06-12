@@ -18,7 +18,7 @@ public class PlayerControlRouter : MonoBehaviour, IPlayerControllable
     void OnInteract(InputAction.CallbackContext context) => m_onInteract.Invoke();
     public void OnControlRequested(IPlayerController player)
     {
-        if (!player.ChangeInputActionMap(m_requiredInputActionMap, out InputActionMap map))
+        if (!player.TryChangeInputActionMap(m_requiredInputActionMap, out InputActionMap map))
         {
             Debug.LogError("Failed to assign input actions to player, reverting control to default.");
             player.ChangeControlledEntity(null);

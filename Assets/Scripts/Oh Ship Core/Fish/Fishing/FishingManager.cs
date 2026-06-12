@@ -111,7 +111,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
     {
         _playerController = player;
         
-        if (!_playerController.ChangeInputActionMap(_fishingControlActionMap, out InputActionMap map))
+        if (!_playerController.TryChangeInputActionMap(_fishingControlActionMap, out InputActionMap map))
         {
             Debug.LogError("Failed to assign input actions to player, reverting control to default.");
             _playerController.ChangeControlledEntity(null);
