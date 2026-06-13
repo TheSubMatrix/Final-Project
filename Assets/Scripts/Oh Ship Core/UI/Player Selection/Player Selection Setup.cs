@@ -10,5 +10,7 @@ public class PlayerSelectionSetup : MonoBehaviour
     public void SetupCardSelection(PlayerInput playerInput)
     {
         PlayerSelectionCard card = Instantiate(m_playerSelectionCardPrefab, m_selectionMovementZoneLocation);
+        if(!playerInput.gameObject.TryGetComponent<IPlayerController>(out IPlayerController component)) return;
+        component.ChangeControlledEntity(card);
     }
 }

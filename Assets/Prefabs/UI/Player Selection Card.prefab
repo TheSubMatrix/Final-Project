@@ -50,6 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3783ce7a98453c741bbd711ae59473f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.UI::PlayerSelectionCard
+  m_moveSpeed: 500
+  m_requiredInputActionMap: UI
 --- !u!222 &1647733240900660488
 CanvasRenderer:
   m_ObjectHideFlags: 0
