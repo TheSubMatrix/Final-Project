@@ -13,19 +13,16 @@ public class CharacterSelectionHandler : MonoBehaviour, IMenuHandler, IDependenc
     [Provide, UsedImplicitly] IMenuHandler Provide() => this;
     
     [Inject] ICharacterSelectionReference m_characterSelectionReference;
-
-    [SerializeField] private UnityEvent m_sceneChange;
+    
+    
     private void Start()
     {
         FindAnyObjectByType<Injector>().Inject(this);
         m_characterSelectionReference.ClearSelections();
-        Debug.Log("Cleared Character Selections");
     }
 
     public bool TryConfirmSelection(IPlayerControllable selector, IPlayerSelection target)
     {
-        Debug.Log("TryConfirmSelection called");
-
        if (target == null) return false;
         
        if(!target.TryAddSelector(selector)) return false;
@@ -38,14 +35,12 @@ public class CharacterSelectionHandler : MonoBehaviour, IMenuHandler, IDependenc
            if (c is CharacterSelection cs && cs.IsConfirmed)
            {
                confirmedCount++;
-               Debug.Log("Confirmed " + confirmedCount);
            }
               
        }
 
        if (confirmedCount == 2)
        {
-           Debug.Log("Characters confirms");
            SceneManager.LoadScene("Build Scene");
        }
 

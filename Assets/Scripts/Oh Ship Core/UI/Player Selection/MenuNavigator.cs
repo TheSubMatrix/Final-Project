@@ -60,13 +60,10 @@ public class MenuNavigator : MonoBehaviour, IPlayerControllable
 
     void OnNavigate(InputAction.CallbackContext context)
     {
-       // Debug.Log($"Current selection before navigate: {m_currentSelection}");
         if (context.ReadValue<Vector2>().magnitude < 0.5f) return;
         if (!_mMenuHandler.TryGetNextAvailableSelection(this, m_currentSelection, context.ReadValue<Vector2>(), out IPlayerSelection next)) return;
         m_currentSelection = next;
         MoveTo(next);
-        
-        //Debug.Log("Navigating to " + next.Transform.position);
     }
 
     void OnSubmit(InputAction.CallbackContext context)
