@@ -34,6 +34,7 @@ public class MenuNavigator : MonoBehaviour, IPlayerControllable
     {
         m_targetPosition = selection.Transform.localPosition;
         m_isMoving = true;
+        Debug.Log($"Button world pos: {selection.Transform.position}, Navigator parent: {m_rectTransform.parent.name}");
     }
     /// <inheritdoc/>
     public void OnControlRequested(IPlayerController player)
@@ -60,6 +61,7 @@ public class MenuNavigator : MonoBehaviour, IPlayerControllable
 
     void OnNavigate(InputAction.CallbackContext context)
     {
+        Debug.Log($"Navigate input: {context.ReadValue<Vector2>()}");
         if (context.ReadValue<Vector2>().magnitude < 0.5f) return;
         if (!_mMenuHandler.TryGetNextAvailableSelection(this, m_currentSelection, context.ReadValue<Vector2>(), out IPlayerSelection next)) return;
         m_currentSelection = next;

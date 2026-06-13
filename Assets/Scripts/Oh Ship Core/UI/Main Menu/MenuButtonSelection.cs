@@ -5,7 +5,7 @@ using UnityEngine.Events;
 [Serializable]
 public class MenuButtonSelection : IPlayerSelection
 {
-    public Transform Transform { get; }
+    [field:SerializeField] public Transform Transform { get; private set; }
     public bool AllowsMultipleSelectors { get; } = true;
     
     [SerializeField] private UnityEvent addSelector;
