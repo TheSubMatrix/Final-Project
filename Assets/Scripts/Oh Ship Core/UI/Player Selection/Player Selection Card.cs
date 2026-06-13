@@ -18,6 +18,9 @@ public class PlayerSelectionCard : MonoBehaviour, IPlayerControllable
     {
         FindAnyObjectByType<Injector>().Inject(this);
         m_rectTransform = GetComponent<RectTransform>();
+        m_currentSelection = m_playerSelectionHandler.GetDefaultSelectionZone();
+        Debug.Log($"Default selection: {m_currentSelection}");
+        Debug.Log($"Handler: {m_playerSelectionHandler}, Default: {m_playerSelectionHandler?.GetDefaultSelectionZone()}");
     }
     void Update()
     {
@@ -29,7 +32,7 @@ public class PlayerSelectionCard : MonoBehaviour, IPlayerControllable
 
     void MoveTo(IPlayerSelection selection)
     {
-        m_targetPosition = selection.Transform.position;
+        m_targetPosition = selection.Transform.localPosition;
         m_isMoving = true;
     }
     /// <inheritdoc/>
@@ -56,10 +59,13 @@ public class PlayerSelectionCard : MonoBehaviour, IPlayerControllable
 
     void OnNavigate(InputAction.CallbackContext context)
     {
+        Debug.Log($"Current selection before navigate: {m_currentSelection}");
+        if (context.ReadValue<Vector2>().magnitude < 0.5f) return;
         if (!m_playerSelectionHandler.TryGetNextAvailableSelection(this, m_currentSelection, context.ReadValue<Vector2>(), out IPlayerSelection next)) return;
         m_currentSelection = next;
         MoveTo(next);
-        Debug.Log("Navigating to " + next.Transform.position);
+        
+        //Debug.Log("Navigating to " + next.Transform.position);
     }
 
     void OnSubmit(InputAction.CallbackContext context)

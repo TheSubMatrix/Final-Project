@@ -20,6 +20,7 @@ public class PlayerSpawnManager : MonoBehaviour
             spawnRotation = spawnPoint.rotation;
         }
         GameObject player = Instantiate(m_playerControllable.UnderlyingValue.gameObject, spawnPosition, spawnRotation);
+        
         IPlayerControllable controllable = player.GetComponent<IPlayerControllable>();
         controller.ChangeControlledEntity(controllable);
         if (!m_playerOutputChannels.TryGetValue(controller, out OutputChannels channels))

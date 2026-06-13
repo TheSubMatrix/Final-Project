@@ -19,20 +19,28 @@ public class PlayerSelectionHandler : MonoBehaviour, IPlayerSelectionHandler, ID
         Vector2 direction,
         out IPlayerSelection nextSelection)
     {
+        Debug.Log($"Looking for: {currentSelection}, List contents: {string.Join(", ", m_playerSelections)}");
         nextSelection = null;
         if (m_playerSelections.Count == 0) return false;
         int currentIndex = m_playerSelections.IndexOf(currentSelection);
-        int step = direction.x > 0f || direction.y < 0f ? 1 : -1;
-        int start = currentIndex == -1 ? 0 : Mathf.Clamp(currentIndex + step, 0, m_playerSelections.Count - 1);
+        int step = direction.x > 0f ? 1 : -1;
+        Debug.Log($"Direction: {direction}, Step: {step}, CurrentIndex: {currentIndex}");
+        int start = currentIndex == -1 ? 1 : Mathf.Clamp(currentIndex + step, 0, m_playerSelections.Count - 1);
         for (int i = start; i >= 0 && i < m_playerSelections.Count; i += step)
         {
             IPlayerSelection candidate = m_playerSelections[i];
             if (candidate == currentSelection) break;
             if (!candidate.AllowsMultipleSelectors && !candidate.IsAvailableTo(selector)) continue;
             nextSelection = candidate;
+            Debug.Log($"Checking index: {i}, candidate available: {m_playerSelections[i].IsAvailableTo(selector)}");
+            Debug.Log($"Found next selection: {nextSelection}");
             return true;
         }
         return false;
     }
 
+    public IPlayerSelection GetDefaultSelectionZone()
+    {
+        return m_playerSelections[1];
+    }
 }
