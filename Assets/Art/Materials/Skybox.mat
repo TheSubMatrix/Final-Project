@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Skybox
+  m_Shader: {fileID: -6465566751694194690, guid: ec789a614d4147f4dbdf3c58c542c0dd, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _SampleTexture2D_4158c70835a64aa2bee29c51f29dcf8f_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 596766f68c33a06448035bcf547f0a49, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_4afc4944050d4fcc8560debf39d8b29a_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: b7c716e96c25a574a826c2c4bf8eb22d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_a0060afd54974fbe9936e7b07812d437_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 8bbbb43fe888e8e49992fbf143b30e0f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Cloud_Brightness: 0.48
+    - _Cloud_Cutoff: 25
+    - _Cloud_Distance: 0.8
+    - _Cloud_Distant_Tiling: 0.08
+    - _Cloud_Normal_Strength: 0.12
+    - _Cloud_Opacity: 0.5
+    - _Cloud_Tiling: 0.18
+    - _Color_Posterization: 12
+    - _Color_Posterization_Sharpness: 0.34
+    - _Day_Time_Sky_Exponent: 15
+    - _Lighting_Transition_Sharpness: 0.72
+    - _Nadir_Blend: 0.17
+    - _Night_Time_Sky_Exponent: 0
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Sky_Exponent: 15
+    - _Sky_Intensity: 1
+    - _Star_Appearance_Delay: 0.3
+    - _Star_Fadeout: 1
+    - _Star_Intensity: 1
+    - _Sun_Exponent: 2.04
+    - _Sun_Inner_Radius: 0.02
+    - _Sun_Intensity: 4.96
+    - _Sun_Outer_Radius: 0.1
+    - _Zenith_Blend: 0.3
+    m_Colors:
+    - _Cloud_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Cloud_Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _Day_Time_Horizon_Color: {r: 0.9921569, g: 0.9921569, b: 0.9960785, a: 1}
+    - _Day_Time_Nadir_Color: {r: 0.07058824, g: 0.015686275, b: 0.3137255, a: 1}
+    - _Day_Time_Zenith_Color: {r: 0.12941177, g: 0.16862746, b: 1, a: 1}
+    - _Horizon_Color: {r: 0.6431373, g: 0.60557324, b: 0.39215687, a: 1}
+    - _Nadir_Color: {r: 0.7075472, g: 0.51488984, b: 0.36378607, a: 1}
+    - _Night_Time_Horizon_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Night_Time_Nadir_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Night_Time_Zenith_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Star_Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _Zenith_Color: {r: 0.17061234, g: 0.38984993, b: 0.509434, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!114 &8900483889601877136
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Editor::UnityEditor.Rendering.Universal.AssetVersion
+  version: 10
