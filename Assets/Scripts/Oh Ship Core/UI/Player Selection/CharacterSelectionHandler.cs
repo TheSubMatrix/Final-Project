@@ -5,10 +5,10 @@ using MatrixUtils.Attributes;
 using MatrixUtils.DependencyInjection;
 using UnityEngine;
 
-public class PlayerSelectionHandler : MonoBehaviour, IPlayerSelectionHandler, IDependencyProvider
+public class CharacterSelectionHandler : MonoBehaviour, IMenuHandler, IDependencyProvider
 {
     [SerializeReference, ClassSelector] List<IPlayerSelection> m_playerSelections;
-    [Provide, UsedImplicitly] IPlayerSelectionHandler Provide() => this;
+    [Provide, UsedImplicitly] IMenuHandler Provide() => this;
 
     public bool TryConfirmSelection(IPlayerControllable selector, IPlayerSelection target) => target?.TryAddSelector(selector) ?? false;
     public bool TryCancelSelection(IPlayerControllable selector, IPlayerSelection current) => current?.TryRemoveSelector(selector) ?? false;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public interface IPlayerSelectionHandler
+public interface IMenuHandler
 {
     bool TryConfirmSelection(IPlayerControllable controllable, IPlayerSelection playerSelection);
     bool TryCancelSelection(IPlayerControllable controllable, IPlayerSelection playerSelection);

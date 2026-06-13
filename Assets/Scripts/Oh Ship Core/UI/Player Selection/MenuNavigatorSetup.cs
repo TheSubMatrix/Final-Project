@@ -1,15 +1,16 @@
 using MatrixUtils.DependencyInjection;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
-public class PlayerSelectionSetup : MonoBehaviour
+public class MenuNavigatorSetup : MonoBehaviour
 {
-    [Inject] IPlayerSelectionHandler m_playerSelectionHandler;
-    [SerializeField] PlayerSelectionCard m_playerSelectionCardPrefab;
+    [Inject] IMenuHandler _mMenuHandler;
+    [FormerlySerializedAs("m_playerSelectionCardPrefab")] [SerializeField] MenuNavigator mMenuNavigatorPrefab;
     [SerializeField] private Transform m_selectionMovementZoneLocation;
     public void SetupCardSelection(PlayerInput playerInput)
     {
-        PlayerSelectionCard card = Instantiate(m_playerSelectionCardPrefab, m_selectionMovementZoneLocation);
+        MenuNavigator card = Instantiate(mMenuNavigatorPrefab, m_selectionMovementZoneLocation);
         if(!playerInput.gameObject.TryGetComponent<IPlayerController>(out IPlayerController component)) return;
         component.ChangeControlledEntity(card);
     }
