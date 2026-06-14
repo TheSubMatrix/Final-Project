@@ -903,7 +903,7 @@ MonoBehaviour:
   m_promptData:
     rid: 6115564182124625986
   m_widgetPosition: {fileID: 1958527742}
-  m_outPosition: {fileID: 1825546937}
+  m_outPosition: {fileID: 0}
   references:
     version: 2
     RefIds:
@@ -1428,8 +1428,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 787566208}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.619, z: 7.077999}
+  m_LocalRotation: {x: -0.090287365, y: -0.24593459, z: 0.02301317, w: -0.9647978}
+  m_LocalPosition: {x: -6.6868286, y: -28.662575, z: 7.5598516}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1563,6 +1563,7 @@ MonoBehaviour:
   m_helmThrottleSpeed: 0.5
   m_helmRudderSpeed: 0.5
   m_shipMovement: {fileID: 1920507447}
+  _interactDisplayTransform: {fileID: 0}
 --- !u!1001 &1036498844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1772,8 +1773,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b96122972042b46ad28821c6bd1331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core::FishingManager
+  _fishingCamera: {fileID: 0}
   _widgetForPrompt: interact
   _fishingControlActionMap: Fishing
+  m_widgetPosition: {fileID: 0}
   _speedOfFishIcon: 10
   _progressSpeed: 0.5
   usableFishesToCatch:
@@ -2022,6 +2025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Fish::StoveInteractable
   fishToCook: {fileID: 1991847470}
+  _interactDisplayTransform: {fileID: 0}
 --- !u!224 &1302092652 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1531270193645749780, guid: 5acad3fb1212d574f825c5d7eaadf917, type: 3}
@@ -2055,7 +2059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1645953698149008122, guid: daba1f5a91c253e4893e6f6d7a7d52be, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -34.806
+      value: -33.185
       objectReference: {fileID: 0}
     - target: {fileID: 1645953698149008122, guid: daba1f5a91c253e4893e6f6d7a7d52be, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2141,11 +2145,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1825546937 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6846939791206787042, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-  m_PrefabInstance: {fileID: 1920507445}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1899643679 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8877438256972347184, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
@@ -2795,6 +2794,63 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1261397017}
   m_SourcePrefab: {fileID: 100100000, guid: b8373b1e1ff1a854caab9bee74cc8a51, type: 3}
+--- !u!1001 &7129902064616768471
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5979682799121288634, guid: 9e2ba5335c85ddb42a854938c54f3e93, type: 3}
+      propertyPath: m_Name
+      value: WaterTank (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464857334955054848, guid: 9e2ba5335c85ddb42a854938c54f3e93, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464857334955054848, guid: 9e2ba5335c85ddb42a854938c54f3e93, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -27.925446
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464857334955054848, guid: 9e2ba5335c85ddb42a854938c54f3e93, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -37.591167
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464857334955054848, guid: 9e2ba5335c85ddb42a854938c54f3e93, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464857334955054848, guid: 9e2ba5335c85ddb42a854938c54f3e93, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464857334955054848, guid: 9e2ba5335c85ddb42a854938c54f3e93, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464857334955054848, guid: 9e2ba5335c85ddb42a854938c54f3e93, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464857334955054848, guid: 9e2ba5335c85ddb42a854938c54f3e93, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464857334955054848, guid: 9e2ba5335c85ddb42a854938c54f3e93, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464857334955054848, guid: 9e2ba5335c85ddb42a854938c54f3e93, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9e2ba5335c85ddb42a854938c54f3e93, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2812,3 +2868,4 @@ SceneRoots:
   - {fileID: 1920507445}
   - {fileID: 1981515669}
   - {fileID: 1653566206}
+  - {fileID: 7129902064616768471}
