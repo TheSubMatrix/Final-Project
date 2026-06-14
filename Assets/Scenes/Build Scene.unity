@@ -1096,6 +1096,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Police Boats
       objectReference: {fileID: 0}
+    - target: {fileID: 5993409947745569183, guid: a8b053361b5d663459d93206af2412c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6791678483275691314, guid: a8b053361b5d663459d93206af2412c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.398333
@@ -1415,7 +1419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7934c7cfe2b50c843a931348fbe134c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Ship::SteamPressureSystem
-  m_rateOfPressureLoss: 0.5
+  m_rateOfPressureLoss: 0.001
 --- !u!1 &1755862609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,7 +1479,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612205375}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a60d8b3e29a32ac4a90f50ee030297c8, type: 3}
   m_Name: 

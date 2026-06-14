@@ -71,7 +71,7 @@ public class PromptDisplay : MonoBehaviour, IPromptDisplay
     {
         if (prompt is null) return;
         if (!m_activePrompts.Remove(prompt, out PromptInfo info)) return;
-        Debug.Log("Hide Prompt");
+        //Debug.Log("Hide Prompt");
         if (m_pools.TryGetValue(info.Widget, out ObjectPool<PromptInfo> pool)) pool.Release(info);
     }
 

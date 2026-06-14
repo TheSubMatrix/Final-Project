@@ -120,6 +120,13 @@ public class PlayerMovement : MonoBehaviour
             stepsSinceLastGrounded = 0;
         }
 
+        //Added this just now
+        if (!connectedBody && pastConnectedBody && stepsSinceLastGrounded <= 3)
+        {
+            connectedBody = pastConnectedBody;
+        }
+        
+        
         if (groundContactCount > 1)
         {
             contactNormal.Normalize();
@@ -145,55 +152,41 @@ public class PlayerMovement : MonoBehaviour
             Vector3 currentWorldPos = connectedBody.transform.TransformPoint(connectionLocalPos);
             Vector3 connectionMovement = currentWorldPos - connectionWorldPos;
             connectionVelocity = connectionMovement / Time.fixedDeltaTime;
-
+            
             platformYaw = connectedBody.transform.eulerAngles.y;
 
             float yawDelta = Mathf.DeltaAngle(pastPlatformYaw, platformYaw);
             m_lookYaw = Quaternion.Euler(0f, yawDelta, 0f) * m_lookYaw;
         }
-        connectionWorldPos = m_rigidbody.position;
-        connectionLocalPos = connectedBody.transform.InverseTransformPoint(connectionWorldPos);
+        else
+        {
+            Debug.Log($"connectedBody changed! past: {pastConnectedBody}, current: {connectedBody}");
+
+        }
+      
+        connectionLocalPos = connectedBody.transform.InverseTransformPoint(m_rigidbody.position);
+        connectionWorldPos = connectedBody.transform.TransformPoint(connectionLocalPos);
+        // connectionWorldPos = m_rigidbody.position;
+        //  connectionLocalPos = connectedBody.transform.InverseTransformPoint(connectionWorldPos);
         pastPlatformYaw = platformYaw;
     }
 
     void AdjustVelocityAndRotation()
     {
-
-        if (onGround)
-        {
-            velocity = Vector3.ProjectOnPlane(m_rigidbody.linearVelocity, contactNormal);
-            m_rigidbody.linearVelocity = velocity;
-        }
-
         if (connectedBody)
         {
             Vector3 xAxis = ProjectOnContactPlane(m_lookYaw * Vector3.right).normalized;
             Vector3 zAxis = ProjectOnContactPlane(m_lookYaw * Vector3.forward).normalized;
 
-            float connectionVelocityX = Vector3.Dot(m_lookYaw * Vector3.forward, connectionVelocity);
-            float connectionVelocityZ = Vector3.Dot(m_lookYaw * Vector3.right, connectionVelocity);
-            float currentX = Vector3.Dot(velocity - connectionVelocity, xAxis);
-            float currentZ = Vector3.Dot(velocity - connectionVelocity, zAxis);
+            float currentX = Vector3.Dot(velocity, xAxis);
+            float currentZ = Vector3.Dot(velocity, zAxis);
 
-
-            float yawDelta = Mathf.DeltaAngle(pastPlatformYaw, platformYaw);
-            Quaternion platformRotation = Quaternion.Euler(0f, yawDelta, 0f);
-
-            Vector3 offset = m_rigidbody.position - connectedBody.position;
-            Vector3 rotatedOffset = platformRotation * offset;
-            Vector3 rotationVelocity = (rotatedOffset - offset) / Time.fixedDeltaTime;
-
-            float rotationVelocityX = Vector3.Dot(m_lookYaw * Vector3.forward, rotationVelocity);
-            float rotationVelocityZ = Vector3.Dot(m_lookYaw * Vector3.right, rotationVelocity);
-
-
-            float forwardVelocity = currentX - connectionVelocityX;
-            float sidewaysVelocity = currentZ - connectionVelocityZ;
-            float newForward = Mathf.MoveTowards(forwardVelocity, m_desiredMovement.y, GetRate(forwardVelocity, m_desiredMovement.y)) + connectionVelocityX;
-            float newSideways = Mathf.MoveTowards(sidewaysVelocity, m_desiredMovement.x, GetRate(sidewaysVelocity, m_desiredMovement.x)) + connectionVelocityZ;
-
+            float newForward = Mathf.MoveTowards(currentX, m_desiredMovement.y, GetRate(currentX, m_desiredMovement.y));
+            float newSideways = Mathf.MoveTowards(currentZ, m_desiredMovement.x, GetRate(currentZ, m_desiredMovement.x));
 
             Vector3 worldVelocity = m_lookYaw * new Vector3(newSideways, 0, newForward);
+            worldVelocity += new Vector3(connectionVelocity.x, 0, connectionVelocity.z);
+
             m_rigidbody.linearVelocity = new(worldVelocity.x, m_rigidbody.linearVelocity.y, worldVelocity.z);
 
             if (onGround)
@@ -201,7 +194,6 @@ public class PlayerMovement : MonoBehaviour
                 m_rigidbody.linearVelocity = Vector3.ProjectOnPlane(m_rigidbody.linearVelocity, contactNormal);
             }
         }
-
     }
 
 
@@ -216,6 +208,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return false;
         }
+        
         if (!Physics.Raycast(m_rigidbody.position, Vector3.down, out RaycastHit hit, 1.5f))
         {
             return false;
@@ -231,11 +224,15 @@ public class PlayerMovement : MonoBehaviour
         float dot = Vector3.Dot(m_rigidbody.linearVelocity, hit.normal);
         if (dot < 0f)
         {
-            Vector3 correction = hit.normal * dot;
-            m_rigidbody.linearVelocity -= correction;
+            //Made it look a little simpler 
+            m_rigidbody.linearVelocity -= hit.normal * dot;
         }
         return true;
         
     }
 
+    public void ZeroPlayerMovement()
+    {
+        m_desiredMovement = Vector2.zero;
+    }
 }

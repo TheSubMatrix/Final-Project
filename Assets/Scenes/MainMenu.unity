@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 203601627}
   - component: {fileID: 203601628}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Player Selection Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -456,10 +456,10 @@ RectTransform:
   - {fileID: 920355158}
   m_Father: {fileID: 1804115112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -83.237}
-  m_SizeDelta: {x: 400, y: 300}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -650.3638}
+  m_SizeDelta: {x: 400, y: 349.8883}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &203601628
 MonoBehaviour:
@@ -487,17 +487,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &205250655 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1052933575411933413, guid: 5849cbee96bf6fe4d9a0f90b89e329e0, type: 3}
-  m_PrefabInstance: {fileID: 1870400572374149500}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a50dc788db301646937453c6f88db42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OhShip.Core::QuitButton
 --- !u!1 &231607667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,7 +1101,6 @@ GameObject:
   - component: {fileID: 824189438}
   - component: {fileID: 824189437}
   - component: {fileID: 824189436}
-  - component: {fileID: 824189435}
   m_Layer: 5
   m_Name: Help
   m_TagString: Untagged
@@ -1140,19 +1128,6 @@ RectTransform:
   m_AnchoredPosition: {x: 200, y: -105}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &824189435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 824189433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff44eb390ad833241bd1e98d5ee00b79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OhShip.Core.UI::SceneTransitionerProxy
-  m_transitionDuration: 0.5
 --- !u!114 &824189436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,19 +1171,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 824189437}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 824189435}
-        m_TargetAssemblyTypeName: SceneTransitionerProxy, OhShip.Core.UI
-        m_MethodName: TransitionToScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: HelpMenu
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &824189437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1378,7 +1341,7 @@ GameObject:
   m_Component:
   - component: {fileID: 920355158}
   m_Layer: 5
-  m_Name: Usable Area
+  m_Name: Movement Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1393,7 +1356,7 @@ RectTransform:
   m_GameObject: {fileID: 920355157}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.9195403, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1379042399}
@@ -1402,7 +1365,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 17.9}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &973693699
 GameObject:
@@ -1486,19 +1449,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 973693702}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 205250655}
-        m_TargetAssemblyTypeName: QuitButton, OhShip.Core
-        m_MethodName: Quit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &973693702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1788,7 +1739,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 300}
+  m_SizeDelta: {x: 400, y: 378}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1385579034
 GameObject:
