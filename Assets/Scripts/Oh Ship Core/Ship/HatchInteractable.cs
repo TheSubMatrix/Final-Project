@@ -21,5 +21,5 @@ public class HatchInteractable : MonoBehaviour, IInteractable, IPromptProvider
     }
 
     public PromptData GetPromptData() => m_promptData;
-    public Vector3 GetWidgetWorldPosition() => m_widgetPosition.position;
+    public Vector3 GetWidgetWorldPosition() => m_widgetPosition == null? transform.position : m_widgetPosition.position;
 }

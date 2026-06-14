@@ -9,6 +9,8 @@ using UnityEngine.Serialization;
 public class SteamPressureValveInteractable : MonoBehaviour, IInteractable, IPlayerControllable, IPromptProvider
 {
     [SerializeField] private Transform _displayForInteraction;
+    [SerializeField] private Transform _playerInteractionLocation;
+
     [SerializeField] private CinemachineCamera _steamPressureCamera;
     [SerializeField] string m_widgetForPrompt = "interact";
     IPlayerController m_activePlayerController;
@@ -29,6 +31,9 @@ public class SteamPressureValveInteractable : MonoBehaviour, IInteractable, IPla
         _steamPressureCamera.OutputChannel =  playerCamera.OutputChannel;
         _steamPressureCamera.Priority = 10;
         
+        Transform playerPos = interactor.GetAssociatedGameObject().transform.parent;
+        playerPos.position = _playerInteractionLocation.position;
+        
         m_currentInteractionSession = new(interactor, this);
         m_currentInteractionSession.OnEnded += () => controller.ChangeControlledEntity(oldControllable);
         return m_currentInteractionSession;
@@ -43,6 +48,7 @@ public class SteamPressureValveInteractable : MonoBehaviour, IInteractable, IPla
             player.ChangeControlledEntity(null);
             return;
         }
+        
         InputAction increasePressureAction = map.FindAction("Increase Pressure");
         increasePressureAction.performed += HandleIncreasePressure;
         InputAction decreasePressureAction = map.FindAction("Decrease Pressure");
