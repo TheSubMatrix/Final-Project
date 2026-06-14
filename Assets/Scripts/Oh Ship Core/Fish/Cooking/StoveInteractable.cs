@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,7 @@ public class StoveInteractable : MonoBehaviour, IInteractable, IPromptProvider
 {
     InteractionSession m_currentInteractionSession;
     [SerializeField] private GameObject fishToCook;
+    [SerializeField] private Transform _interactDisplayTransform;
     private readonly string _widgetForPrompt = "interact";
     private IPlayerControllable _playerControllable;
     private IPlayerController _playerController;
@@ -34,7 +36,7 @@ public class StoveInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
     public Vector3 GetWidgetWorldPosition()
     {
-       return transform.position;
+       return _interactDisplayTransform.position;
     }
 
     private void DestroyFishInHand()
