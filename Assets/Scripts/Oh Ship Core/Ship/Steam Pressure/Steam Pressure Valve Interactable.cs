@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -7,6 +8,7 @@ using UnityEngine.Serialization;
 /// </summary>
 public class SteamPressureValveInteractable : MonoBehaviour, IInteractable, IPlayerControllable, IPromptProvider
 {
+    [SerializeField] private CinemachineCamera _steamPressureCamera;
     [SerializeField] string m_widgetForPrompt = "interact";
     IPlayerController m_activePlayerController;
     [SerializeField] string m_pressureControlActionMap = "Adjust Pressure";
@@ -20,6 +22,12 @@ public class SteamPressureValveInteractable : MonoBehaviour, IInteractable, IPla
         IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         IPlayerController controller = oldControllable.GetActivePlayerController();
         controller.ChangeControlledEntity(this);
+       
+        CinemachineCamera playerCamera = interactor.GetAssociatedGameObject().GetComponent<CinemachineCamera>();
+        
+        _steamPressureCamera.OutputChannel =  playerCamera.OutputChannel;
+        _steamPressureCamera.Priority = 10;
+        
         m_currentInteractionSession = new(interactor, this);
         m_currentInteractionSession.OnEnded += () => controller.ChangeControlledEntity(oldControllable);
         return m_currentInteractionSession;
@@ -46,6 +54,8 @@ public class SteamPressureValveInteractable : MonoBehaviour, IInteractable, IPla
     {
         if (m_activePlayerController == null) throw new("Player controller is null, cannot release control.");
         if (!m_activePlayerController.TryGetCurrentInputActionMap(out InputActionMap map)) throw new("Player controller is not null, but input action map is null...");
+        _steamPressureCamera.Priority = 0;
+        
         InputAction increasePressureAction = map.FindAction("Increase Pressure");
         increasePressureAction.performed -= HandleIncreasePressure;
         InputAction decreasePressureAction = map.FindAction("Decrease Pressure");

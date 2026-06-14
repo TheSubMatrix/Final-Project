@@ -13,6 +13,7 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     [SerializeField] float m_helmThrottleSpeed = 0.5f;
     [SerializeField] float m_helmRudderSpeed = 0.5f;
     [SerializeField, RequiredField] ShipMovement m_shipMovement;
+    [SerializeField] private Transform _interactDisplayTransform;
     IPlayerController m_activePlayerController;
     Vector2 m_moveInput = Vector2.zero;
     Vector2 m_lookInput = Vector2.zero;
@@ -89,5 +90,5 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
 
     public PromptData GetPromptData() => new() {AssociatedWidget = m_widgetForPrompt};
 
-    public Vector3 GetWidgetWorldPosition() => transform.position;
+    public Vector3 GetWidgetWorldPosition() => _interactDisplayTransform.position;
 }

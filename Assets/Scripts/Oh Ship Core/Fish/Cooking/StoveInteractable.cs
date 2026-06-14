@@ -12,10 +12,12 @@ public class StoveInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
+        Debug.Log("Touch the stove");
         _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         _playerController = _playerControllable.GetActivePlayerController();
         if (interactor.IsInteracting() || m_currentInteractionSession is { IsActive: true }) return null;
        
+        
         if(!interactor.IsHoldingObject()) return m_currentInteractionSession;
         
         DestroyFishInHand();

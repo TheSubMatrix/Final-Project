@@ -1,10 +1,12 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IPromptProvider
 {
+    [SerializeField] private CinemachineCamera _coalCamera;
     [SerializeField] private string _widgetForPrompt = "interact";
     [SerializeField] private SO_CoalData _coalData;
     [SerializeField] private int _howManyInputs = 5;
@@ -30,7 +32,11 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
         m_activePlayerControl = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         m_activePlayerController = m_activePlayerControl.GetActivePlayerController();
         m_activePlayerController.ChangeControlledEntity(this);
-
+        
+        CinemachineCamera playerCam = interactor.GetAssociatedGameObject().GetComponent<CinemachineCamera>();
+        _coalCamera.OutputChannel = playerCam.OutputChannel;
+        _coalCamera.Priority = 10;
+        
         m_currentInteractionSession = new InteractionSession(interactor, this);
         m_currentInteractionSession.OnEnded += () => m_activePlayerController.ChangeControlledEntity(m_activePlayerControl);
         m_inputsForQTE = new string[_howManyInputs];
@@ -109,6 +115,8 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
 
     public void OnControlReleased()
     {
+        _coalCamera.Priority = 0;
+        
         if (m_activePlayerController == null) throw new("Player controller is null, cannot release control.");
         if (!m_activePlayerController.TryGetCurrentInputActionMap(out InputActionMap map)) throw new("Player controller is not null, but input action map is null...");
         
