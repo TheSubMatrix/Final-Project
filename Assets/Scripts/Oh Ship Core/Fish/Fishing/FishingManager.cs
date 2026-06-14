@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ using Random = System.Random;
 
 public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable, IPromptProvider
 {
+    [SerializeField] private CinemachineCamera _fishingCamera;
     [SerializeField] private string _widgetForPrompt = "interact";
     [SerializeField] private string _fishingControlActionMap = "Fishing";
     [SerializeField] Transform m_widgetPosition;
@@ -53,7 +55,9 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
 
         _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         _playerController = _playerControllable.GetActivePlayerController();
-        
+        CinemachineCamera playerCam = interactor.GetAssociatedGameObject().GetComponent<CinemachineCamera>();
+        _fishingCamera.OutputChannel = playerCam.OutputChannel;
+        _fishingCamera.Priority = 10;
         SetUpFishingMinigame();
         _playerController.ChangeControlledEntity(this);
 
@@ -129,6 +133,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
 
     public void OnControlReleased()
     {
+        _fishingCamera.Priority = 0;
         InputAction reelFishAction = _activeActionMap.FindAction("Reel Fish");
         reelFishAction.performed -= HandleFishingInput;
         reelFishAction.canceled -= HandleFishingInput;
