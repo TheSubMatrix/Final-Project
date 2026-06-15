@@ -48,7 +48,7 @@
             return eventBusTypes;
         }
 
-        public static void ClearAllBusses()
+        private static void ClearAllBusses()
         {
             Debug.Log("Clearing all event busses");
             foreach (Type busType in EventBusTypes)

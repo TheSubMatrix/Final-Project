@@ -49,6 +49,7 @@ public class CookFish : MonoBehaviour, IInteractable
         }
         else if(cookedAmount >= 0.5f)
         {
+            Debug.Log("WellDone");
             isCooking = false;
             isReady = true;
             if(!isBurning)
