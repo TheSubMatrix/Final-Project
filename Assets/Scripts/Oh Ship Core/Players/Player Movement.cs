@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     Quaternion m_lookYaw = Quaternion.identity;
     Vector2 m_currentLookInput;
     IPlayerController m_playerController;
-    public void OnMovementInputChanged(Vector2 input) => m_desiredMovement = Vector2.ClampMagnitude(input, 1) * m_moveSpeed;
+    public void OnMovementInputChanged(Vector2 input) => m_desiredMovement = input * m_moveSpeed;
     public void OnLookInputChanged(Vector2 input) => m_currentLookInput = input;
     void Start()
     {
