@@ -9,6 +9,8 @@ public class CoalUI : MonoBehaviour
     [SerializeField] private GameObject coalQTEVisualPrefab;
     private ButtonData[] _buttonDatas;
     private Transform _buttonDisplayParent;
+    [SerializeField] private float _width = 256;
+    [SerializeField] private float _height = 256;
 
     private void Start()
     {
@@ -57,7 +59,8 @@ public class CoalUI : MonoBehaviour
            Debug.Log(button);
            _buttonDatas[i].visualForButton = button.GetComponent<Image>();
            _buttonDatas[i].visualForButton.sprite = DisplayInputButton(password[i]);
-           
+           _buttonDatas[i].visualForButton.rectTransform.sizeDelta = new Vector2(_width, _height);
+
         }
     }
     
