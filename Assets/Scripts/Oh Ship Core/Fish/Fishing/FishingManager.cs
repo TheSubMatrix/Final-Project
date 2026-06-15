@@ -45,13 +45,13 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
     {
         Debug.Log("Beginning Interaction");
 
-        if (interactor.IsHoldingObject())
+        /*if (interactor.IsHoldingObject())
         {
              Debug.Log("Holding Fish");
             _currentInteractionSession = new InteractionSession(interactor, this);
             _currentInteractionSession.End();
             return _currentInteractionSession;
-        }
+        }*/
 
         _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         _playerController = _playerControllable.GetActivePlayerController();

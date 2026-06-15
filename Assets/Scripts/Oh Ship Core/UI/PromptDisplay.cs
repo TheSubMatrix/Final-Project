@@ -46,8 +46,8 @@ public class PromptDisplay : MonoBehaviour, IPromptDisplay
             Vector3 screenPos = m_connectedCamera.WorldToScreenPoint(worldPos);
             RectTransformUtility.ScreenPointToLocalPointInRectangle(m_promptContainer, screenPos, m_connectedCamera, out Vector2 localPoint);
             prompt.Value.Prompt.anchoredPosition = localPoint;
-         //   float distance = Vector3.Distance(m_connectedCamera.transform.position, worldPos);
-          //  prompt.Value.Prompt.localScale = Vector3.one * (m_referenceDistance / distance);
+            float distance = Vector3.Distance(m_connectedCamera.transform.position, worldPos);
+            prompt.Value.Prompt.localScale = Vector3.one * (m_referenceDistance / distance);
         }
     }
 

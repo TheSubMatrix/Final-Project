@@ -20,7 +20,7 @@ public class StoveInteractable : MonoBehaviour, IInteractable, IPromptProvider
         if (interactor.IsInteracting() || m_currentInteractionSession is { IsActive: true }) return null;
        
         
-        if(!interactor.IsHoldingObject()) return m_currentInteractionSession;
+       // if(!interactor.IsHoldingObject()) return m_currentInteractionSession;
         
         DestroyFishInHand();
         

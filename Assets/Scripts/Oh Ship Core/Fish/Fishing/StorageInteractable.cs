@@ -25,13 +25,13 @@ public class StorageInteractable : MonoBehaviour, IInteractable
 
         if (interactor.IsInteracting() || m_currentInteractionSession is { IsActive: true }) return null;
 
-        if (interactor.IsHoldingObject())
+        /*if (interactor.IsHoldingObject())
         {
             Debug.Log("Holding Fish");
             m_currentInteractionSession = new InteractionSession(interactor, this);
             m_currentInteractionSession.End();
             return m_currentInteractionSession;
-        }
+        }*/
 
         return m_currentInteractionSession;
     }
