@@ -14,19 +14,25 @@ public class StoveInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
-        Debug.Log("Touch the stove");
         _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
-        _playerController = _playerControllable.GetActivePlayerController();
-        if (interactor.IsInteracting() || m_currentInteractionSession is { IsActive: true }) return null;
        
+        _playerController = _playerControllable.GetActivePlayerController();
+
+        Debug.Log(interactor.IsInteracting());
+        if (interactor.WasInteracting)
+        {
+            m_currentInteractionSession = new InteractionSession(interactor, this);
+            m_currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
+            DestroyFishInHand();
+            fishToCook.SetActive(true);
+            return m_currentInteractionSession;
+        }
         
-       // if(!interactor.IsHoldingObject()) return m_currentInteractionSession;
-        
-        DestroyFishInHand();
-        
-        fishToCook.SetActive(true);
-        
+        m_currentInteractionSession = new InteractionSession(interactor, this);
+        m_currentInteractionSession.End();
+       
         return m_currentInteractionSession;
+       
     }
 
     public PromptData GetPromptData()
