@@ -34,7 +34,7 @@ public class CookFish : MonoBehaviour, IInteractable
 
         if(isCooking)
         {
-            Debug.Log("Cooking");
+            // Debug.Log("Cooking");
             StartCooking();
         }
     }
@@ -44,12 +44,12 @@ public class CookFish : MonoBehaviour, IInteractable
     {
         if(cookedAmount < 0.5f)
         {
-            Debug.Log("Change Color");
+            //Debug.Log("Change Color");
             ChangeColor();
         }
         else if(cookedAmount >= 0.5f)
         {
-            Debug.Log("WellDone");
+          //  Debug.Log("WellDone");
             isCooking = false;
             isReady = true;
             if(!isBurning)
@@ -107,7 +107,7 @@ public class CookFish : MonoBehaviour, IInteractable
             {
                 if(!isCooking)
                 {
-                    Debug.Log("Switch to true");
+                 //   Debug.Log("Switch to true");
                     isCooking = true;
                 }
             }
@@ -127,20 +127,20 @@ public class CookFish : MonoBehaviour, IInteractable
         if (interactor.IsInteracting() || m_currentInteractionSession is { IsActive: true }) return null;
 
         hungerAndThirst = interactor.GetAssociatedGameObject().transform.root.GetComponentInChildren<HungerAndThirst>();
-        Debug.Log("Begin interaction");
+      //  Debug.Log("Begin interaction");
         if (isBurnt)
         {
-            Debug.Log("Discard Fish");
+          //  Debug.Log("Discard Fish");
             EndCooking();
         }
         else if(isReady)
         {
-            Debug.Log("Eat Fish");
+          //  Debug.Log("Eat Fish");
             Eat();
         }
         else if(isCooking)
         {
-            Debug.Log("Still Cooking");
+          //  Debug.Log("Still Cooking");
             return null;
         }
         return m_currentInteractionSession;
@@ -148,7 +148,7 @@ public class CookFish : MonoBehaviour, IInteractable
 
     private void Eat()
     {
-        Debug.Log("eat");
+      //  Debug.Log("eat");
         hungerAndThirst.Hunger.Value += 0.8f;
         EndCooking();
     

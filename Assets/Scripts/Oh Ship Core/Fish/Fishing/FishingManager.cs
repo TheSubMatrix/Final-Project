@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.XR;
@@ -9,6 +10,8 @@ using Random = System.Random;
 
 public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable, IPromptProvider
 {
+    public UnityEvent<GameObject> _storeFishInStorage;
+    [SerializeField] private StorageInteractable _fishBoxStorage;
     [SerializeField] private CinemachineCamera _fishingCamera;
     [SerializeField] private string _widgetForPrompt = "interact";
     [SerializeField] private string _fishingControlActionMap = "Fishing";
@@ -45,13 +48,13 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
     {
         Debug.Log("Beginning Interaction");
 
-        /*if (interactor.IsHoldingObject())
+        if (interactor.IsInteracting())
         {
              Debug.Log("Holding Fish");
             _currentInteractionSession = new InteractionSession(interactor, this);
             _currentInteractionSession.End();
             return _currentInteractionSession;
-        }*/
+        }
 
         _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         _playerController = _playerControllable.GetActivePlayerController();
@@ -152,12 +155,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
     {
         Debug.Log("Fish Caught");
         int index = UnityEngine.Random.Range(0, usableFishesToCatch.Length);
-        GameObject player = _playerControllable.GetAssociatedGameObject();
-
-        _holdingObjectTransform = player.GetComponentInChildren<HeldObjectLocation>().transform;
-        
-        GameObject caughtFish = Instantiate(usableFishesToCatch[index], _holdingObjectTransform.position,_holdingObjectTransform.rotation);
-        caughtFish.transform.SetParent(_holdingObjectTransform);
+        _storeFishInStorage.Invoke(usableFishesToCatch[index]);
         _currentInteractionSession.End();
     }
 
