@@ -1404,7 +1404,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2586148439552901436, guid: 58a7f11a6508e734fb0afe95f49cee5a, type: 3}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2907956788140410163, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1336934512493051013, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       insertIndex: -1
@@ -1421,11 +1422,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1954527534303769231, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.46
+      value: 19.055
       objectReference: {fileID: 0}
     - target: {fileID: 1954527534303769231, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.751
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954527534303769231, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.687
       objectReference: {fileID: 0}
     - target: {fileID: 3088545191460654181, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1463,6 +1468,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 4156234167534621176, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
+      propertyPath: m_Name
+      value: Steam Engine
+      objectReference: {fileID: 0}
     - target: {fileID: 4922363938005973386, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1471,6 +1480,10 @@ PrefabInstance:
       propertyPath: _coalCamera
       value: 
       objectReference: {fileID: 792040768}
+    - target: {fileID: 5739541206751002517, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
+      propertyPath: m_timeLimitReference
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5739541206751002517, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
       propertyPath: m_steamPressureSystem
       value: 
@@ -1494,6 +1507,14 @@ PrefabInstance:
     - target: {fileID: 8104561384861003146, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
       propertyPath: m_Name
       value: Underbelly
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685371665582563262, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
+      propertyPath: m_Name
+      value: Steam Engine Parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685371665582563262, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8877438256972347184, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
       propertyPath: m_LocalPosition.x
