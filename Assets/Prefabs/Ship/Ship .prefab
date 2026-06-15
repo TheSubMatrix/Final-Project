@@ -1055,6 +1055,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b96122972042b46ad28821c6bd1331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Fish::FishingManager
+  _storeFishInStorage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1520308994910509136}
+        m_TargetAssemblyTypeName: StorageInteractable, OhShip.Core.Fish
+        m_MethodName: AddFishToStorage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _fishBoxStorage: {fileID: 1520308994910509136}
   _fishingCamera: {fileID: 5972716650654164776}
   _widgetForPrompt: interact
   _fishingControlActionMap: Fishing
@@ -3500,6 +3516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8acb8a0558d724cbb02a6f1508d591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Fish::StorageInteractable
+  _storedFish: []
 --- !u!1001 &1288071260100016825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5057,6 +5074,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: OhShip.Core.Ship::HatchInteractable
   m_promptData:
     rid: 6115564182124625985
+  m_interactSound:
+    Clip: {fileID: 0}
+    MixerGroup: {fileID: 0}
+    Loop: 0
+    PlayOnAwake: 0
+    PlayedFrequently: 0
+    Volume: 1
+    Pitch: 1
+    PanStereo: 0
+    SpatialBlend: 0
+    ReverbZoneMix: 1
+    DopplerLevel: 1
+    Spread: 0
+    MinDistance: 1
+    MaxDistance: 500
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
+    RolloffMode: 0
   m_widgetPosition: {fileID: 8903797785914435544}
   m_outPosition: {fileID: 0}
   references:
