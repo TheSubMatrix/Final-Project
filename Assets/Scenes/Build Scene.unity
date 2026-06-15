@@ -1214,6 +1214,26 @@ PrefabInstance:
       propertyPath: m_fillPercentage.m_onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 691929295}
+    - target: {fileID: 1336934512493051013, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336934512493051013, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336934512493051013, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336934512493051013, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336934512493051013, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3303257174621955613, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_outPosition
       value: 
@@ -1226,6 +1246,38 @@ PrefabInstance:
       propertyPath: m_interactSound.MixerGroup
       value: 
       objectReference: {fileID: 1847626060670125143, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
+    - target: {fileID: 3303257174621955613, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_onInteract.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303257174621955613, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303257174621955613, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2076556009}
+    - target: {fileID: 3303257174621955613, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303257174621955613, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303257174621955613, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303257174621955613, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303257174621955613, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7196852406926485525, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_Name
       value: 'Ship '
@@ -1277,6 +1329,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7196852406926485525, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2051217395}
+    - targetCorrespondingSourceObject: {fileID: 8690727457720639094, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2076556009}
   m_SourcePrefab: {fileID: 100100000, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
 --- !u!1001 &1981515669
 PrefabInstance:
@@ -1501,6 +1556,33 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051217388}
   m_Enabled: 1
+--- !u!1 &2076556003 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8690727457720639094, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+  m_PrefabInstance: {fileID: 1920507445}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2076556009
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076556003}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 012029ba8215d134191a4b41810bc3d4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2084379826
 GameObject:
   m_ObjectHideFlags: 0
