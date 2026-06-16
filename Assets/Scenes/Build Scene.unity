@@ -296,6 +296,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddee57189b772d543baffa50a5bc45b2, type: 3}
+--- !u!1 &369148440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1176619017856952373, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
+  m_PrefabInstance: {fileID: 1981515669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &369148442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369148440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7934c7cfe2b50c843a931348fbe134c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::WaterController
+  m_maxFill: 1
+  m_minFill: -1
+  m_fillRate: 0.1
+  m_currentFill: 0
+  m_waterFillMesh: {fileID: 1818843284}
 --- !u!1001 &378968719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1124,17 +1146,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1434340805775572747, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
   m_PrefabInstance: {fileID: 1981515669}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1603220470 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9062479568041059116, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-  m_PrefabInstance: {fileID: 1920507445}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7934c7cfe2b50c843a931348fbe134c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OhShip.Core.Ship::SteamPressureSystem
 --- !u!1 &1755862609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,6 +1193,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1818843284 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 9033962125232897354, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
+  m_PrefabInstance: {fileID: 1981515669}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1920507445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1342,7 +1358,7 @@ PrefabInstance:
     - target: {fileID: 5739541206751002517, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
       propertyPath: m_steamPressureSystem
       value: 
-      objectReference: {fileID: 1603220470}
+      objectReference: {fileID: 0}
     - target: {fileID: 6253161504400926764, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.313
@@ -1358,7 +1374,7 @@ PrefabInstance:
     - target: {fileID: 8049652121194207243, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
       propertyPath: m_pressureSystem
       value: 
-      objectReference: {fileID: 1603220470}
+      objectReference: {fileID: 0}
     - target: {fileID: 8104561384861003146, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
       propertyPath: m_Name
       value: Underbelly
@@ -1412,6 +1428,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8984297381692613613, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
+      propertyPath: m_pressureSystem
+      value: 
+      objectReference: {fileID: 369148442}
+    - target: {fileID: 8984297381692613613, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
       propertyPath: _displayForInteraction
       value: 
       objectReference: {fileID: 78398792}
@@ -1426,7 +1446,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1176619017856952373, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 369148442}
   m_SourcePrefab: {fileID: 100100000, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
 --- !u!4 &1981515670 stripped
 Transform:

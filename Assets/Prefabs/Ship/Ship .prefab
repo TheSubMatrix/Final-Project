@@ -4759,9 +4759,6 @@ PrefabInstance:
       addedObject: {fileID: 5996547367357011078}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cf83eae36e7e8c4885e54392913e4f9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9062479568041059116}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cf83eae36e7e8c4885e54392913e4f9, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5659278903733598814}
     - targetCorrespondingSourceObject: {fileID: -7513525490114262222, guid: 8cf83eae36e7e8c4885e54392913e4f9, type: 3}
       insertIndex: -1
@@ -5024,19 +5021,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.1235847, y: 6.25884, z: 16.018559}
   m_Center: {x: 0.32318175, y: 2.62942, z: 7.5092793}
---- !u!114 &9062479568041059116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7196852406926485525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7934c7cfe2b50c843a931348fbe134c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OhShip.Core.Ship::SteamPressureSystem
-  m_rateOfPressureLoss: 0.001
 --- !u!81 &5659278903733598814
 AudioListener:
   m_ObjectHideFlags: 0

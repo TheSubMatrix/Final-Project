@@ -14,7 +14,7 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
     [Range(0.1f,1)]
     [SerializeField] private float m_amountOfPressureToSendReference = .2f;
 
-    [SerializeField] SteamPressureSystem m_steamPressureSystem;
+    [SerializeField] WaterController m_waterController;
     [SerializeField] private float m_timeLimitReference = 10f;
     [SerializeField] private Transform _promptVisualLocation;
     
@@ -95,7 +95,7 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
         {
             Debug.Log("Inputs completed");
             m_pressureToSend *=  ((float)m_correctInputCounter / m_inputsForQTE.Length);
-            m_steamPressureSystem.IncreaseSteamPressure(m_pressureToSend);
+            m_waterController.DecreaseWaterFill();
             Debug.Log("Sent " + m_pressureToSend + " of pressure");
             m_currentInteractionSession.End();
         }

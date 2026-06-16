@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 /// <summary>
-/// An interactable that allows the player to adjust the pressure of <see cref="SteamPressureSystem"/> on the ship.
+/// An interactable that allows the player to adjust the pressure of <see cref="WaterController"/> on the ship.
 /// </summary>
 public class SteamPressureValveInteractable : MonoBehaviour, IInteractable, IPlayerControllable, IPromptProvider
 {
@@ -15,7 +15,7 @@ public class SteamPressureValveInteractable : MonoBehaviour, IInteractable, IPla
     [SerializeField] string m_widgetForPrompt = "interact";
     IPlayerController m_activePlayerController;
     [SerializeField] string m_pressureControlActionMap = "Adjust Pressure";
-    [SerializeField] SteamPressureSystem m_pressureSystem;
+    [SerializeField] WaterController m_pressureSystem;
     [SerializeField] float steamPressureOffset = .5f;
     
     InteractionSession m_currentInteractionSession;
@@ -74,8 +74,8 @@ public class SteamPressureValveInteractable : MonoBehaviour, IInteractable, IPla
     
     /// <inheritdoc/>
     public IPlayerController GetActivePlayerController() => m_activePlayerController;
-    void HandleIncreasePressure(InputAction.CallbackContext context) => m_pressureSystem.IncreaseSteamPressure(steamPressureOffset);
-    void HandleDecreasePressure(InputAction.CallbackContext context) => m_pressureSystem.DecreaseSteamPressure(steamPressureOffset);
+    void HandleIncreasePressure(InputAction.CallbackContext context) => m_pressureSystem.IncreaseWaterFill();
+    void HandleDecreasePressure(InputAction.CallbackContext context) => m_pressureSystem.DecreaseWaterFill();
     void HandleInteract(InputAction.CallbackContext context) => m_currentInteractionSession.End();
     public GameObject GetAssociatedGameObject() => gameObject;
     public PromptData GetPromptData() => new() {AssociatedWidget = m_widgetForPrompt};
