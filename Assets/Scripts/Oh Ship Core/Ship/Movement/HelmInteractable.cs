@@ -1,7 +1,7 @@
 using MatrixUtils.Attributes;
+using MatrixUtils.Extensions;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
@@ -13,11 +13,15 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     [SerializeField] float m_helmThrottleSpeed = 0.5f;
     [SerializeField] float m_helmRudderSpeed = 0.5f;
     [SerializeField, RequiredField] ShipMovement m_shipMovement;
-    [SerializeField] private Transform _interactDisplayTransform;
+    [FormerlySerializedAs("_interactDisplayTransform")] [SerializeField] Transform m_interactDisplayTransform;
+    [SerializeField] Transform m_wheelTransform;
+    [SerializeField] float m_wheelMinimumAngle = -180f;
+    [SerializeField] float m_wheelMaximumAngle = 180f;
     IPlayerController m_activePlayerController;
     Vector2 m_moveInput = Vector2.zero;
     Vector2 m_lookInput = Vector2.zero;
     InteractionSession m_currentInteractionSession;
+    float m_velocity;
     ///<inheritdoc/>
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
@@ -39,6 +43,7 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     {
         if(m_activePlayerController is null) return;
         m_shipMovement.SetRudder(m_shipMovement.Rudder + m_moveInput.x * Time.deltaTime * m_helmRudderSpeed);
+        m_wheelTransform.localEulerAngles = new(0, 0, Mathf.SmoothDampAngle(m_wheelTransform.localEulerAngles.z, Mathf.Lerp(m_wheelMinimumAngle, m_wheelMaximumAngle, m_shipMovement.Rudder.Value.Remap(-1, 1, 1, 0)), ref m_velocity, 0.1f));
         m_shipMovement.SetThrottle(m_shipMovement.Throttle + m_moveInput.y * Time.deltaTime * m_helmThrottleSpeed);
         m_helmCamera.transform.Rotate(0, m_lookInput.x * Time.deltaTime * 100, 0);
     }
@@ -90,5 +95,5 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
 
     public PromptData GetPromptData() => new() {AssociatedWidget = m_widgetForPrompt};
 
-    public Vector3 GetWidgetWorldPosition() => _interactDisplayTransform.position;
+    public Vector3 GetWidgetWorldPosition() => m_interactDisplayTransform.position;
 }
