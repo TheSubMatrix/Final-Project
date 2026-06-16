@@ -17,9 +17,6 @@ public class ShipMovement : MonoBehaviour
     public void SetRudder(float rudder) => Rudder.Value = Mathf.Clamp(rudder, -1 , 1);
     public void SetThrottle(float throttle) => Throttle.Value = Mathf.Clamp(throttle, -1, 1);
 
-    private WaterController m_waterController;
-    private float m_steamPressure;
-
     void Start()
     {
         Throttle.Notify();
@@ -28,7 +25,7 @@ public class ShipMovement : MonoBehaviour
     
     void FixedUpdate()
     {
-        m_rigidbody.AddForceAtPosition(m_wheelPowerPoint.forward * (m_throttleEffectiveness.Evaluate(Throttle * 2) * (m_steamPressure)), m_wheelPowerPoint.position, ForceMode.Force);
+        m_rigidbody.AddForceAtPosition(m_wheelPowerPoint.forward * (m_throttleEffectiveness.Evaluate(Throttle * 2)), m_wheelPowerPoint.position, ForceMode.Force);
        // Debug.Log(m_waterController.SteamPressure);
          //Debug.Log($"Throttle: {Throttle}, Pressure: {m_waterController.SteamPressure}, Force: {m_throttleEffectiveness.Evaluate(Throttle * 2) * (m_steamPressure)}");
         ApplyRudderForce(Rudder);
