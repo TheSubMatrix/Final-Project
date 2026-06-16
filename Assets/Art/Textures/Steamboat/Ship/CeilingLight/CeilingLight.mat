@@ -49,6 +49,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 331d29be0a30790488c631dec33f10e3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Emissive:
+        m_Texture: {fileID: 2800000, guid: 331d29be0a30790488c631dec33f10e3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: ab6cc91b08ddb89468bef22378df78e0, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -69,8 +73,11 @@ Material:
     m_Floats:
     - _DstBlend: 10
     - _DstBlendAlpha: 10
+    - _Emissive_Intensity: 4.25
+    - _Rim_Light: 0
     - _SrcBlend: 5
     - _Surface: 1
+    - _Transition_Sharpness: 2.25
     - _ZWrite: 1
     - _ZWriteControl: 1
     m_Colors:
