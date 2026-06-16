@@ -4774,9 +4774,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85726dab0b9d5c646897bc27060a69db, type: 3}
+--- !u!4 &6529528017279626221 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8660043997227108210, guid: 85726dab0b9d5c646897bc27060a69db, type: 3}
+  m_PrefabInstance: {fileID: 6722991323125617507}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6541027111184037000 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 85726dab0b9d5c646897bc27060a69db, type: 3}
+  m_PrefabInstance: {fileID: 6722991323125617507}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8248718930130057368 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -5821594296534520837, guid: 85726dab0b9d5c646897bc27060a69db, type: 3}
   m_PrefabInstance: {fileID: 6722991323125617507}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7960210049524914961
@@ -5130,7 +5140,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  m_rigidbody: {fileID: 8119851664354631541}
+  Rigidbody: {fileID: 8119851664354631541}
   m_wheelPowerPoint: {fileID: 1907087247233322412}
   m_rudderPoint: {fileID: 7959187600267199001}
   m_rudderEffectiveness:
@@ -5527,9 +5537,18 @@ MonoBehaviour:
   m_helmRudderSpeed: 0.5
   m_shipMovement: {fileID: 6315079195521403227}
   m_interactDisplayTransform: {fileID: 2572915281717685345}
-  m_wheelTransform: {fileID: 6393123281019169581}
-  m_wheelMinimumAngle: -180
-  m_wheelMaximumAngle: 180
+  m_wheelElement:
+    Transform: {fileID: 6393123281019169581}
+    MinAngle: -180
+    MaxAngle: 180
+  m_throttleElement:
+    Transform: {fileID: 6529528017279626221}
+    MinAngle: -60
+    MaxAngle: 60
+  m_speedometerElement:
+    Transform: {fileID: 8248718930130057368}
+    MinAngle: -105
+    MaxAngle: 105
 --- !u!65 &6379625116085319915
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using MatrixUtils.Attributes;
 using MatrixUtils.Extensions;
 using Unity.Cinemachine;
@@ -14,14 +15,14 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     [SerializeField] float m_helmRudderSpeed = 0.5f;
     [SerializeField, RequiredField] ShipMovement m_shipMovement;
     [FormerlySerializedAs("_interactDisplayTransform")] [SerializeField] Transform m_interactDisplayTransform;
-    [SerializeField] Transform m_wheelTransform;
-    [SerializeField] float m_wheelMinimumAngle = -180f;
-    [SerializeField] float m_wheelMaximumAngle = 180f;
+    [SerializeField] ProcedurallyAnimatedHelmElement m_wheelElement;
+    [SerializeField] ProcedurallyAnimatedHelmElement m_throttleElement;
+    [SerializeField] ProcedurallyAnimatedHelmElement m_speedometerElement;
     IPlayerController m_activePlayerController;
     Vector2 m_moveInput = Vector2.zero;
     Vector2 m_lookInput = Vector2.zero;
     InteractionSession m_currentInteractionSession;
-    float m_velocity;
+    float m_wheelVelocity;
     ///<inheritdoc/>
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
@@ -43,8 +44,10 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     {
         if(m_activePlayerController is null) return;
         m_shipMovement.SetRudder(m_shipMovement.Rudder + m_moveInput.x * Time.deltaTime * m_helmRudderSpeed);
-        m_wheelTransform.localEulerAngles = new(0, 0, Mathf.SmoothDampAngle(m_wheelTransform.localEulerAngles.z, Mathf.Lerp(m_wheelMinimumAngle, m_wheelMaximumAngle, m_shipMovement.Rudder.Value.Remap(-1, 1, 1, 0)), ref m_velocity, 0.1f));
+        m_wheelElement.Transform.localEulerAngles = new(0, 0, m_wheelElement.GetNextAngle(m_shipMovement.Rudder, m_wheelElement.Transform.localEulerAngles.z));
         m_shipMovement.SetThrottle(m_shipMovement.Throttle + m_moveInput.y * Time.deltaTime * m_helmThrottleSpeed);
+        m_throttleElement.Transform.localEulerAngles = new(m_throttleElement.GetNextAngle(-m_shipMovement.Throttle, m_throttleElement.Transform.localEulerAngles.x), 0, 0);
+        m_speedometerElement.Transform.localEulerAngles = new(m_speedometerElement.GetNextAngle(Vector3.Dot(m_shipMovement.Rigidbody.linearVelocity, m_shipMovement.Rigidbody.transform.forward).Remap(-14, 14, -1, 1), m_speedometerElement.Transform.localEulerAngles.x), 0, 0);
         m_helmCamera.transform.Rotate(0, m_lookInput.x * Time.deltaTime * 100, 0);
     }
     ///<inheritdoc/>
@@ -96,4 +99,19 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     public PromptData GetPromptData() => new() {AssociatedWidget = m_widgetForPrompt};
 
     public Vector3 GetWidgetWorldPosition() => m_interactDisplayTransform.position;
+    
+    [Serializable]
+    class ProcedurallyAnimatedHelmElement
+    {
+        public Transform Transform;
+        public float MinAngle;
+        public float MaxAngle;
+        float m_velocity;
+
+        public float GetNextAngle(float normalizedDesiredAngle, float currentAngle)
+        {
+            float desiredWheelAngle = Mathf.Lerp(MinAngle, MaxAngle, normalizedDesiredAngle.Remap(-1, 1, 1, 0));
+            return Mathf.SmoothDampAngle(currentAngle, desiredWheelAngle, ref m_velocity, 0.1f);
+        }
+    }
 }
