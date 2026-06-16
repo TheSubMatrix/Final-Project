@@ -239,11 +239,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 458687639193111246, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
   m_PrefabInstance: {fileID: 1920507445}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &232129674 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6529528017279626221, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-  m_PrefabInstance: {fileID: 1920507445}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &238887335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301,11 +296,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddee57189b772d543baffa50a5bc45b2, type: 3}
---- !u!4 &354594849 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6393123281019169581, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-  m_PrefabInstance: {fileID: 1920507445}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &369148440 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1176619017856952373, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
@@ -1240,42 +1230,6 @@ PrefabInstance:
       propertyPath: m_fillPercentage.m_onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 691929295}
-    - target: {fileID: 841866500237528475, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-      propertyPath: m_wheelElement.MaxAngle
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 841866500237528475, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-      propertyPath: m_wheelElement.MinAngle
-      value: -180
-      objectReference: {fileID: 0}
-    - target: {fileID: 841866500237528475, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-      propertyPath: m_wheelElement.Transform
-      value: 
-      objectReference: {fileID: 354594849}
-    - target: {fileID: 841866500237528475, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-      propertyPath: m_throttleElement.MaxAngle
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 841866500237528475, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-      propertyPath: m_throttleElement.MinAngle
-      value: -60
-      objectReference: {fileID: 0}
-    - target: {fileID: 841866500237528475, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-      propertyPath: m_throttleElement.Transform
-      value: 
-      objectReference: {fileID: 232129674}
-    - target: {fileID: 841866500237528475, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-      propertyPath: m_speedometerElement.MaxAngle
-      value: 105
-      objectReference: {fileID: 0}
-    - target: {fileID: 841866500237528475, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-      propertyPath: m_speedometerElement.MinAngle
-      value: -105
-      objectReference: {fileID: 0}
-    - target: {fileID: 841866500237528475, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-      propertyPath: m_speedometerElement.Transform
-      value: 
-      objectReference: {fileID: 2035077992}
     - target: {fileID: 3303257174621955613, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_outPosition
       value: 
@@ -1501,11 +1455,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2304061856342899353, guid: 8e4af74c2c10b9048b90d28e8b0beea7, type: 3}
   m_PrefabInstance: {fileID: 1981515669}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2035077992 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8248718930130057368, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-  m_PrefabInstance: {fileID: 1920507445}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2044784459
 GameObject:
