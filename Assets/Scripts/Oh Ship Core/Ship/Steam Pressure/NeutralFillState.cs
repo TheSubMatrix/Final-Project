@@ -33,11 +33,17 @@ public class NeutralFillState : IFillState
     {
         m_startingFill = currentFill;
         float driftDuration = Mathf.Abs(TargetFill - currentFill) / m_fillRate;
-        m_driftTimer = new(driftDuration);
-        m_driftTimer.OnTimerTick += HandleDrift;
-        m_driftTimer.OnComplete(() => m_driftTimer.OnTimerTick -= HandleDrift);
-        m_driftTimer.OnTimerStop += OnDriftCompleted;
-        m_driftTimer.Start();
+        if (driftDuration > 0f)
+        {
+            m_driftTimer = new(driftDuration);
+            m_driftTimer.OnTimerTick += HandleDrift;
+            m_driftTimer.OnTimerStop += OnDriftCompleted;
+            m_driftTimer.Start();
+        }
+        else
+        {
+            OnDriftCompleted();
+        }
     }
     /// <inheritdoc/>
     public void OnEventEnded()
@@ -60,7 +66,6 @@ public class NeutralFillState : IFillState
 
     void OnDriftCompleted()
     {
-        OnFillChange?.Invoke(TargetFill);
         float holdDuration = Random.Range(m_minHoldDuration, m_maxHoldDuration);
         m_holdTimer = new(holdDuration);
         m_holdTimer.OnTimerStop += OnHoldCompleted;

@@ -27,9 +27,13 @@ public class ChangeFillState : IFillState
     {
         m_startingFill = startingFill;
         float duration = Mathf.Abs(startingFill - m_targetFill) / m_fillRate;
+        if (duration <= 0f)
+        {
+            m_requestTransitionAction(OnIncrease);
+            return;
+        }
         m_timer = new(duration);
         m_timer.OnTimerTick += HandleFillChange;
-        m_timer.OnTimerStop += () => OnFillChange?.Invoke(m_targetFill);
         m_timer.Start();
     }
     /// <inheritdoc/>
