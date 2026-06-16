@@ -7,13 +7,13 @@ public class FishingUI : MonoBehaviour
     [SerializeField] private RectTransform greenZone;
     [SerializeField] private RectTransform playerFishingIcon;
     [SerializeField] private RectTransform usableFishingArea;
-    [SerializeField] private Slider fishingProgress;
+    [SerializeField] private Image fishingProgress;
     [SerializeField] private GameObject fishingUI;
     
     public RectTransform GreenZone => greenZone;
     public RectTransform PlayerFishingIcon => playerFishingIcon;
     public RectTransform UsableFishingArea => usableFishingArea;
-    public Slider FishingProgressBar => fishingProgress;
+    public Image FishingProgressBar => fishingProgress;
 
     private void Awake()
     {

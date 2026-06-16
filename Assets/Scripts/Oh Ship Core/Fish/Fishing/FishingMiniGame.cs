@@ -16,7 +16,7 @@ public class FishingMiniGame
     {
         _isGameOver = false;
         _data = fishingMiniGameData;
-        _data.FishingProgressBar.value = 0;
+        _data.FishingProgressBar.fillAmount = 0;
         var (bottomOfFishIcon, topOfFishIcon) = GetMaxAndMinOfIconWorld(_data.PlayerFishingIcon);
         _halfHeightOfFishingIcon = (topOfFishIcon - bottomOfFishIcon) / 2;
         
@@ -55,21 +55,21 @@ public class FishingMiniGame
         _data.PlayerFishingIcon.localPosition = localPos;
     }
 
-    private void CheckFishingProgress(Slider incomingSlider)
+    private void CheckFishingProgress(Image incomingSlider)
     {
         if(_isGameOver) return;
         
         if (FishingIconOverlap(_data.PlayerFishingIcon, _data.GreenZone))
         {
-            incomingSlider.value += _data.ProgressSpeed * Time.deltaTime;
+            incomingSlider.fillAmount += _data.ProgressSpeed * Time.deltaTime;
         }
         else
         {
-            incomingSlider.value -= _data.ProgressSpeed * Time.deltaTime;
+            incomingSlider.fillAmount -= _data.ProgressSpeed * Time.deltaTime;
         }
-        incomingSlider.value = Mathf.Clamp(incomingSlider.value, 0f, 1f);
+        incomingSlider.fillAmount = Mathf.Clamp(incomingSlider.fillAmount, 0f, 1f);
         
-        if (incomingSlider.value >= incomingSlider.maxValue)
+        if (incomingSlider.fillAmount >= 1)
         {
             OnCaughtFish?.Invoke();
             EndMiniGame();

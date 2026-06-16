@@ -36,7 +36,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
     private FishingMiniGame _fishingMiniGame;
     private RectTransform _greenZone;
     private RectTransform _playerFishingIcon;
-    private Slider _fishingProgressBar;
+    private Image _fishingProgressBar;
     private RectTransform _usableFishingArea;
     private Transform _holdingObjectTransform;
     

@@ -6,7 +6,7 @@ public class FishingMiniGameData
     public RectTransform PlayerFishingIcon;
     public RectTransform UsableFishingArea;
     public RectTransform GreenZone;
-    public Slider FishingProgressBar;
+    public Image FishingProgressBar;
     public float SpeedOfFishIcon;
     public float ProgressSpeed;
     
