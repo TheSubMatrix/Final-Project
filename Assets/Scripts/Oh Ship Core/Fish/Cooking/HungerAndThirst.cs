@@ -20,8 +20,7 @@ public class HungerAndThirst: MonoBehaviour
     void Update()
     {
         Hunger.Value = Mathf.Clamp01(Hunger.Value - (m_hungerLostPerTick * Time.deltaTime));
-        //if (Hunger.Value <= 0) m_onPlayerStarved.Invoke();
-        //Debug.Log("Hunger:" + Hunger.Value);
+        if (Hunger.Value <= 0) m_onPlayerStarved.Invoke();
 
     }
     public void OnPlayerControllerConnected(IPlayerController controller)
@@ -38,6 +37,11 @@ public class HungerAndThirst: MonoBehaviour
     {
         //Hunger.RemoveListener(m_manager.UpdateHungerBar);
         m_manager = null;
+    }
+
+    public void ChangeLayer(GameObject player)
+    {
+        player.layer = LayerMask.NameToLayer("Default");
     }
 
     void UpdateHungerBar(float hunger) => m_manager.UpdateHungerBar(hunger);

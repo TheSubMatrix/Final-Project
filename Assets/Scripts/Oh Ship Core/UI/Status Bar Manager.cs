@@ -66,4 +66,12 @@ public class StatusBarManager : MonoBehaviour
 
     }
 
+    public bool IsPassedOut()
+    {
+        return isPassedOut;
+    }
+        
+
+
+
 }

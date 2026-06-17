@@ -274,7 +274,19 @@ MonoBehaviour:
   m_manager: {fileID: 0}
   m_onPlayerStarved:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -862725965146413658}
+        m_TargetAssemblyTypeName: HungerAndThirst, OhShip.Core.Fish
+        m_MethodName: ChangeLayer
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2051537735393309202}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_hungerLostPerTick: 0.01
 --- !u!114 &2301725045065718947
 MonoBehaviour:

@@ -22,6 +22,7 @@ public class PassOutInteractable : MonoBehaviour, IInteractable, IPromptProvider
     // Update is called once per frame
     void Update()
     {
+
     }
 
     public InteractionSession BeginInteraction(IInteractor interactor)
@@ -30,9 +31,10 @@ public class PassOutInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
         _playerController = _playerControllable.GetActivePlayerController();
 
-        status = _playerController.GetAssociatedGameObject().transform.root.GetComponentInChildren<StatusBarManager>();
+        status = transform.root.GetComponentInChildren<StatusBarManager>();
 
         Debug.Log("status" + status);
+        Debug.Log("status-"+ status.isPassedOut);
 
 
         if (status.isPassedOut)
@@ -49,6 +51,11 @@ public class PassOutInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
         return m_currentInteractionSession;
 
+    }
+
+    public void OnControlReleased()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
     public PromptData GetPromptData()
