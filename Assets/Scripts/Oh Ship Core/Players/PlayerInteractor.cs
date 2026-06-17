@@ -42,7 +42,6 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit checkHit, m_interactionRange, m_interactionLayer) 
                 && checkHit.collider.TryGetComponent(out IInteractable checkInteractable))
             {
-
                 WasInteracting = IsInteracting();
                 EndActiveInteraction();
                 m_session = checkInteractable.BeginInteraction(this);
@@ -53,7 +52,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
             EndActiveInteraction();
             return;
         }
-        
+        WasInteracting = false;
         if (!Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, m_interactionRange, m_interactionLayer)) return;
         if (!hit.collider.TryGetComponent(out IInteractable interactable)) return;
         m_session = interactable.BeginInteraction(this);
