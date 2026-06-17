@@ -36,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
     public void OnMovementInputChanged(Vector2 input) => m_desiredMovement = input * m_moveSpeed;
     public void OnLookInputChanged(Vector2 input) => m_currentLookInput = input;
 
-    [SerializeField] private PassOutScript playerState;
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody>();
@@ -53,14 +52,12 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(playerState.isPassedOut == false)
-        {
-            UpdateState();
-            AdjustVelocityAndRotation();
+
+        UpdateState();
+        AdjustVelocityAndRotation();
 
 
-            ClearState();
-        }
+        ClearState();
     }
 
     void LateUpdate()

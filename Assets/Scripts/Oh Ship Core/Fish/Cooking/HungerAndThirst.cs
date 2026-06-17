@@ -11,7 +11,6 @@ public class HungerAndThirst: MonoBehaviour
     [FormerlySerializedAs("manager")] [SerializeField] StatusBarManager m_manager;
     [SerializeField] UnityEvent m_onPlayerStarved = new();
     [SerializeField] float m_hungerLostPerTick = 0.01f;
-    [SerializeField] PassOutScript playerState;
     void Start()
     {
         Hunger.Notify();
@@ -24,22 +23,6 @@ public class HungerAndThirst: MonoBehaviour
         //if (Hunger.Value <= 0) m_onPlayerStarved.Invoke();
         //Debug.Log("Hunger:" + Hunger.Value);
 
-        if (Hunger.Value <= 0f)
-        {
-            //UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
-            playerState.PassOut();
-        }
-        else if (Hunger.Value <= 0.3f && Hunger.Value > 0f)
-        {
-            Debug.Log("fades");
-            playerState.SlowDown();
-        }
-
-        if(playerState.isPassedOut == false && playerState.wokeUp == true)
-        {
-            playerState.wokeUp = false;
-            Hunger.Value = 1f;
-        }
     }
     public void OnPlayerControllerConnected(IPlayerController controller)
     {
@@ -56,5 +39,6 @@ public class HungerAndThirst: MonoBehaviour
         //Hunger.RemoveListener(m_manager.UpdateHungerBar);
         m_manager = null;
     }
+
     void UpdateHungerBar(float hunger) => m_manager.UpdateHungerBar(hunger);
 }
