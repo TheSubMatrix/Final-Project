@@ -65,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
         m_lookYaw *= Quaternion.Euler(0, m_currentLookInput.x * m_lookSensitivity * Time.deltaTime, 0);
         m_lookPitch = Mathf.Clamp(m_lookPitch - m_currentLookInput.y * m_lookSensitivity * Time.deltaTime, -90, 90);
         m_camera.rotation = m_lookYaw * Quaternion.Euler(m_lookPitch, 0, 0);
+        m_rigidbody.MoveRotation(m_lookYaw);
+        m_camera.rotation = m_lookYaw * Quaternion.Euler(m_lookPitch, 0, 0);
     }
     float GetRate(float current, float desired) => Mathf.Abs(current) < Mathf.Abs(desired) || !Mathf.Approximately(Mathf.Sign(current), Mathf.Sign(desired)) ? m_acceleration : m_deceleration;
 

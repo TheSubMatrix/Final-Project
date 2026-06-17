@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1291469901007744613, guid: fe2e2657b69f9ca4aa4fb8b9c1fbde16, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2051537735393309202, guid: fe2e2657b69f9ca4aa4fb8b9c1fbde16, type: 3}
       propertyPath: m_Name
       value: Blue Player
@@ -127,6 +131,22 @@ PrefabInstance:
     - target: {fileID: 7257393921124780775, guid: fe2e2657b69f9ca4aa4fb8b9c1fbde16, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158657691181684660, guid: fe2e2657b69f9ca4aa4fb8b9c1fbde16, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158657691181684660, guid: fe2e2657b69f9ca4aa4fb8b9c1fbde16, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158657691181684660, guid: fe2e2657b69f9ca4aa4fb8b9c1fbde16, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158657691181684660, guid: fe2e2657b69f9ca4aa4fb8b9c1fbde16, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.938
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -5748799867217336001, guid: fe2e2657b69f9ca4aa4fb8b9c1fbde16, type: 3}
