@@ -22,12 +22,23 @@ public class HungerAndThirst: MonoBehaviour
     {
         Hunger.Value = Mathf.Clamp01(Hunger.Value - (m_hungerLostPerTick * Time.deltaTime));
         //if (Hunger.Value <= 0) m_onPlayerStarved.Invoke();
+        Debug.Log("Hunger:" + Hunger.Value);
 
         if (Hunger.Value <= 0f)
         {
             //UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
             playerState.PassOut();
+        }
+        else if (Hunger.Value <= 0.3f && Hunger.Value > 0f)
+        {
+            Debug.Log("fades");
+            playerState.SlowDown();
+        }
 
+        if(playerState.isPassedOut == false && playerState.wokeUp == true)
+        {
+            playerState.wokeUp = false;
+            Hunger.Value = 1f;
         }
     }
     public void OnPlayerControllerConnected(IPlayerController controller)

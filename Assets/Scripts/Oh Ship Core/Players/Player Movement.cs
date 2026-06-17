@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -34,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     IPlayerController m_playerController;
     public void OnMovementInputChanged(Vector2 input) => m_desiredMovement = input * m_moveSpeed;
     public void OnLookInputChanged(Vector2 input) => m_currentLookInput = input;
+
+    [SerializeField] private PassOutScript playerState;
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody>();
@@ -50,11 +53,14 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        UpdateState();
-        AdjustVelocityAndRotation();
+        if(playerState.isPassedOut == false)
+        {
+            UpdateState();
+            AdjustVelocityAndRotation();
 
 
-        ClearState();
+            ClearState();
+        }
     }
 
     void LateUpdate()
