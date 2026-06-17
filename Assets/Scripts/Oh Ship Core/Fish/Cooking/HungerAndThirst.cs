@@ -30,13 +30,17 @@ public class HungerAndThirst: MonoBehaviour
     }
     public void OnPlayerControllerConnected(IPlayerController controller)
     {
+        if (m_manager != null) return;
+        
         m_manager = controller.GetAssociatedGameObject().transform.root.GetComponentInChildren<StatusBarManager>();
         Hunger.AddListener(m_manager.UpdateHungerBar);
+        
+       
     }
 
     public void OnPlayerControllerDisconnected(IPlayerController controller)
     {
-        Hunger.RemoveListener(m_manager.UpdateHungerBar);
+        //Hunger.RemoveListener(m_manager.UpdateHungerBar);
         m_manager = null;
     }
     void UpdateHungerBar(float hunger) => m_manager.UpdateHungerBar(hunger);

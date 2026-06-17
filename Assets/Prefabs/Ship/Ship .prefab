@@ -1391,7 +1391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1458126230875344796}
   m_Layer: 0
-  m_Name: AssortedProps
+  m_Name: VISUAL AssortedProps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2209,6 +2209,7 @@ Transform:
   - {fileID: 1161828735824648032}
   - {fileID: 6854661931667793411}
   - {fileID: 7167062374686219813}
+  - {fileID: 3457570328797569059}
   m_Father: {fileID: 7542275446007984815}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6523139130020798763
@@ -2429,6 +2430,59 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7011121091057656477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3457570328797569059}
+  - component: {fileID: 285359853269254903}
+  m_Layer: 0
+  m_Name: RoofCollision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3457570328797569059
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7011121091057656477}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8373360847606025473}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &285359853269254903
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7011121091057656477}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.0503445, y: 0.3085308, z: 12.458923}
+  m_Center: {x: 0.4, y: 0.52, z: -12.09}
 --- !u!1 &7050457313900488222
 GameObject:
   m_ObjectHideFlags: 0
@@ -3358,7 +3412,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: c939edbad749f1b4984ceceae02b5491, type: 2}
     - target: {fileID: 919132149155446097, guid: e8e372fa67d509a4e873ab6b4ffa55bc, type: 3}
       propertyPath: m_Name
-      value: CoalBucket
+      value: VISUAL CoalBucket
       objectReference: {fileID: 0}
     - target: {fileID: 8907324474016979775, guid: e8e372fa67d509a4e873ab6b4ffa55bc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -3436,7 +3490,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a7809177af19f744fa8a1264f738d849, type: 2}
     - target: {fileID: 919132149155446097, guid: 60531edccb3e2e04c993cf904ea2eb21, type: 3}
       propertyPath: m_Name
-      value: SinkSideGalley
+      value: VISUAL SinkSideGalley
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4747,7 +4801,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5cc4219987fb69a4aa1006a50e013387, type: 2}
     - target: {fileID: 919132149155446097, guid: 85726dab0b9d5c646897bc27060a69db, type: 3}
       propertyPath: m_Name
-      value: CaptiansGizmos
+      value: VISUAL CaptiansGizmos
       objectReference: {fileID: 0}
     - target: {fileID: 2615621331128541664, guid: 85726dab0b9d5c646897bc27060a69db, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -4903,6 +4957,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4553683442795063688, guid: 8cf83eae36e7e8c4885e54392913e4f9, type: 3}
+      propertyPath: m_Name
+      value: VISUAL Deck_Cover
+      objectReference: {fileID: 0}
+    - target: {fileID: -91371993818885868, guid: 8cf83eae36e7e8c4885e54392913e4f9, type: 3}
+      propertyPath: m_Name
+      value: VISUAL Smoke_Stack
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8cf83eae36e7e8c4885e54392913e4f9, type: 3}
       propertyPath: m_Name
       value: 'Ship '
@@ -4913,11 +4975,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3189665716834196500, guid: 8cf83eae36e7e8c4885e54392913e4f9, type: 3}
       propertyPath: m_Name
-      value: Top rope
+      value: VISUAL Top rope
       objectReference: {fileID: 0}
     - target: {fileID: 4709755906198328229, guid: 8cf83eae36e7e8c4885e54392913e4f9, type: 3}
       propertyPath: m_Name
-      value: Boat Hull
+      value: VISUAL Boat Hull
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392864006251593401, guid: 8cf83eae36e7e8c4885e54392913e4f9, type: 3}
+      propertyPath: m_Name
+      value: VISUAL Ship_Hull
       objectReference: {fileID: 0}
     - target: {fileID: 9055767057833011649, guid: 8cf83eae36e7e8c4885e54392913e4f9, type: 3}
       propertyPath: m_LocalRotation.y
@@ -5797,7 +5863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 37cc7b4ee4ed44c45a3c4207771d5f6b, type: 3}
       propertyPath: m_Name
-      value: CaptiansDesk
+      value: VISUAL CaptiansDesk
       objectReference: {fileID: 0}
     - target: {fileID: 2433252562651527295, guid: 37cc7b4ee4ed44c45a3c4207771d5f6b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
