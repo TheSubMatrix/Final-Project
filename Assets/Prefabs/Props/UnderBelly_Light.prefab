@@ -8,9 +8,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 123392368035555799, guid: fc187dd3632e6594b8609048455ef963, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011045162339975606, guid: fc187dd3632e6594b8609048455ef963, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2629103446353944546, guid: fc187dd3632e6594b8609048455ef963, type: 3}
       propertyPath: m_Range
       value: 6.389717
+      objectReference: {fileID: 0}
+    - target: {fileID: 2629103446353944546, guid: fc187dd3632e6594b8609048455ef963, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2702469489253354751, guid: fc187dd3632e6594b8609048455ef963, type: 3}
       propertyPath: m_LocalScale.x
@@ -34,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2702469489253354751, guid: fc187dd3632e6594b8609048455ef963, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -127.73
+      value: -121.79
       objectReference: {fileID: 0}
     - target: {fileID: 2702469489253354751, guid: fc187dd3632e6594b8609048455ef963, type: 3}
       propertyPath: m_LocalRotation.w
@@ -67,6 +79,10 @@ PrefabInstance:
     - target: {fileID: 3371728282439865925, guid: fc187dd3632e6594b8609048455ef963, type: 3}
       propertyPath: m_Name
       value: UnderBelly_Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 3970687101243716150, guid: fc187dd3632e6594b8609048455ef963, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
