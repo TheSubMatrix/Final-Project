@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class PassOutInteractable : MonoBehaviour, IInteractable
+public class PassOutInteractable : MonoBehaviour, IInteractable, IPromptProvider
 {
     InteractionSession m_currentInteractionSession;
     [SerializeField] private Transform _interactDisplayTransform;
