@@ -58,10 +58,7 @@ namespace MatrixUtils.GenericDatatypes
             Notify();
         }
 
-        public void Notify()
-        {
-            m_onValueChanged?.Invoke(m_value);
-        }
+        public void Notify() => m_onValueChanged?.Invoke(m_value);
 
         public void AddListener(UnityAction<T> callback)
         {
