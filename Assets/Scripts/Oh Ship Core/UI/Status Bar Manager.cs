@@ -11,7 +11,6 @@ public class StatusBarManager : MonoBehaviour
 
     [SerializeField] private Image fadeImage;
     private Color imageAlpha;
-    InteractionSession m_currentInteractionSession;
     public bool isPassedOut = false;
     public bool wokeUp = false;
 
@@ -22,6 +21,7 @@ public class StatusBarManager : MonoBehaviour
         if (hungerPercentage <= 0f)
         {
             //UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+            Debug.Log("passes out");
             PassOut();
         }
         else if (hungerPercentage <= 0.3f && hungerPercentage > 0f)
@@ -39,14 +39,15 @@ public class StatusBarManager : MonoBehaviour
         public void UpdateFillPercentage(float fill)
         {
             Fill.fillAmount = fill;
-            Debug.Log("fill:" + fill);
 
         }
     }
 
     public void PassOut()
     {
+        Debug.Log("passed: " + isPassedOut);
         isPassedOut = true;
+        Debug.Log("passed: " + isPassedOut);
     }
 
     public void SlowDown()

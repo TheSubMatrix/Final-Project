@@ -32,12 +32,12 @@ public class PassOutInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
         status = _playerController.GetAssociatedGameObject().transform.root.GetComponentInChildren<StatusBarManager>();
 
-        Debug.Log("passed: " + status.isPassedOut);
+        Debug.Log("status" + status);
 
-        Debug.Log("interactor: " + interactor.IsInteracting());
 
         if (status.isPassedOut)
         {
+            Debug.Log("went through pass");
             m_currentInteractionSession = new InteractionSession(interactor, this);
             m_currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
             status.WakeUp();

@@ -57,6 +57,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
         if (!hit.collider.TryGetComponent(out IInteractable interactable)) return;
         m_session = interactable.BeginInteraction(this);
 
+        Debug.Log("found object");
         if (m_session is not { IsActive: true }) return;
         SubscribeToSession();
     }
