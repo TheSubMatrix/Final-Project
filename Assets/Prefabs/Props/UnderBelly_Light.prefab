@@ -9,8 +9,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 123392368035555799, guid: fc187dd3632e6594b8609048455ef963, type: 3}
-      propertyPath: m_Shadows.m_Type
+      propertyPath: m_Lightmapping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 123392368035555799, guid: fc187dd3632e6594b8609048455ef963, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2011045162339975606, guid: fc187dd3632e6594b8609048455ef963, type: 3}
       propertyPath: m_AdditionalLightsShadowResolutionTier
@@ -21,8 +25,12 @@ PrefabInstance:
       value: 6.389717
       objectReference: {fileID: 0}
     - target: {fileID: 2629103446353944546, guid: fc187dd3632e6594b8609048455ef963, type: 3}
-      propertyPath: m_Shadows.m_Type
+      propertyPath: m_Lightmapping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2629103446353944546, guid: fc187dd3632e6594b8609048455ef963, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2702469489253354751, guid: fc187dd3632e6594b8609048455ef963, type: 3}
       propertyPath: m_LocalScale.x
