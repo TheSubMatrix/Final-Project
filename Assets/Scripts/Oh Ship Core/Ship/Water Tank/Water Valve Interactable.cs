@@ -1,3 +1,4 @@
+using MatrixUtils.Attributes;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,14 +9,16 @@ using UnityEngine.Serialization;
 /// </summary>
 public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerControllable, IPromptProvider
 {
-    [SerializeField] private Transform _displayForInteraction;
-    [SerializeField] private Transform _playerInteractionLocation;
-
-    [SerializeField] private CinemachineCamera _steamPressureCamera;
+    [FormerlySerializedAs("_displayForInteraction")]
+    [SerializeField] Transform m_displayForInteraction;
+    [FormerlySerializedAs("_playerInteractionLocation")] 
+    [SerializeField, RequiredField] Transform m_playerInteractionLocation;
+    [FormerlySerializedAs("_steamPressureCamera")] [SerializeField]
+    CinemachineCamera m_steamPressureCamera;
     [SerializeField] string m_widgetForPrompt = "interact";
     IPlayerController m_activePlayerController;
     [SerializeField] string m_pressureControlActionMap = "Adjust Pressure";
-    [SerializeField] WaterController m_pressureSystem;
+    [SerializeField, RequiredField] WaterController m_pressureSystem;
     
     InteractionSession m_currentInteractionSession;
     /// <inheritdoc/>
@@ -27,11 +30,11 @@ public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerContr
        
         CinemachineCamera playerCamera = interactor.GetAssociatedGameObject().GetComponent<CinemachineCamera>();
         
-        _steamPressureCamera.OutputChannel =  playerCamera.OutputChannel;
-        _steamPressureCamera.Priority = 10;
+        m_steamPressureCamera.OutputChannel =  playerCamera.OutputChannel;
+        m_steamPressureCamera.Priority = 10;
         
         Transform playerPos = interactor.GetAssociatedGameObject().transform.parent;
-        playerPos.position = _playerInteractionLocation.position;
+        playerPos.position = m_playerInteractionLocation.position;
         
         m_currentInteractionSession = new(interactor, this);
         m_currentInteractionSession.OnEnded += () => controller.ChangeControlledEntity(oldControllable);
@@ -60,7 +63,7 @@ public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerContr
     {
         if (m_activePlayerController == null) throw new("Player controller is null, cannot release control.");
         if (!m_activePlayerController.TryGetCurrentInputActionMap(out InputActionMap map)) throw new("Player controller is not null, but input action map is null...");
-        _steamPressureCamera.Priority = 0;
+        m_steamPressureCamera.Priority = 0;
         
         InputAction increasePressureAction = map.FindAction("Increase Pressure");
         increasePressureAction.performed -= HandleIncreasePressure;
@@ -78,5 +81,5 @@ public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerContr
     void HandleInteract(InputAction.CallbackContext context) => m_currentInteractionSession.End();
     public GameObject GetAssociatedGameObject() => gameObject;
     public PromptData GetPromptData() => new() {AssociatedWidget = m_widgetForPrompt};
-    public Vector3 GetWidgetWorldPosition() => _displayForInteraction.position;
+    public Vector3 GetWidgetWorldPosition() => m_displayForInteraction.position;
 }
