@@ -42,6 +42,7 @@ public class ShipHealth : MonoBehaviour, IDamageable
             });
             selectedHole.transform.position = holeTransform.position;
             selectedHole.transform.rotation = holeTransform.rotation;
+            selectedHole.transform.SetParent(holeTransform.parent);
             selectedHole.gameObject.SetActive(true);
         }
         return true;
