@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using MatrixUtils.AudioSystem;
 using MatrixUtils.GenericDatatypes;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -10,7 +12,10 @@ public class ShipHealth : MonoBehaviour, IDamageable
     [SerializeField] ShipHole m_holePrefab;
     IObjectPool<ShipHole> m_shipHoles;
     [SerializeField] Observer<float> m_fillPercentage = new(0);
+    [SerializeField] float m_invulnerabilityTime = 3;
+    [SerializeField] SoundData[] m_damageSounds;
     uint m_holeCount;
+    bool m_isInvulnerable;
     void Awake()
     {
         m_availableHoles = new(m_holePositions);
@@ -27,6 +32,7 @@ public class ShipHealth : MonoBehaviour, IDamageable
     /// <inheritdoc/>
     public bool Damage(uint amount)
     {
+        if (m_isInvulnerable) return false;
         for (uint i = 0; i < amount; i++)
         {
             if (m_availableHoles.Count == 0) return false;
@@ -45,11 +51,20 @@ public class ShipHealth : MonoBehaviour, IDamageable
             selectedHole.transform.SetParent(holeTransform.parent);
             selectedHole.gameObject.SetActive(true);
         }
+        if(m_damageSounds.Length > 0) SoundManager.Instance?.CreateSound().WithSoundData(m_damageSounds[Random.Range(0, m_damageSounds.Length)]).WithRandomPitch().Play();
+        StartCoroutine(StartInvulnerability());
         return true;
     }
-    void OnGUI()
+
+    IEnumerator StartInvulnerability()
     {
-        if (GUI.Button(new Rect(10, 10, 150, 40), "Deal Damage"))
-            Damage(1);
+        m_isInvulnerable = true;
+        yield return new WaitForSeconds(m_invulnerabilityTime);
+        m_isInvulnerable = false;
     }
+    // void OnGUI()
+    // {
+    //     if (GUI.Button(new Rect(10, 10, 150, 40), "Deal Damage"))
+    //         Damage(1);
+    // }
 }
