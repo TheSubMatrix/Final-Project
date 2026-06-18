@@ -14,8 +14,8 @@ public class WaterController : MonoBehaviour
     [SerializeField] float m_fillRate = 1f;
     [SerializeField] float m_currentFill;
     
-    [SerializeField] float m_minHoldDuration = 30f;
-    [SerializeField] float m_maxHoldDuration = 40f;
+    [SerializeField] float m_minHoldDuration = 120f;
+    [SerializeField] float m_maxHoldDuration = 180f;
     [SerializeField, RequiredField] MeshRenderer m_waterFillMesh;
     static readonly int s_fillProperty = Shader.PropertyToID("_Fill");
 
@@ -71,7 +71,7 @@ public class WaterController : MonoBehaviour
         if (IsInCriticalState)
         {
            Debug.Log("Criktical State");
-            // SceneManager.LoadScene("GameOver");
+           //SceneManager.LoadScene("GameOver");
         }
     }
 }
