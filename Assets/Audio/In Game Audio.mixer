@@ -63,6 +63,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -7170283853585462342}
+  - {fileID: 4004428704016859270}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -145,6 +146,7 @@ AudioMixerSnapshotController:
     3286e4f0f01a7034ea10c34af0ca8790: -12.638586
     f386a5b1bc7c3c44189e42fc56ec81fc: 5.74
     5c307c12275c8de4885b4558523ac1e9: 54.1
+    f49d81548d67e8645b58416b4304205f: 10
     f5989ce4f1868ad4885ccd793ded26e5: 1410
     b39ad3f5bdd757c4dac53951985537d6: 1
     ab9d6de634a59d644abcacb12a03cf70: 101
@@ -155,7 +157,8 @@ AudioMixerSnapshotController:
     07225f3b4fa68894fa4f4551e400800e: 3.2093847
     d63385fb74bae884f93f0469336c00d9: 12.9
     b1ad4e4d86973cf409b8dd45b7504c11: 1.37
-    d1b6de2ed5ccd0d42a9a54d85d21f95c: 16.741152
+    d1b6de2ed5ccd0d42a9a54d85d21f95c: -63.55081
+    163e300f16c71be409c0ace31c4fd8f0: 4.43
     a26fff6f0c122b745844bb238b8208fb: 101
     a8562e9fd3cea7b469ee55994123e38e: 1
   m_TransitionOverrides: {}
@@ -176,7 +179,7 @@ AudioMixerGroupController:
   - {fileID: 5056450365637024249}
   m_UserColorIndex: 8
   m_Mute: 0
-  m_Solo: 1
+  m_Solo: 0
   m_BypassEffects: 0
 --- !u!244 &2510254762475287454
 AudioMixerEffectController:
@@ -189,6 +192,22 @@ AudioMixerEffectController:
   m_EffectName: Attenuation
   m_MixLevel: 86616369feea10d45a2335505f6052d6
   m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &4004428704016859270
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 2b4e430837a5915468f031921852baca
+  m_EffectName: Highpass Simple
+  m_MixLevel: 4cef34fbe5933c0498f28b69d9ac907b
+  m_Parameters:
+  - m_ParameterName: Cutoff freq
+    m_GUID: f49d81548d67e8645b58416b4304205f
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
@@ -243,5 +262,5 @@ AudioMixerGroupController:
   - {fileID: -4744970517353831197}
   m_UserColorIndex: 6
   m_Mute: 0
-  m_Solo: 1
+  m_Solo: 0
   m_BypassEffects: 0
