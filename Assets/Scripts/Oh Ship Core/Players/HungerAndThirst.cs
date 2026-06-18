@@ -11,6 +11,10 @@ public class HungerAndThirst: MonoBehaviour
     [FormerlySerializedAs("manager")] [SerializeField] StatusBarManager m_manager;
     private IPlayerControllable m_controllable;
     [SerializeField] float m_hungerLostPerTick = 0.01f;
+    private static int numberOfPassedOutPlayers = 0;
+    [SerializeField] private  bool isPassedOut = false;
+    
+    public bool IsPassedOut => isPassedOut;
     void Start()
     {
         Hunger.Notify();
@@ -20,7 +24,10 @@ public class HungerAndThirst: MonoBehaviour
     void Update()
     {
         Hunger.Value = Mathf.Clamp01(Hunger.Value - (m_hungerLostPerTick * Time.deltaTime));
-       //if (Hunger.Value <= 0) m_onPlayerStarved.Invoke();
+        if (Hunger.Value <= 0 && !isPassedOut) PassOut();
+        
+       m_manager.SlowDown(Hunger.Value);
+        //  if (Hunger.Value <= 0.3f && Hunger.Value > 0f) m_manager.SlowDown();
 
     }
     public void OnPlayerControllerConnected(IPlayerController controller)
@@ -29,10 +36,7 @@ public class HungerAndThirst: MonoBehaviour
        
         m_manager = controller.GetAssociatedGameObject().transform.root.GetComponentInChildren<StatusBarManager>();
         
-        m_manager.InitializePlayerReference(transform.root.gameObject);
         Hunger.AddListener(m_manager.UpdateHungerBar);
-        
-       
     }
 
     public void OnPlayerControllerDisconnected(IPlayerController controller)
@@ -47,4 +51,25 @@ public class HungerAndThirst: MonoBehaviour
     }
 
     void UpdateHungerBar(float hunger) => m_manager.UpdateHungerBar(hunger);
+
+    public void PassOut()
+    {
+        numberOfPassedOutPlayers++;
+        isPassedOut = true;
+        gameObject.layer = LayerMask.NameToLayer("Default");
+        GetComponent<Rigidbody>().isKinematic = true;
+      //  m_manager.SlowDown();
+    }
+
+    public void WakeUp()
+    {
+        Hunger.Value = 1;
+        Debug.Log("Waking Up");
+        numberOfPassedOutPlayers--;
+        GetComponent<Rigidbody>().isKinematic = false;
+        isPassedOut = false;
+        gameObject.layer = LayerMask.NameToLayer("Player");
+        Debug.Log($"Layer set to: {gameObject.layer}, expected: {LayerMask.NameToLayer("Player")}");
+        m_manager.ResetFade();
+    }
 }

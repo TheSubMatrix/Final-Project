@@ -10,38 +10,27 @@ public class PassOutInteractable : MonoBehaviour, IInteractable, IPromptProvider
     private IPlayerControllable _playerControllable;
     private IPlayerController _playerController;
     
-    [SerializeField] StatusBarManager status;
+    private HungerAndThirst _hungerNThirst;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    void Start()
     {
-
+        _hungerNThirst = GetComponent<HungerAndThirst>();
+        Debug.Log(_hungerNThirst);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
         _playerControllable = GetComponent<PlayerControlRouter>();
         _playerController = _playerControllable.GetActivePlayerController();
         
-        status = _playerController.GetAssociatedGameObject().transform.root.GetComponentInChildren<StatusBarManager>();
-        
-        Debug.Log("status" + status);
-        Debug.Log("status-"+ status.isPassedOut);
-
-
-        if (status.isPassedOut)
+        if (_hungerNThirst.IsPassedOut)
         {
             Debug.Log("went through pass");
             m_currentInteractionSession = new InteractionSession(interactor, this);
             m_currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
-            status.WakeUp();
+            _hungerNThirst.WakeUp();
             return m_currentInteractionSession;
         }
 
@@ -52,7 +41,6 @@ public class PassOutInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
     }
     
-
     public PromptData GetPromptData()
     {
         return new PromptData { AssociatedWidget = _widgetForPrompt };
