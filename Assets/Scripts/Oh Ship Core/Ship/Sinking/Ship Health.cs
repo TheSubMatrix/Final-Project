@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MatrixUtils.AudioSystem;
 using MatrixUtils.GenericDatatypes;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -12,8 +13,9 @@ public class ShipHealth : MonoBehaviour, IDamageable
     IObjectPool<ShipHole> m_shipHoles;
     [SerializeField] Observer<float> m_fillPercentage = new(0);
     [SerializeField] float m_invulnerabilityTime = 3;
+    [SerializeField] SoundData[] m_damageSounds;
     uint m_holeCount;
-    bool m_isInvulnerable = false;
+    bool m_isInvulnerable;
     void Awake()
     {
         m_availableHoles = new(m_holePositions);
@@ -49,6 +51,7 @@ public class ShipHealth : MonoBehaviour, IDamageable
             selectedHole.transform.SetParent(holeTransform.parent);
             selectedHole.gameObject.SetActive(true);
         }
+        if(m_damageSounds.Length > 0) SoundManager.Instance?.CreateSound().WithSoundData(m_damageSounds[Random.Range(0, m_damageSounds.Length)]).WithRandomPitch().Play();
         StartCoroutine(StartInvulnerability());
         return true;
     }
