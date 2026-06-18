@@ -478,17 +478,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &80629551 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
-  m_PrefabInstance: {fileID: 7501252337306102668}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7934c7cfe2b50c843a931348fbe134c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OhShip.Core.Ship::WaterController
 --- !u!1 &91404761
 GameObject:
   m_ObjectHideFlags: 0
@@ -3634,10 +3623,6 @@ PrefabInstance:
       value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3046591771419901260, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: _playerSteamBoat
-      value: 
-      objectReference: {fileID: 1614289349}
-    - target: {fileID: 3046591771419901260, guid: a8b053361b5d663459d93206af2412c0, type: 3}
       propertyPath: _transitionEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1348966246}
@@ -3651,7 +3636,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5993409947745569183, guid: a8b053361b5d663459d93206af2412c0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6791678483275691314, guid: a8b053361b5d663459d93206af2412c0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3692,18 +3677,6 @@ PrefabInstance:
     - target: {fileID: 6791678483275691314, guid: a8b053361b5d663459d93206af2412c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8270157193969684596, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: m_transitionDuration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8440330414031293120, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: m_Size.x
-      value: 56.41301
-      objectReference: {fileID: 0}
-    - target: {fileID: 8440330414031293120, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: m_Center.x
-      value: -0.017680168
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4963,7 +4936,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -7.81
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
     - target: {fileID: 478157072486796682, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.473
@@ -4999,11 +4971,6 @@ PrefabInstance:
     - target: {fileID: 478157072486796682, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -91.415
-=======
-    - target: {fileID: 841866500237528475, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-      propertyPath: m_speedometerElement.MinAngle
-      value: -101.3
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 1520308994910509136, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: fishPrefab
@@ -5037,7 +5004,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -32.135
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
     - target: {fileID: 6044789116319783113, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.99
@@ -5081,23 +5047,6 @@ PrefabInstance:
     - target: {fileID: 6353757695306868719, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -46.42
-=======
-    - target: {fileID: 5996547367357011078, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-      propertyPath: m_Size.x
-      value: 9.135853
-      objectReference: {fileID: 0}
-    - target: {fileID: 5996547367357011078, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-      propertyPath: m_Size.z
-      value: 32.519188
-      objectReference: {fileID: 0}
-    - target: {fileID: 5996547367357011078, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-      propertyPath: m_Center.x
-      value: 0.021339655
-      objectReference: {fileID: 0}
-    - target: {fileID: 5996547367357011078, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-      propertyPath: m_Center.z
-      value: -0.74103355
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 7196852406926485525, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_Name
@@ -7149,14 +7098,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
-      propertyPath: m_maxHoldDuration
-      value: 240
-      objectReference: {fileID: 0}
-    - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
-      propertyPath: m_minHoldDuration
-      value: 120
-      objectReference: {fileID: 0}
     - target: {fileID: 5553672971071776195, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -7201,10 +7142,6 @@ PrefabInstance:
       propertyPath: _coalCamera
       value: 
       objectReference: {fileID: 1581560197}
-    - target: {fileID: 7244109837531579984, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
-      propertyPath: m_waterController
-      value: 
-      objectReference: {fileID: 80629551}
     - target: {fileID: 7244109837531579984, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
       propertyPath: _promptVisualLocation
       value: 
