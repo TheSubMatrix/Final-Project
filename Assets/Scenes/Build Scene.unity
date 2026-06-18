@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 0
-  m_FogColor: {r: 0.4440191, g: 0.32046056, b: 0.07330503, a: 1}
+  m_FogColor: {r: 0.19390087, g: 0.44412795, b: 0.072098695, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.60426724, g: 0.5582304, b: 0.61022264, a: 1}
+  m_AmbientSkyColor: {r: 0.57338274, g: 0.22396234, b: 0.72262484, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -4701,7 +4701,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755862609}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4806367effd7c6b4482e783a52ef3605, type: 3}
   m_Name: 
@@ -4709,7 +4709,7 @@ MonoBehaviour:
   directionalLight: {fileID: 685603827}
   preset: {fileID: 11400000, guid: 7b4941d7de2bd3843b785a74c40a7599, type: 2}
   timeOfDay: 21.3
-  lights: {fileID: 0}
+  lights: {fileID: 1173161246}
 --- !u!4 &1755862611
 Transform:
   m_ObjectHideFlags: 0
@@ -4972,6 +4972,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -91.415
       objectReference: {fileID: 0}
+    - target: {fileID: 997428478640729182, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1520308994910509136, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: fishPrefab
       value: 
@@ -5047,6 +5051,10 @@ PrefabInstance:
     - target: {fileID: 6353757695306868719, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -46.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922289521594466812, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7196852406926485525, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_Name
