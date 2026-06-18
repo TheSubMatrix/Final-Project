@@ -252,7 +252,7 @@ Transform:
   m_GameObject: {fileID: 91404761}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00000035762784}
-  m_LocalPosition: {x: -1.5196378, y: 3.32422, z: -2.9995816}
+  m_LocalPosition: {x: 0.12, y: 6.249, z: 2.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2101,7 +2101,7 @@ PrefabInstance:
     - target: {fileID: 3303257174621955613, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_interactSound.Clip
       value: 
-      objectReference: {fileID: 8300000, guid: d17c759a22193b143bf2a258a09816df, type: 3}
+      objectReference: {fileID: 8300000, guid: ea0a35cdb5b77234fa4d8bb09cd4c457, type: 3}
     - target: {fileID: 4933097589925832930, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9609355
@@ -3908,6 +3908,10 @@ PrefabInstance:
       propertyPath: m_outPosition
       value: 
       objectReference: {fileID: 1319096479}
+    - target: {fileID: 5681904316407196006, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: m_interactSound.Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ea0a35cdb5b77234fa4d8bb09cd4c457, type: 3}
     - target: {fileID: 5784644922514426773, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
