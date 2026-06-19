@@ -4992,6 +4992,14 @@ PrefabInstance:
       propertyPath: m_interactSound.Clip
       value: 
       objectReference: {fileID: 8300000, guid: ea0a35cdb5b77234fa4d8bb09cd4c457, type: 3}
+    - target: {fileID: 3337180211756329408, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_decayRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3337180211756329408, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_maxDistance
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 4933097589925832930, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9609355
