@@ -7,11 +7,6 @@ public class PlayerController : MonoBehaviour, IPlayerController
 {
     [SerializeField] PlayerInput m_playerInput;
     [SerializeField] InterfaceReference<IPlayerControllable> m_defaultControllable;
-    public IPlayerControllable DefaultControllable
-    {
-        get => m_defaultControllable.Value;
-        set => m_defaultControllable.Value = value;
-    }
     IPlayerControllable m_currentControlledEntity;
     /// <inheritdoc/>
     public void ChangeControlledEntity(IPlayerControllable controllable)
