@@ -61,6 +61,10 @@ namespace MatrixUtils.AudioSystem
         {
             m_audioSource.pitch += UnityEngine.Random.Range(minPitchShift, maxPitchShift);
         }
+        public void WithRandomVolume(float minVolumeShift = -0.05f, float maxVolumeShift = 0.05f)
+        {
+            m_audioSource.volume += UnityEngine.Random.Range(minVolumeShift, maxVolumeShift);
+        }
         public void Initialize(SoundData soundData)
         {
             SoundData = soundData;

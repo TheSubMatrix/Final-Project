@@ -8,6 +8,9 @@ namespace MatrixUtils.AudioSystem
         SoundData m_soundData;
         Vector3 m_position = Vector3.zero;
         bool m_randomPitch;
+        bool m_randomVolume;
+        float m_minVolume;
+        float m_maxVolume;
         Transform m_transformToFollow;
 
         public SoundBuilder(SoundManager soundManager)
@@ -32,6 +35,14 @@ namespace MatrixUtils.AudioSystem
             m_randomPitch = true;
             return this;
         }
+
+        public SoundBuilder WithRandomVolume(float min, float max)
+        {
+            m_minVolume = min;
+            m_maxVolume = max;
+            m_randomVolume = true;
+            return this;
+        }
         public SoundBuilder UseRandomPitchMode(bool randomPitch)
         {
             m_randomPitch = randomPitch;
@@ -54,6 +65,11 @@ namespace MatrixUtils.AudioSystem
             if (m_randomPitch)
             {
                 emitter.WithRandomPitch();
+            }
+
+            if (m_randomVolume)
+            {
+                emitter.WithRandomVolume(m_minVolume, m_maxVolume);
             }
             if (m_soundData.PlayedFrequently)
             {

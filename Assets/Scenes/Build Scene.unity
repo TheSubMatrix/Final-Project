@@ -5349,6 +5349,57 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7196852406926485525, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
   m_PrefabInstance: {fileID: 1920507445}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1614289352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614289349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b56b9ae67d35814893ea53128958b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::RandomSoundPlayer
+  m_sounds:
+  - Clip: {fileID: 8300000, guid: ee533b7bac1cdee4b99f6e469ed86681, type: 3}
+    MixerGroup: {fileID: 24300002, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
+    Loop: 0
+    PlayOnAwake: 0
+    PlayedFrequently: 0
+    Volume: 1
+    Pitch: 1
+    PanStereo: 0
+    SpatialBlend: 0
+    ReverbZoneMix: 0
+    DopplerLevel: 0
+    Spread: 0
+    MinDistance: 0
+    MaxDistance: 500
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
+    RolloffMode: 0
+  - Clip: {fileID: 8300000, guid: 8249ad1254c52074f9836f6a3dbe2989, type: 3}
+    MixerGroup: {fileID: 24300002, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
+    Loop: 0
+    PlayOnAwake: 0
+    PlayedFrequently: 0
+    Volume: 1
+    Pitch: 1
+    PanStereo: 0
+    SpatialBlend: 0
+    ReverbZoneMix: 0
+    DopplerLevel: 0
+    Spread: 0
+    MinDistance: 0
+    MaxDistance: 500
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
+    RolloffMode: 0
+  m_minDelay: 5
+  m_maxDelay: 10
+  m_minVolume: 0.5
+  m_maxVolume: 1
 --- !u!1 &1635535121
 GameObject:
   m_ObjectHideFlags: 0
@@ -6458,7 +6509,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8442543429712281943, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1166138867}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7196852406926485525, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1614289352}
   m_SourcePrefab: {fileID: 100100000, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
 --- !u!4 &1982648537 stripped
 Transform:
