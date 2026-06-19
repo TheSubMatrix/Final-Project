@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: -862725965146413658}
   - component: {fileID: 2301725045065718947}
   - component: {fileID: -552900803527440259}
+  - component: {fileID: 4259362998317367922}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -301,6 +302,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Players::PassOutInteractable
   _interactDisplayTransform: {fileID: 5867685216777915181}
+--- !u!114 &4259362998317367922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051537735393309202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 458b21ffd0aad69428653232a7ec04b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::PlayerInteractionState
 --- !u!1 &2239227320701294626
 GameObject:
   m_ObjectHideFlags: 0

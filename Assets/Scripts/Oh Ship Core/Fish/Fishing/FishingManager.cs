@@ -40,7 +40,8 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
     private RectTransform _usableFishingArea;
     private Transform _holdingObjectTransform;
     private IInteractor _interactor;
-    private GameObject _player;
+    private GameObject _player; //Used to disable model renderer
+    private PlayerInteractionState _playerInteractionState;
     private void Start()
     {
         _fishingMiniGame = new FishingMiniGame();
@@ -48,8 +49,11 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
         Debug.Log("Beginning Interaction");
-
-        if (interactor.WasInteracting)
+        _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
+        _playerController = _playerControllable.GetActivePlayerController();
+        _playerInteractionState = _playerControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
+       
+        if (_playerInteractionState.CheckInteractionTag(InteractionTag.Holding))
         {
              Debug.Log("Holding Fish");
             _currentInteractionSession = new InteractionSession(interactor, this);
@@ -57,8 +61,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
             return _currentInteractionSession;
         }
 
-        _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
-        _playerController = _playerControllable.GetActivePlayerController();
+        
         CinemachineCamera playerCam = interactor.GetAssociatedGameObject().GetComponent<CinemachineCamera>();
         _fishingCamera.OutputChannel = playerCam.OutputChannel;
         _fishingCamera.Priority = 10;
@@ -70,6 +73,8 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         _interactor  = interactor;
         _player = _playerControllable.GetAssociatedGameObject().gameObject;
         _player.GetComponentInChildren<MeshRenderer>().enabled = false;
+        
+       
         return _currentInteractionSession;
     }
  
@@ -160,11 +165,8 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         _holdingObjectTransform = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
         GameObject fish = Instantiate(usableFishesToCatch[index], _holdingObjectTransform.position,_holdingObjectTransform.rotation);
         fish.transform.SetParent(_holdingObjectTransform);
+        _playerInteractionState.AddInteractionTag(InteractionTag.Holding);
         _currentInteractionSession.End();
-        InteractionSession newInteractionSession = new InteractionSession(_interactor, this);
-        
-        _interactor.RequestSessionTransfer(newInteractionSession);
-
     }
 
     public GameObject GetAssociatedGameObject()

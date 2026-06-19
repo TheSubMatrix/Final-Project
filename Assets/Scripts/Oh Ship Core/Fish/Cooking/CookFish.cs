@@ -140,7 +140,8 @@ public class CookFish : MonoBehaviour, IInteractable
       {
           return null;
       }
-
+      
+      m_currentInteractionSession = new InteractionSession(interactor, this);
       m_currentInteractionSession.End();
       return m_currentInteractionSession;
     }

@@ -6,7 +6,6 @@ using UnityEngine;
 /// </summary>
 public interface IInteractor
 {
-    [Pure] bool WasInteracting { get; }
     /// <returns>Whether the <see cref="IInteractor"/> is interacting with a <see cref="IInteractable"/></returns>
     [Pure] bool IsInteracting();
     // :( This is a hack to handle holding objects

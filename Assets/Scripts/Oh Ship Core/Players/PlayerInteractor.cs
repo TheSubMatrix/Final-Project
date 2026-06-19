@@ -15,7 +15,6 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     InteractionSession m_session;
     HeldObjectLocation m_heldObjectLocation;
     
-    public bool WasInteracting { get; private set; }
     /// <inheritdoc/>
     public bool IsInteracting() => m_session?.IsActive is true;
     /// <inheritdoc/>
@@ -39,35 +38,28 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     {
         if (IsInteracting())
         {
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit checkHit, m_interactionRange, m_interactionLayer) 
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit checkHit, m_interactionRange, m_interactionLayer)
                 && checkHit.collider.TryGetComponent(out IInteractable checkInteractable))
             {
-                WasInteracting = IsInteracting();
                 InteractionSession newSession = checkInteractable.BeginInteraction(this);
-                if (newSession is null)
-                {
-                    WasInteracting = false;
-                    return;
-                }
+                if (newSession is null) return;
                 EndActiveInteraction();
                 m_session = newSession;
-                if (m_session is { IsActive: true })
-                {
-                    SubscribeToSession();
-                }
+                if (m_session is { IsActive: true }) SubscribeToSession();
                 return;
             }
             EndActiveInteraction();
             return;
         }
-        WasInteracting = false;
+
         if (!Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, m_interactionRange, m_interactionLayer)) return;
         if (!hit.collider.TryGetComponent(out IInteractable interactable)) return;
         m_session = interactable.BeginInteraction(this);
-        
+
         if (m_session is not { IsActive: true }) return;
         SubscribeToSession();
     }
+    
     void SubscribeToSession()
     {
         m_session.OnEnded +=  () => m_session = null;

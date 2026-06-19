@@ -10,14 +10,17 @@ public class StorageInteractable : MonoBehaviour, IInteractable
     public int _storedFish = 0;
     [SerializeField] private int maxStoredFish = 5;
     [SerializeField] GameObject fishPrefab;
-    
+    private PlayerInteractionState _playerInteractionState;
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
         _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
        
         _playerController = _playerControllable.GetActivePlayerController();
         
-        if (_storedFish < maxStoredFish && interactor.WasInteracting)
+        _playerInteractionState = _playerControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
+
+        
+        if (_storedFish < maxStoredFish && _playerInteractionState.CheckInteractionTag(InteractionTag.Holding))
         {
             Debug.Log("Add fish to container");
             _holdingObjectTransform =  _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
@@ -25,6 +28,7 @@ public class StorageInteractable : MonoBehaviour, IInteractable
             AddFishToStorage();
             Destroy(_holdingObjectTransform.GetChild(0).gameObject);
             m_currentInteractionSession = new InteractionSession(interactor,this);
+            _playerInteractionState.RemoveInteractionTag(InteractionTag.Holding);
             m_currentInteractionSession.End();
             return m_currentInteractionSession;
         }
@@ -53,5 +57,6 @@ public class StorageInteractable : MonoBehaviour, IInteractable
         _holdingObjectTransform =  _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
         GameObject fish = Instantiate(fishRef, _holdingObjectTransform.position,_holdingObjectTransform.rotation);
         fish.transform.SetParent(_holdingObjectTransform);
+        _playerInteractionState.AddInteractionTag(InteractionTag.Holding);
     }
 }

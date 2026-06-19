@@ -25,25 +25,29 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     Vector2 m_lookInput = Vector2.zero;
     InteractionSession m_currentInteractionSession;
     float m_wheelVelocity;
+    private PlayerInteractionState m_playerInteractionState;
     ///<inheritdoc/>
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
-        Debug.Log($"WasInteracting: {interactor.WasInteracting}, Session active: {m_currentInteractionSession?.IsActive}");
-        if (interactor.WasInteracting || m_currentInteractionSession is { IsActive: true })
+        IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
+        IPlayerController controller = oldControllable.GetActivePlayerController();
+        m_playerInteractionState = oldControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
+        
+        if (m_playerInteractionState.CheckInteractionTag(InteractionTag.Holding))
         {
             Debug.Log("Blocking helm interaction");
             return null;
         }   
-        IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
-        
+      
         CinemachineCamera playerCam = interactor.GetAssociatedGameObject().GetComponent<CinemachineCamera>();
         m_helmCamera.OutputChannel = playerCam.OutputChannel;
         m_helmCamera.Priority = 10;
-        IPlayerController controller = oldControllable.GetActivePlayerController();
+      
       
         controller.ChangeControlledEntity(this);
         m_currentInteractionSession = new(interactor, this);
         m_currentInteractionSession.OnEnded += () => controller.ChangeControlledEntity(oldControllable); 
+        m_playerInteractionState.AddInteractionTag(InteractionTag.Steering);
         return m_currentInteractionSession;
     }
 
@@ -94,6 +98,7 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         lookAction.canceled -= HandleLookInput;
         InputAction hornAction = map.FindAction("Horn");
         hornAction.performed -= HandleHornInput;
+        m_playerInteractionState.RemoveInteractionTag(InteractionTag.Steering);
         m_activePlayerController = null;
     }
     ///<inheritdoc/>
