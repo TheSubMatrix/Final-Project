@@ -5372,13 +5372,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Ship::RandomSoundPlayer
   m_sounds:
-  - Clip: {fileID: 8300000, guid: ee533b7bac1cdee4b99f6e469ed86681, type: 3}
-    MixerGroup: {fileID: 24300002, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
+  - Clip: {fileID: 8300000, guid: 75859e08809c5f444a4baab404dd6b84, type: 3}
+    MixerGroup: {fileID: 3031009907631310084, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
     Loop: 0
     PlayOnAwake: 0
     PlayedFrequently: 0
     Volume: 1
-    Pitch: 1
+    Pitch: 0.5
     PanStereo: 0
     SpatialBlend: 0
     ReverbZoneMix: 0
@@ -5389,13 +5389,13 @@ MonoBehaviour:
     IgnoreListenerVolume: 0
     IgnoreListenerPause: 0
     RolloffMode: 0
-  - Clip: {fileID: 8300000, guid: 8249ad1254c52074f9836f6a3dbe2989, type: 3}
-    MixerGroup: {fileID: 24300002, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
+  - Clip: {fileID: 8300000, guid: d52a21cbf694f1846ae8720687f45bbb, type: 3}
+    MixerGroup: {fileID: 3031009907631310084, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
     Loop: 0
     PlayOnAwake: 0
     PlayedFrequently: 0
     Volume: 1
-    Pitch: 1
+    Pitch: 0.7
     PanStereo: 0
     SpatialBlend: 0
     ReverbZoneMix: 0
@@ -5406,10 +5406,95 @@ MonoBehaviour:
     IgnoreListenerVolume: 0
     IgnoreListenerPause: 0
     RolloffMode: 0
-  m_minDelay: 5
+  - Clip: {fileID: 8300000, guid: 30100bf61f8c9d345a351fa3cd8686e3, type: 3}
+    MixerGroup: {fileID: 3031009907631310084, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
+    Loop: 0
+    PlayOnAwake: 0
+    PlayedFrequently: 0
+    Volume: 1
+    Pitch: 0.7
+    PanStereo: 0
+    SpatialBlend: 0
+    ReverbZoneMix: 0
+    DopplerLevel: 0
+    Spread: 0
+    MinDistance: 0
+    MaxDistance: 500
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
+    RolloffMode: 0
+  - Clip: {fileID: 8300000, guid: ea4fa48d9d5f140448f77fc7f06123cf, type: 3}
+    MixerGroup: {fileID: 3031009907631310084, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
+    Loop: 0
+    PlayOnAwake: 0
+    PlayedFrequently: 0
+    Volume: 1
+    Pitch: 0.7
+    PanStereo: 0
+    SpatialBlend: 0
+    ReverbZoneMix: 0
+    DopplerLevel: 0
+    Spread: 0
+    MinDistance: 0
+    MaxDistance: 500
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
+    RolloffMode: 0
+  - Clip: {fileID: 8300000, guid: 52e4dbca5e377954290da0756e4e1bc7, type: 3}
+    MixerGroup: {fileID: 3031009907631310084, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
+    Loop: 0
+    PlayOnAwake: 0
+    PlayedFrequently: 0
+    Volume: 1
+    Pitch: 0.7
+    PanStereo: 0
+    SpatialBlend: 0
+    ReverbZoneMix: 0
+    DopplerLevel: 0
+    Spread: 0
+    MinDistance: 0
+    MaxDistance: 500
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
+    RolloffMode: 0
+  - Clip: {fileID: 8300000, guid: 6c3db14fc632fe14bb41367a54f2ac37, type: 3}
+    MixerGroup: {fileID: 3031009907631310084, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
+    Loop: 0
+    PlayOnAwake: 0
+    PlayedFrequently: 0
+    Volume: 1
+    Pitch: 0.7
+    PanStereo: 0
+    SpatialBlend: 0
+    ReverbZoneMix: 0
+    DopplerLevel: 0
+    Spread: 0
+    MinDistance: 0
+    MaxDistance: 500
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
+    RolloffMode: 0
+  - Clip: {fileID: 8300000, guid: 60401ed8ab1d7cb41b5bc1b9eea094ed, type: 3}
+    MixerGroup: {fileID: 3031009907631310084, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
+    Loop: 0
+    PlayOnAwake: 0
+    PlayedFrequently: 0
+    Volume: 1
+    Pitch: 0.4
+    PanStereo: 0
+    SpatialBlend: 0
+    ReverbZoneMix: 0
+    DopplerLevel: 0
+    Spread: 0
+    MinDistance: 0
+    MaxDistance: 500
+    IgnoreListenerVolume: 0
+    IgnoreListenerPause: 0
+    RolloffMode: 0
+  m_minDelay: 3
   m_maxDelay: 10
   m_minVolume: 0.5
-  m_maxVolume: 1
+  m_maxVolume: 0.8
 --- !u!1 &1635535121
 GameObject:
   m_ObjectHideFlags: 0
