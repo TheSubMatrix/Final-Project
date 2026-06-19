@@ -1,5 +1,6 @@
 using System;
 using MatrixUtils.Attributes;
+using MatrixUtils.AudioSystem;
 using MatrixUtils.Extensions;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     [SerializeField] ProcedurallyAnimatedHelmElement m_wheelElement;
     [SerializeField] ProcedurallyAnimatedHelmElement m_throttleElement;
     [SerializeField] ProcedurallyAnimatedHelmElement m_speedometerElement;
+    [SerializeField] SoundData m_hornSound;
     IPlayerController m_activePlayerController;
     Vector2 m_moveInput = Vector2.zero;
     Vector2 m_lookInput = Vector2.zero;
@@ -72,7 +74,8 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         InputAction lookAction = map.FindAction("Look");
         lookAction.performed += HandleLookInput;
         lookAction.canceled += HandleLookInput;
-        
+        InputAction hornAction = map.FindAction("Horn");
+        hornAction.performed += HandleHornInput;
     }
     ///<inheritdoc/>
     public void OnControlReleased()
@@ -89,6 +92,8 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         InputAction lookAction = map.FindAction("Look");
         lookAction.performed -= HandleLookInput;
         lookAction.canceled -= HandleLookInput;
+        InputAction hornAction = map.FindAction("Horn");
+        hornAction.performed -= HandleHornInput;
         m_activePlayerController = null;
     }
     ///<inheritdoc/>
@@ -98,6 +103,7 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     void HandleInteract(InputAction.CallbackContext context) => m_currentInteractionSession.End();
     void HandleLookInput(InputAction.CallbackContext context) => m_lookInput = context.ReadValue<Vector2>();
 
+    void HandleHornInput(InputAction.CallbackContext context) => SoundManager.Instance.CreateSound().WithRandomPitch().AttachedTo(transform).WithSoundData(m_hornSound).Play();
     public GameObject GetAssociatedGameObject() => gameObject;
 
     public PromptData GetPromptData() => new() {AssociatedWidget = m_widgetForPrompt};
