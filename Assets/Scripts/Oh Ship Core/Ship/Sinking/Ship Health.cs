@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using MatrixUtils.Attributes;
 using MatrixUtils.AudioSystem;
 using MatrixUtils.DependencyInjection;
 using MatrixUtils.GenericDatatypes;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class ShipHealth : MonoBehaviour, IDamageable
 {
@@ -17,6 +20,7 @@ public class ShipHealth : MonoBehaviour, IDamageable
     [SerializeField] Observer<float> m_fillPercentage = new(0);
     [SerializeField] float m_invulnerabilityTime = 3;
     [SerializeField] SoundData[] m_damageSounds;
+    [SerializeField, RequiredField] WaterFillController m_waterFillController;
     uint m_holeCount;
     bool m_isInvulnerable;
     bool m_warningEnabled;
@@ -25,8 +29,12 @@ public class ShipHealth : MonoBehaviour, IDamageable
         m_availableHoles = new(m_holePositions);
         m_shipHoles = new ObjectPool<ShipHole>
         (
-            createFunc: () => Instantiate(m_holePrefab)
-        );
+            createFunc: () =>
+            {
+                ShipHole newHole = Instantiate(m_holePrefab);
+                m_waterFillController.OnWaterFillChanged.AddListener(fill => newHole.LeakEffect.SetFloat("Splash Plane", fill));
+                return newHole;
+            });
         m_fillPercentage.Notify();
     }
     void Update()
@@ -65,9 +73,10 @@ public class ShipHealth : MonoBehaviour, IDamageable
                 m_availableHoles.Return(holeTransform);
                 selectedHole.gameObject.SetActive(false);
             });
+            
+            selectedHole.transform.SetParent(holeTransform.parent);
             selectedHole.transform.position = holeTransform.position;
             selectedHole.transform.rotation = holeTransform.rotation;
-            selectedHole.transform.SetParent(holeTransform.parent);
             selectedHole.gameObject.SetActive(true);
         }
         if(m_damageSounds.Length > 0) SoundManager.Instance?.CreateSound().WithSoundData(m_damageSounds[Random.Range(0, m_damageSounds.Length)]).WithRandomPitch().Play();
@@ -81,4 +90,11 @@ public class ShipHealth : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(m_invulnerabilityTime);
         m_isInvulnerable = false;
     }
+    #if UNITY_EDITOR
+    [ContextMenu("Damage")]
+    void DamageFromInspector()
+    {
+        Damage(1);
+    }
+    #endif
 }
