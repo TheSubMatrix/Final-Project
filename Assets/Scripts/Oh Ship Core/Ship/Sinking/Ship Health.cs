@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using MatrixUtils.AudioSystem;
+using MatrixUtils.DependencyInjection;
 using MatrixUtils.GenericDatatypes;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -8,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class ShipHealth : MonoBehaviour, IDamageable
 {
+    [Inject] INotificationMessenger m_notificationMessenger;
     [SerializeField] List<Transform> m_holePositions;
     RandomBag<Transform> m_availableHoles;
     [SerializeField] ShipHole m_holePrefab;
@@ -17,6 +19,7 @@ public class ShipHealth : MonoBehaviour, IDamageable
     [SerializeField] SoundData[] m_damageSounds;
     uint m_holeCount;
     bool m_isInvulnerable;
+    bool m_warningEnabled;
     void Awake()
     {
         m_availableHoles = new(m_holePositions);
@@ -29,7 +32,17 @@ public class ShipHealth : MonoBehaviour, IDamageable
     void Update()
     {
         m_fillPercentage.Value = Mathf.Clamp01(m_holeCount > 0 ? m_fillPercentage +(m_holeCount * 0.005f * Time.deltaTime) : m_fillPercentage+ -0.05f * Time.deltaTime);
-
+        switch (m_holeCount)
+        {
+            case > 0 when !m_warningEnabled:
+                m_notificationMessenger.TryNotify("enable repair");
+                m_warningEnabled = true;
+                break;
+            case <= 0 when m_warningEnabled:
+                m_notificationMessenger.TryNotify("disable repair");
+                m_warningEnabled = false;
+                break;
+        }
         if (m_fillPercentage >= 1f - .1f)
         {
             SceneManager.LoadScene("GameOver");
@@ -68,9 +81,4 @@ public class ShipHealth : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(m_invulnerabilityTime);
         m_isInvulnerable = false;
     }
-    // void OnGUI()
-    // {
-    //     if (GUI.Button(new Rect(10, 10, 150, 40), "Deal Damage"))
-    //         Damage(1);
-    // }
 }
