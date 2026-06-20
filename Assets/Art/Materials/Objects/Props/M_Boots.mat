@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Character2
+  m_Name: M_Boots
   m_Shader: {fileID: -6465566751694194690, guid: d5e6fe27f856b3b419f43359e1992f7b, type: 3}
   m_Parent: {fileID: 2100000, guid: b1aa66268261d4a47b9f014ea729e4f1, type: 2}
   m_ModifiedSerializedProperties: 0
@@ -16,11 +16,7 @@ Material:
   - _MAIN_LIGHT_SHADOWS
   - _MAIN_LIGHT_SHADOWS_CASCADE
   - _SHADOWS_SOFT
-  m_InvalidKeywords:
-  - _ADDITIONAL_LIGHTS
-  - _METALLICSPECGLOSSMAP
-  - _NORMALMAP
-  - _USE_FORWARD_PLUS
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -34,42 +30,23 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Base:
-        m_Texture: {fileID: 2800000, guid: cb3958fe586811a40ae2715fdcf465d0, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: c08d94a510353514b8a1e5b8bee46333, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 0f81d580d29aa4a4fa246e10fdadff6e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c08d94a510353514b8a1e5b8bee46333, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: fad72e7006cf17a46960db06bf3fd996, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3a7ce896c1e9f7a45b09f8bb42e77ad7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Metallic_Smoothness:
-        m_Texture: {fileID: 2800000, guid: 0a884712cf6f9634da795bb14359f208, type: 3}
+        m_Texture: {fileID: 2800000, guid: 38060b90d02ddcd42a820e3ee2dc117d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 6c3a664086848dc458c02038dc89f86e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6ceca0f5d1af78945aee97e009348ed4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats:
-    - _Smoothness: 1
-    m_Colors:
-    - _BaseColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    m_Floats: []
+    m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &4567418033987749217
+--- !u!114 &5921301915166216868
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

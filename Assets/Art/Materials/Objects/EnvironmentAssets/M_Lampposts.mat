@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Character2
+  m_Name: M_Lampposts
   m_Shader: {fileID: -6465566751694194690, guid: d5e6fe27f856b3b419f43359e1992f7b, type: 3}
   m_Parent: {fileID: 2100000, guid: b1aa66268261d4a47b9f014ea729e4f1, type: 2}
-  m_ModifiedSerializedProperties: 0
+  m_ModifiedSerializedProperties: 16
   m_ValidKeywords:
   - _ADDITIONAL_LIGHT_SHADOWS
   - _MAIN_LIGHT_SHADOWS
@@ -24,7 +24,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses:
@@ -34,7 +34,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Base:
-        m_Texture: {fileID: 2800000, guid: cb3958fe586811a40ae2715fdcf465d0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 969366078f655994a9f9947e9e83ba79, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -54,16 +54,21 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Metallic_Smoothness:
-        m_Texture: {fileID: 2800000, guid: 0a884712cf6f9634da795bb14359f208, type: 3}
+        m_Texture: {fileID: 2800000, guid: 26ce00f14158fac4d911e734a2dff5b6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 6c3a664086848dc458c02038dc89f86e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1c054a10aae590d4e91fdaa43abd53b8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _DstBlend: 0
+    - _DstBlendAlpha: 0
     - _Smoothness: 1
+    - _SrcBlend: 1
+    - _Surface: 0
+    - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
