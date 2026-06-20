@@ -2,7 +2,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class GramophoneInteractable : MonoBehaviour, IInteractable, IPromptProvider
 {
-    int m_currentTrack = 0;
+    int m_currentTrack = -1;
     [SerializeField] AudioClip[] m_gramophoneTracks;
     [SerializeField] Transform m_interactDisplayTransform;
     [SerializeField] string m_widgetForPrompt = "interact";
@@ -10,15 +10,7 @@ public class GramophoneInteractable : MonoBehaviour, IInteractable, IPromptProvi
     void Start()
     {
         m_audioSource = GetComponent<AudioSource>();
-        if (m_gramophoneTracks.Length > 0)
-        {
-            m_audioSource.clip = m_gramophoneTracks[m_currentTrack];
-            m_audioSource.Play();
-        }
-        else
-        {
-            m_currentTrack = -1;
-        }
+
     }
     
     public InteractionSession BeginInteraction(IInteractor interactor)
