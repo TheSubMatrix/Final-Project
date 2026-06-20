@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.VFX;
 
 public class HungerAndThirst: MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class HungerAndThirst: MonoBehaviour
     [SerializeField] float m_hungerLostPerTick = 0.01f;
     private static int numberOfPassedOutPlayers = 0;
     [SerializeField] private  bool isPassedOut = false;
-    
+    [SerializeField] VisualEffect m_passedOutEffect;
     public bool IsPassedOut => isPassedOut;
     void Start()
     {
@@ -59,6 +60,7 @@ public class HungerAndThirst: MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Default");
         GetComponent<Rigidbody>().isKinematic = true;
         if(numberOfPassedOutPlayers >= 2)SceneManager.LoadScene("GameOver");
+        m_passedOutEffect.Play();
     }
 
     public void WakeUp()
@@ -70,6 +72,7 @@ public class HungerAndThirst: MonoBehaviour
         isPassedOut = false;
         gameObject.layer = LayerMask.NameToLayer("Player");
         Debug.Log($"Layer set to: {gameObject.layer}, expected: {LayerMask.NameToLayer("Player")}");
+        m_passedOutEffect.Stop();
         m_manager.ResetFade();
     }
 }

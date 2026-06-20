@@ -16,7 +16,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children:
   - {fileID: 8926484042661614550}
-  m_UIPosition: {x: 705, y: -433}
+  m_UIPosition: {x: 705, y: -516}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -87,9 +87,9 @@ MonoBehaviour:
     position:
       serializedVersion: 2
       x: 680
-      y: -492
+      y: -575
       width: 474
-      height: 1383
+      height: 1706
     contents:
     - model: {fileID: 114023846229194376}
       id: 0
@@ -105,9 +105,9 @@ MonoBehaviour:
   uiBounds:
     serializedVersion: 2
     x: -900
-    y: -492
+    y: -575
     width: 2526
-    height: 2603
+    height: 2686
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
-  title: Minimal
+  title: Stars
   m_Owners:
   - {fileID: 114946465509916290}
   - {fileID: 114780028408030698}
@@ -1910,7 +1910,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.3
+      m_SerializableObject: 0.2
     m_Space: -1
   m_Property:
     name: Radius
@@ -6827,7 +6827,7 @@ MonoBehaviour:
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
-  title: 
+  title: Trails
   m_Owners:
   - {fileID: 8926484042661615249}
   - {fileID: 8926484042661615265}
