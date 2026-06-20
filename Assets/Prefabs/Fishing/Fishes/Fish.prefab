@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2642910962229397429}
   - component: {fileID: 5383358148498598881}
   - component: {fileID: 8295556549408447363}
+  - component: {fileID: 7492639168451391992}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
@@ -90,3 +91,16 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7492639168451391992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276882282827626246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abeb095b2a536d44b8e103bb85285b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Fish::Fish
+  foodData: {fileID: 11400000, guid: e4701296abe509c4ca23e7eb752bd2fc, type: 2}

@@ -1,15 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class StoveInteractable : MonoBehaviour, IInteractable, IPromptProvider
+public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
 {
     InteractionSession m_currentInteractionSession;
-    [SerializeField] private GameObject fishToCook;
     [SerializeField] private Transform _interactDisplayTransform;
+    [SerializeField] private Transform cookingLocation;
+    [SerializeField] private CookingProcess howIsCooked;
+    
     private readonly string _widgetForPrompt = "interact";
     private IPlayerControllable _playerControllable;
     private IPlayerController _playerController;
     private PlayerInteractionState _playerInteractionState;
+    private FoodClass _foodClassItem;
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
         _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
@@ -17,18 +20,20 @@ public class StoveInteractable : MonoBehaviour, IInteractable, IPromptProvider
         _playerController = _playerControllable.GetActivePlayerController();
         
         _playerInteractionState = _playerControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
+         
 
         if (_playerInteractionState.CheckInteractionTag(InteractionTag.Holding))
         {
-            m_currentInteractionSession = new InteractionSession(interactor, this);
-            m_currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
-            DestroyFishInHand();
-            fishToCook.SetActive(true);
-            _playerInteractionState.RemoveInteractionTag(InteractionTag.Holding);
-            Debug.Log("Removed Holding");
-            m_currentInteractionSession.End();
-            return m_currentInteractionSession;
-           
+            _foodClassItem = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().GetComponentInChildren<FoodClass>();
+            if (_foodClassItem.CookingProcess == howIsCooked)
+            {
+                m_currentInteractionSession = new InteractionSession(interactor, this);
+                m_currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
+                MoveObjectToStove();
+                _playerInteractionState.RemoveInteractionTag(InteractionTag.Holding);
+                m_currentInteractionSession.End();
+                return m_currentInteractionSession;
+            }
         }
         
         m_currentInteractionSession = new InteractionSession(interactor, this);
@@ -48,10 +53,9 @@ public class StoveInteractable : MonoBehaviour, IInteractable, IPromptProvider
        return _interactDisplayTransform.position;
     }
 
-    private void DestroyFishInHand()
-    {
-        GameObject player = _playerControllable.GetAssociatedGameObject();
-        HeldObjectLocation heldObjectLocation = player.GetComponentInChildren<HeldObjectLocation>();
-        heldObjectLocation.DestroyObjectsInHand();
+    private void MoveObjectToStove()
+    { 
+        _foodClassItem.transform.position = cookingLocation.position;
+        _foodClassItem.transform.SetParent(cookingLocation);
     }
 }

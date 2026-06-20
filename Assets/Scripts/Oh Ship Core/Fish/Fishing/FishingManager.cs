@@ -10,7 +10,6 @@ using Random = System.Random;
 
 public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable, IPromptProvider
 {
-    public UnityEvent<GameObject> _storeFishInStorage;
     [SerializeField] private StorageInteractable _fishBoxStorage;
     [SerializeField] private CinemachineCamera _fishingCamera;
     [SerializeField] private string _widgetForPrompt = "interact";
@@ -22,9 +21,9 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
     [Range(0f, 1f)]
     [SerializeField] private float _progressSpeed;
 
-    [Header("Add fish models here!")] 
+    [Header("Add edible catchable models here!")] 
     [SerializeField]
-    private GameObject[] usableFishesToCatch;
+    private GameObject[] usableThingsToCatch;
     
     private bool _isHoldingButton = false;
 
@@ -42,6 +41,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
     private IInteractor _interactor;
     private GameObject _player; //Used to disable model renderer
     private PlayerInteractionState _playerInteractionState;
+    
     private void Start()
     {
         _fishingMiniGame = new FishingMiniGame();
@@ -117,7 +117,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         data.ProgressSpeed = _progressSpeed;
         
         _fishingMiniGame.InitializeMiniGame(data);
-        _fishingMiniGame.OnCaughtFish += HandleFishCaught;
+        _fishingMiniGame.OnCaughtFish += HandleObjectCaught;
     }
 
     public void OnControlRequested(IPlayerController player)
@@ -149,7 +149,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         InputAction interactAction = _activeActionMap.FindAction("Interact");
         interactAction.performed -= HandleInteract;
         
-        _fishingMiniGame.OnCaughtFish -= HandleFishCaught;
+        _fishingMiniGame.OnCaughtFish -= HandleObjectCaught;
         _fishingUI.HideFishingUI();
         _player.GetComponentInChildren<MeshRenderer>().enabled = true;
         _activeActionMap = null;
@@ -157,15 +157,20 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
 
     public IPlayerController GetActivePlayerController() => _playerController;
 
-    private void HandleFishCaught()
+    private void HandleObjectCaught()
     {
+        FoodClass foodClassRef;
         Debug.Log("Fish Caught");
-        int index = UnityEngine.Random.Range(0, usableFishesToCatch.Length);
+        int index = UnityEngine.Random.Range(0, usableThingsToCatch.Length);
         
         _holdingObjectTransform = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
-        GameObject fish = Instantiate(usableFishesToCatch[index], _holdingObjectTransform.position,_holdingObjectTransform.rotation);
-        fish.transform.SetParent(_holdingObjectTransform);
+        GameObject caughtItem = Instantiate(usableThingsToCatch[index], _holdingObjectTransform.position,_holdingObjectTransform.rotation);
+        caughtItem.transform.SetParent(_holdingObjectTransform);
         _playerInteractionState.AddInteractionTag(InteractionTag.Holding);
+        
+        foodClassRef = caughtItem.GetComponent<FoodClass>();
+        foodClassRef.InitializeHungerAndThirst(_playerController.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>());
+        Debug.Log("Food Class Found: " + foodClassRef);
         _currentInteractionSession.End();
     }
 
