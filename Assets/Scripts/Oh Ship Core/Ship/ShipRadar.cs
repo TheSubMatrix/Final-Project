@@ -9,26 +9,38 @@ public class ShipRadar : MonoBehaviour
     static readonly int s_uv = Shader.PropertyToID("_UV");
     static readonly int s_decayRate = Shader.PropertyToID("_DecayRate");
     static readonly int s_radarTexture = Shader.PropertyToID("_RadarTexture");
+    static readonly int s_sweepAngle = Shader.PropertyToID("_SweepAngle");
+    static readonly int s_sweepWidth = Shader.PropertyToID("_SweepWidth");
+    
     [SerializeField, RequiredField] ComputeShader m_radarShader;
     [SerializeField, RequiredField] RenderTexture m_radarDataTexture;
     [SerializeField] float m_degreesPerSecond;
     [SerializeField] float m_maxDistance;
     [SerializeField] float m_decayRate;
+    [SerializeField] float m_sweepWidth;
     float m_sweepAngle;
     int m_decayKernel;
     int m_writeKernel;
+    int m_sweepKernel;
     void Start()
     {
         m_decayKernel = m_radarShader.FindKernel("Decay");
         m_writeKernel = m_radarShader.FindKernel("WriteHit");
-        m_radarShader.SetFloat(s_decayRate, m_decayRate);
+        m_sweepKernel = m_radarShader.FindKernel("WriteSweep");
         m_radarShader.SetTexture(m_decayKernel, s_radarTexture, m_radarDataTexture);
         m_radarShader.SetTexture(m_writeKernel, s_radarTexture, m_radarDataTexture);
+        m_radarShader.SetTexture(m_sweepKernel, s_radarTexture, m_radarDataTexture);
+        m_radarShader.SetFloat(s_decayRate, m_decayRate);
+        m_radarShader.SetFloat(s_sweepWidth, m_sweepWidth);
     }
     void FixedUpdate()
     {
         m_sweepAngle += m_degreesPerSecond * Time.deltaTime;
-        Vector3 direction = new(Mathf.Cos(m_sweepAngle * Mathf.Deg2Rad), 0, Mathf.Sin(m_sweepAngle * Mathf.Deg2Rad));
+        if (m_sweepAngle > 360f) m_sweepAngle -= 360f;
+        float sweepRad = m_sweepAngle * Mathf.Deg2Rad;
+        Vector3 direction = new(Mathf.Cos(sweepRad), 0, Mathf.Sin(sweepRad));
+        m_radarShader.SetFloat(s_sweepAngle, sweepRad);
+        m_radarShader.Dispatch(m_sweepKernel, m_radarDataTexture.width / 8, m_radarDataTexture.height / 8, 1);
         m_radarShader.Dispatch(m_decayKernel, m_radarDataTexture.width / 8, m_radarDataTexture.height / 8, 1);
         if(!Physics.Raycast(transform.position, direction, out RaycastHit hit, m_maxDistance))
         {

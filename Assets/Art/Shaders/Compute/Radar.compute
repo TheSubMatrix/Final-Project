@@ -1,18 +1,19 @@
 // Each #kernel tells which function to compile; you can have many kernels
 #pragma kernel WriteHit
+#pragma kernel WriteSweep
 #pragma kernel Decay
 static const int KERNEL_SIZE = 11;
 static const int KERNEL_HALF = KERNEL_SIZE / 2;
 RWTexture2D<float4> _RadarTexture;
 float2 _UV;
 float _DecayRate;
-
+float _SweepAngle;
+float _SweepWidth;
 [numthreads(KERNEL_SIZE, KERNEL_SIZE, 1)]
 void WriteHit(uint3 id : SV_DispatchThreadID)
 {
     uint width, height;
     _RadarTexture.GetDimensions(width, height);
-
     int2 center = (int2)(_UV * float2(width, height));
     int2 offset = (int2)id.xy - KERNEL_HALF;
     int2 pixel  = center + offset;
@@ -26,4 +27,22 @@ void WriteHit(uint3 id : SV_DispatchThreadID)
 void Decay (uint3 id : SV_DispatchThreadID)
 {
     _RadarTexture[id.xy] *= _DecayRate;
+}
+
+[numthreads(8,8,1)]
+void WriteSweep(uint3 id : SV_DispatchThreadID)
+{
+    uint width, height;
+    _RadarTexture.GetDimensions(width, height);
+
+    float2 uv = (float2)id.xy / float2(width, height) * 2.0 - 1.0;
+
+    float pixelAngle = atan2(uv.y, uv.x);
+    if (pixelAngle < 0) pixelAngle += 6.28318;
+    float angleDiff = abs(pixelAngle - _SweepAngle);
+    angleDiff = min(angleDiff, 6.28318 - angleDiff);
+
+    float4 current = _RadarTexture[id.xy];
+    float sweep = angleDiff < _SweepWidth ? 1.0 : 0.0;
+    _RadarTexture[id.xy] = float4(sweep, current.g, current.b, current.a);
 }
