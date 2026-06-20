@@ -4534,10 +4534,26 @@ PrefabInstance:
       propertyPath: m_outPosition
       value: 
       objectReference: {fileID: 1812344227}
+    - target: {fileID: 3325013120527608156, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 1f614bb40c862fc46b2f36b004910b99, type: 3}
+    - target: {fileID: 3325013120527608156, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325013120527608156, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -5647781477826042681, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
     - target: {fileID: 6144909710488527350, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.9
       objectReference: {fileID: 0}
+    - target: {fileID: 6209415758916147482, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: 'm_gramophoneTracks.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1f614bb40c862fc46b2f36b004910b99, type: 3}
     - target: {fileID: 7196852406926485525, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_Name
       value: 'Ship '
