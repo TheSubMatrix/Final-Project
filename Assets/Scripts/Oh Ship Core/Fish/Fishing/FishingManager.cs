@@ -31,7 +31,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
     private InputActionMap _activeActionMap;
     private InteractionSession _currentInteractionSession;
     private IPlayerController _playerController;
-    private IPlayerControllable _playerControllable;
+    private IPlayerControllable _playerControllableForHoldingObject;
     private FishingMiniGame _fishingMiniGame;
     private RectTransform _greenZone;
     private RectTransform _playerFishingIcon;
@@ -49,16 +49,16 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
         Debug.Log("Beginning Interaction");
-        _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
-        _playerController = _playerControllable.GetActivePlayerController();
-        _playerInteractionState = _playerControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
+        IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
+        IPlayerController controller = oldControllable.GetActivePlayerController();
+        _playerControllableForHoldingObject = oldControllable;
+        _playerController = controller;
+        _playerInteractionState = oldControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
        
-        if (_playerInteractionState.CheckInteractionTag(InteractionTag.Holding))
+        if (_playerInteractionState.CheckInteractionTag(InteractionTag.Holding) || _currentInteractionSession is {IsActive: true} )
         {
-             Debug.Log("Holding Fish");
-            _currentInteractionSession = new InteractionSession(interactor, this);
-            _currentInteractionSession.End();
-            return _currentInteractionSession;
+            Debug.Log("Blocked");
+            return null;
         }
 
         
@@ -66,12 +66,12 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         _fishingCamera.OutputChannel = playerCam.OutputChannel;
         _fishingCamera.Priority = 10;
         SetUpFishingMinigame();
-        _playerController.ChangeControlledEntity(this);
+        controller.ChangeControlledEntity(this);
 
         _currentInteractionSession = new InteractionSession(interactor, this);
-        _currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
+        _currentInteractionSession.OnEnded += () => controller.ChangeControlledEntity(oldControllable);
         _interactor  = interactor;
-        _player = _playerControllable.GetAssociatedGameObject().gameObject;
+        _player = oldControllable.GetAssociatedGameObject().gameObject;
         _player.GetComponentInChildren<MeshRenderer>().enabled = false;
         
        
@@ -163,13 +163,13 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         Debug.Log("Fish Caught");
         int index = UnityEngine.Random.Range(0, usableThingsToCatch.Length);
         
-        _holdingObjectTransform = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
+        _holdingObjectTransform = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
         GameObject caughtItem = Instantiate(usableThingsToCatch[index], _holdingObjectTransform.position,_holdingObjectTransform.rotation);
         caughtItem.transform.SetParent(_holdingObjectTransform);
         _playerInteractionState.AddInteractionTag(InteractionTag.Holding);
         
         foodClassRef = caughtItem.GetComponent<FoodClass>();
-        HungerAndThirst hungerRef = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>();
+        HungerAndThirst hungerRef = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>();
         Debug.Log($"HungerAndThirst found: {hungerRef}");
         foodClassRef.InitializeHungerAndThirst(hungerRef);      
         _currentInteractionSession.End();

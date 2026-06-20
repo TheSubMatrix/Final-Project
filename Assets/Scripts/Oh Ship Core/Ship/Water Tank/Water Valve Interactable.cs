@@ -19,7 +19,7 @@ public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerContr
     IPlayerController m_activePlayerController;
     [SerializeField] string m_pressureControlActionMap = "Adjust Pressure";
     [SerializeField, RequiredField] WaterController m_pressureSystem;
-    
+    private PlayerInteractionState m_currentInteractionState;
     InteractionSession m_currentInteractionSession;
 
     private GameObject player;
@@ -28,15 +28,26 @@ public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerContr
     {
         IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         IPlayerController controller = oldControllable.GetActivePlayerController();
-        controller.ChangeControlledEntity(this);
+        m_currentInteractionState = oldControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
+
+        if (m_currentInteractionState.CheckInteractionTag(InteractionTag.Holding) ||
+            m_currentInteractionSession is { IsActive: true })
+        {
+            Debug.Log("Blocked interaction");
+            return null;
+        }
+        
        
+        
         CinemachineCamera playerCamera = interactor.GetAssociatedGameObject().GetComponent<CinemachineCamera>();
+        
+       
         
         m_steamPressureCamera.OutputChannel =  playerCamera.OutputChannel;
         m_steamPressureCamera.Priority = 10;
-
+        
+        controller.ChangeControlledEntity(this);
         player = oldControllable.GetAssociatedGameObject();
-       
         player.GetComponentInChildren<MeshRenderer>().enabled = false;
         
         m_currentInteractionSession = new(interactor, this);

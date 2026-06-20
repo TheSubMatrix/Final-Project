@@ -33,11 +33,15 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     ///<inheritdoc/>
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
+        Debug.Log($"BeginInteraction called by: {interactor}, current session active: {m_currentInteractionSession?.IsActive}");
         IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         IPlayerController controller = oldControllable.GetActivePlayerController();
         m_playerInteractionState = oldControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
         
-        if (m_playerInteractionState.CheckInteractionTag(InteractionTag.Holding))
+        
+        
+        
+        if (m_playerInteractionState.CheckInteractionTag(InteractionTag.Holding) || m_currentInteractionSession is {IsActive:true})
         {
             Debug.Log("Blocking helm interaction");
             return null;

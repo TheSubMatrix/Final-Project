@@ -19,7 +19,6 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
     [SerializeField] private Transform _promptVisualLocation;
     
     private IPlayerController m_activePlayerController;
-    private IPlayerControllable m_activePlayerControl;
     private InteractionSession m_currentInteractionSession;
     public string[] m_inputsForQTE;
     private int m_index;
@@ -27,18 +26,27 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
     private CoalUI m_coalUI;
     private float m_timeLimit;
     private float m_pressureToSend;
+    private PlayerInteractionState m_playerInteractionState;
     public InteractionSession BeginInteraction(IInteractor interactor)
     { 
-        m_activePlayerControl = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
-        m_activePlayerController = m_activePlayerControl.GetActivePlayerController();
-        m_activePlayerController.ChangeControlledEntity(this);
+        IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
+        IPlayerController controller = oldControllable.GetActivePlayerController();
+        m_playerInteractionState = oldControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
+        
+        if(m_playerInteractionState.CheckInteractionTag(InteractionTag.Holding) || m_currentInteractionSession is {IsActive: true})
+        {
+            Debug.Log("Blocked");
+            return null;
+        }
+        
+        controller.ChangeControlledEntity(this);
         
         CinemachineCamera playerCam = interactor.GetAssociatedGameObject().GetComponent<CinemachineCamera>();
         _coalCamera.OutputChannel = playerCam.OutputChannel;
         _coalCamera.Priority = 10;
         
         m_currentInteractionSession = new InteractionSession(interactor, this);
-        m_currentInteractionSession.OnEnded += () => m_activePlayerController.ChangeControlledEntity(m_activePlayerControl);
+        m_currentInteractionSession.OnEnded += () => controller.ChangeControlledEntity(oldControllable);
         m_inputsForQTE = new string[_howManyInputs];
         m_index = 0;
         m_correctInputCounter = 0;
