@@ -1,14 +1,13 @@
-using System;
 using MatrixUtils.Attributes;
 using MatrixUtils.DependencyInjection;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Controls the fill of the water tank using states that use the <see cref="IFillState"/> interface.
 /// </summary>
 public class WaterController : MonoBehaviour
 {
+    
     [Inject] INotificationMessenger m_notificationMessenger;
     [SerializeField] float m_criticalStateBuffer = 0.01f;
     [SerializeField] float m_maxFill = 1f;
@@ -57,6 +56,7 @@ public class WaterController : MonoBehaviour
             m_activeFillChange.OnFillChange -= UpdateCurrentFill;
             m_activeFillChange.OnEventEnded();
         }
+        Debug.Log($"Changing fill to {fillChange.GetType()} water fill: {m_currentFill}");
         m_activeFillChange = fillChange;
         m_activeFillChange.OnFillChange += UpdateCurrentFill;
         m_activeFillChange.OnEventStarted(m_currentFill);

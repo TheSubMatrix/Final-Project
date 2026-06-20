@@ -12,13 +12,13 @@ public class CharacterSelectionHandler : MonoBehaviour, IMenuHandler, IDependenc
     [SerializeReference, ClassSelector] List<IPlayerSelection> m_playerSelections;
     [Provide, UsedImplicitly] IMenuHandler Provide() => this;
     
-    [Inject] ICharacterSelectionReference m_characterSelectionReference;
+    [Inject] ICharacterSpecificDataProvider m_characterSpecificDataProvider;
     
     
     private void Start()
     {
         FindAnyObjectByType<Injector>().Inject(this);
-        m_characterSelectionReference.ClearSelections();
+        m_characterSpecificDataProvider.ClearSelections();
     }
 
     public bool TryConfirmSelection(IPlayerControllable selector, IPlayerSelection target)
@@ -28,7 +28,7 @@ public class CharacterSelectionHandler : MonoBehaviour, IMenuHandler, IDependenc
        if(!target.TryAddSelector(selector)) return false;
 
        if (target is not CharacterSelection characterSelection) return false;
-       m_characterSelectionReference.SetCharacterModelSelection(selector.GetActivePlayerController(), characterSelection.CharacterData);
+       m_characterSpecificDataProvider.SetCharacterModelSelection(selector.GetActivePlayerController(), characterSelection.CharacterData);
        int confirmedCount = 0;
        foreach (var c in m_playerSelections)
        {

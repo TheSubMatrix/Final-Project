@@ -49,7 +49,9 @@ public class NeutralFillState : IFillState
     public void OnEventEnded()
     {
         m_driftTimer?.Stop();
-        m_holdTimer?.Stop();
+        if (m_holdTimer == null) return;
+        m_holdTimer.OnTimerStop -= OnHoldCompleted;
+        m_holdTimer.Stop();
     }
     /// <inheritdoc/>
     public void HandleIncrease()

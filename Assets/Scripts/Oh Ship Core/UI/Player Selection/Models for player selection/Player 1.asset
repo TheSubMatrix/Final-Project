@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc606e8f2f7deb744b8c370ecf7ea46a, type: 3}
   m_Name: Player 1
   m_EditorClassIdentifier: OhShip.Core.UI::SO_CharacterSelectionData
-  characterModelPrefab: {fileID: 8207375150780616658, guid: 3beefb1fb421ad74ea49de2319082cdb, type: 3}
+  m_characterModelPrefab: {fileID: 8207375150780616658, guid: 3beefb1fb421ad74ea49de2319082cdb, type: 3}
+  m_characterPostEffectLayer:
+    serializedVersion: 2
+    m_Bits: 128

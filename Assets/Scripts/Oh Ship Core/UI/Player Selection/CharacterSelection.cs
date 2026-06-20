@@ -5,7 +5,7 @@ public class CharacterSelection : IPlayerSelection
 {
     [field:SerializeField] public Transform Transform { get; private set; }
     
-    [SerializeField] private SO_CharacterSelectionData characterPrefab;
+    [SerializeField] private SO_CharacterSpecificData characterPrefab;
     public bool AllowsMultipleSelectors => false;
 
     public IPlayerControllable m_currentSelector;
@@ -29,5 +29,5 @@ public class CharacterSelection : IPlayerSelection
     
     public bool IsConfirmed => m_currentSelector != null;
     
-    public SO_CharacterSelectionData CharacterData => characterPrefab;
+    public SO_CharacterSpecificData CharacterData => characterPrefab;
 }

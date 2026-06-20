@@ -1,21 +1,23 @@
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using MatrixUtils.DependencyInjection;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerSpawnManager : MonoBehaviour
 {
     [SerializeField] InterfaceReference<IPlayerControllable, MonoBehaviour> m_playerControllable;
     [SerializeField] Transform[] m_playerSpawnPoints;
     [Inject] IInjector m_injector;
-    [Inject] ICharacterSelectionReference m_characterSelectionReference;
+    [Inject] ICharacterSpecificDataProvider m_characterSpecificDataProvider;
     readonly Dictionary<IPlayerController, OutputChannels> m_playerOutputChannels = new();
     int m_spawnedPlayers = 1;
     public void Spawn(PlayerInput playerInput)
     {
         IPlayerController controller = playerInput.gameObject.GetComponent<IPlayerController>();
-        GameObject player;
         Vector3 spawnPosition = Vector3.zero;
         Quaternion spawnRotation = Quaternion.identity;
         if (SelectRandom(m_playerSpawnPoints, out Transform spawnPoint))
@@ -24,14 +26,15 @@ public class PlayerSpawnManager : MonoBehaviour
             spawnRotation = spawnPoint.rotation;
         }
         m_injector.Inject(controller.GetAssociatedGameObject());
-        player = m_characterSelectionReference == null
-            ? Instantiate(m_playerControllable.UnderlyingValue.gameObject, spawnPosition, spawnRotation)
-                : Instantiate(m_characterSelectionReference.GetCharacterSelectionData(controller).CharacterModelPrefab, spawnPosition, spawnRotation);
-
-       IPlayerControllable controllable = player.GetComponent<IPlayerControllable>();
-       controller.ChangeControlledEntity(controllable);
-       
-      
+        SO_CharacterSpecificData data = m_characterSpecificDataProvider?.GetCharacterSelectionData(controller);
+        IPlayerControllable selectedControllable = data?.CharacterModelPrefab.GetComponent<IPlayerControllable>() ?? m_playerControllable.Value;
+        GameObject player = Instantiate(selectedControllable.GetAssociatedGameObject(), spawnPosition, spawnRotation);
+        controller.ChangeControlledEntity(player.GetComponent<IPlayerControllable>());
+        if (data != null && controller.GetAssociatedGameObject().GetComponentInChildren<UniversalAdditionalCameraData>() is { } cam && controller.GetAssociatedGameObject().GetComponentInChildren<Volume>() is { } volume)
+        {
+            cam.volumeLayerMask |= data.CharacterPostEffectLayer;
+            volume.gameObject.layer = LayerMaskToLayer(data.CharacterPostEffectLayer);
+        }
         if (!m_playerOutputChannels.TryGetValue(controller, out OutputChannels channels))
         {
             channels = (OutputChannels)(1 << m_spawnedPlayers);
@@ -52,5 +55,18 @@ public class PlayerSpawnManager : MonoBehaviour
         result = array[Random.Range(0, array.Length)];
        // Debug.Log($"Selected {result}");
         return true;
+    }
+    [Pure]
+    static int LayerMaskToLayer(LayerMask mask)
+    {
+        int bitmask = mask.value;
+        for (int i = 0; i < 32; i++)
+        {
+            if ((bitmask & (1 << i)) != 0)
+            {
+                return i;
+            }
+        }
+        return 0;
     }
 }

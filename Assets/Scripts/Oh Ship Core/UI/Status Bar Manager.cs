@@ -4,21 +4,16 @@ using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 
-public class StatusBarManager : MonoBehaviour
+public class HungerAndThirstVisualManager : MonoBehaviour
 {
     [SerializeField] StatusBar m_hungerBar;
     [SerializeField] StatusBar m_thirstBar;
-    //[SerializeField] HungerAndThirst stats; 
 
     [SerializeField] private Image fadeImage;
     private Color imageAlpha;
     
-    public void UpdateHungerBar(float hungerPercentage)
-    {
-        m_hungerBar.UpdateFillPercentage(hungerPercentage);
-    }
-    
-    public void UpdateThirstBar(float thirstPercentage) => m_thirstBar.UpdateFillPercentage(thirstPercentage);
+    public void UpdateHunger(float hungerPercentage) => m_hungerBar.UpdateFillPercentage(hungerPercentage);
+    public void UpdateThirst(float thirstPercentage) => m_thirstBar.UpdateFillPercentage(thirstPercentage);
 
     [Serializable]
     struct StatusBar
