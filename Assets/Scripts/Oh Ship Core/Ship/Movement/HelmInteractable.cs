@@ -19,13 +19,17 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     [SerializeField] ProcedurallyAnimatedHelmElement m_wheelElement;
     [SerializeField] ProcedurallyAnimatedHelmElement m_throttleElement;
     [SerializeField] ProcedurallyAnimatedHelmElement m_speedometerElement;
-    [SerializeField] SoundData m_hornSound;
+    [SerializeField, RequiredField] Transform m_hornPosition;
+    [SerializeField, RequiredField] AudioSource m_horn;
+    [SerializeField] float m_hornMin;
+    [SerializeField] float m_hornMax;
+    float m_hornVelocity;
+    bool m_usingHorn;
     IPlayerController m_activePlayerController;
     Vector2 m_moveInput = Vector2.zero;
     Vector2 m_lookInput = Vector2.zero;
     InteractionSession m_currentInteractionSession;
-    float m_wheelVelocity;
-    private PlayerInteractionState m_playerInteractionState;
+    PlayerInteractionState m_playerInteractionState;
     ///<inheritdoc/>
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
@@ -58,7 +62,9 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         m_wheelElement.Transform.localEulerAngles = new(0, 0, m_wheelElement.GetNextAngle(m_shipMovement.Rudder, m_wheelElement.Transform.localEulerAngles.z));
         m_shipMovement.SetThrottle(m_shipMovement.Throttle + m_moveInput.y * Time.deltaTime * m_helmThrottleSpeed);
         m_throttleElement.Transform.localEulerAngles = new(m_throttleElement.GetNextAngle(-m_shipMovement.Throttle, m_throttleElement.Transform.localEulerAngles.x), 0, 0);
-        m_speedometerElement.Transform.localEulerAngles = new(0, 0, m_speedometerElement.GetNextAngle(Vector3.Dot(m_shipMovement.Rigidbody.linearVelocity, m_shipMovement.Rigidbody.transform.forward).Remap(-14, 14, -1, 1), m_speedometerElement.Transform.localEulerAngles.z));        m_helmCamera.transform.Rotate(0, m_lookInput.x * Time.deltaTime * 100, 0);
+        m_speedometerElement.Transform.localEulerAngles = new(0, 0, m_speedometerElement.GetNextAngle(Vector3.Dot(m_shipMovement.Rigidbody.linearVelocity, m_shipMovement.Rigidbody.transform.forward).Remap(-14, 14, -1, 1), m_speedometerElement.Transform.localEulerAngles.z));
+        m_hornPosition.localPosition = new(m_hornPosition.localPosition.x, Mathf.SmoothDamp(m_hornPosition.localPosition.y, m_usingHorn ? m_hornMax : m_hornMin, ref m_hornVelocity, 0.1f), m_hornPosition.localPosition.z);
+        m_helmCamera.transform.Rotate(0, m_lookInput.x * Time.deltaTime * 100, 0);
     }
     ///<inheritdoc/>
     public void OnControlRequested(IPlayerController player)
@@ -79,7 +85,8 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         lookAction.performed += HandleLookInput;
         lookAction.canceled += HandleLookInput;
         InputAction hornAction = map.FindAction("Horn");
-        hornAction.performed += HandleHornInput;
+        hornAction.performed += HandleHornStartedInput;
+        hornAction.canceled += HandleHornEndedInput;
     }
     ///<inheritdoc/>
     public void OnControlReleased()
@@ -97,7 +104,8 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         lookAction.performed -= HandleLookInput;
         lookAction.canceled -= HandleLookInput;
         InputAction hornAction = map.FindAction("Horn");
-        hornAction.performed -= HandleHornInput;
+        hornAction.performed -= HandleHornStartedInput;
+        hornAction.canceled -= HandleHornEndedInput;
         m_playerInteractionState.RemoveInteractionTag(InteractionTag.Steering);
         m_activePlayerController = null;
     }
@@ -108,7 +116,18 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     void HandleInteract(InputAction.CallbackContext context) => m_currentInteractionSession.End();
     void HandleLookInput(InputAction.CallbackContext context) => m_lookInput = context.ReadValue<Vector2>();
 
-    void HandleHornInput(InputAction.CallbackContext context) => SoundManager.Instance.CreateSound().WithRandomPitch().AttachedTo(transform).WithSoundData(m_hornSound).Play();
+    void HandleHornStartedInput(InputAction.CallbackContext context)
+    {
+        m_horn.Play();
+        m_usingHorn = true;
+    }
+
+    void HandleHornEndedInput(InputAction.CallbackContext context)
+    {
+        m_horn.Stop();
+        m_usingHorn = false;
+    }
+
     public GameObject GetAssociatedGameObject() => gameObject;
 
     public PromptData GetPromptData() => new() {AssociatedWidget = m_widgetForPrompt};
