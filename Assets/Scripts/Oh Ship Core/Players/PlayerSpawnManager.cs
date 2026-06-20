@@ -8,8 +8,8 @@ public class PlayerSpawnManager : MonoBehaviour
 {
     [SerializeField] InterfaceReference<IPlayerControllable, MonoBehaviour> m_playerControllable;
     [SerializeField] Transform[] m_playerSpawnPoints;
-
-    [Inject] private ICharacterSelectionReference m_characterSelectionReference;
+    [Inject] IInjector m_injector;
+    [Inject] ICharacterSelectionReference m_characterSelectionReference;
     readonly Dictionary<IPlayerController, OutputChannels> m_playerOutputChannels = new();
     int m_spawnedPlayers = 1;
     public void Spawn(PlayerInput playerInput)
@@ -23,7 +23,7 @@ public class PlayerSpawnManager : MonoBehaviour
             spawnPosition = spawnPoint.position;
             spawnRotation = spawnPoint.rotation;
         }
-
+        m_injector.Inject(controller.GetAssociatedGameObject());
         player = m_characterSelectionReference == null
             ? Instantiate(m_playerControllable.UnderlyingValue.gameObject, spawnPosition, spawnRotation)
                 : Instantiate(m_characterSelectionReference.GetCharacterSelectionData(controller).CharacterModelPrefab, spawnPosition, spawnRotation);

@@ -1,5 +1,6 @@
 using System;
 using MatrixUtils.Attributes;
+using MatrixUtils.DependencyInjection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +9,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class WaterController : MonoBehaviour
 {
-    [SerializeField] private float m_criticalStateBuffer = 0.01f;
+    [Inject] INotificationMessenger m_notificationMessenger;
+    [SerializeField] float m_criticalStateBuffer = 0.01f;
     [SerializeField] float m_maxFill = 1f;
     [SerializeField] float m_minFill = -1f;
     [SerializeField] float m_fillRate = 1f;
@@ -31,9 +33,9 @@ public class WaterController : MonoBehaviour
     /// Attempts to decrease the fill of the water tank.
     /// </summary>
     public void DecreaseWaterFill() => m_activeFillChange.HandleDecrease();
-    
-    private bool IsInCriticalState => m_currentFill <= m_minFill + + m_criticalStateBuffer || m_currentFill  >= m_maxFill - + m_criticalStateBuffer;
 
+    bool IsInCriticalState => m_currentFill <= m_minFill + + m_criticalStateBuffer || m_currentFill  >= m_maxFill - + m_criticalStateBuffer;
+    bool m_hasStartedWarning;
     void Awake()
     {
         m_neutral = new(UpdateWaterFillChange, m_fillRate, m_minHoldDuration, m_maxHoldDuration);
@@ -66,12 +68,15 @@ public class WaterController : MonoBehaviour
         m_waterFillMesh.material.SetFloat(s_fillProperty, m_currentFill);
     }
 
-    private void Update()
+    void Update()
     {
-        if (IsInCriticalState)
+        if (IsInCriticalState && !m_hasStartedWarning)
         {
-           Debug.Log("Criktical State");
-           //SceneManager.LoadScene("GameOver");
+            m_notificationMessenger.TryNotify("enable steam");
+            m_hasStartedWarning = true;
         }
+        if (IsInCriticalState || !m_hasStartedWarning) return;
+        m_notificationMessenger.TryNotify("disable steam");
+        m_hasStartedWarning = false;
     }
 }

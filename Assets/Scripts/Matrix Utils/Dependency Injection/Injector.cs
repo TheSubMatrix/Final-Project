@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace MatrixUtils.DependencyInjection {
@@ -9,7 +10,7 @@ namespace MatrixUtils.DependencyInjection {
     [DefaultExecutionOrder(-1000)]
     public class Injector : MonoBehaviour, IInjector, IDependencyProvider
     {
-        [Provide] IInjector GetInjector() => this;
+        [Provide, UsedImplicitly] IInjector GetInjector() => this;
         const BindingFlags BindingFlags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic;
         readonly Dictionary<Type, object> m_registry = new();
 
@@ -185,6 +186,16 @@ namespace MatrixUtils.DependencyInjection {
                 return;
             }
             InjectInternal(injectable);
+        }
+        public void Inject(GameObject root)
+        {
+            MonoBehaviour[] monoBehaviours = root.GetComponentsInChildren<MonoBehaviour>(includeInactive: false);
+            foreach (MonoBehaviour mb in monoBehaviours)
+            {
+                if (mb == null) continue;
+                if (!IsInjectable(mb)) continue;
+                InjectInternal(mb);
+            }
         }
     }
 }
