@@ -32,30 +32,6 @@ public abstract class TutorialStep
     /// Override this to implement the step's ending logic. Will be called by <see cref="EndStep"/>
     /// </summary>
     protected abstract void EndStepInternal();
-    
-    [SerializeField] UnityEvent m_onStepComplete = new();
-    /// <summary>
-    /// Try to add a listener to the complete event.
-    /// </summary>
-    /// <param name="event">The event to try and add</param>
-    /// <returns>Whether the event was successfully added</returns>
-    public bool TryAddCompleteEvent(UnityAction @event)
-    {
-        if (@event == null) return false;
-        m_onStepComplete.AddListener(@event);
-        return true;
-    }
-    /// <summary>
-    /// Try to remove a listener from the complete event.
-    /// </summary>
-    /// <param name="event">The event to try and add</param>
-    /// <returns>Whether the event was successfully removed</returns>
-    public bool TryRemoveCompleteEvent(UnityAction @event)
-    {
-        if (@event == null) return false;
-        m_onStepComplete.RemoveListener(@event);
-        return true;
-    }
     /// <summary>
     /// Invoked when the step starts.
     /// </summary>
@@ -77,6 +53,30 @@ public abstract class TutorialStep
     /// <param name="event">The event to try and add</param>
     /// <returns>Whether the event was successfully removed</returns>
     public bool TryRemoveStartEvent(UnityAction @event)
+    {
+        if (@event == null) return false;
+        m_onStepComplete.RemoveListener(@event);
+        return true;
+    }
+    
+    [SerializeField] UnityEvent m_onStepComplete = new();
+    /// <summary>
+    /// Try to add a listener to the complete event.
+    /// </summary>
+    /// <param name="event">The event to try and add</param>
+    /// <returns>Whether the event was successfully added</returns>
+    public bool TryAddCompleteEvent(UnityAction @event)
+    {
+        if (@event == null) return false;
+        m_onStepComplete.AddListener(@event);
+        return true;
+    }
+    /// <summary>
+    /// Try to remove a listener from the complete event.
+    /// </summary>
+    /// <param name="event">The event to try and add</param>
+    /// <returns>Whether the event was successfully removed</returns>
+    public bool TryRemoveCompleteEvent(UnityAction @event)
     {
         if (@event == null) return false;
         m_onStepComplete.RemoveListener(@event);
