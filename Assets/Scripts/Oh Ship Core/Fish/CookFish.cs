@@ -119,7 +119,6 @@ public class CookFish : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(3);
         isBurning = true;
 
-
     }
 
     public InteractionSession BeginInteraction(IInteractor interactor)

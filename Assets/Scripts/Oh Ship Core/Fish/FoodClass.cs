@@ -22,6 +22,13 @@ public abstract class FoodClass : MonoBehaviour, IUsableItem
   Destroy(gameObject);
  }
 
- public abstract float Eat();
+public float GetCookingSpeed()
+{
+    return FoodData.CookSpeed;
+}
+
+public virtual void UpdateCookedAmount(float amount) { }
+
+public abstract float Eat();
 
 }

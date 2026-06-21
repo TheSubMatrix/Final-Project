@@ -233,8 +233,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447475600237692604}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06004022, y: 0.7045532, z: -0.06004022, w: 0.7045532}
-  m_LocalPosition: {x: 5.6659994, y: -25.877575, z: -0.14699554}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000035762784}
+  m_LocalPosition: {x: -7.9800053, y: 4.619, z: -120.478004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1769,6 +1769,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a69b81e7-b517-4cbf-ae4f-e617204423f9
     m_ActionName: 'Helm/Horn[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 40dd324f-0ff4-4e6c-acb5-f234a5c2bfd5
+    m_ActionName: 'Player/Use[/Keyboard/f]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

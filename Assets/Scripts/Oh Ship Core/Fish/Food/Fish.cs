@@ -15,8 +15,9 @@ public class Fish : FoodClass
         m_material = GetComponent<Renderer>().material;
     }
 
-    public void UpdateCookedAmount(float incomingAmount)
+    public override void UpdateCookedAmount(float incomingAmount)
     {
+        Debug.Log("updating");
         m_cookedAmount = incomingAmount;
         m_material.SetFloat("_Cooked_Amount", m_cookedAmount);
         

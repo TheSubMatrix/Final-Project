@@ -13,6 +13,14 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
     private IPlayerController _playerController;
     private PlayerInteractionState _playerInteractionState;
     private FoodClass _foodClassItem;
+    private float cookedAmount;
+    private FoodClass currentFood;
+    private Fish fish;
+
+    public void Update()
+    {
+        Cook();
+    }
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
         _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
@@ -69,6 +77,21 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
     { 
         _foodClassItem.transform.position = cookingLocation.position;
         _foodClassItem.transform.SetParent(cookingLocation);
+    }
+
+    private void Cook()
+    {
+        if(_foodClassItem == null)
+        {
+            return;
+        }
+
+        if(cookingLocation.childCount > 0)
+        {
+            Debug.Log("cooks");
+            cookedAmount += _foodClassItem.GetCookingSpeed() * Time.deltaTime;
+            _foodClassItem.UpdateCookedAmount(cookedAmount);
+        }
     }
 
     private void MoveObjetToHand()
