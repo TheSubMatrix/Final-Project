@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class FoodClass : MonoBehaviour, IUsableItem
@@ -7,6 +8,8 @@ public abstract class FoodClass : MonoBehaviour, IUsableItem
  public SO_CookableFoodData FoodData { get => foodData; set => foodData = value; }
  
  public abstract CookingProcess CookingProcess { get; }
+ 
+ public abstract CookState CookStateRef { get; }
  
  private HungerAndThirst m_HungerAndThirst;
 
@@ -21,6 +24,7 @@ public abstract class FoodClass : MonoBehaviour, IUsableItem
   Debug.Log(gameObject.name + " has been used!");
   Destroy(gameObject);
  }
+ 
 
 public float GetCookingSpeed()
 {
@@ -30,5 +34,6 @@ public float GetCookingSpeed()
 public virtual void UpdateCookedAmount(float amount) { }
 
 public abstract float Eat();
+
 
 }
