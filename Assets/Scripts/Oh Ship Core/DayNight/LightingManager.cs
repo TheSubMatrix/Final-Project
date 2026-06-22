@@ -66,10 +66,7 @@ public class LightingManager : MonoBehaviour
         {
             if(!startedFireflies)
             {
-<<<<<<< Updated upstream
-                VisualEffect fireflyVFX = firefly.GetComponent<VisualEffect>();
-                fireflyVFX.Play();
-=======
+
                 foreach (var firefly in fireflies)
                 {
                     VisualEffect fireflyVFX = firefly.GetComponent<VisualEffect>();
@@ -77,7 +74,7 @@ public class LightingManager : MonoBehaviour
                 }
 
                 startedFireflies = true;
->>>>>>> Stashed changes
+
             }
             if (lightCount > 0 && finishedLightUp)
             {
