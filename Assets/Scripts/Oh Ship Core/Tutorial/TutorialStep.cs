@@ -11,6 +11,7 @@ public abstract class TutorialStep
     /// <summary>
     /// Starts the tutorial step.
     /// </summary>
+    /// <param name="context">The data used in this tutorial step</param>
     public void StartStep(TutorialContext context)
     {
         StartStepInternal(context);

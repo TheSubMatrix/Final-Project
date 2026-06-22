@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
@@ -41,8 +40,13 @@ public class PlayerController : MonoBehaviour, IPlayerController
         m_playerInput.uiInputModule = FindFirstObjectByType<InputSystemUIInputModule>();
         DontDestroyOnLoad(gameObject);
     }
-
+    /// <inheritdoc/>
     public GameObject GetAssociatedGameObject() => gameObject;
+    /// <summary>
+    /// Returns the player index of the player that owns this controller.
+    /// </summary>
+    /// <param name="playerIndex">The resulting index from the player</param>
+    /// <returns>Whether the resulting index is valid</returns>
     public bool TryGetPlayerIndex(out int playerIndex)
     {
         playerIndex = -1;
