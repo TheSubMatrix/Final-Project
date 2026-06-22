@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.VFX;
 
 [ExecuteAlways]
 public class LightingManager : MonoBehaviour
@@ -7,6 +8,7 @@ public class LightingManager : MonoBehaviour
     [SerializeField] private LightingPreset preset;
     [SerializeField, Range(0, 96)] private float timeOfDay;
     [SerializeField] private GameObject[] lights;
+    [SerializeField] private GameObject[] fireflies;
     private int lightCount;
     private bool lightSetUp = false;
     private bool finishedLightUp = true;
@@ -25,7 +27,9 @@ public class LightingManager : MonoBehaviour
 
     private void Start()
     {
+        timeOfDay = 18;
         lights = GameObject.FindGameObjectsWithTag("Light");
+        fireflies = GameObject.FindGameObjectsWithTag("Firefly");
     }
 
     private void Update()
@@ -36,9 +40,7 @@ public class LightingManager : MonoBehaviour
             lightCount = lights.Length;
             lightSetUp = true;
         }
-
-        Debug.Log("light count:" + lightCount);
-
+        
         if (preset == null)
         {
             return;
@@ -57,10 +59,15 @@ public class LightingManager : MonoBehaviour
 
         if(timeOfDay <= 20 || timeOfDay >= 84)
         {
+            foreach (var firefly in fireflies)
+            {
+                VisualEffect fireflyVFX = firefly.GetComponent<VisualEffect>();
+                fireflyVFX.Play();
+            }
             if (lightCount > 0 && finishedLightUp)
             {
                 finishedLightUp = false;
-                Invoke("LightUp", Random.Range(0.1f, 1f));
+                Invoke("LightUp", Random.Range(0.1f, 0.6f));
             }
         }
         else
@@ -70,7 +77,14 @@ public class LightingManager : MonoBehaviour
                 light.SetActive(false);
                 lightSetUp = false;
             }
-    }}
+
+            foreach(var firefly in fireflies)
+            {
+                VisualEffect fireflyVFX = firefly.GetComponent<VisualEffect>();
+                fireflyVFX.Stop();
+            }
+        }
+    }
     private void OnValidate()
     {
         if(directionalLight != null)
@@ -100,9 +114,10 @@ public class LightingManager : MonoBehaviour
     {
         GameObject chosenLight = lights[Random.Range(0, lights.Length)];
 
-        if(chosenLight.activeSelf)
+        if(chosenLight.activeInHierarchy)
         {
-            LightUp();
+            finishedLightUp = true;
+            return;
         }
         else
         {

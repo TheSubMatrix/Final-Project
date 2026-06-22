@@ -116,11 +116,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2947319473132347171}
   - {fileID: 7612905988191607924}
   - {fileID: 3929693974484706016}
   - {fileID: 866568263953459924}
   - {fileID: 6680463613723691302}
+  - {fileID: 540786760106971066}
   m_Father: {fileID: 1320048185041333726}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8187060121162671498
@@ -141,6 +141,10 @@ MonoBehaviour:
   m_widgetForPrompt: interact
   m_pressureControlActionMap: Adjust Pressure
   m_pressureSystem: {fileID: 5523844188059048367}
+  m_valveElement:
+    Transform: {fileID: 0}
+    MinAngle: 0
+    MaxAngle: 0
 --- !u!65 &1752495828759164182
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -174,10 +178,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7934c7cfe2b50c843a931348fbe134c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Ship::WaterController
+  m_criticalStateBuffer: 0.01
   m_maxFill: 1
   m_minFill: -1
   m_fillRate: 0.1
   m_currentFill: 0
+  m_minHoldDuration: 120
+  m_maxHoldDuration: 180
   m_waterFillMesh: {fileID: 5467010617806480072}
 --- !u!1 &2405091166010159737
 GameObject:
@@ -338,6 +345,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: OhShip.Core.Ship::WaterFillController
   m_topFill: 2.53
   m_bottomFill: -2.177
+  OnWaterFillChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2623704483211035727
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,11 +863,11 @@ Transform:
   m_GameObject: {fileID: 4029161161556481236}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.74900055, y: 0.37599945, z: -0.58000183}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2162933009406408082}
+  m_Father: {fileID: 540786760106971066}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2274013563857696024
 MeshFilter:
@@ -1916,6 +1926,38 @@ Transform:
   - {fileID: 4504516855323263637}
   m_Father: {fileID: 1320048185041333726}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8318546400748930512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 540786760106971066}
+  m_Layer: 0
+  m_Name: Red Wheel Base
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &540786760106971066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8318546400748930512}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.744, y: 0.325, z: -0.588}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2947319473132347171}
+  m_Father: {fileID: 2162933009406408082}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &222482997190070175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2455,6 +2497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: OhShip.Core::UnderbellyFollow
   _speed: 5
   _playerSteamBoat: {fileID: 0}
+  yOffset: 0
 --- !u!4 &2492649285152181210 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3984791735498981871, guid: 8ad6d05da7ff7854499bd7d50c65f37b, type: 3}

@@ -1,4 +1,6 @@
+using System;
 using MatrixUtils.Attributes;
+using MatrixUtils.Extensions;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,6 +21,8 @@ public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerContr
     IPlayerController m_activePlayerController;
     [SerializeField] string m_pressureControlActionMap = "Adjust Pressure";
     [SerializeField, RequiredField] WaterController m_pressureSystem;
+
+    [SerializeField] private ProcedurallyAnimatedHelmElement m_valveElement;
     private PlayerInteractionState m_currentInteractionState;
     InteractionSession m_currentInteractionSession;
 
@@ -40,8 +44,6 @@ public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerContr
        
         
         CinemachineCamera playerCamera = interactor.GetAssociatedGameObject().GetComponent<CinemachineCamera>();
-        
-       
         
         m_steamPressureCamera.OutputChannel =  playerCamera.OutputChannel;
         m_steamPressureCamera.Priority = 10;
@@ -88,13 +90,45 @@ public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerContr
         player.GetComponentInChildren<MeshRenderer>().enabled = true;
         m_activePlayerController = null;
     }
-    
+
+    private void Start()
+    {
+        Debug.Log(m_valveElement);
+    }
+
+    private void Update()
+    {
+        m_valveElement.Transform.localEulerAngles = new Vector3(m_valveElement.GetNextAngle(m_pressureSystem.CurrentFill, m_valveElement.Transform.localEulerAngles.x),0,0);
+       
+    }
+
     /// <inheritdoc/>
     public IPlayerController GetActivePlayerController() => m_activePlayerController;
-    void HandleIncreasePressure(InputAction.CallbackContext context) => m_pressureSystem.IncreaseWaterFill();
+
+    void HandleIncreasePressure(InputAction.CallbackContext context)
+    {
+        m_pressureSystem.IncreaseWaterFill();
+    }
+    
+    //void HandleIncreasePressure(InputAction.CallbackContext context) => m_pressureSystem.IncreaseWaterFill();
     void HandleDecreasePressure(InputAction.CallbackContext context) => m_pressureSystem.DecreaseWaterFill();
     void HandleInteract(InputAction.CallbackContext context) => m_currentInteractionSession.End();
     public GameObject GetAssociatedGameObject() => gameObject;
     public PromptData GetPromptData() => new() {AssociatedWidget = m_widgetForPrompt};
     public Vector3 GetWidgetWorldPosition() => m_displayForInteraction.position;
+    
+    [Serializable]
+    class ProcedurallyAnimatedHelmElement
+    {
+        public Transform Transform;
+        public float MinAngle;
+        public float MaxAngle;
+        float m_velocity;
+
+        public float GetNextAngle(float normalizedDesiredAngle, float currentAngle)
+        {
+            float desiredWheelAngle = Mathf.Lerp(MinAngle, MaxAngle, normalizedDesiredAngle.Remap(-1, 1, 1, 0));
+            return Mathf.SmoothDampAngle(currentAngle, desiredWheelAngle, ref m_velocity, 0.1f);
+        }
+    }
 }
