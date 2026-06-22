@@ -3,7 +3,6 @@ using UnityEngine;
 public class Fish : FoodClass
 {
     private Material m_material;
-    //readonly float m_cookedAmount = m_material.GetFloat("_Cooked_Amount");
     private float m_cookedAmount;
     private CookState m_currentCookState = CookState.Raw;
     

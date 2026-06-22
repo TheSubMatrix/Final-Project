@@ -6,7 +6,10 @@ public class LightingManager : MonoBehaviour
     [SerializeField] private Light directionalLight;
     [SerializeField] private LightingPreset preset;
     [SerializeField, Range(0, 96)] private float timeOfDay;
-    [SerializeField] private GameObject lights;
+    [SerializeField] private GameObject[] lights;
+    private int lightCount;
+    private bool lightSetUp = false;
+    private bool finishedLightUp = true;
 
     private void UpdateLighting(float timePercentage)
     {
@@ -20,9 +23,23 @@ public class LightingManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        lights = GameObject.FindGameObjectsWithTag("Light");
+    }
+
     private void Update()
     {
-        if(preset == null)
+
+        if(!lightSetUp)
+        {
+            lightCount = lights.Length;
+            lightSetUp = true;
+        }
+
+        Debug.Log("light count:" + lightCount);
+
+        if (preset == null)
         {
             return;
         }
@@ -40,13 +57,20 @@ public class LightingManager : MonoBehaviour
 
         if(timeOfDay <= 20 || timeOfDay >= 84)
         {
-            lights.SetActive(true);
+            if (lightCount > 0 && finishedLightUp)
+            {
+                finishedLightUp = false;
+                Invoke("LightUp", Random.Range(0.1f, 1f));
+            }
         }
         else
         {
-            lights.SetActive(false);
-        }
-    }
+            foreach(var light in lights) 
+            {
+                light.SetActive(false);
+                lightSetUp = false;
+            }
+    }}
     private void OnValidate()
     {
         if(directionalLight != null)
@@ -69,6 +93,22 @@ public class LightingManager : MonoBehaviour
                     return;
                 }
             }
+        }
+    }
+
+    private void LightUp()
+    {
+        GameObject chosenLight = lights[Random.Range(0, lights.Length)];
+
+        if(chosenLight.activeSelf)
+        {
+            LightUp();
+        }
+        else
+        {
+            chosenLight.SetActive(true);
+            finishedLightUp = true;
+            lightCount--;
         }
     }
 }
