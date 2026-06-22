@@ -12,6 +12,7 @@ public class LightingManager : MonoBehaviour
     private int lightCount;
     private bool lightSetUp = false;
     private bool finishedLightUp = true;
+    private bool startedFireflies = false;
 
     private void UpdateLighting(float timePercentage)
     {
@@ -40,7 +41,11 @@ public class LightingManager : MonoBehaviour
             lightCount = lights.Length;
             lightSetUp = true;
         }
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
         if (preset == null)
         {
             return;
@@ -59,10 +64,20 @@ public class LightingManager : MonoBehaviour
 
         if(timeOfDay <= 20 || timeOfDay >= 84)
         {
-            foreach (var firefly in fireflies)
+            if(!startedFireflies)
             {
+<<<<<<< Updated upstream
                 VisualEffect fireflyVFX = firefly.GetComponent<VisualEffect>();
                 fireflyVFX.Play();
+=======
+                foreach (var firefly in fireflies)
+                {
+                    VisualEffect fireflyVFX = firefly.GetComponent<VisualEffect>();
+                    fireflyVFX.Play();
+                }
+
+                startedFireflies = true;
+>>>>>>> Stashed changes
             }
             if (lightCount > 0 && finishedLightUp)
             {
@@ -78,10 +93,15 @@ public class LightingManager : MonoBehaviour
                 lightSetUp = false;
             }
 
-            foreach(var firefly in fireflies)
+            if (startedFireflies)
             {
-                VisualEffect fireflyVFX = firefly.GetComponent<VisualEffect>();
-                fireflyVFX.Stop();
+                foreach (var firefly in fireflies)
+                {
+                    VisualEffect fireflyVFX = firefly.GetComponent<VisualEffect>();
+                    fireflyVFX.Play();
+                }
+
+                startedFireflies = false;
             }
         }
     }
