@@ -9,5 +9,5 @@
 public struct TutorialContext
 {
     public InterfaceReference<IPlayerController>[] PlayerControllers;
-    
+    public InterfaceReference<IMessageDisplay>[] MessageDisplays;
 }
