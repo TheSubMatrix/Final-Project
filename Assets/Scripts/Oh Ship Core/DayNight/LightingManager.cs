@@ -40,12 +40,8 @@ public class LightingManager : MonoBehaviour
         {
             lightCount = lights.Length;
             lightSetUp = true;
-        }
-<<<<<<< Updated upstream
-        
-=======
+        }       
 
->>>>>>> Stashed changes
         if (preset == null)
         {
             return;
@@ -95,7 +91,7 @@ public class LightingManager : MonoBehaviour
                 foreach (var firefly in fireflies)
                 {
                     VisualEffect fireflyVFX = firefly.GetComponent<VisualEffect>();
-                    fireflyVFX.Play();
+                    fireflyVFX.Stop();
                 }
 
                 startedFireflies = false;
