@@ -14,6 +14,7 @@ public class WaterController : MonoBehaviour
     [SerializeField] float m_minFill = -1f;
     [SerializeField] float m_fillRate = 1f;
     [SerializeField] float m_currentFill;
+    public float CurrentFill => m_currentFill;
     
     [SerializeField] float m_minHoldDuration = 120f;
     [SerializeField] float m_maxHoldDuration = 180f;

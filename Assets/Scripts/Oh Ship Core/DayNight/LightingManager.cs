@@ -40,9 +40,7 @@ public class LightingManager : MonoBehaviour
             lightCount = lights.Length;
             lightSetUp = true;
         }
-
-        Debug.Log("light count:" + lightCount);
-
+        
         if (preset == null)
         {
             return;
@@ -64,7 +62,6 @@ public class LightingManager : MonoBehaviour
             foreach (var firefly in fireflies)
             {
                 VisualEffect fireflyVFX = firefly.GetComponent<VisualEffect>();
-                Debug.Log("VFX:" + fireflyVFX);
                 fireflyVFX.Play();
             }
             if (lightCount > 0 && finishedLightUp)
