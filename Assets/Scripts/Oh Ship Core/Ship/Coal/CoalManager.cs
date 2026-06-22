@@ -59,7 +59,8 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
         }
        
         SetUpUIConnection();
-       
+        m_playerInteractionState.AddInteractionTag(InteractionTag.ShovelCoal);
+
         return m_currentInteractionSession;
     }
 
@@ -137,6 +138,8 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
         InputAction interact = map.FindAction("Interact");
         interact.performed -= HandleInteract;
         m_coalUI.HideUI();
+        m_playerInteractionState.RemoveInteractionTag(InteractionTag.ShovelCoal);
+
         m_activePlayerController = null;
     }
 
