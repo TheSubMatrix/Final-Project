@@ -6,17 +6,17 @@ public class Fish : FoodClass
     private float m_cookedAmount;
     private CookState m_currentCookState = CookState.Raw;
     
-    public CookState CurrentCookState { get { return m_currentCookState; } }
+    public override CookState CookStateRef {get{return m_currentCookState;}}
+    
     public override CookingProcess CookingProcess => CookingProcess.OnGrill;
 
-    private void Awake()
+    private void Start()
     {
-        m_material = GetComponent<Renderer>().material;
+        m_material = GetComponent<MeshRenderer>().material;
     }
 
     public override void UpdateCookedAmount(float incomingAmount)
     {
-        Debug.Log("updating");
         m_cookedAmount = incomingAmount;
         m_material.SetFloat("_Cooked_Amount", m_cookedAmount);
         
