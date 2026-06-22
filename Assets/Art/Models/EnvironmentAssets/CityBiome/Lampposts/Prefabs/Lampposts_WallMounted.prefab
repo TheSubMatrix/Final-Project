@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2417305766948754027}
   m_Layer: 0
   m_Name: Point Light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 0.8762661, b: 0.5801887, a: 1}
-  m_Intensity: 40
+  m_Intensity: 60
   m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
