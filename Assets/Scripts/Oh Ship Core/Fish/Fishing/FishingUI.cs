@@ -5,13 +5,13 @@ using UnityEngine.UI;
 public class FishingUI : MonoBehaviour
 {
     [SerializeField] private RectTransform greenZone;
-    [SerializeField] private RectTransform playerFishingIcon;
+    [SerializeField] private RectTransform fishingIcon;
     [SerializeField] private RectTransform usableFishingArea;
     [SerializeField] private Image fishingProgress;
     [SerializeField] private GameObject fishingUI;
     
-    public RectTransform GreenZone => greenZone;
-    public RectTransform PlayerFishingIcon => playerFishingIcon;
+    public RectTransform PlayerGreenZone => greenZone;
+    public RectTransform FishingIcon => fishingIcon;
     public RectTransform UsableFishingArea => usableFishingArea;
     public Image FishingProgressBar => fishingProgress;
 
@@ -27,7 +27,6 @@ public class FishingUI : MonoBehaviour
 
     public void HideFishingUI()
     {
-       // Debug.Log("HideFishingUI");
         fishingUI.SetActive(false);
     }
 }

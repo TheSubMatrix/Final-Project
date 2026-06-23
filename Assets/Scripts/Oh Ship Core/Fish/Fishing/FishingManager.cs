@@ -10,14 +10,16 @@ using Random = System.Random;
 
 public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable, IPromptProvider
 {
-    [SerializeField] private StorageInteractable _fishBoxStorage;
     [SerializeField] private CinemachineCamera _fishingCamera;
     [SerializeField] private string _widgetForPrompt = "interact";
     [SerializeField] private string _fishingControlActionMap = "Fishing";
     [SerializeField] Transform m_widgetPosition;
 
     [SerializeField] private float _speedOfFishIcon;
-    
+
+    [Range(0.01f, 0.05f)] 
+    [SerializeField] private float _overlapIconBuffer = 0.5f;
+        
     [Range(0f, 1f)]
     [SerializeField] private float _progressSpeed;
 
@@ -33,15 +35,17 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
     private IPlayerController _playerController;
     private IPlayerControllable _playerControllableForHoldingObject;
     private FishingMiniGame _fishingMiniGame;
-    private RectTransform _greenZone;
-    private RectTransform _playerFishingIcon;
+    private RectTransform _greenPlayerZone;
+    private RectTransform _fishingIcon;
     private Image _fishingProgressBar;
     private RectTransform _usableFishingArea;
     private Transform _holdingObjectTransform;
     private IInteractor _interactor;
     private GameObject _player; //Used to disable model renderer
     private PlayerInteractionState _playerInteractionState;
-    
+    [SerializeField] private float _minFishSpeed;
+    [SerializeField] private float _maxFishSpeed;
+
     private void Start()
     {
         _fishingMiniGame = new FishingMiniGame();
@@ -95,8 +99,8 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
 
         _fishingUI = player.GetComponentInChildren<FishingUI>();
         
-        _greenZone = _fishingUI.GreenZone;
-        _playerFishingIcon = _fishingUI.PlayerFishingIcon;
+        _greenPlayerZone = _fishingUI.PlayerGreenZone;
+        _fishingIcon = _fishingUI.FishingIcon;
         _fishingProgressBar = _fishingUI.FishingProgressBar;
         _usableFishingArea = _fishingUI.UsableFishingArea;
         
@@ -109,12 +113,15 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         SetUpUIElements();
         
         FishingMiniGameData data = new FishingMiniGameData();
-        data.PlayerFishingIcon = _playerFishingIcon;
+        data.PlayerGreenZone = _greenPlayerZone;
         data.UsableFishingArea = _usableFishingArea;
-        data.GreenZone =  _greenZone;
+        data.FishingIcon =  _fishingIcon;
         data.FishingProgressBar = _fishingProgressBar;
         data.SpeedOfFishIcon = _speedOfFishIcon;
         data.ProgressSpeed = _progressSpeed;
+        data.IconBuffer = _overlapIconBuffer;
+        data.FishMinSpeed = _minFishSpeed * 10;
+        data.FishMaxSpeed = _maxFishSpeed * 10;
         
         _fishingMiniGame.InitializeMiniGame(data);
         _fishingMiniGame.OnCaughtFish += HandleObjectCaught;
