@@ -1,6 +1,5 @@
 using System;
 using MatrixUtils.Attributes;
-using MatrixUtils.AudioSystem;
 using MatrixUtils.Extensions;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -21,10 +20,12 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     [SerializeField] ProcedurallyAnimatedHelmElement m_speedometerElement;
     [SerializeField, RequiredField] Transform m_hornPosition;
     [SerializeField, RequiredField] AudioSource m_horn;
+    [SerializeField, RequiredField] AudioSource m_steeringSoundSource;
     [SerializeField] float m_hornMin;
     [SerializeField] float m_hornMax;
     float m_hornVelocity;
     bool m_usingHorn;
+    bool m_steeringSoundPlaying;
     IPlayerController m_activePlayerController;
     Vector2 m_moveInput = Vector2.zero;
     Vector2 m_lookInput = Vector2.zero;
@@ -37,10 +38,6 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         IPlayerController controller = oldControllable.GetActivePlayerController();
         m_playerInteractionState = oldControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
-        
-        
-        
-        
         if (m_playerInteractionState.CheckInteractionTag(InteractionTag.Holding) || m_currentInteractionSession is {IsActive:true})
         {
             Debug.Log("Blocking helm interaction");
@@ -62,6 +59,17 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     void Update()
     {
         if(m_activePlayerController is null) return;
+        switch (m_moveInput.magnitude)
+        {
+            case > 0f when !m_steeringSoundPlaying:
+                m_steeringSoundPlaying = true;
+                m_steeringSoundSource.Play();
+                break;
+            case 0f when m_steeringSoundPlaying:
+                m_steeringSoundPlaying = false;
+                m_steeringSoundSource.Pause();
+                break;
+        }
         m_shipMovement.SetRudder(m_shipMovement.Rudder + m_moveInput.x * Time.deltaTime * m_helmRudderSpeed);
         m_wheelElement.Transform.localEulerAngles = new(0, 0, m_wheelElement.GetNextAngle(m_shipMovement.Rudder, m_wheelElement.Transform.localEulerAngles.z));
         m_shipMovement.SetThrottle(m_shipMovement.Throttle + m_moveInput.y * Time.deltaTime * m_helmThrottleSpeed);
