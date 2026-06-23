@@ -4,5 +4,7 @@ using UnityEngine;
     {
         Fishing,
         Steering,
-        Holding
+        Holding,
+        ShovelCoal,
+        AdjustingWaterTank
     }

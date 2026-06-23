@@ -88,7 +88,6 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
         if(cookingLocation.childCount > 0)
         {
-            Debug.Log("cooks");
             cookedAmount += _foodClassItem.GetCookingSpeed() * Time.deltaTime;
             _foodClassItem.UpdateCookedAmount(cookedAmount);
         }

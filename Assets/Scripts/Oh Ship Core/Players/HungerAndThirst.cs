@@ -8,22 +8,34 @@ public class HungerAndThirst: MonoBehaviour
 {
     [FormerlySerializedAs("m_hunger")] [FormerlySerializedAs("hunger")] public Observer<float> Hunger = new(0.5f);
     [FormerlySerializedAs("m_thirst")] [FormerlySerializedAs("thirst")] public Observer<float> Thirst = new(1f);
-    [FormerlySerializedAs("manager")] [SerializeField] HungerAndThirstVisualManager m_manager;
-    IPlayerControllable m_controllable;
-    [SerializeField] float m_hungerLostPerTick = 0.01f;
+    [FormerlySerializedAs("manager")] private HungerAndThirstVisualManager m_manager;
+    [SerializeField] private SerializableDictionary<InteractionTag, float> m_hungerLossRates;
+   // [SerializeField] float m_hungerLostPerTick = 0.01f;
     static int numberOfPassedOutPlayers;
     [FormerlySerializedAs("isPassedOut")] [SerializeField] bool m_isPassedOut;
     [SerializeField] VisualEffect m_passedOutEffect;
+     private PlayerInteractionState m_playerInteractionState;
     public bool IsPassedOut => m_isPassedOut;
     void Start()
     {
+       
+        
+         m_playerInteractionState = GetComponent<PlayerInteractionState>();
+       
         Hunger.Notify();
         Thirst.Notify();
     }
 
     void Update()
     {
-        Hunger.Value = Mathf.Clamp01(Hunger.Value - (m_hungerLostPerTick * Time.deltaTime));
+        foreach (var hungerChecks in m_hungerLossRates)
+        {
+            if (m_playerInteractionState.CheckInteractionTag(hungerChecks.Key))
+            {
+                Hunger.Value = Mathf.Clamp01(Hunger.Value - (hungerChecks.Value * Time.deltaTime));
+            }
+        }
+        
         if (Hunger.Value <= 0 && !m_isPassedOut) PassOut();
     }
     public void OnPlayerControllerConnected(IPlayerController controller)
@@ -31,6 +43,7 @@ public class HungerAndThirst: MonoBehaviour
         if (m_manager != null) return;
         m_manager = controller.GetAssociatedGameObject().transform.root.GetComponentInChildren<HungerAndThirstVisualManager>();
         Hunger.AddListener(m_manager.UpdateHunger);
+      
     }
 
     public void OnPlayerControllerDisconnected(IPlayerController controller)

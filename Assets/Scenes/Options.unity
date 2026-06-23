@@ -1279,109 +1279,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472206980}
   m_CullTransparentMesh: 1
---- !u!1 &485371605
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 485371608}
-  - component: {fileID: 485371607}
-  - component: {fileID: 485371606}
-  m_Layer: 0
-  m_Name: Player Input Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &485371606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 485371605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a7ed801e31a75459bb9a7eecb44f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OhShip.Core.UI::PlayerSelectionSetup
-  mMenuNavigatorPrefab: {fileID: 6570994257346288816, guid: 0658caf4c7465714e9814ca37b13fa65, type: 3}
-  m_selectionMovementZoneLocation: {fileID: 0}
---- !u!114 &485371607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 485371605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInputManager
-  m_NotificationBehavior: 2
-  m_MaxPlayerCount: 1
-  m_AllowJoining: 1
-  m_JoinBehavior: 0
-  m_PlayerJoinedEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 485371606}
-        m_TargetAssemblyTypeName: PlayerSelectionSetup, OhShip.Core.UI
-        m_MethodName: SetupCardSelection
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_PlayerLeftEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_JoinAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Join
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: a831831b-2539-4b03-a4a5-d7d16a97d196
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 7018359044322210830, guid: cf6642d7c13093e4fa74658ce76738b5, type: 3}
-  m_SplitScreen: 0
-  m_MaintainAspectRatioInSplitScreen: 0
-  m_FixedNumberOfSplitScreens: -1
-  m_SplitScreenRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!4 &485371608
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 485371605}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &490288208
 GameObject:
   m_ObjectHideFlags: 0
@@ -4818,8 +4715,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1482532886}
-  - component: {fileID: 1482532885}
-  - component: {fileID: 1482532884}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -4827,99 +4722,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1482532884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482532883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff44eb390ad833241bd1e98d5ee00b79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OhShip.Core.UI::SceneTransitionerProxy
-  m_transitionDuration: 0.5
---- !u!114 &1482532885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482532883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f2c6d830e55f7458d58dfded2e5f33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OhShip.Core.UI::MainMenuHandler
-  m_playerSelections:
-  - rid: 5995184217477087297
-  - rid: 5995184217477087298
-  - rid: 5995184217477087299
-  - rid: 5995184217477087300
-  - rid: 5995184217477087301
-  references:
-    version: 2
-    RefIds:
-    - rid: 5995184217477087297
-      type: {class: MenuButtonSelection, ns: , asm: OhShip.Core.UI}
-      data:
-        <Transform>k__BackingField: {fileID: 0}
-        addSelector:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 1482532884}
-              m_TargetAssemblyTypeName: SceneTransitionerProxy, OhShip.Core.UI
-              m_MethodName: TransitionToScene
-              m_Mode: 5
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: Character Select
-                m_BoolArgument: 0
-              m_CallState: 2
-    - rid: 5995184217477087298
-      type: {class: MenuButtonSelection, ns: , asm: OhShip.Core.UI}
-      data:
-        <Transform>k__BackingField: {fileID: 0}
-        addSelector:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 1482532884}
-              m_TargetAssemblyTypeName: SceneTransitionerProxy, OhShip.Core.UI
-              m_MethodName: TransitionToScene
-              m_Mode: 5
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: HelpMenu
-                m_BoolArgument: 0
-              m_CallState: 2
-    - rid: 5995184217477087299
-      type: {class: MenuButtonSelection, ns: , asm: OhShip.Core.UI}
-      data:
-        <Transform>k__BackingField: {fileID: 0}
-        addSelector:
-          m_PersistentCalls:
-            m_Calls: []
-    - rid: 5995184217477087300
-      type: {class: MenuButtonSelection, ns: , asm: OhShip.Core.UI}
-      data:
-        <Transform>k__BackingField: {fileID: 0}
-        addSelector:
-          m_PersistentCalls:
-            m_Calls: []
-    - rid: 5995184217477087301
-      type: {class: MenuButtonSelection, ns: , asm: OhShip.Core.UI}
-      data:
-        <Transform>k__BackingField: {fileID: 0}
-        addSelector:
-          m_PersistentCalls:
-            m_Calls: []
 --- !u!4 &1482532886
 Transform:
   m_ObjectHideFlags: 0
@@ -6701,7 +6503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 961720128}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1943253639
@@ -7353,4 +7155,3 @@ SceneRoots:
   - {fileID: 5395660194101083375}
   - {fileID: 1870400572374149500}
   - {fileID: 1482532886}
-  - {fileID: 485371608}

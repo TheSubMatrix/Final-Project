@@ -12,7 +12,7 @@ public class PlayerSpawnManager : MonoBehaviour
     [SerializeField] InterfaceReference<IPlayerControllable, MonoBehaviour> m_playerControllable;
     [SerializeField] Transform[] m_playerSpawnPoints;
     [Inject] IInjector m_injector;
-    [Inject] ICharacterSpecificDataProvider m_characterSpecificDataProvider;
+    [Inject] ICharacterSelectionDataHandler m_characterSelectionDataHandler;
     readonly Dictionary<IPlayerController, OutputChannels> m_playerOutputChannels = new();
     int m_spawnedPlayers = 1;
     public void Spawn(PlayerInput playerInput)
@@ -26,7 +26,7 @@ public class PlayerSpawnManager : MonoBehaviour
             spawnRotation = spawnPoint.rotation;
         }
         m_injector.Inject(controller.GetAssociatedGameObject());
-        SO_CharacterSpecificData data = m_characterSpecificDataProvider?.GetCharacterSelectionData(controller);
+        if(!m_characterSelectionDataHandler.TryGetCharacterSelectionData(playerInput.playerIndex, out SO_CharacterSpecificData data)) return;
         IPlayerControllable selectedControllable = data?.CharacterModelPrefab.GetComponent<IPlayerControllable>() ?? m_playerControllable.Value;
         GameObject player = Instantiate(selectedControllable.GetAssociatedGameObject(), spawnPosition, spawnRotation);
         controller.ChangeControlledEntity(player.GetComponent<IPlayerControllable>());
@@ -53,7 +53,6 @@ public class PlayerSpawnManager : MonoBehaviour
             return false;
         }
         result = array[Random.Range(0, array.Length)];
-       // Debug.Log($"Selected {result}");
         return true;
     }
     [Pure]
