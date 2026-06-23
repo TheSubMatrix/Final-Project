@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core::FishingUI
   greenZone: {fileID: 4422592203419194449}
-  playerFishingIcon: {fileID: 1104857035510002847}
+  fishingIcon: {fileID: 3361019440173672541}
   usableFishingArea: {fileID: 4066827101344750233}
   fishingProgress: {fileID: 1053039580248062023}
   fishingUI: {fileID: 5492496889448183806}
@@ -233,8 +233,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447475600237692604}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000035762784}
-  m_LocalPosition: {x: -7.9800053, y: 4.619, z: -120.478004}
+  m_LocalRotation: {x: 0.06004022, y: 0.7045532, z: -0.06004022, w: 0.7045532}
+  m_LocalPosition: {x: 5.6659994, y: -25.877575, z: -0.14699554}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1576,7 +1576,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1104857035510002847}
   m_Layer: 5
-  m_Name: Icon Holder
+  m_Name: Fish Icon Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2133,7 +2133,7 @@ GameObject:
   - component: {fileID: 8894792274218350983}
   - component: {fileID: 6118555056835496616}
   m_Layer: 5
-  m_Name: Player Icon
+  m_Name: Fish Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
