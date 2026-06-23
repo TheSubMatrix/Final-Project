@@ -1,4 +1,5 @@
 ﻿using System;
+using MatrixUtils.AudioSystem;
 using MatrixUtils.Timers;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,11 +15,11 @@ public class NeutralFillState : IFillState
     public IFillState OnDecrease;
     readonly float m_minHoldDuration;
     readonly float m_maxHoldDuration;
-
     float m_startingFill;
     CountdownTimer m_driftTimer;
     CountdownTimer m_holdTimer;
-
+    
+    public event Action OnEnteredNeutral;
     public event Action<float> OnFillChange;
 
     public NeutralFillState(Action<IFillState> requestTransitionAction, float fillRate, float minHoldDuration, float maxHoldDuration)
@@ -31,6 +32,7 @@ public class NeutralFillState : IFillState
     /// <inheritdoc/>
     public void OnEventStarted(float currentFill)
     {
+        OnEnteredNeutral?.Invoke();
         m_startingFill = currentFill;
         float driftDuration = Mathf.Abs(TargetFill - currentFill) / m_fillRate;
         if (driftDuration > 0f)
@@ -38,6 +40,7 @@ public class NeutralFillState : IFillState
             m_driftTimer = new(driftDuration);
             m_driftTimer.OnTimerTick += HandleDrift;
             m_driftTimer.OnTimerStop += OnDriftCompleted;
+            m_driftTimer.OnTimerStop += SnapToTarget;
             m_driftTimer.Start();
         }
         else
@@ -48,7 +51,12 @@ public class NeutralFillState : IFillState
     /// <inheritdoc/>
     public void OnEventEnded()
     {
-        m_driftTimer?.Stop();
+        if (m_driftTimer != null)
+        {
+            m_driftTimer.OnTimerStop -= SnapToTarget;
+            m_driftTimer.Stop();
+        }
+
         if (m_holdTimer == null) return;
         m_holdTimer.OnTimerStop -= OnHoldCompleted;
         m_holdTimer.Stop();
@@ -79,4 +87,5 @@ public class NeutralFillState : IFillState
         bool increase = Random.value > 0.5f;
         m_requestTransitionAction(increase ? OnIncrease : OnDecrease);
     }
+    void SnapToTarget() => OnFillChange?.Invoke(TargetFill);
 }
