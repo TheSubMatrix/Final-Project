@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using MatrixUtils.DependencyInjection;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelectionDataHandler : PersistentService<ICharacterSelectionDataHandler>, ICharacterSelectionDataHandler
 {
@@ -13,8 +14,8 @@ public class CharacterSelectionDataHandler : PersistentService<ICharacterSelecti
     {
         if(m_selectedCharacters.Contains(characterSpecificData)) return false;
         m_characterSelectionDataSet[playerIndex] = characterSpecificData;
-        Debug.Log("Selected!");
-        return m_selectedCharacters.Add(characterSpecificData);
+        bool result = m_selectedCharacters.Add(characterSpecificData);
+        return result;
     }
     public bool HasSelection(int playerIndex) => m_characterSelectionDataSet.ContainsKey(playerIndex);
     public bool TryGetCharacterSelectionData(int playerIndex, out SO_CharacterSpecificData characterSpecificData) => m_characterSelectionDataSet.TryGetValue(playerIndex, out characterSpecificData);

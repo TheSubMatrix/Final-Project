@@ -5,6 +5,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.UI;
+#endif
 
 public class CharacterSelectorButton : Button
 {
@@ -19,7 +23,6 @@ public class CharacterSelectorButton : Button
 
     public override void OnSubmit(BaseEventData eventData)
     {
-        Debug.Log("Submit");
         if (!TryGetPlayerInput(eventData, out PlayerInput playerInput)) return;
         if (IsLockedIn)
         {
@@ -27,14 +30,12 @@ public class CharacterSelectorButton : Button
             m_characterSelectionDataHandler.ClearCharacterSelectionData(m_ownerPlayerIndex);
             m_ownerPlayerIndex = -1;
             OnCharacterDeselected.Invoke(playerInput.playerIndex);
-            Debug.Log("Deselected");
             return;
         }
         if (m_characterSelectionDataHandler.TrySetCharacterSelectionData(playerInput.playerIndex, m_characterData))
         {
             m_ownerPlayerIndex = playerInput.playerIndex;
             OnCharacterSelectedSuccessfully.Invoke(playerInput.playerIndex);
-            Debug.Log("Selected");
             base.OnSubmit(eventData);
         }
         else
@@ -60,3 +61,33 @@ public class CharacterSelectorButton : Button
         return false;
     }
 }
+#if UNITY_EDITOR
+[CustomEditor(typeof(CharacterSelectorButton))]
+public class CharacterSelectorButtonEditor : ButtonEditor
+{
+    SerializedProperty m_characterData;
+    SerializedProperty m_onCharacterSelectedSuccessfully;
+    SerializedProperty m_onCharacterSelectionFailed;
+    SerializedProperty m_onCharacterDeselected;
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        m_characterData = serializedObject.FindProperty("m_characterData");
+        m_onCharacterSelectedSuccessfully = serializedObject.FindProperty("OnCharacterSelectedSuccessfully");
+        m_onCharacterSelectionFailed = serializedObject.FindProperty("OnCharacterSelectionFailed");
+        m_onCharacterDeselected = serializedObject.FindProperty("OnCharacterDeselected");
+    }
+
+    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();
+        EditorGUILayout.PropertyField(m_characterData);
+        EditorGUILayout.PropertyField(m_onCharacterSelectedSuccessfully);
+        EditorGUILayout.PropertyField(m_onCharacterSelectionFailed);
+        EditorGUILayout.PropertyField(m_onCharacterDeselected);
+        serializedObject.ApplyModifiedProperties();
+        base.OnInspectorGUI();
+    }
+}
+#endif

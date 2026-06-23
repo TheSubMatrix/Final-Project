@@ -226,6 +226,9 @@ PrefabInstance:
     - {fileID: 3088210322625718980, guid: bea33590d98742a47b91dca55eed87a8, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8132395512498331758, guid: bea33590d98742a47b91dca55eed87a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5235011241050732818}
     - targetCorrespondingSourceObject: {fileID: 2964877637978883661, guid: bea33590d98742a47b91dca55eed87a8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6536678776186286591}
@@ -282,16 +285,57 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  m_characterData: {fileID: 0}
+  m_characterData: {fileID: 11400000, guid: 5a6fd08ebb217b04ba91a2c339904895, type: 2}
   OnCharacterSelectedSuccessfully:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5235011241050732818}
+        m_TargetAssemblyTypeName: TransitionReadyUpProxy, OhShip.Core.UI
+        m_MethodName: OnPlayerReadyUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnCharacterSelectionFailed:
     m_PersistentCalls:
       m_Calls: []
   OnCharacterDeselected:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5235011241050732818}
+        m_TargetAssemblyTypeName: TransitionReadyUpProxy, OhShip.Core.UI
+        m_MethodName: OnPlayerNotReadyUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &4785954721669988088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8132395512498331758, guid: bea33590d98742a47b91dca55eed87a8, type: 3}
+  m_PrefabInstance: {fileID: 3654445524977688214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5235011241050732818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4785954721669988088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f85ac97076b04aa0ac113d51dfbdf21b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.UI::TransitionReadyUpProxy
 --- !u!114 &7601746483988012493 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6614071450630456155, guid: bea33590d98742a47b91dca55eed87a8, type: 3}
@@ -352,13 +396,37 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  m_characterData: {fileID: 0}
+  m_characterData: {fileID: 11400000, guid: adaa899c03cad0144a11e1aa29808bee, type: 2}
   OnCharacterSelectedSuccessfully:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5235011241050732818}
+        m_TargetAssemblyTypeName: TransitionReadyUpProxy, OhShip.Core.UI
+        m_MethodName: OnPlayerReadyUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnCharacterSelectionFailed:
     m_PersistentCalls:
       m_Calls: []
   OnCharacterDeselected:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5235011241050732818}
+        m_TargetAssemblyTypeName: TransitionReadyUpProxy, OhShip.Core.UI
+        m_MethodName: OnPlayerNotReadyUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

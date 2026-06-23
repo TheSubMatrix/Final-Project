@@ -1,4 +1,5 @@
 using System.Collections;
+using MatrixUtils.Attributes;
 using MatrixUtils.DependencyInjection;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,9 +8,11 @@ using UnityEngine.InputSystem.UI;
 public class CharacterSelectionSpawnManager : MonoBehaviour
 {
     [Inject] IInjector m_injector;
-    [SerializeField] PlayerInputManager m_playerInputManager;
-    [SerializeField] Canvas m_playerSelectionCanvasPrefab;
-    [SerializeField] Canvas m_displayCanvas;
+    [SerializeField, RequiredField] PlayerInputManager m_playerInputManager;
+    [SerializeField, RequiredField] Canvas m_playerSelectionCanvasPrefab;
+    [SerializeField, RequiredField] Canvas m_displayCanvas;
+    [SerializeField, RequiredField] RectTransform m_playerSelectionLayout;
+    [SerializeField, RequiredField] PlayerSelectionCursor m_playerSelectionCursorPrefab;
     public void OnSpawn(PlayerInput playerInput)
     {
         if(playerInput.transform.root.GetComponentInChildren<MultiplayerEventSystem>() is not {} multiplayerEventSystem) return;
@@ -22,11 +25,11 @@ public class CharacterSelectionSpawnManager : MonoBehaviour
         Canvas selectionCanvas = Instantiate(m_playerSelectionCanvasPrefab);
         m_injector.Inject(selectionCanvas.gameObject);
         multiplayerEventSystem.playerRoot = selectionCanvas.gameObject;
-        Debug.Log("Setting player root");
         if (!TryGetChildWithTag(selectionCanvas.transform, "Multiplayer UI Start Position", out Transform startPosition)) yield break;
-        Debug.Log("Found start position");
         multiplayerEventSystem.SetSelectedGameObject(startPosition.gameObject);
         multiplayerEventSystem.firstSelectedGameObject = startPosition.gameObject;
+        PlayerSelectionCursor cursor = Instantiate(m_playerSelectionCursorPrefab, m_playerSelectionLayout);
+        cursor.Initialize(multiplayerEventSystem);
     }
 
     static bool TryGetChildWithTag(Transform transform, string tag, out Transform result)
