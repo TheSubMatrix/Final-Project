@@ -25,7 +25,7 @@ public class ShipMovement : MonoBehaviour
 
     private void Update()
     {
-        SetEnginePower(-Time.deltaTime);
+        m_enginePower -= Time.deltaTime;
     }
     void FixedUpdate()
     {
