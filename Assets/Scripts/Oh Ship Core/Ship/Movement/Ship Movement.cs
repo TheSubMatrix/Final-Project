@@ -1,10 +1,12 @@
 using System.Timers;
 using MatrixUtils.GenericDatatypes;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 public class ShipMovement : MonoBehaviour
 {
+
     [field:SerializeField]public Observer<float> Rudder{ get; private set;}
     [field:SerializeField]public Observer<float> Throttle{ get; private set;}
     [FormerlySerializedAs("m_rigidbody")] public Rigidbody Rigidbody;
@@ -14,6 +16,9 @@ public class ShipMovement : MonoBehaviour
     [SerializeField] AnimationCurve m_throttleEffectiveness;
     [SerializeField] float m_rudderTurnMultiplier = 10;
     [SerializeField] float m_enginePower = 1;
+    [SerializeField] float m_lowFuelThreshold = .5f;
+    private bool m_wasLowFuel;
+    [SerializeField] private UnityEvent<bool> OnFuelBelowThreshold =  new UnityEvent<bool>();
     public void SetRudder(float rudder) => Rudder.Value = Mathf.Clamp(rudder, -1 , 1);
     public void SetThrottle(float throttle) => Throttle.Value = Mathf.Clamp(throttle, -1, 1);
     public void SetEnginePower(float power) => m_enginePower += power = Mathf.Clamp01(power);
@@ -21,11 +26,19 @@ public class ShipMovement : MonoBehaviour
     {
         Throttle.Notify();
         Rudder.Notify();
+      
     }
 
     private void Update()
     {
-        m_enginePower -= Time.deltaTime;
+        m_enginePower -=  .01f* Time.deltaTime;
+        
+        bool isLowFuel = m_enginePower <= m_lowFuelThreshold;
+        if (isLowFuel != m_wasLowFuel)
+        {
+            OnFuelBelowThreshold.Invoke(isLowFuel);
+            m_wasLowFuel = isLowFuel;
+        }
     }
     void FixedUpdate()
     {
