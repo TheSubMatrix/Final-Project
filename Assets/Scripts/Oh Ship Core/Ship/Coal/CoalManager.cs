@@ -1,6 +1,7 @@
 using System;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
@@ -13,11 +14,10 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
     [SerializeField] private string m_coalMiniGameActionMap = "Shovel Coal";
     [Range(0.1f,1)]
     [SerializeField] private float m_amountOfPressureToSendReference = .2f;
-
-    [SerializeField] WaterController m_waterController;
     [SerializeField] private float m_timeLimitReference = 10f;
     [SerializeField] private Transform _promptVisualLocation;
-    
+    [SerializeField] UnityEvent<float> m_onPressureSent;
+    [SerializeField] float m_decayRate = 0.01f;
     private IPlayerController m_activePlayerController;
     private InteractionSession m_currentInteractionSession;
     public string[] m_inputsForQTE;
@@ -26,25 +26,22 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
     private CoalUI m_coalUI;
     private float m_timeLimit;
     private float m_pressureToSend;
+    float m_totalPressure;
     private PlayerInteractionState m_playerInteractionState;
     public InteractionSession BeginInteraction(IInteractor interactor)
     { 
         IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         IPlayerController controller = oldControllable.GetActivePlayerController();
         m_playerInteractionState = oldControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
-        
         if(m_playerInteractionState.CheckInteractionTag(InteractionTag.Holding) || m_currentInteractionSession is {IsActive: true})
         {
             Debug.Log("Blocked");
             return null;
         }
-        
         controller.ChangeControlledEntity(this);
-        
         CinemachineCamera playerCam = interactor.GetAssociatedGameObject().GetComponent<CinemachineCamera>();
         _coalCamera.OutputChannel = playerCam.OutputChannel;
         _coalCamera.Priority = 10;
-        
         m_currentInteractionSession = new InteractionSession(interactor, this);
         m_currentInteractionSession.OnEnded += () => controller.ChangeControlledEntity(oldControllable);
         m_inputsForQTE = new string[_howManyInputs];
@@ -104,7 +101,8 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
         {
             Debug.Log("Inputs completed");
             m_pressureToSend *=  ((float)m_correctInputCounter / m_inputsForQTE.Length);
-            m_waterController.DecreaseWaterFill();
+            m_totalPressure += m_pressureToSend;
+            m_onPressureSent.Invoke(m_totalPressure);
             Debug.Log("Sent " + m_pressureToSend + " of pressure");
             m_currentInteractionSession.End();
         }
@@ -112,8 +110,9 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
 
     private void Update()
     {
+        m_totalPressure = Mathf.Clamp01(m_totalPressure - (m_decayRate * Time.deltaTime));
+        m_onPressureSent.Invoke(m_totalPressure);
         if (m_activePlayerController == null) return;
-        
         m_timeLimit -= Time.deltaTime;
         if (m_timeLimit <= 0f)
         {
