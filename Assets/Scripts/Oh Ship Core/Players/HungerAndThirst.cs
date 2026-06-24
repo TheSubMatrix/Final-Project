@@ -10,6 +10,7 @@ public class HungerAndThirst: MonoBehaviour
     [FormerlySerializedAs("m_thirst")] [FormerlySerializedAs("thirst")] public Observer<float> Thirst = new(1f);
     [FormerlySerializedAs("manager")] private HungerAndThirstVisualManager m_manager;
     [SerializeField] private SerializableDictionary<InteractionTag, float> m_hungerLossRates;
+    [SerializeField] private float thirstLossRate = 0.01f;
    // [SerializeField] float m_hungerLostPerTick = 0.01f;
     static int numberOfPassedOutPlayers;
     [FormerlySerializedAs("isPassedOut")] [SerializeField] bool m_isPassedOut;
@@ -35,7 +36,9 @@ public class HungerAndThirst: MonoBehaviour
                 Hunger.Value = Mathf.Clamp01(Hunger.Value - (hungerChecks.Value * Time.deltaTime));
             }
         }
-        
+
+        Thirst.Value = Mathf.Clamp01(Thirst.Value - thirstLossRate * Time.deltaTime);
+
         if (Hunger.Value <= 0 && !m_isPassedOut) PassOut();
     }
     public void OnPlayerControllerConnected(IPlayerController controller)
@@ -43,7 +46,8 @@ public class HungerAndThirst: MonoBehaviour
         if (m_manager != null) return;
         m_manager = controller.GetAssociatedGameObject().transform.root.GetComponentInChildren<HungerAndThirstVisualManager>();
         Hunger.AddListener(m_manager.UpdateHunger);
-      
+        Thirst.AddListener(m_manager.UpdateThirst);
+
     }
 
     public void OnPlayerControllerDisconnected(IPlayerController controller)
@@ -57,7 +61,7 @@ public class HungerAndThirst: MonoBehaviour
         player.layer = LayerMask.NameToLayer("Default");
     }
 
-    void UpdateHungerBar(float hunger) => m_manager.UpdateHunger(hunger);
+    //void UpdateHungerBar(float hunger) => m_manager.UpdateHunger(hunger);
 
     public void PassOut()
     {

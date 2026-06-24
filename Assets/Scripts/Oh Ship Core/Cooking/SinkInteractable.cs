@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
@@ -10,6 +11,12 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
     private IPlayerController _playerController;
     private PlayerInteractionState _playerInteractionState;
     public Animator animSink;
+
+    [SerializeField] HungerAndThirst thirstManager;
+    //[SerializeField] StatusBar m_thirstBar;
+
+    private bool drinking = false;
+    [SerializeField] private float drinkingRate = 0.4f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,7 +26,10 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
     // Update is called once per frame
     void Update()
     {
-        
+        if(drinking)
+        {
+            DrinkWater();
+        }
     }
 
     public InteractionSession BeginInteraction(IInteractor interactor)
@@ -38,15 +48,15 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
         {
             if(animSink.GetBool("waterRunning"))
             {
+                drinking = false;
                 animSink.SetBool("waterRunning", false);
             }
             else
             {
+                drinking = true;
                 animSink.SetBool("waterRunning", true);
             }
         }
-
-        Debug.Log("water interact");
 
         m_currentInteractionSession = new InteractionSession(interactor, this);
         m_currentInteractionSession.End();
@@ -63,5 +73,10 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
     public Vector3 GetWidgetWorldPosition()
     {
         return _interactDisplayTransform == null ? transform.position : _interactDisplayTransform.position;
+    }
+
+    void DrinkWater()
+    {
+        thirstManager.Thirst.Value += drinkingRate * Time.deltaTime;
     }
 }
