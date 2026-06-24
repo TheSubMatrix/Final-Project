@@ -5,6 +5,7 @@ using MatrixUtils.Attributes;
 using MatrixUtils.AudioSystem;
 using MatrixUtils.DependencyInjection;
 using MatrixUtils.GenericDatatypes;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.SceneManagement;
@@ -21,12 +22,14 @@ public class ShipHealth : MonoBehaviour, IDamageable
     [SerializeField] float m_invulnerabilityTime = 3;
     [SerializeField] SoundData[] m_damageSounds;
     [SerializeField, RequiredField] WaterFillController m_waterFillController;
+    [SerializeField] private CinemachineImpulseSource m_impulseSource;
     uint m_holeCount;
     bool m_isInvulnerable;
     bool m_warningEnabled;
     void Awake()
     {
         m_availableHoles = new(m_holePositions);
+        m_impulseSource = GetComponent<CinemachineImpulseSource>();
         m_shipHoles = new ObjectPool<ShipHole>
         (
             createFunc: () =>
@@ -73,11 +76,13 @@ public class ShipHealth : MonoBehaviour, IDamageable
                 m_availableHoles.Return(holeTransform);
                 selectedHole.gameObject.SetActive(false);
             });
-            
+            m_impulseSource.GenerateImpulse();
+            Debug.Log("Impulse");
             selectedHole.transform.SetParent(holeTransform.parent);
             selectedHole.transform.position = holeTransform.position;
             selectedHole.transform.rotation = holeTransform.rotation;
             selectedHole.gameObject.SetActive(true);
+           
         }
         if(m_damageSounds.Length > 0) SoundManager.Instance?.CreateSound().WithSoundData(m_damageSounds[Random.Range(0, m_damageSounds.Length)]).WithRandomPitch().Play();
         StartCoroutine(StartInvulnerability());
