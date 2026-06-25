@@ -45,10 +45,19 @@
             "m_Id": "9e9fb94d291f4071ae9750fc4208747a"
         },
         {
-            "m_Id": "e833c7869fce4b42ace3def722ab1f60"
+            "m_Id": "598fb908362b493da9ce8cc18dea2cac"
         },
         {
-            "m_Id": "598fb908362b493da9ce8cc18dea2cac"
+            "m_Id": "517191cd1f294008beaf3301ffb25150"
+        },
+        {
+            "m_Id": "336a4b58513c4ff1b425f389146c85e5"
+        },
+        {
+            "m_Id": "753aae934ae64bfd9c53cdb96f26bfa6"
+        },
+        {
+            "m_Id": "f924149aa7b048388d2bc71a0ecd1334"
         }
     ],
     "m_Dropdowns": [],
@@ -1232,6 +1241,35 @@
 }
 
 {
+    "m_SGVersion": 2,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "336a4b58513c4ff1b425f389146c85e5",
+    "m_Guid": {
+        "m_GuidSerialized": "b9f0bf86-c1d6-4073-92d1-85289eaee266"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "Lightmap Shadow Mixing",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Lightmap Shadow Mixing",
+    "m_DefaultReferenceName": "_LIGHTMAP_SHADOW_MIXING",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 1,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true,
+    "m_IsShaderBuildSettingsCompatible": true
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.UVMaterialSlot",
     "m_ObjectId": "340393da92b7494aa7db47b9e3fba8d7",
@@ -1358,22 +1396,31 @@
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "3c8411a517f740e7906570dda1c3b4e6",
-    "m_Name": "Shadows",
+    "m_Name": "Keywords",
     "m_ChildObjectList": [
         {
             "m_Id": "7afeaa0e3ed34f8cb2402b647754e863"
         },
         {
-            "m_Id": "e833c7869fce4b42ace3def722ab1f60"
+            "m_Id": "9e9fb94d291f4071ae9750fc4208747a"
         },
         {
-            "m_Id": "9e9fb94d291f4071ae9750fc4208747a"
+            "m_Id": "598fb908362b493da9ce8cc18dea2cac"
+        },
+        {
+            "m_Id": "517191cd1f294008beaf3301ffb25150"
         },
         {
             "m_Id": "2b460d91a9bb4fb8bb5230cf21317911"
         },
         {
-            "m_Id": "598fb908362b493da9ce8cc18dea2cac"
+            "m_Id": "f924149aa7b048388d2bc71a0ecd1334"
+        },
+        {
+            "m_Id": "336a4b58513c4ff1b425f389146c85e5"
+        },
+        {
+            "m_Id": "753aae934ae64bfd9c53cdb96f26bfa6"
         }
     ]
 }
@@ -1674,6 +1721,35 @@
     "m_ShaderOutputName": "Sampler",
     "m_StageCapability": 3,
     "m_BareResource": false
+}
+
+{
+    "m_SGVersion": 2,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "517191cd1f294008beaf3301ffb25150",
+    "m_Guid": {
+        "m_GuidSerialized": "a34e7efb-adda-4591-9a36-e78ec1b877e0"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "Additional Lights",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Additional Lights",
+    "m_DefaultReferenceName": "_ADDITIONAL_LIGHTS",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 1,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true,
+    "m_IsShaderBuildSettingsCompatible": true
 }
 
 {
@@ -2473,6 +2549,35 @@
     "m_Property": {
         "m_Id": "5e3b4836940b49a0947e61ebf741b55d"
     }
+}
+
+{
+    "m_SGVersion": 2,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "753aae934ae64bfd9c53cdb96f26bfa6",
+    "m_Guid": {
+        "m_GuidSerialized": "ea4e1c38-b8bd-4738-a29f-5f0810927a55"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "Shadow Masks",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Shadow Masks",
+    "m_DefaultReferenceName": "_SHADOW_MASKS",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 1,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true,
+    "m_IsShaderBuildSettingsCompatible": true
 }
 
 {
@@ -3599,35 +3704,6 @@
 }
 
 {
-    "m_SGVersion": 2,
-    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
-    "m_ObjectId": "e833c7869fce4b42ace3def722ab1f60",
-    "m_Guid": {
-        "m_GuidSerialized": "0e9959d4-1114-4924-a4a2-023b51e4976d"
-    },
-    "promotedFromAssetID": "",
-    "promotedFromCategoryName": "",
-    "promotedOrdering": -1,
-    "m_Name": "Main Light Shadows Screen",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Main Light Shadows Screen",
-    "m_DefaultReferenceName": "_MAIN_LIGHT_SHADOWS_SCREEN",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_KeywordType": 0,
-    "m_KeywordDefinition": 1,
-    "m_KeywordScope": 0,
-    "m_KeywordStages": 63,
-    "m_Entries": [],
-    "m_Value": 0,
-    "m_IsEditable": true,
-    "m_IsShaderBuildSettingsCompatible": true
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "eb075e578b9042fa902ebb89508c9210",
@@ -3884,6 +3960,35 @@
         "w": 0.0
     },
     "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 2,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "f924149aa7b048388d2bc71a0ecd1334",
+    "m_Guid": {
+        "m_GuidSerialized": "2c5b0faa-c726-41d8-b4bf-753384bd29d2"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "Cluster Light Loop",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Cluster Light Loop",
+    "m_DefaultReferenceName": "_CLUSTER_LIGHT_LOOP",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 1,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 0,
+    "m_IsEditable": true,
+    "m_IsShaderBuildSettingsCompatible": true
 }
 
 {

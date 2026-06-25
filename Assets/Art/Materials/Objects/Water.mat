@@ -11,7 +11,15 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: df941d7d449ad9f4fba17fc5135bd7bc, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _ADDITIONAL_LIGHTS
+  - _ADDITIONAL_LIGHT_SHADOWS
+  - _CLUSTER_LIGHT_LOOP
+  - _LIGHTMAP_SHADOW_MIXING
+  - _MAIN_LIGHT_SHADOWS
+  - _MAIN_LIGHT_SHADOWS_CASCADE
+  - _SHADOWS_SOFT
+  - _SHADOW_MASKS
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -54,12 +62,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _ADDITIONAL_LIGHTS: 1
+    - _ADDITIONAL_LIGHT_SHADOWS: 1
+    - _CLUSTER_LIGHT_LOOP: 1
     - _Depth: 0.44
     - _Distance: 2.06
     - _Fade_Distance: 10.33
     - _Foam_Amount: 2.09
     - _Foam_Cuttoff: 1.9
     - _Foam_Fade: 1.86
+    - _LIGHTMAP_SHADOW_MIXING: 1
+    - _MAIN_LIGHT_SHADOWS: 1
+    - _MAIN_LIGHT_SHADOWS_CASCADE: 1
     - _Normal_Strength: 0.24
     - _Posterization: 12
     - _Posterization_Sharpness: 0.3
@@ -67,6 +81,8 @@ Material:
     - _QueueOffset: 0
     - _Refraction: 0.05
     - _Refraction_Minimum: 12.91
+    - _SHADOWS_SOFT: 1
+    - _SHADOW_MASKS: 1
     - _Smoothness: 0.86
     - _Strength: 0.37
     - _Texture_Scale: 8
