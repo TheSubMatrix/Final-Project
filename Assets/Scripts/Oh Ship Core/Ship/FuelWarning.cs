@@ -1,6 +1,5 @@
 using System;
 using MatrixUtils.DependencyInjection;
-using TextMateSharp.Grammars;
 using UnityEngine;
 
 public class FuelWarning : MonoBehaviour

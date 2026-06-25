@@ -4069,90 +4069,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1214484226755221048, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
   m_PrefabInstance: {fileID: 1920507445}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1348966245
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3046591771419901260, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: _speed
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046591771419901260, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: _transitionEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1348966246}
-    - target: {fileID: 3046591771419901260, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: _transitionEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TransitionToScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 5993409947745569183, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: m_Name
-      value: Police Boats
-      objectReference: {fileID: 0}
-    - target: {fileID: 5993409947745569183, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6791678483275691314, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -10.398333
-      objectReference: {fileID: 0}
-    - target: {fileID: 6791678483275691314, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.594293
-      objectReference: {fileID: 0}
-    - target: {fileID: 6791678483275691314, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 108.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6791678483275691314, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6791678483275691314, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6791678483275691314, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6791678483275691314, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6791678483275691314, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6791678483275691314, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6791678483275691314, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a8b053361b5d663459d93206af2412c0, type: 3}
---- !u!114 &1348966246 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8270157193969684596, guid: a8b053361b5d663459d93206af2412c0, type: 3}
-  m_PrefabInstance: {fileID: 1348966245}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff44eb390ad833241bd1e98d5ee00b79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OhShip.Core.UI::SceneTransitionerProxy
 --- !u!4 &1366837206 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7870390068486667695, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
@@ -4593,6 +4509,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c20ee1b8bce6c4e923477e56cddfeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Ship::ShipMovement
+--- !u!114 &1614289363 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+  m_PrefabInstance: {fileID: 1920507445}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614289349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a9eec6938455db4089b31b838ac4d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::FuelWarning
 --- !u!1 &1657475325
 GameObject:
   m_ObjectHideFlags: 0
@@ -5227,6 +5154,10 @@ PrefabInstance:
       propertyPath: m_fillPercentage.m_onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 6761218904793655488}
+    - target: {fileID: 3020329544484955574, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: _speedOfFishIcon
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 3303257174621955613, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_outPosition
       value: 
@@ -5235,6 +5166,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 5cc4219987fb69a4aa1006a50e013387, type: 2}
+    - target: {fileID: 5115391741759406848, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: _speedOfFishIcon
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 5554029791178653263, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -5246,6 +5181,10 @@ PrefabInstance:
     - target: {fileID: 6315079195521403227, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: OnFuelBelowThreshold.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1614289363}
+    - target: {fileID: 6315079195521403227, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnFuelBelowThreshold.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NotifyLowFuelSystem
       objectReference: {fileID: 0}
     - target: {fileID: 6639750043291485645, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: drinkingRate
@@ -5298,6 +5237,10 @@ PrefabInstance:
     - target: {fileID: 7542275446007984815, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634883150542729029, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: drinkingRate
+      value: 0.08
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5624420122251007069, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
@@ -5877,7 +5820,6 @@ SceneRoots:
   - {fileID: 2759527505578783048}
   - {fileID: 1755862611}
   - {fileID: 2044784461}
-  - {fileID: 1348966245}
   - {fileID: 238887335}
   - {fileID: 7501252337306102668}
   - {fileID: 1173161247}
