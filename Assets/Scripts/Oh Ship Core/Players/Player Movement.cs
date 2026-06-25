@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     int groundContactCount;
 
     float pastPlatformYaw, platformYaw;
+    private bool m_disableMovement;
 
     Vector3 contactNormal, connectionWorldPos, connectionLocalPos;
     Vector3 velocity, connectionVelocity;
@@ -32,9 +33,16 @@ public class PlayerMovement : MonoBehaviour
     float m_lookPitch;
     Quaternion m_lookYaw = Quaternion.identity;
     Vector2 m_currentLookInput;
-    IPlayerController m_playerController;
     public void OnMovementInputChanged(Vector2 input) => m_desiredMovement = input * m_moveSpeed;
     public void OnLookInputChanged(Vector2 input) => m_currentLookInput = input;
+
+    public void SetMovementEnabled(bool toggle)
+    {
+        m_disableMovement = !toggle;
+
+        Debug.Log($"SetMovementEnabled called with: {toggle}, m_disableMovement now: {m_disableMovement}");
+
+    }
 
     void Start()
     {
@@ -52,32 +60,25 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (gameObject.layer != LayerMask.NameToLayer("Default"))
-        {
-            UpdateState();
-            AdjustVelocityAndRotation();
-
-
-            ClearState();
-        }
+        UpdateState();
+        AdjustVelocityAndRotation();
+        ClearState();
     }
 
     void LateUpdate()
     {
-        m_lookYaw *= Quaternion.Euler(0, m_currentLookInput.x * m_lookSensitivity * Time.deltaTime, 0);
-        m_lookPitch = Mathf.Clamp(m_lookPitch - m_currentLookInput.y * m_lookSensitivity * Time.deltaTime, -90, 90);
-        m_camera.rotation = m_lookYaw * Quaternion.Euler(m_lookPitch, 0, 0);
-        m_rigidbody.MoveRotation(m_lookYaw);
-        m_camera.rotation = m_lookYaw * Quaternion.Euler(m_lookPitch, 0, 0);
+        if (!m_disableMovement)
+        {
+            m_lookYaw *= Quaternion.Euler(0, m_currentLookInput.x * m_lookSensitivity * Time.deltaTime, 0);
+            m_lookPitch = Mathf.Clamp(m_lookPitch - m_currentLookInput.y * m_lookSensitivity * Time.deltaTime, -90, 90);
+            m_camera.rotation = m_lookYaw * Quaternion.Euler(m_lookPitch, 0, 0);
+            m_rigidbody.MoveRotation(m_lookYaw);
+            m_camera.rotation = m_lookYaw * Quaternion.Euler(m_lookPitch, 0, 0); 
+        }
+        
     }
     float GetRate(float current, float desired) => Mathf.Abs(current) < Mathf.Abs(desired) || !Mathf.Approximately(Mathf.Sign(current), Mathf.Sign(desired)) ? m_acceleration : m_deceleration;
-
-    void Update()
-    {
-
-    }
-
-
+    
     void OnCollisionEnter(Collision collision)
     {
         EvaluateCollision(collision);
@@ -133,7 +134,6 @@ public class PlayerMovement : MonoBehaviour
             connectedBody = pastConnectedBody;
         }
         
-        
         if (groundContactCount > 1)
         {
             contactNormal.Normalize();
@@ -165,16 +165,9 @@ public class PlayerMovement : MonoBehaviour
             float yawDelta = Mathf.DeltaAngle(pastPlatformYaw, platformYaw);
             m_lookYaw = Quaternion.Euler(0f, yawDelta, 0f) * m_lookYaw;
         }
-        else
-        {
-          //  Debug.Log($"connectedBody changed! past: {pastConnectedBody}, current: {connectedBody}");
-
-        }
-      
+     
         connectionLocalPos = connectedBody.transform.InverseTransformPoint(m_rigidbody.position);
         connectionWorldPos = connectedBody.transform.TransformPoint(connectionLocalPos);
-        // connectionWorldPos = m_rigidbody.position;
-        //  connectionLocalPos = connectedBody.transform.InverseTransformPoint(connectionWorldPos);
         pastPlatformYaw = platformYaw;
     }
 
@@ -182,15 +175,25 @@ public class PlayerMovement : MonoBehaviour
     {
         if (connectedBody)
         {
+            float newForward;
+            float newSideways;
             Vector3 xAxis = ProjectOnContactPlane(m_lookYaw * Vector3.right).normalized;
             Vector3 zAxis = ProjectOnContactPlane(m_lookYaw * Vector3.forward).normalized;
 
             float currentX = Vector3.Dot(velocity, xAxis);
             float currentZ = Vector3.Dot(velocity, zAxis);
 
-            float newForward = Mathf.MoveTowards(currentX, m_desiredMovement.y, GetRate(currentX, m_desiredMovement.y));
-            float newSideways = Mathf.MoveTowards(currentZ, m_desiredMovement.x, GetRate(currentZ, m_desiredMovement.x));
-
+            if (m_disableMovement)
+            {
+                 newForward = Mathf.MoveTowards(currentX, 0, GetRate(currentX, 0));
+                 newSideways = Mathf.MoveTowards(currentZ, 0, GetRate(currentZ, 0));
+            }
+            else
+            {
+                 newForward = Mathf.MoveTowards(currentX, m_desiredMovement.y, GetRate(currentX, m_desiredMovement.y));
+                 newSideways = Mathf.MoveTowards(currentZ, m_desiredMovement.x, GetRate(currentZ, m_desiredMovement.x));
+            }
+            
             Vector3 worldVelocity = m_lookYaw * new Vector3(newSideways, 0, newForward);
             worldVelocity += new Vector3(connectionVelocity.x, 0, connectionVelocity.z);
 
@@ -224,8 +227,6 @@ public class PlayerMovement : MonoBehaviour
         {
             return false;
         }
-
-        
         groundContactCount = 1;
         contactNormal = hit.normal;
         float dot = Vector3.Dot(m_rigidbody.linearVelocity, hit.normal);

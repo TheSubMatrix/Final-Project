@@ -1,5 +1,6 @@
 using MatrixUtils.GenericDatatypes;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.VFX;
@@ -11,18 +12,20 @@ public class HungerAndThirst: MonoBehaviour
     [FormerlySerializedAs("manager")] private HungerAndThirstVisualManager m_manager;
     [SerializeField] private SerializableDictionary<InteractionTag, float> m_hungerLossRates;
     [SerializeField] private float thirstLossRate = 0.01f;
-   // [SerializeField] float m_hungerLostPerTick = 0.01f;
     static int numberOfPassedOutPlayers;
     [FormerlySerializedAs("isPassedOut")] [SerializeField] bool m_isPassedOut;
     [SerializeField] VisualEffect m_passedOutEffect;
+    [SerializeField] private string shipTag;
      private PlayerInteractionState m_playerInteractionState;
+     private PlayerInteractor m_playerInteractor;
     public bool IsPassedOut => m_isPassedOut;
+
+    [SerializeField] private UnityEvent<bool> OnEnableMovement = new UnityEvent<bool>();
     void Start()
     {
-       
-        
+         m_playerInteractor = GetComponentInChildren<PlayerInteractor>();
          m_playerInteractionState = GetComponent<PlayerInteractionState>();
-       
+        
         Hunger.Notify();
         Thirst.Notify();
     }
@@ -65,10 +68,11 @@ public class HungerAndThirst: MonoBehaviour
 
     public void PassOut()
     {
+        m_playerInteractor.EndActiveInteraction();
         numberOfPassedOutPlayers++;
         m_isPassedOut = true;
         gameObject.layer = LayerMask.NameToLayer("Default");
-        GetComponent<Rigidbody>().isKinematic = true;
+        OnEnableMovement.Invoke(false);
         if(numberOfPassedOutPlayers >= 2)SceneManager.LoadScene("GameOver");
         m_passedOutEffect.Play();
     }
@@ -83,5 +87,7 @@ public class HungerAndThirst: MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Player");
         Debug.Log($"Layer set to: {gameObject.layer}, expected: {LayerMask.NameToLayer("Player")}");
         m_passedOutEffect.Stop();
+        OnEnableMovement.Invoke(true);
+
     }
 }
