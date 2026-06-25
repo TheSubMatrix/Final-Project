@@ -32,7 +32,7 @@ public class PoliceBoatManager : MonoBehaviour
         {
             Debug.Log("Hit the player");
             //SceneManager.LoadScene("GameOver");
-            //_transitionEvent?.Invoke();
+            _transitionEvent?.Invoke();
         }
     }
 }

@@ -19,7 +19,6 @@ public class HungerAndThirst: MonoBehaviour
      private PlayerInteractionState m_playerInteractionState;
      private PlayerInteractor m_playerInteractor;
     public bool IsPassedOut => m_isPassedOut;
-
     [SerializeField] private UnityEvent<bool> OnEnableMovement = new UnityEvent<bool>();
     void Start()
     {

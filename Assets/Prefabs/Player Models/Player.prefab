@@ -1086,19 +1086,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Status::Stats
   Hunger:
-    m_value: 100
+    m_value: 1
     m_onValueChanged:
       m_PersistentCalls:
         m_Calls: []
   Thirst:
-    m_value: 100
+    m_value: 1
     m_onValueChanged:
       m_PersistentCalls:
         m_Calls: []
   m_hungerLossRates:
     m_list:
     - Key: 1
-      Value: 0.09
+      Value: 0.02
     - Key: 3
       Value: 0.008
     - Key: 4
