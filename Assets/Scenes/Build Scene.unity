@@ -5182,6 +5182,14 @@ PrefabInstance:
       propertyPath: OnFuelBelowThreshold.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6639750043291485645, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: drinkingRate
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7148599182423102257, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7196852406926485525, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_Name
       value: SHIP
