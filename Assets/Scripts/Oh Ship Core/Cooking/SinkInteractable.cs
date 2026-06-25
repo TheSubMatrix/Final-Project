@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using UnityEngine;
 
 public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
@@ -17,6 +18,9 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
     private bool drinking = false;
     [SerializeField] private float drinkingRate = 0.4f;
+    [SerializeField] private float cooldown = 3.0f;
+    private float timer = 0f;
+    private bool canInteract = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,6 +30,12 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
     // Update is called once per frame
     void Update()
     {
+        timer = timer += 1 * Time.deltaTime;
+
+        if(timer >= cooldown)
+        {
+            canInteract = true;
+        }
         if(drinking)
         {
             DrinkWater();
@@ -47,8 +57,10 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
         }
         else
         {
-            if(animSink.GetBool("waterRunning"))
+            if(animSink.GetBool("waterRunning") && canInteract)
             {
+                timer = 0f;
+                canInteract = false;
                 drinking = false;
                 animSink.SetBool("waterRunning", false);
             }
