@@ -7,7 +7,7 @@ public class WindowModeDropdown : MonoBehaviour
 {
     TMP_Dropdown m_dropdown;
 
-    void Start()
+    void Awake()
     {
         m_dropdown = GetComponent<TMP_Dropdown>();
         m_dropdown.AddOptions(
