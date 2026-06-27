@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using MatrixUtils.Attributes;
@@ -8,28 +7,32 @@ using MatrixUtils.GenericDatatypes;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Pool;
-using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class ShipHealth : MonoBehaviour, IDamageable
 {
     [Inject] INotificationMessenger m_notificationMessenger;
-    [SerializeField] List<Transform> m_holePositions;
-    RandomBag<Transform> m_availableHoles;
-    [SerializeField] ShipHole m_holePrefab;
-    IObjectPool<ShipHole> m_shipHoles;
+    [Inject] ISceneTransitioner m_sceneTransitioner;
+    [Header("Required References")]
+    [SerializeField, RequiredField] ShipHole m_holePrefab;
+    [SerializeField, RequiredField] RepairPlate m_platePrefab;
+    [SerializeField, RequiredField] CinemachineImpulseSource m_impulseSource;
+    [SerializeField, RequiredField] WaterFillController m_waterFillController;
+    [Header("Settings")]
+    [SerializeField] List<HolePositionInfo> m_holePositions;
     [SerializeField] Observer<float> m_fillPercentage = new(0);
     [SerializeField] float m_invulnerabilityTime = 3;
     [SerializeField] SoundData[] m_damageSounds;
-    [SerializeField, RequiredField] WaterFillController m_waterFillController;
-    [SerializeField] private CinemachineImpulseSource m_impulseSource;
+    RandomBag<HolePositionInfo> m_availableHoles;
+    IObjectPool<ShipHole> m_shipHoles;
+    IObjectPool<RepairPlate> m_plates;
+    readonly Dictionary<Transform, RepairPlate> m_activePlates = new();
     uint m_holeCount;
     bool m_isInvulnerable;
     bool m_warningEnabled;
     void Awake()
     {
         m_availableHoles = new(m_holePositions);
-        m_impulseSource = GetComponent<CinemachineImpulseSource>();
         m_shipHoles = new ObjectPool<ShipHole>
         (
             createFunc: () =>
@@ -37,13 +40,18 @@ public class ShipHealth : MonoBehaviour, IDamageable
                 ShipHole newHole = Instantiate(m_holePrefab);
                 m_waterFillController.OnWaterFillChanged.AddListener(fill => newHole.LeakEffect.SetFloat("Splash Plane", fill));
                 return newHole;
-            });
+            }
+        );
+        m_plates = new ObjectPool<RepairPlate>(
+            createFunc: () => Instantiate(m_platePrefab),
+            actionOnRelease: plate => plate.gameObject.SetActive(false)
+        );
         m_fillPercentage.Notify();
         FindAnyObjectByType<Injector>().Inject(this);
     }
     void Update()
     {
-        m_fillPercentage.Value = Mathf.Clamp01(m_holeCount > 0 ? m_fillPercentage +(m_holeCount * 0.005f * Time.deltaTime) : m_fillPercentage+ -0.05f * Time.deltaTime);
+        m_fillPercentage.Value = Mathf.Clamp01(m_holeCount > 0 ? m_fillPercentage +m_holeCount * 0.005f * Time.deltaTime : m_fillPercentage+ -0.05f * Time.deltaTime);
         switch (m_holeCount)
         {
             case > 0 when !m_warningEnabled:
@@ -57,7 +65,7 @@ public class ShipHealth : MonoBehaviour, IDamageable
         }
         if (m_fillPercentage >= 1f - .1f)
         {
-            SceneManager.LoadScene("GameOver");
+            m_sceneTransitioner.TransitionToScene("GameOver", 0.5f);
         }
     }
     /// <inheritdoc/>
@@ -68,17 +76,30 @@ public class ShipHealth : MonoBehaviour, IDamageable
         {
             if (m_availableHoles.Count == 0) return false;
             m_holeCount++;
-            Transform holeTransform = m_availableHoles.Take();
+            HolePositionInfo positionInfo = m_availableHoles.Take();
+            Transform holeTransform = positionInfo.HolePosition;
+            if (m_activePlates.Remove(positionInfo.PlatePosition, out RepairPlate plate))
+            {
+                plate.ShootPlateOffWall(positionInfo.PlatePosition.forward * 10);
+            }
             ShipHole selectedHole = m_shipHoles.Get();
             selectedHole.Initialize(() =>
             {
                 m_shipHoles.Release(selectedHole);
                 m_holeCount--;
-                m_availableHoles.Return(holeTransform);
+                m_availableHoles.Return(positionInfo);
                 selectedHole.gameObject.SetActive(false);
+                RepairPlate newPlate = m_plates.Get();
+                newPlate.gameObject.SetActive(true);
+                newPlate.Initialize(positionInfo.PlatePosition.position, positionInfo.PlatePosition.rotation, () =>
+                {
+                    m_plates.Release(newPlate);
+                    newPlate.gameObject.SetActive(false);
+                });
+                m_activePlates.Add(positionInfo.PlatePosition, newPlate);
+                
             });
             m_impulseSource.GenerateImpulse();
-            Debug.Log("Impulse");
             selectedHole.transform.SetParent(holeTransform.parent);
             selectedHole.transform.position = holeTransform.position;
             selectedHole.transform.rotation = holeTransform.rotation;
