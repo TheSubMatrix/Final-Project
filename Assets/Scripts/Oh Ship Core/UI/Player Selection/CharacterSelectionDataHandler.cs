@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using MatrixUtils.DependencyInjection;
@@ -6,12 +7,25 @@ using UnityEngine.SceneManagement;
 
 public class CharacterSelectionDataHandler : PersistentService<ICharacterSelectionDataHandler>, ICharacterSelectionDataHandler
 {
+    [SerializeField] private string m_characterSelectionSceneName;
     readonly Dictionary<int, SO_CharacterSpecificData> m_characterSelectionDataSet = new();
     readonly HashSet<SO_CharacterSpecificData> m_selectedCharacters = new();
     [Provide, UsedImplicitly] ICharacterSelectionDataHandler GetTransitioner() => this;
     [Inject] ISceneTransitioner m_sceneTransitioner;
+
+    private void Awake()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     public bool TrySetCharacterSelectionData(int playerIndex, SO_CharacterSpecificData characterSpecificData)
     {
+        Debug.Log("Try Data");
         if(m_selectedCharacters.Contains(characterSpecificData)) return false;
         m_characterSelectionDataSet[playerIndex] = characterSpecificData;
         bool result = m_selectedCharacters.Add(characterSpecificData);
@@ -24,7 +38,16 @@ public class CharacterSelectionDataHandler : PersistentService<ICharacterSelecti
 
     public void ClearSelections()
     {
+        Debug.Log("Clearing selections");
         m_characterSelectionDataSet.Clear();
         m_selectedCharacters.Clear();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == m_characterSelectionSceneName)
+        {
+            ClearSelections();
+        }
     }
 }

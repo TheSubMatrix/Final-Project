@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &80318134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84ed1a47e6863ea43a5781cd39a60572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.UI::CharacterSelectionDataHandler
+  m_characterSelectionSceneName: 
 --- !u!4 &80318135
 Transform:
   m_ObjectHideFlags: 0
@@ -375,6 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84ed1a47e6863ea43a5781cd39a60572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.UI::CharacterSelectionReference
+  m_characterSelectionSceneName: Character Select
 --- !u!4 &1153324129
 Transform:
   m_ObjectHideFlags: 0
@@ -997,6 +999,10 @@ PrefabInstance:
     - target: {fileID: 3497591304426746712, guid: bea33590d98742a47b91dca55eed87a8, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171540295851159630, guid: bea33590d98742a47b91dca55eed87a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5794530255114023463, guid: bea33590d98742a47b91dca55eed87a8, type: 3}
       propertyPath: m_AnchorMax.y

@@ -21,6 +21,15 @@ public class SceneTransitionHandler : PersistentService<ISceneTransitioner>, ISc
         m_isTransitioning = true;
         m_fadeCanvasGroup.blocksRaycasts = true;
         yield return m_fadeCanvasGroup.FadeToOpacity(1, duration);
+
+        if (sceneName == "GameOver")
+        {
+            foreach (PlayerController controller in FindObjectsByType<PlayerController>(FindObjectsSortMode.None))
+            {
+                Destroy(controller.gameObject);
+            }
+        }
+        
         yield return SceneManager.LoadSceneAsync(sceneName);
         yield return m_fadeCanvasGroup.FadeToOpacity(0, duration);
         m_fadeCanvasGroup.blocksRaycasts = false;
