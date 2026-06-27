@@ -27,9 +27,15 @@ public class PlayerPrefsDataStorage : MonoBehaviour, IPersistentDataStorage, IDe
             if (!PlayerPrefs.HasKey(key)) continue;
             switch (obj)
             {
-                case DataStorageBinding<float> b:   b.SetValueWithoutNotify(PlayerPrefs.GetFloat(key));   break;
-                case DataStorageBinding<int> b:     b.SetValueWithoutNotify(PlayerPrefs.GetInt(key));     break;
-                case DataStorageBinding<string> b:  b.SetValueWithoutNotify(PlayerPrefs.GetString(key));  break;
+                case DataStorageBinding<float> b: 
+                    b.SetValueWithoutNotify(PlayerPrefs.GetFloat(key)); 
+                    break;
+                case DataStorageBinding<int> b:
+                    b.SetValueWithoutNotify(PlayerPrefs.GetInt(key));
+                    break;
+                case DataStorageBinding<string> b:
+                    b.SetValueWithoutNotify(PlayerPrefs.GetString(key));
+                    break;
             }
         }
     }
@@ -40,9 +46,15 @@ public class PlayerPrefsDataStorage : MonoBehaviour, IPersistentDataStorage, IDe
         {
             switch (obj)
             {
-                case DataStorageBinding<float> b:   PlayerPrefs.SetFloat(key, b.Value);   break;
-                case DataStorageBinding<int> b:     PlayerPrefs.SetInt(key, b.Value);     break;
-                case DataStorageBinding<string> b:  PlayerPrefs.SetString(key, b.Value);  break;
+                case DataStorageBinding<float> b: 
+                    PlayerPrefs.SetFloat(key, b.Value);   
+                    break;
+                case DataStorageBinding<int> b:
+                    PlayerPrefs.SetInt(key, b.Value);
+                    break;
+                case DataStorageBinding<string> b: 
+                    PlayerPrefs.SetString(key, b.Value);  
+                    break;
             }
         }
 
@@ -51,8 +63,8 @@ public class PlayerPrefsDataStorage : MonoBehaviour, IPersistentDataStorage, IDe
 
     static T ReadFromPlayerPrefs<T>(string key) => default(T) switch
     {
-        float  => (T)(object)PlayerPrefs.GetFloat(key),
-        int    => (T)(object)PlayerPrefs.GetInt(key),
+        float => (T)(object)PlayerPrefs.GetFloat(key),
+        int => (T)(object)PlayerPrefs.GetInt(key),
         string => (T)(object)PlayerPrefs.GetString(key),
         _ => throw new NotSupportedException($"PlayerPrefs does not support type {typeof(T)}")
     };
@@ -61,9 +73,15 @@ public class PlayerPrefsDataStorage : MonoBehaviour, IPersistentDataStorage, IDe
     {
         switch (value)
         {
-            case float f:   PlayerPrefs.SetFloat(key, f);  break;
-            case int i:     PlayerPrefs.SetInt(key, i);    break;
-            case string s:  PlayerPrefs.SetString(key, s); break;
+            case float f:
+                PlayerPrefs.SetFloat(key, f);
+                break;
+            case int i:
+                PlayerPrefs.SetInt(key, i);
+                break;
+            case string s:
+                PlayerPrefs.SetString(key, s);
+                break;
             default: throw new NotSupportedException($"PlayerPrefs does not support type {typeof(T)}");
         }
     }
