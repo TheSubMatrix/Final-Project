@@ -18,8 +18,9 @@ public class CharacterSelectionDataHandler : PersistentService<ICharacterSelecti
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 

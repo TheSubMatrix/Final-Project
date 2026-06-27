@@ -31,8 +31,8 @@ public class Rope : MonoBehaviour
         m_lineRenderer.startWidth = m_displayWidth;
         m_lineRenderer.endWidth = m_displayWidth;
 
-        Vector3 start = m_startPoint.position;
-        Vector3 end = m_endPoint.position;
+        Vector3 start = m_startPoint.transform.TransformPoint(m_springJoint.anchor);
+        Vector3 end = m_endPoint.transform.TransformPoint(m_springJoint.connectedAnchor);
         m_curve = new SegmentedBezierCurve(start, start, end, end, m_segmentCount);
     }
 
@@ -51,14 +51,13 @@ public class Rope : MonoBehaviour
 
     void UpdateVisual()
     {
-        Vector3 start = m_startPoint.position;
-        Vector3 end = m_endPoint.position;
+        Vector3 start = m_startPoint.transform.TransformPoint(m_springJoint.anchor);
+        Vector3 end = m_endPoint.transform.TransformPoint(m_springJoint.connectedAnchor);
         float span = (end - start).magnitude;
         m_curve.A.Value = start;
-        m_curve.C.Value = end + m_endPoint.transform.up * (-span * 0.1f);
-        m_curve.B.Value = start - m_startPoint.transform.up * (span * 0.5f);
+        m_curve.C.Value = end + Vector3.up * (-span * 0.1f);
+        m_curve.B.Value = start - Vector3.up * (span * 0.5f);
         m_curve.D.Value = end;
-
         IReadOnlyList<Vector3> segments = m_curve.Segments;
         m_lineRenderer.positionCount = segments.Count;
         for (int i = 0; i < segments.Count; i++)
