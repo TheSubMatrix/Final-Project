@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 6714356205777266171}
   - component: {fileID: 3802149784243524490}
   - component: {fileID: 2652779600604667233}
-  m_Layer: 0
+  - component: {fileID: 2931167108604508836}
+  m_Layer: 9
   m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,3 +133,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Ship::RepairPlate
   m_timeUntilDespawn: 10
+--- !u!65 &2931167108604508836
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3084069116351537364}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.13398232, y: 0.0037779834, z: 0.09936767}
+  m_Center: {x: 0.03905739, y: 5.8207657e-11, z: 0.000000020489095}

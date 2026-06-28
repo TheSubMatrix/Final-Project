@@ -80,7 +80,7 @@ public class ShipHealth : MonoBehaviour, IDamageable
             Transform holeTransform = positionInfo.HolePosition;
             if (m_activePlates.Remove(positionInfo.PlatePosition, out RepairPlate plate))
             {
-                plate.ShootPlateOffWall(positionInfo.PlatePosition.forward * 10);
+                plate.ShootPlateOffWall(positionInfo.PlatePosition.up * 20);
             }
             ShipHole selectedHole = m_shipHoles.Get();
             selectedHole.Initialize(() =>

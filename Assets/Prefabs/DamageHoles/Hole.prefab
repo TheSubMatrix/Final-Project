@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4464139784874948978}
   - component: {fileID: 8285866158264316984}
   - component: {fileID: 8713884926978585898}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hole Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 5233333429262993108}
   - component: {fileID: 9127671728190086360}
   - component: {fileID: 4972286540395192657}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Leak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8e8c9e8fa229cb34386dba97026f5318, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7071182760956848314, guid: 8e8c9e8fa229cb34386dba97026f5318, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

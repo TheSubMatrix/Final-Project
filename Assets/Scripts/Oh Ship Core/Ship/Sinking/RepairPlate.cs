@@ -22,6 +22,7 @@ public class RepairPlate : MonoBehaviour
 
     public void ShootPlateOffWall(Vector3 shootForce)
     {
+        transform.SetParent(null, true);
         m_rigidbody.isKinematic = false;
         m_rigidbody.AddForce(shootForce, ForceMode.Impulse);
         StartCoroutine(Despawn());
