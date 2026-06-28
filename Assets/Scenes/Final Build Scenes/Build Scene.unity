@@ -6562,6 +6562,10 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5624420122251007069, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
     - {fileID: 26749857677897185, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+    - {fileID: 7198844056925134643, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+    - {fileID: 8557339382237115617, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+    - {fileID: 2864875148593070931, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+    - {fileID: 9138067249538912889, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5768041195369910708, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
     - {fileID: 6098649646471108590, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
@@ -6593,17 +6597,6 @@ Transform:
 --- !u!114 &1920507447 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8774720405194933675, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
-  m_PrefabInstance: {fileID: 1920507445}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614289349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseSource
---- !u!114 &1920507448 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9138067249538912889, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
   m_PrefabInstance: {fileID: 1920507445}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614289349}
@@ -6653,7 +6646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: OhShip.Core.Ship::ShipHealth
   m_holePrefab: {fileID: 5763194117079931533, guid: 2f3527a3d8be63c4389f9c399b7d3cb4, type: 3}
   m_platePrefab: {fileID: 2652779600604667233, guid: ef4483de9b520d7449cf982829027e6c, type: 3}
-  m_impulseSource: {fileID: 1920507448}
+  m_impulseSource: {fileID: 1920507447}
   m_waterFillController: {fileID: 6761218904793655488}
   m_holePositions:
   - HolePosition: {fileID: 932860927}
