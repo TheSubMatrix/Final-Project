@@ -12,17 +12,29 @@ public class SoundSettings : MonoBehaviour
 
     private void Start()
     {
-        if(soundMixer.GetFloat("Sound Effects", out float var))
-            volumeSliderSFX.value = Mathf.Pow(10,var / 20) ;
+        if (PlayerPrefs.HasKey("Music"))
+        {
+            volumeSliderMusic.value = PlayerPrefs.GetFloat("Music");
+            
+           
+        }
         
-        if(soundMixer.GetFloat("Music", out float var2))
-            volumeSliderMusic.value = Mathf.Pow(10,var2 / 20) ;
+        if (PlayerPrefs.HasKey("Sound Effects"))
+        {
+            volumeSliderSFX.value = PlayerPrefs.GetFloat("Sound Effects");
+         
+        }
+        
+      
+        
+      
     }
 
     public void SetMusicVolume()
     {
         float volume = Mathf.Log10(volumeSliderMusic.value) * 20;
         bool success = soundMixer.SetFloat("Music", volume);
+        PlayerPrefs.SetFloat("Music", volumeSliderMusic.value);
         Debug.Log($"SetFloat success: {success}, volume sent: {volume}");
         soundMixer.GetFloat("Music", out var value);
         Debug.Log($"GetFloat returns: {value}");
@@ -34,6 +46,7 @@ public class SoundSettings : MonoBehaviour
         
         float volume = Mathf.Log10(volumeSliderSFX.value) * 20;
         bool success = soundMixer.SetFloat("Sound Effects", volume);
+        PlayerPrefs.SetFloat("Sound Effects", volumeSliderSFX.value);
         Debug.Log($"SetFloat success: {success}, volume sent: {volume}");
         soundMixer.GetFloat("Sound Effects", out var value);
         Debug.Log($"GetFloat returns: {value}");
