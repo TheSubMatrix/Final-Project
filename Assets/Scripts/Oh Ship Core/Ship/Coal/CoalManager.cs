@@ -113,6 +113,7 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
     private void Update()
     {
         m_totalPressure = Mathf.Clamp01(m_totalPressure - (m_decayRate * Time.deltaTime));
+        m_gauge.Transform.localRotation = Quaternion.Euler(0, 0, m_gauge.GetNextAngle(m_totalPressure, m_gauge.Transform.localRotation.eulerAngles.z));
         if (m_activePlayerController == null) return;
         m_timeLimit -= Time.deltaTime;
         if (m_timeLimit <= 0f)
@@ -120,7 +121,6 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
             m_currentInteractionSession.End();
         }
         Debug.Log(m_totalPressure);
-        m_gauge.Transform.localRotation = Quaternion.Euler(0, 0, m_gauge.GetNextAngle(m_totalPressure, m_gauge.Transform.localRotation.eulerAngles.z));
     }
 
     public void OnControlReleased()
