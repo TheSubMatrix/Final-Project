@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using MatrixUtils.DependencyInjection;
@@ -6,6 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using Random = UnityEngine.Random;
 
 public class PlayerSpawnManager : MonoBehaviour
 {
@@ -15,15 +17,26 @@ public class PlayerSpawnManager : MonoBehaviour
     [Inject] ICharacterSelectionDataHandler m_characterSelectionDataHandler;
     readonly Dictionary<IPlayerController, OutputChannels> m_playerOutputChannels = new();
     int m_spawnedPlayers = 1;
+    private List<Transform> m_spawnPointsLeft = new();
+
+    private void Awake()
+    {
+        foreach (Transform location in m_playerSpawnPoints)
+        {
+            m_spawnPointsLeft.Add(location);
+        }
+    }
+
     public void Spawn(PlayerInput playerInput)
     {
         IPlayerController controller = playerInput.gameObject.GetComponent<IPlayerController>();
         Vector3 spawnPosition = Vector3.zero;
         Quaternion spawnRotation = Quaternion.identity;
-        if (SelectRandom(m_playerSpawnPoints, out Transform spawnPoint))
+        if (SelectRandom(m_spawnPointsLeft, out Transform spawnPoint))
         {
             spawnPosition = spawnPoint.position;
             spawnRotation = spawnPoint.rotation;
+            m_spawnPointsLeft.Remove(spawnPoint);
         }
         m_injector.Inject(controller.GetAssociatedGameObject());
         SO_CharacterSpecificData data = null;
@@ -46,14 +59,14 @@ public class PlayerSpawnManager : MonoBehaviour
         player.GetComponentInChildren<CinemachineCamera>().OutputChannel = channels;
     }
 
-    static bool SelectRandom<T>(T[] array, out T result)
+    static bool SelectRandom<T>(List<T> list, out T result)
     {
-        if(array is null || array.Length <= 0)
+        if(list is null || list.Count <= 0)
         {
             result = default;
             return false;
         }
-        result = array[Random.Range(0, array.Length)];
+        result = list[Random.Range(0, list.Count)];
         return true;
     }
     [Pure]
