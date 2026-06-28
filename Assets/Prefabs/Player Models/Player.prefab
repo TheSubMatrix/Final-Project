@@ -965,9 +965,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Players::PlayerController
   maxGroundAngle: 50
+  anim: {fileID: 1071454880068398637}
   m_acceleration: 20
   m_deceleration: 30
-  m_moveSpeed: 7
+  m_moveSpeed: 4
   m_camera: {fileID: 7380261991574393363}
   m_lookSensitivity: 30
 --- !u!114 &3994179610541121624

@@ -10,6 +10,7 @@ using UnityEngine.Serialization;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField, Range(0f, 90f)] float maxGroundAngle = 25f;
+    [SerializeField] Animator anim;
     float minGroundDotProduct;
     int stepsSinceLastGrounded;
     bool onGround => groundContactCount > 0;
@@ -33,7 +34,37 @@ public class PlayerMovement : MonoBehaviour
     float m_lookPitch;
     Quaternion m_lookYaw = Quaternion.identity;
     Vector2 m_currentLookInput;
-    public void OnMovementInputChanged(Vector2 input) => m_desiredMovement = input * m_moveSpeed;
+    public void OnMovementInputChanged(Vector2 input)
+    {
+        m_desiredMovement = input * m_moveSpeed;
+        Debug.Log("input: " + input);
+        if(input == Vector2.zero)
+        {
+            anim.SetBool("Forward", false);
+            anim.SetBool("Backward", false);
+            anim.SetBool("Right", false);
+            anim.SetBool("Left", false);
+        }
+        
+        if(input.x < 0)
+        {
+            anim.SetBool("Left", true);
+        }
+        else if(input.x > 0)
+        {
+            anim.SetBool("Right", true);
+        }
+
+        if(input.y < 0)
+        {
+            anim.SetBool("Backward", true);
+        }
+        else if (input.y > 0)
+        {
+            anim.SetBool("Forward", true);
+        }
+    }
+
     public void OnLookInputChanged(Vector2 input) => m_currentLookInput = input;
 
     public void SetMovementEnabled(bool toggle)
