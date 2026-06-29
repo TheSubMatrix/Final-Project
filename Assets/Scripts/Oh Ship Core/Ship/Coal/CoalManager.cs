@@ -120,7 +120,7 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
         {
             m_currentInteractionSession.End();
         }
-        Debug.Log(m_totalPressure);
+        //Debug.Log(m_totalPressure);
     }
 
     public void OnControlReleased()
