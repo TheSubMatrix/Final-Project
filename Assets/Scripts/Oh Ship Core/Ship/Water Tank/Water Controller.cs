@@ -3,6 +3,7 @@ using MatrixUtils.AudioSystem;
 using MatrixUtils.DependencyInjection;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class WaterController : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class WaterController : MonoBehaviour
     [Header("Settings")]
     [SerializeField] float m_maxFill = 1f;
     [SerializeField] float m_minFill = -1f;
-    [SerializeField] float m_fillChangeRate = 0.1f;
+    [FormerlySerializedAs("m_fillChangeRate")] [SerializeField] float m_driftFillChangeRate = 0.1f;
+    [SerializeField] float m_playerFillChangeRate = 0.1f;
     [SerializeField] float m_minHoldDuration = 120f;
     [SerializeField] float m_maxHoldDuration = 180f;
     [SerializeField] float m_warningThreshold = 0.2f;
@@ -23,16 +25,21 @@ public class WaterController : MonoBehaviour
 
     [Header("Events")]
     [SerializeField] UnityEvent OnUnderPressureThresholdReached;
+    [SerializeField] UnityEvent OnUnderPressureMinimumReached;
     [SerializeField] UnityEvent OnOverPressureFailure;
     [SerializeField] UnityEvent OnOverPressureThresholdReached;
+    [SerializeField] UnityEvent OnOverPressureMaximumReached;
     [SerializeField] UnityEvent OnUnderPressureFailure;
 
     [Header("Sounds")]
     [SerializeField] SoundData m_overPressureThresholdReached;
+    [SerializeField] SoundData m_overPressureMaximumReached;
     [SerializeField] SoundData m_overPressureFailure;
     [SerializeField] SoundData m_underPressureThresholdReached;
+    [SerializeField] SoundData m_underPressureMinimumReached;
     [SerializeField] SoundData m_underPressureFailure;
     [SerializeField] SoundData m_pressureEqualized;
+    
     float FillCenter => Mathf.Lerp(m_minFill, m_maxFill, 0.5f);
     public float CurrentFill { get; private set; }
     public float NormalizedFill => Mathf.InverseLerp(m_minFill, m_maxFill, CurrentFill);
@@ -49,7 +56,7 @@ public class WaterController : MonoBehaviour
 
     void Update()
     {
-        UpdateCurrentFill(CurrentFill + m_activeFillDirection * m_fillChangeRate * Time.deltaTime);
+        UpdateCurrentFill(CurrentFill + m_activeFillDirection * m_playerFillChangeRate * Time.deltaTime);
         m_currentDrift.OnEventUpdate(CurrentFill);
     }
 
@@ -75,7 +82,7 @@ public class WaterController : MonoBehaviour
         DriftEvent drift = new(
             UpdateCurrentFill,
             fill => Mathf.Abs(fill - FillCenter) <= m_stableRange,
-            m_fillChangeRate,
+            m_driftFillChangeRate,
             m_warningThreshold,
             fillTarget,
             m_failureTime
@@ -83,6 +90,7 @@ public class WaterController : MonoBehaviour
 
         drift.OnWarningThresholdReached += fillTarget > 0f ? OverPressureWarning : UnderPressureWarning;
         drift.OnFailure += fillTarget > 0f ? OverPressureFailure : UnderPressureFailure;
+        drift.OnFailureThresholdReached += fillTarget > 0f ? OverPressureMaximumReached : UnderPressureMinimumReached;
         drift.OnFailure += ScheduleNextDrift;
         drift.OnCancelled += OnPressureEqualized;
         drift.OnCancelled += ScheduleNextDrift;
@@ -114,7 +122,17 @@ public class WaterController : MonoBehaviour
         SoundManager.Instance.CreateSound().WithSoundData(m_underPressureThresholdReached).WithPosition(transform.position).WithRandomPitch().Play();
         OnUnderPressureThresholdReached.Invoke();
     }
+    void OverPressureMaximumReached()
+    {
+        SoundManager.Instance.CreateSound().WithSoundData(m_overPressureMaximumReached).WithPosition(transform.position).WithRandomPitch().Play();
+        OnOverPressureMaximumReached.Invoke();
+    }
 
+    void UnderPressureMinimumReached()
+    {
+        SoundManager.Instance.CreateSound().WithSoundData(m_underPressureMinimumReached).WithPosition(transform.position).WithRandomPitch().Play();
+        OnUnderPressureMinimumReached.Invoke();
+    }
     void OverPressureFailure()
     {
         OnOverPressureFailure.Invoke();
