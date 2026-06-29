@@ -6621,6 +6621,10 @@ PrefabInstance:
       propertyPath: m_outPosition
       value: 
       objectReference: {fileID: 1812344227}
+    - target: {fileID: 3303257174621955613, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_interactSound.MixerGroup
+      value: 
+      objectReference: {fileID: -4227325072015316056, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
     - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_buoyancyPoints.Array.data[0].LocalPosition.x
       value: 3.5307026
@@ -10372,7 +10376,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
       propertyPath: m_driftFillChangeRate
-      value: 0.01
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: m_overPressureMaximumReached.Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7ffd5fd70d10a7c46b44ba299ee27c0d, type: 3}
+    - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: m_overPressureMaximumReached.Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: m_overPressureThresholdReached.Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3bcfba8dbde774d46b70d3f15fa285e3, type: 3}
+    - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: m_overPressureThresholdReached.Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: m_underPressureThresholdReached.Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: m_overPressureMaximumReached.MixerGroup
+      value: 
+      objectReference: {fileID: 6177944134167479645, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
+    - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: m_overPressureMaximumReached.PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5531531540247488218, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -10418,6 +10450,10 @@ PrefabInstance:
       propertyPath: m_outPosition
       value: 
       objectReference: {fileID: 1319096479}
+    - target: {fileID: 5681904316407196006, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: m_interactSound.MixerGroup
+      value: 
+      objectReference: {fileID: -4227325072015316056, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
     - target: {fileID: 5686117868655889387, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
