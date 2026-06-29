@@ -2131,6 +2131,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7826312677251031190, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
   m_PrefabInstance: {fileID: 1920507445}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &613164076 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7379423365056988132, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+  m_PrefabInstance: {fileID: 7501252337306102668}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &613164080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613164076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed68767db5d582f4d9c266b18725b905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::LiquidWobble
+  MaxWobble: 0.03
+  WobbleSpeed: 1
+  Recovery: 1
 --- !u!1 &618669158
 GameObject:
   m_ObjectHideFlags: 0
@@ -10933,6 +10953,10 @@ PrefabInstance:
       propertyPath: m_onPressureSent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1614289359}
+    - target: {fileID: 7247899958279513550, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: blendDistance
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7249124698417533459, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -11755,7 +11779,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 379231771462635966, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1138849566}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7379423365056988132, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 613164080}
   m_SourcePrefab: {fileID: 100100000, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
 --- !u!4 &7501252337306102669 stripped
 Transform:
