@@ -2237,7 +2237,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7379423365056988132, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
   m_PrefabInstance: {fileID: 7501252337306102668}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &613164080
+--- !u!114 &613164084
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2249,9 +2249,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed68767db5d582f4d9c266b18725b905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Ship::LiquidWobble
-  MaxWobble: 0.03
+  MaxWobble: 0.3
   WobbleSpeed: 1
   Recovery: 1
+  LinearJoltSensitivity: 0.5
+  AngularJoltSensitivity: 0.5
+  VelocitySensitivity: 0.01
+  AngularSensitivity: 0.01
 --- !u!1 &614019695 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1966087524629285297, guid: a9ae24cad0d094247b5ca193360ed7fc, type: 3}
@@ -3203,9 +3207,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed68767db5d582f4d9c266b18725b905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Ship::LiquidWobble
-  MaxWobble: 0.03
+  MaxWobble: 0.3
   WobbleSpeed: 1
   Recovery: 1
+  LinearJoltSensitivity: 0.5
+  AngularJoltSensitivity: 0.5
+  VelocitySensitivity: 0.01
+  AngularSensitivity: 0.01
 --- !u!1 &876653917
 GameObject:
   m_ObjectHideFlags: 0
@@ -6204,48 +6212,48 @@ MonoBehaviour:
   preset: {fileID: 11400000, guid: 7b4941d7de2bd3843b785a74c40a7599, type: 2}
   timeOfDay: 18
   lights:
-  - {fileID: 1679343444}
-  - {fileID: 749097837}
-  - {fileID: 35344477}
-  - {fileID: 2070944087}
-  - {fileID: 344690610}
-  - {fileID: 181700835}
-  - {fileID: 1739838512}
-  - {fileID: 1385668724}
-  - {fileID: 1736390620}
-  - {fileID: 614019695}
-  - {fileID: 1688876905}
-  - {fileID: 2066337409}
-  - {fileID: 1871025172}
-  - {fileID: 1163965033}
-  - {fileID: 1695498871}
-  - {fileID: 902049690}
-  - {fileID: 491188512}
-  - {fileID: 686035738}
   - {fileID: 18734734}
+  - {fileID: 35344477}
   - {fileID: 37739386}
+  - {fileID: 181700835}
   - {fileID: 231558020}
   - {fileID: 248058789}
+  - {fileID: 344690610}
   - {fileID: 486374970}
+  - {fileID: 491188512}
+  - {fileID: 614019695}
   - {fileID: 636529586}
   - {fileID: 683919903}
+  - {fileID: 686035738}
+  - {fileID: 749097837}
   - {fileID: 754314822}
   - {fileID: 846319224}
+  - {fileID: 902049690}
   - {fileID: 962442835}
   - {fileID: 1040515963}
   - {fileID: 1053498023}
   - {fileID: 1107708189}
   - {fileID: 1121182223}
+  - {fileID: 1163965033}
   - {fileID: 1179031187}
   - {fileID: 1288575256}
   - {fileID: 1311118316}
+  - {fileID: 1385668724}
   - {fileID: 1443109440}
   - {fileID: 1584731973}
   - {fileID: 1657475325}
   - {fileID: 1667420306}
+  - {fileID: 1679343444}
+  - {fileID: 1688876905}
+  - {fileID: 1695498871}
+  - {fileID: 1736390620}
+  - {fileID: 1739838512}
   - {fileID: 1816363545}
+  - {fileID: 1871025172}
   - {fileID: 1989179565}
   - {fileID: 2029056518}
+  - {fileID: 2066337409}
+  - {fileID: 2070944087}
   fireflies:
   - {fileID: 118190621}
   - {fileID: 122757331}
@@ -11911,7 +11919,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7379423365056988132, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 613164080}
+      addedObject: {fileID: 613164084}
   m_SourcePrefab: {fileID: 100100000, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
 --- !u!4 &7501252337306102669 stripped
 Transform:
