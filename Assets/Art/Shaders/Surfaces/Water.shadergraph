@@ -73,6 +73,15 @@
         },
         {
             "m_Id": "8e22ef3c63dd4395861df8667fc6262a"
+        },
+        {
+            "m_Id": "65d8110bdbf34520a350b89d5056e538"
+        },
+        {
+            "m_Id": "93c609a847d142e5a5e2f837dfa27dc4"
+        },
+        {
+            "m_Id": "e6c8c9664bd549699cf1ed67cf78baa3"
         }
     ],
     "m_Dropdowns": [],
@@ -5192,6 +5201,15 @@
         },
         {
             "m_Id": "8e22ef3c63dd4395861df8667fc6262a"
+        },
+        {
+            "m_Id": "93c609a847d142e5a5e2f837dfa27dc4"
+        },
+        {
+            "m_Id": "e6c8c9664bd549699cf1ed67cf78baa3"
+        },
+        {
+            "m_Id": "65d8110bdbf34520a350b89d5056e538"
         }
     ]
 }
@@ -7667,6 +7685,35 @@
 }
 
 {
+    "m_SGVersion": 2,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "65d8110bdbf34520a350b89d5056e538",
+    "m_Guid": {
+        "m_GuidSerialized": "ec292f89-e997-4ee2-bc2b-d1f2e2d8a881"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "Reflection Probe Atlas",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Reflection Probe Atlas",
+    "m_DefaultReferenceName": "_REFLECTION_PROBE_ATLAS",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": false,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 1,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 0,
+    "m_IsEditable": true,
+    "m_IsShaderBuildSettingsCompatible": true
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "67317a8230ba427f90dc58445aed8fdc",
@@ -9402,6 +9449,35 @@
     "m_DefaultValue": 0.0,
     "m_Labels": [],
     "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 2,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "93c609a847d142e5a5e2f837dfa27dc4",
+    "m_Guid": {
+        "m_GuidSerialized": "c2c6eaab-1d15-4b61-983a-ab4a0658d8e7"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "Reflection Probe Box Projection",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Reflection Probe Box Projection",
+    "m_DefaultReferenceName": "_REFLECTION_PROBE_BOX_PROJECTION",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": false,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 1,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 0,
+    "m_IsEditable": true,
+    "m_IsShaderBuildSettingsCompatible": true
 }
 
 {
@@ -12647,6 +12723,35 @@
         "m_Guid": ""
     },
     "m_DefaultType": 3
+}
+
+{
+    "m_SGVersion": 2,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "e6c8c9664bd549699cf1ed67cf78baa3",
+    "m_Guid": {
+        "m_GuidSerialized": "557168e4-28ee-4db9-b24b-8c8662dba4a0"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "Reflection Probe Blending",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Reflection Probe Blending",
+    "m_DefaultReferenceName": "_REFLECTION_PROBE_BLENDING",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": false,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 1,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 0,
+    "m_IsEditable": true,
+    "m_IsShaderBuildSettingsCompatible": true
 }
 
 {

@@ -18,6 +18,9 @@ Material:
   - _LIGHTMAP_SHADOW_MIXING
   - _MAIN_LIGHT_SHADOWS
   - _MAIN_LIGHT_SHADOWS_CASCADE
+  - _REFLECTION_PROBE_ATLAS
+  - _REFLECTION_PROBE_BLENDING
+  - _REFLECTION_PROBE_BOX_PROJECTION
   - _SHADOWS_SOFT
   - _SHADOW_MASKS
   m_InvalidKeywords: []
@@ -83,15 +86,21 @@ Material:
     - _CLUSTER_LIGHT_LOOP: 1
     - _Fill: -0.18
     - _LIGHTMAP_SHADOW_MIXING: 1
+    - _LIGHTPROBE_SH: 0
     - _MAIN_LIGHT_SHADOWS: 1
     - _MAIN_LIGHT_SHADOWS_CASCADE: 1
+    - _Normal_Strength: 0.5
     - _Posterization: 12
     - _Posterization_Sharpness: 0.5
     - _QueueControl: 0
     - _QueueOffset: -1
+    - _REFLECTION_PROBE_ATLAS: 1
+    - _REFLECTION_PROBE_BLENDING: 1
+    - _REFLECTION_PROBE_BOX_PROJECTION: 1
     - _Rim_Light: 0
     - _SHADOWS_SOFT: 1
     - _SHADOW_MASKS: 1
+    - _Smoothness: 0.9
     - _Test: 0
     - _Transition_Sharpness: 0.78
     - _X_Wobble: 0

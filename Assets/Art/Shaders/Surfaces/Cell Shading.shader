@@ -19,9 +19,12 @@ _Emissive_Intensity("Emissive Intensity", Float) = 1
 [Toggle(_SHADOWS_SOFT)]_SHADOWS_SOFT("Shadows Soft", Float) = 1
 [Toggle(_ADDITIONAL_LIGHTS)]_ADDITIONAL_LIGHTS("Additional Lights", Float) = 1
 [Toggle(_ADDITIONAL_LIGHT_SHADOWS)]_ADDITIONAL_LIGHT_SHADOWS("Additional Light Shadows", Float) = 1
-[Toggle(_CLUSTER_LIGHT_LOOP)]_CLUSTER_LIGHT_LOOP("Cluster Light Loop", Float) = 0
+[Toggle(_CLUSTER_LIGHT_LOOP)]_CLUSTER_LIGHT_LOOP("Cluster Light Loop", Float) = 1
 [Toggle(_LIGHTMAP_SHADOW_MIXING)]_LIGHTMAP_SHADOW_MIXING("Lightmap Shadow Mixing", Float) = 1
 [Toggle(_SHADOW_MASKS)]_SHADOW_MASKS("Shadow Masks", Float) = 1
+[Toggle(_REFLECTION_PROBE_ATLAS)]_REFLECTION_PROBE_ATLAS("Reflection Probe Atlas", Float) = 1
+[Toggle(_REFLECTION_PROBE_BOX_PROJECTION)]_REFLECTION_PROBE_BOX_PROJECTION("Reflection Probe Box Projection", Float) = 1
+[Toggle(_REFLECTION_PROBE_BLENDING)]_REFLECTION_PROBE_BLENDING("Reflection Probe Blending", Float) = 1
 [HideInInspector]_CastShadows("_CastShadows", Float) = 1
 [HideInInspector]_Surface("_Surface", Float) = 0
 [HideInInspector]_Blend("_Blend", Float) = 0
@@ -122,6 +125,9 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _LIGHTMAP_SHADOW_MIXING
 #pragma multi_compile_local _ _SHADOW_MASKS
 #pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
+#pragma multi_compile_local _ _REFLECTION_PROBE_ATLAS
+#pragma multi_compile_local _ _REFLECTION_PROBE_BOX_PROJECTION
+#pragma multi_compile_local _ _REFLECTION_PROBE_BLENDING
 
 
 
@@ -2101,6 +2107,9 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _LIGHTMAP_SHADOW_MIXING
 #pragma multi_compile_local _ _SHADOW_MASKS
 #pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
+#pragma multi_compile_local _ _REFLECTION_PROBE_ATLAS
+#pragma multi_compile_local _ _REFLECTION_PROBE_BOX_PROJECTION
+#pragma multi_compile_local _ _REFLECTION_PROBE_BLENDING
 
 
 
@@ -2449,6 +2458,9 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _LIGHTMAP_SHADOW_MIXING
 #pragma multi_compile_local _ _SHADOW_MASKS
 #pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
+#pragma multi_compile_local _ _REFLECTION_PROBE_ATLAS
+#pragma multi_compile_local _ _REFLECTION_PROBE_BOX_PROJECTION
+#pragma multi_compile_local _ _REFLECTION_PROBE_BLENDING
 
 
 
@@ -2799,6 +2811,9 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _LIGHTMAP_SHADOW_MIXING
 #pragma multi_compile_local _ _SHADOW_MASKS
 #pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
+#pragma multi_compile_local _ _REFLECTION_PROBE_ATLAS
+#pragma multi_compile_local _ _REFLECTION_PROBE_BOX_PROJECTION
+#pragma multi_compile_local _ _REFLECTION_PROBE_BLENDING
 
 
 
@@ -3154,6 +3169,9 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _LIGHTMAP_SHADOW_MIXING
 #pragma multi_compile_local _ _SHADOW_MASKS
 #pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
+#pragma multi_compile_local _ _REFLECTION_PROBE_ATLAS
+#pragma multi_compile_local _ _REFLECTION_PROBE_BOX_PROJECTION
+#pragma multi_compile_local _ _REFLECTION_PROBE_BLENDING
 
 
 
@@ -3517,6 +3535,9 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _LIGHTMAP_SHADOW_MIXING
 #pragma multi_compile_local _ _SHADOW_MASKS
 #pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
+#pragma multi_compile_local _ _REFLECTION_PROBE_ATLAS
+#pragma multi_compile_local _ _REFLECTION_PROBE_BOX_PROJECTION
+#pragma multi_compile_local _ _REFLECTION_PROBE_BLENDING
 
 
 
@@ -5512,6 +5533,9 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _LIGHTMAP_SHADOW_MIXING
 #pragma multi_compile_local _ _SHADOW_MASKS
 #pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
+#pragma multi_compile_local _ _REFLECTION_PROBE_ATLAS
+#pragma multi_compile_local _ _REFLECTION_PROBE_BOX_PROJECTION
+#pragma multi_compile_local _ _REFLECTION_PROBE_BLENDING
 
 
 
@@ -5858,6 +5882,9 @@ HLSLPROGRAM
 #pragma multi_compile_local _ _LIGHTMAP_SHADOW_MIXING
 #pragma multi_compile_local _ _SHADOW_MASKS
 #pragma multi_compile_local _ _CLUSTER_LIGHT_LOOP
+#pragma multi_compile_local _ _REFLECTION_PROBE_ATLAS
+#pragma multi_compile_local _ _REFLECTION_PROBE_BOX_PROJECTION
+#pragma multi_compile_local _ _REFLECTION_PROBE_BLENDING
 
 
 
