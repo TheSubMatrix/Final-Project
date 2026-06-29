@@ -21,12 +21,10 @@ public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerContr
     IPlayerController m_activePlayerController;
     [SerializeField] string m_pressureControlActionMap = "Adjust Pressure";
     [SerializeField, RequiredField] WaterController m_pressureSystem;
-
-    [SerializeField] private ProcedurallyAnimatedHelmElement m_valveElement;
-    private PlayerInteractionState m_currentInteractionState;
+    [SerializeField] ProcedurallyAnimatedElement m_valveElement;
+    PlayerInteractionState m_currentInteractionState;
     InteractionSession m_currentInteractionSession;
-
-    private GameObject player;
+    GameObject m_player;
     /// <inheritdoc/>
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
@@ -40,17 +38,13 @@ public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerContr
             Debug.Log("Blocked interaction");
             return null;
         }
-        
-       
-        
         CinemachineCamera playerCamera = interactor.GetAssociatedGameObject().GetComponent<CinemachineCamera>();
-        
         m_steamPressureCamera.OutputChannel =  playerCamera.OutputChannel;
         m_steamPressureCamera.Priority = 10;
         m_currentInteractionState.AddInteractionTag(InteractionTag.AdjustingWaterTank);
         controller.ChangeControlledEntity(this);
-        player = oldControllable.GetAssociatedGameObject();
-        player.GetComponentInChildren<MeshRenderer>().enabled = false;
+        m_player = oldControllable.GetAssociatedGameObject();
+        m_player.GetComponentInChildren<MeshRenderer>().enabled = false;
         
         m_currentInteractionSession = new(interactor, this);
         m_currentInteractionSession.OnEnded += () => controller.ChangeControlledEntity(oldControllable);
@@ -66,50 +60,47 @@ public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerContr
             player.ChangeControlledEntity(null);
             return;
         }
-        
-        InputAction increasePressureAction = map.FindAction("Increase Pressure");
-        increasePressureAction.performed += HandleIncreasePressure;
-        InputAction decreasePressureAction = map.FindAction("Decrease Pressure");
-        decreasePressureAction.performed += HandleDecreasePressure;
+
+        InputAction adjustPressureAction = map.FindAction("Adjust Pressure");
+        adjustPressureAction.performed += HandleAdjustPressure;
+        adjustPressureAction.canceled += HandleAdjustPressure;
         InputAction interactAction = map.FindAction("Interact");
         interactAction.performed += HandleInteract;
+        m_pressureSystem.OnUserInteractionStarted();
     }
-    /// <inheritdoc/>
+
     public void OnControlReleased()
     {
         if (m_activePlayerController == null) throw new("Player controller is null, cannot release control.");
         if (!m_activePlayerController.TryGetCurrentInputActionMap(out InputActionMap map)) throw new("Player controller is not null, but input action map is null...");
         m_steamPressureCamera.Priority = 0;
-        
-        InputAction increasePressureAction = map.FindAction("Increase Pressure");
-        increasePressureAction.performed -= HandleIncreasePressure;
-        InputAction decreasePressureAction = map.FindAction("Decrease Pressure");
-        decreasePressureAction.performed -= HandleDecreasePressure;
+
+        InputAction adjustPressureAction = map.FindAction("Adjust Pressure");
+        adjustPressureAction.performed -= HandleAdjustPressure;
+        adjustPressureAction.canceled -= HandleAdjustPressure;
         InputAction interactAction = map.FindAction("Interact");
         interactAction.performed -= HandleInteract;
-        player.GetComponentInChildren<MeshRenderer>().enabled = true;
+        m_player.GetComponentInChildren<MeshRenderer>().enabled = true;
         m_currentInteractionState.RemoveInteractionTag(InteractionTag.AdjustingWaterTank);
-
         m_activePlayerController = null;
+        m_pressureSystem.HandleFillInput(0);
+        m_pressureSystem.OnUserInteractionEnded();
     }
-    private void Update()
+    void HandleAdjustPressure(InputAction.CallbackContext context) => m_pressureSystem.HandleFillInput(context.ReadValue<float>());
+    void Update()
     {
-        m_valveElement.Transform.localEulerAngles = new Vector3(m_valveElement.GetNextAngle(m_pressureSystem.CurrentFill, m_valveElement.Transform.localEulerAngles.x),0,0);
-       
+        m_valveElement.Transform.localEulerAngles = new(m_valveElement.GetNextAngle(m_pressureSystem.NormalizedFill, m_valveElement.Transform.localEulerAngles.x),0,0);
     }
 
     /// <inheritdoc/>
     public IPlayerController GetActivePlayerController() => m_activePlayerController;
-    
-    void HandleIncreasePressure(InputAction.CallbackContext context) => m_pressureSystem.IncreaseWaterFill();
-    void HandleDecreasePressure(InputAction.CallbackContext context) => m_pressureSystem.DecreaseWaterFill();
     void HandleInteract(InputAction.CallbackContext context) => m_currentInteractionSession.End();
     public GameObject GetAssociatedGameObject() => gameObject;
     public PromptData GetPromptData() => new() {AssociatedWidget = m_widgetForPrompt};
     public Vector3 GetWidgetWorldPosition() => m_displayForInteraction.position;
     
     [Serializable]
-    class ProcedurallyAnimatedHelmElement
+    class ProcedurallyAnimatedElement
     {
         public Transform Transform;
         public float MinAngle;
@@ -118,7 +109,7 @@ public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerContr
 
         public float GetNextAngle(float normalizedDesiredAngle, float currentAngle)
         {
-            float desiredWheelAngle = Mathf.Lerp(MinAngle, MaxAngle, normalizedDesiredAngle.Remap(-1, 1, 1, 0));
+            float desiredWheelAngle = Mathf.Lerp(MinAngle, MaxAngle, normalizedDesiredAngle);
             return Mathf.SmoothDampAngle(currentAngle, desiredWheelAngle, ref m_velocity, 0.1f);
         }
     }

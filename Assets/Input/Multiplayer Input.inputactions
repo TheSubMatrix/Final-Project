@@ -579,22 +579,13 @@
             "id": "1bbeb243-4f76-4def-a983-7579d567c469",
             "actions": [
                 {
-                    "name": "Increase Pressure",
-                    "type": "Button",
-                    "id": "a17da31c-5862-4c79-ae46-edb518b407a1",
-                    "expectedControlType": "",
+                    "name": "Adjust Pressure",
+                    "type": "Value",
+                    "id": "2cef8b6a-efb9-412a-8307-d5e06b8382d1",
+                    "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Decrease Pressure",
-                    "type": "Button",
-                    "id": "10655126-f2ef-4f8e-9540-327eb4fd7280",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Interact",
@@ -607,28 +598,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "55b29739-749b-4d0b-8dbb-7e7a5214cf27",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Increase Pressure",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "81c9b42f-488a-4b86-8a6e-997311650df2",
-                    "path": "<Gamepad>/leftStick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Increase Pressure",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "dcd3f872-fcda-4db0-8ab6-db4b048ae045",
@@ -652,26 +621,70 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "69b3ba93-a8ff-42d6-816f-a9976ee0e1c7",
+                    "name": "Keyboard Pressure",
+                    "id": "3f54a059-bc9c-474a-b32e-af0bc5302616",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Adjust Pressure",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "44d71cda-d7c1-4572-93d8-cee7fbcc4b1c",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Decrease Pressure",
+                    "action": "Adjust Pressure",
                     "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "960b8286-0131-4888-bf80-6c89d70d7697",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Adjust Pressure",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Controller Pressure",
+                    "id": "c5d1ad92-1341-4d96-8104-3caa5c6b570f",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Adjust Pressure",
+                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "e874419c-da09-4bd4-b8f9-df35846f94f7",
-                    "path": "<Gamepad>/leftStick/left",
+                    "name": "negative",
+                    "id": "ef93d736-7c86-4852-bae6-c2d9577bf499",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Decrease Pressure",
+                    "groups": "",
+                    "action": "Adjust Pressure",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "6961e92c-73cf-4c70-a19a-d3a8ca430f63",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Adjust Pressure",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
