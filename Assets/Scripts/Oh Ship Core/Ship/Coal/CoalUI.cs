@@ -7,10 +7,11 @@ public class CoalUI : MonoBehaviour
 {
     [SerializeField] private SO_CoalData coalData;
     [SerializeField] private GameObject coalQTEVisualPrefab;
-    private ButtonData[] _buttonDatas;
+    private ButtonData[] _buttonVisuals;
+    private ButtonData[] _buttonOutlines;
     private Transform _buttonDisplayParent;
-    [SerializeField] private float _width = 256;
-    [SerializeField] private float _height = 256;
+    [SerializeField] private float _width = 64/2;
+    [SerializeField] private float _height = 64/2;
 
     private void Start()
     {
@@ -31,12 +32,12 @@ public class CoalUI : MonoBehaviour
 
     public void CorrectButtonPressed(int index)
     {
-        _buttonDatas[index].visualForButton.color = Color.green;
+        _buttonOutlines[index].visualForButton.color = Color.green;
     }
 
     public void IncorrectButtonPressed(int index)
     {
-        _buttonDatas[index].visualForButton.color = Color.red;
+        _buttonOutlines[index].visualForButton.color = Color.red;
     }
 
     public void HideUI()
@@ -46,20 +47,23 @@ public class CoalUI : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        _buttonDatas = null;
+        _buttonVisuals = null;
 
     }
 
     public void DisplayPasswordVisuals(string[] password)
     {
-        _buttonDatas = new ButtonData[password.Length];
+        _buttonVisuals = new ButtonData[password.Length];
+        _buttonOutlines = new ButtonData[password.Length];
         for (int i = 0; i < password.Length; i++)
         {
            GameObject button = Instantiate(coalQTEVisualPrefab, GetComponentInChildren<HorizontalLayoutGroup>().transform);
-           Debug.Log(button);
-           _buttonDatas[i].visualForButton = button.GetComponent<Image>();
-           _buttonDatas[i].visualForButton.sprite = DisplayInputButton(password[i]);
-           _buttonDatas[i].visualForButton.rectTransform.sizeDelta = new Vector2(_width, _height);
+           Debug.Log(button.transform.GetChild(0).name);
+         
+           _buttonVisuals[i].visualForButton = button.transform.GetChild(0).GetComponent<Image>();
+           _buttonOutlines[i].visualForButton = button.GetComponent<Image>();
+           _buttonVisuals[i].visualForButton.sprite = DisplayInputButton(password[i]);
+           _buttonVisuals[i].visualForButton.rectTransform.sizeDelta = new Vector2(_width, _height);
 
         }
     }
