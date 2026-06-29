@@ -6615,8 +6615,24 @@ PrefabInstance:
       value: -16.320015
       objectReference: {fileID: 0}
     - target: {fileID: 633370073185298021, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_Pitch
+      value: 0.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 633370073185298021, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 633370073185298021, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 05215899431690d4c9f1381a189bb729, type: 3}
+    - target: {fileID: 633370073185298021, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -564601559109293326, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
+    - target: {fileID: 633370073185298021, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 1.04
       objectReference: {fileID: 0}
     - target: {fileID: 3020329544484955574, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: _speedOfFishIcon
@@ -6674,6 +6690,18 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 5cc4219987fb69a4aa1006a50e013387, type: 2}
+    - target: {fileID: 4872450586975930151, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_Pitch
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872450586975930151, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 52e4dbca5e377954290da0756e4e1bc7, type: 3}
+    - target: {fileID: 4872450586975930151, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 3031009907631310084, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
     - target: {fileID: 5115391741759406848, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: _speedOfFishIcon
       value: 150
