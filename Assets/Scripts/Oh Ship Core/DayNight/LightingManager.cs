@@ -9,6 +9,7 @@ public class LightingManager : MonoBehaviour
     [SerializeField, Range(0, 96)] private float timeOfDay;
     [SerializeField] private GameObject[] lights;
     [SerializeField] private GameObject[] fireflies;
+    [SerializeField] private GameObject[] windowLights;
     private int lightCount;
     private bool lightSetUp = false;
     private bool finishedLightUp = true;
@@ -31,6 +32,7 @@ public class LightingManager : MonoBehaviour
         timeOfDay = 18;
         lights = GameObject.FindGameObjectsWithTag("Light");
         fireflies = GameObject.FindGameObjectsWithTag("Firefly");
+        windowLights = GameObject.FindGameObjectsWithTag("WindowLight");
     }
 
     private void Update()
@@ -77,6 +79,8 @@ public class LightingManager : MonoBehaviour
                 finishedLightUp = false;
                 Invoke("LightUp", Random.Range(0.1f, 0.6f));
             }
+            LightUpBuildings();
+
         }
         else
         {
@@ -96,6 +100,8 @@ public class LightingManager : MonoBehaviour
 
                 startedFireflies = false;
             }
+
+            TurnOffBuildings();
         }
     }
     private void OnValidate()
@@ -137,6 +143,32 @@ public class LightingManager : MonoBehaviour
             chosenLight.SetActive(true);
             finishedLightUp = true;
             lightCount--;
+        }
+    }
+
+    private void LightUpBuildings()
+    {
+        foreach(GameObject windowLight in windowLights)
+        {
+            Renderer renderer = windowLight.GetComponent<Renderer>();
+            Material[] currentMaterials = renderer.materials;
+            foreach(Material mat in currentMaterials)
+            {
+                mat.SetFloat("_Emissive_Intensity", 1f);
+            }
+        }
+    }
+
+    private void TurnOffBuildings()
+    {
+        foreach (GameObject windowLight in windowLights)
+        {
+            Renderer renderer = windowLight.GetComponent<Renderer>();
+            Material[] currentMaterials = renderer.materials;
+            foreach (Material mat in currentMaterials)
+            {
+                mat.SetFloat("_Emissive_Intensity", 0f);
+            }
         }
     }
 }
