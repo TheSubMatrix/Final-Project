@@ -16,6 +16,7 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
     private float cookedAmount;
     private FoodClass currentFood;
     private Fish fish;
+    private GameObject lastCookedObject;
 
     [Header("Sound")]
     [SerializeField] private AudioSource audioSource;
@@ -47,7 +48,6 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
             {
                 m_currentInteractionSession = new InteractionSession(interactor, this);
                 m_currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
-                cookedAmount = 0;
                 MoveObjectToStove();
                 _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingFish);
                 m_currentInteractionSession.End();
@@ -88,6 +88,7 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
     { 
         _foodClassItem.transform.position = cookingLocation.position;
         _foodClassItem.transform.SetParent(cookingLocation);
+
         if(_foodClassItem.CookingProcess == CookingProcess.InPot)
         {
             audioSource.PlayOneShot(dropCrabSound);
@@ -101,13 +102,18 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
     private void Cook()
     {
-        if(_foodClassItem == null || cookingLocation.childCount <= 0        )
+        if(_foodClassItem == null)
         {
             return;
         }
 
         if(cookingLocation.childCount > 0)
         {
+            if(lastCookedObject != _foodClassItem.gameObject)
+            {
+                cookedAmount = 0f;
+                lastCookedObject = _foodClassItem.gameObject;
+            }
             cookedAmount += _foodClassItem.GetCookingSpeed() * Time.deltaTime;
             _foodClassItem.UpdateCookedAmount(cookedAmount);
         }
