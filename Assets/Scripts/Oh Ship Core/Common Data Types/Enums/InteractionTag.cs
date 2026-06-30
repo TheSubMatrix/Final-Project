@@ -6,5 +6,7 @@ using UnityEngine;
         Steering,
         Holding,
         ShovelCoal,
-        AdjustingWaterTank
+        AdjustingWaterTank,
+        HoldingBottle,
+        HoldingFish
     }

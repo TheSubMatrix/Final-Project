@@ -27,13 +27,13 @@ public class BottleInteractable : MonoBehaviour, IInteractable, IPromptProvider
         _playerController = _playerControllable.GetActivePlayerController();
         _playerInteractionState = _playerControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
 
-        if (_playerInteractionState.CheckInteractionTag(InteractionTag.Holding))
+        if (_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish))
         {
             return null;
         }
         else
         {
-            
+            _playerInteractionState.AddInteractionTag(InteractionTag.HoldingBottle);
         }
 
         m_currentInteractionSession = new InteractionSession(interactor, this);
