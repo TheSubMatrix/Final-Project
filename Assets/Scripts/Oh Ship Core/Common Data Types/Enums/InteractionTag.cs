@@ -8,5 +8,7 @@ using UnityEngine;
         ShovelCoal,
         AdjustingWaterTank,
         HoldingBottle,
-        HoldingFish
+        HoldingFish,
+        HoldingBottleWithWater,
+        HoldingCookedFish
     }
