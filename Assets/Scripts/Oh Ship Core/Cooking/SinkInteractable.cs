@@ -24,11 +24,14 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
     private float timer = 0f;
     private float amountOfWater = 0f;
     private bool canInteract = true;
+    private bool filledUp = false;
 
     private IPlayerControllable _playerControllableForHoldingObject;
     private Transform _holdingObjectTransform;
     private GameObject heldObject;
     [SerializeField] private GameObject bottleToSpawn;
+    [SerializeField] private GameObject bottleInSink;
+    [SerializeField] private GameObject bottleBack;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -44,27 +47,23 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
         {
             canInteract = true;
         }
-        if(drinking)
-        {
-            DrinkWater();
-        }
         if(fillingUp)
         {
             if(!animSink.GetBool("waterRunning"))
             {
-                StartCoroutine(FillUpBottle());
+                animSink.SetBool("waterRunning", true);
             }
             amountOfWater = amountOfWater += 0.1f * Time.deltaTime;
         }
 
         if(amountOfWater >= 1f)
         {
+
+            timer = 0f;
+            canInteract = false;
             fillingUp = false;
             animSink.SetBool("waterRunning", false);
-            _playerInteractionState.AddInteractionTag(InteractionTag.HoldingBottleWithWater);
-            _holdingObjectTransform = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
-            GameObject bottle = Instantiate(bottleToSpawn, _holdingObjectTransform.position, _holdingObjectTransform.rotation);
-            bottle.transform.SetParent(_holdingObjectTransform);
+            filledUp = true;
         }
     }
 
@@ -73,11 +72,15 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
         _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         thirstManager = _playerControllable.GetAssociatedGameObject().GetComponent<HungerAndThirst>();
 
+        IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
+        IPlayerController controller = oldControllable.GetActivePlayerController();
+        _playerControllableForHoldingObject = oldControllable;
+
         _playerController = _playerControllable.GetActivePlayerController();
 
         _playerInteractionState = _playerControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
 
-        if (_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish) || _playerInteractionState.CheckInteractionTag(InteractionTag.HoldingBottleWithWater))
+        if (_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish))
         {
             return null;
         }
@@ -89,16 +92,26 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
                 timer = 0f;
                 canInteract = false;
                 fillingUp = false;
+                bottleInSink.SetActive(false);
                 animSink.SetBool("waterRunning", false);
             }
-            else
-            {
-                _holdingObjectTransform = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
-                heldObject = _holdingObjectTransform.gameObject;
-                Destroy(heldObject);
-                timer = 0f;
-                fillingUp = true;
-            }
+        }
+        else if (!filledUp)
+        {
+            bottleInSink.SetActive(true);
+            _holdingObjectTransform = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
+            heldObject = _holdingObjectTransform.gameObject;
+            Destroy(heldObject);
+            timer = 0f;
+            fillingUp = true;
+            m_currentInteractionSession.End();
+        }
+        else if (filledUp)
+        {
+            DrinkWater(amountOfWater);
+            bottleInSink.SetActive(false);
+            bottleBack.SetActive(true);
+            filledUp = false;
         }
 
         m_currentInteractionSession = new InteractionSession(interactor, this);
@@ -118,14 +131,8 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
         return _interactDisplayTransform == null ? transform.position : _interactDisplayTransform.position;
     }
 
-    void DrinkWater()
+    void DrinkWater(float toDrink)
     {
-        thirstManager.Thirst.Value += drinkingRate * Time.deltaTime;
-    }
-
-    private IEnumerator FillUpBottle()
-    {
-        animSink.SetBool("waterRunning", true);
-        yield return new WaitForSeconds(4);
+        thirstManager.Thirst.Value += toDrink;
     }
 }

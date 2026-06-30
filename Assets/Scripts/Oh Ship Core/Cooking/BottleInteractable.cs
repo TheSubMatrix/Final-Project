@@ -15,6 +15,7 @@ public class BottleInteractable : MonoBehaviour, IInteractable, IPromptProvider
     private IPlayerControllable _playerControllableForHoldingObject;
     private Transform _holdingObjectTransform;
     [SerializeField] private GameObject bottleToSpawn;
+    [SerializeField] private GameObject bottleTaken;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,7 +41,7 @@ public class BottleInteractable : MonoBehaviour, IInteractable, IPromptProvider
         _playerController = controller;
         _playerInteractionState = oldControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
 
-        if (_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish) || _playerInteractionState.CheckInteractionTag(InteractionTag.HoldingBottle) || _playerInteractionState.CheckInteractionTag(InteractionTag.HoldingBottleWithWater) || _playerInteractionState.CheckInteractionTag(InteractionTag.HoldingCookedFish))
+        if (_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish) || _playerInteractionState.CheckInteractionTag(InteractionTag.HoldingBottle) || _playerInteractionState.CheckInteractionTag(InteractionTag.HoldingCookedFish))
         {
             return null;
         }
@@ -50,6 +51,7 @@ public class BottleInteractable : MonoBehaviour, IInteractable, IPromptProvider
             _holdingObjectTransform = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
             GameObject bottle = Instantiate(bottleToSpawn, _holdingObjectTransform.position, _holdingObjectTransform.rotation);
             bottle.transform.SetParent(_holdingObjectTransform);
+            gameObject.SetActive(false);
         }
 
         m_currentInteractionSession = new InteractionSession(interactor, this);
