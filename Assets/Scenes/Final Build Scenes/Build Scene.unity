@@ -1133,6 +1133,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1654071336356306149, guid: a9ae24cad0d094247b5ca193360ed7fc, type: 3}
   m_PrefabInstance: {fileID: 2759527505578783048}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &204125221 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5642440900678362122, guid: 4bf2e168c19122c49abcaed22e27e154, type: 3}
+  m_PrefabInstance: {fileID: 1904689788728980248}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &204348994 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 312253824109681573, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
@@ -4666,6 +4671,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -2874414884616388389, guid: 6eda23e8c22af324ab409aeab070eeb8, type: 3}
   m_PrefabInstance: {fileID: 1743423046}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1260040316 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3044537229870839037, guid: a6fd872b0d6bd5f42a10bc142d70686d, type: 3}
+  m_PrefabInstance: {fileID: 1389934585415892817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1288575256
 GameObject:
   m_ObjectHideFlags: 0
@@ -6614,6 +6624,66 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -16.320015
       objectReference: {fileID: 0}
+    - target: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_fuelGauge.MaxAngle
+      value: -115
+      objectReference: {fileID: 0}
+    - target: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_fuelGauge.MinAngle
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_fuelGauge.Transform
+      value: 
+      objectReference: {fileID: 1260040316}
+    - target: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_waterGauge.MaxAngle
+      value: -115
+      objectReference: {fileID: 0}
+    - target: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_waterGauge.MinAngle
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_waterGauge.Transform
+      value: 
+      objectReference: {fileID: 204125221}
+    - target: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnFuelLevelUpdate.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnWaterLevelUpdate.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnFuelLevelUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnFuelLevelUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1614289359}
+    - target: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnFuelLevelUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnFuelLevelUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetEnginePower
+      objectReference: {fileID: 0}
+    - target: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnWaterLevelUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnFuelLevelUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShipMovement, OhShip.Core.Ship
+      objectReference: {fileID: 0}
+    - target: {fileID: 553390763285696242, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnFuelLevelUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 633370073185298021, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_Pitch
       value: 0.71
@@ -6657,6 +6727,18 @@ PrefabInstance:
     - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_buoyancyPoints.Array.data[0].LocalPosition.z
       value: 5.9911065
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_buoyancyPoints.Array.data[5].LocalPosition.x
+      value: -6.117227
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_buoyancyPoints.Array.data[5].LocalPosition.y
+      value: 0.31521088
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_buoyancyPoints.Array.data[5].LocalPosition.z
+      value: -9.951177
       objectReference: {fileID: 0}
     - target: {fileID: 3647051531239599917, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_Enabled
@@ -6727,12 +6809,36 @@ PrefabInstance:
       value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6315079195521403227, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnFuelChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315079195521403227, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnFuelChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1614289363}
+    - target: {fileID: 6315079195521403227, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnFuelChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315079195521403227, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnFuelChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AdjustFuelGauge
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315079195521403227, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: OnFuelBelowThreshold.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1614289363}
     - target: {fileID: 6315079195521403227, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: OnFuelBelowThreshold.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: NotifyLowFuelSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315079195521403227, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnFuelChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FuelWarning, OhShip.Core.Ship
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315079195521403227, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: OnFuelChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6639750043291485645, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: drinkingRate
@@ -7943,6 +8049,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: FuelGauge
       objectReference: {fileID: 0}
+    - target: {fileID: 3044537229870839037, guid: a6fd872b0d6bd5f42a10bc142d70686d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044537229870839037, guid: a6fd872b0d6bd5f42a10bc142d70686d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044537229870839037, guid: a6fd872b0d6bd5f42a10bc142d70686d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044537229870839037, guid: a6fd872b0d6bd5f42a10bc142d70686d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044537229870839037, guid: a6fd872b0d6bd5f42a10bc142d70686d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044537229870839037, guid: a6fd872b0d6bd5f42a10bc142d70686d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6114388659149276458, guid: a6fd872b0d6bd5f42a10bc142d70686d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6662942
@@ -7996,6 +8126,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1920507446}
     m_Modifications:
+    - target: {fileID: 5642440900678362122, guid: 4bf2e168c19122c49abcaed22e27e154, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642440900678362122, guid: 4bf2e168c19122c49abcaed22e27e154, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642440900678362122, guid: 4bf2e168c19122c49abcaed22e27e154, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642440900678362122, guid: 4bf2e168c19122c49abcaed22e27e154, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642440900678362122, guid: 4bf2e168c19122c49abcaed22e27e154, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642440900678362122, guid: 4bf2e168c19122c49abcaed22e27e154, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7107268528352981421, guid: 4bf2e168c19122c49abcaed22e27e154, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.66689414
@@ -10573,6 +10727,30 @@ PrefabInstance:
     - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
       propertyPath: m_overPressureMaximumReached.PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: OnWaterFillUpdate.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: OnWaterFillUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1614289363}
+    - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: OnWaterFillUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: OnWaterFillUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AdjustWaterGauge
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: OnWaterFillUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FuelWarning, OhShip.Core.Ship
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      propertyPath: OnWaterFillUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5531531540247488218, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
       propertyPath: m_StaticEditorFlags

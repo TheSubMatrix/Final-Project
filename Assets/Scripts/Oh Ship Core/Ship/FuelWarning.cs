@@ -8,11 +8,11 @@ public class FuelWarning : MonoBehaviour
     private bool m_activeAlert = false;
     [Inject] INotificationMessenger m_notificationMessenger;
     
-    [SerializeField] private UnityEvent OnFuelLevelUpdate = new  UnityEvent();
     private float m_fuelLevel;
-    [SerializeField] private UnityEvent OnWaterLevelUpdate = new  UnityEvent();
     [SerializeField] private ProcedurallyAnimatedElement m_fuelGauge;
     [SerializeField] private ProcedurallyAnimatedElement m_waterGauge;
+    
+    
 
     private void Start()
     {
@@ -35,13 +35,22 @@ public class FuelWarning : MonoBehaviour
         }
         
     }
+
+    public void AdjustFuelGauge(float value)
+    {
+        m_fuelGauge.Transform.localRotation = Quaternion.Euler(0,m_fuelGauge.Transform.localEulerAngles.y,m_fuelGauge.GetNextAngle(value, m_fuelGauge.Transform.localRotation.eulerAngles.z));
+    }
     
-    
+    public void AdjustWaterGauge(float value)
+    {
+        
+        m_waterGauge.Transform.localRotation = Quaternion.Euler(0,m_waterGauge.Transform.localEulerAngles.y,m_waterGauge.GetNextAngle(value, m_waterGauge.Transform.localRotation.eulerAngles.z));
+
+    }
 
     private void Update()
     {
-        //m_fuelLevel = OnFuelLevelUpdate.Invoke();
-       //m_fuelGauge.Transform.localRotation = Quaternion.Euler(0,0,m_fuelGauge.GetNextAngle(, m_fuelGauge.Transform.localRotation.eulerAngles.z));
+      
         
     }
 

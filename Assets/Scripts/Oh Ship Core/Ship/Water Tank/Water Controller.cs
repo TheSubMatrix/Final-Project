@@ -58,7 +58,7 @@ public class WaterController : MonoBehaviour
     void Update()
     {
         UpdateCurrentFill(CurrentFill + m_activeFillDirection * m_playerFillChangeRate * Time.deltaTime);
-        OnWaterFillUpdate.Invoke(CurrentFill);
+        OnWaterFillUpdate.Invoke(NormalizedFill);
         m_currentDrift.OnEventUpdate(CurrentFill);
     }
 
