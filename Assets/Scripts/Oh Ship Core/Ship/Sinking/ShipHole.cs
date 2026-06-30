@@ -26,6 +26,7 @@ public class ShipHole : MonoBehaviour, IInteractable, IPromptProvider, IProgress
     
     public void Initialize(Action onRepairComplete)
     {
+        m_onRepairProgressCheck = null; 
         m_onRepairComplete = onRepairComplete;
         m_repairTimer = new(m_repairTime);
         m_repairTimer.OnTimerStop += HandleRepairEnd;
@@ -69,13 +70,20 @@ public class ShipHole : MonoBehaviour, IInteractable, IPromptProvider, IProgress
             m_repairTimer = null;
             m_repairAudioSource.Stop();
             m_leakAudioSource.Stop();
+            m_promptDisplay.HidePrompt(this);
             return;
         }
         m_repairAudioSource.Pause();
         m_repairTimer.Pause();
     }
 
-    public PromptData GetPromptData() => new() {AssociatedWidget =  m_isRepairing? m_widgetForRepair : m_widgetForPrompt };
+    public PromptData GetPromptData()
+    {
+        Debug.Log($"GetPromptData called, isRepairing: {m_isRepairing}, widget: {(m_isRepairing ? m_widgetForRepair : m_widgetForPrompt)}");
+        return new() {AssociatedWidget = m_isRepairing ? m_widgetForRepair : m_widgetForPrompt};
+    }
+    
+    //public PromptData GetPromptData() => new() {AssociatedWidget =  m_isRepairing? m_widgetForRepair : m_widgetForPrompt };
     public Vector3 GetWidgetWorldPosition() => transform.position;
     public void AddProgressSubscriber(Action<float> sub) => m_onRepairProgressCheck += sub;
     public void RemoveProgressSubscriber(Action<float> sub) => m_onRepairProgressCheck -= sub;
