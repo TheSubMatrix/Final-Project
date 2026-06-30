@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4401397815307884908
+--- !u!114 &-2233643245467217193
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Canoe
+  m_Name: M_Furniture
   m_Shader: {fileID: -6465566751694194690, guid: d5e6fe27f856b3b419f43359e1992f7b, type: 3}
   m_Parent: {fileID: 2100000, guid: b1aa66268261d4a47b9f014ea729e4f1, type: 2}
   m_ModifiedSerializedProperties: 0
@@ -50,15 +50,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Base:
-        m_Texture: {fileID: 2800000, guid: 83ff5b91ea8a950478fd65533b3c1b3d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7e7af959e16c7ea44b838068fadc15ff, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Metallic_Smoothness:
-        m_Texture: {fileID: 2800000, guid: 58cb559d6d47783408c8beb74bbbfae0, type: 3}
+        m_Texture: {fileID: 2800000, guid: c82308b1f8dd1d1448a8eb217656d457, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 79df62e82fa34c04298bdef2f9bd7ea4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3108230ff9e46c8429062401c9c7ea69, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
