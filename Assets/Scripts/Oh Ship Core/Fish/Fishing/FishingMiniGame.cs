@@ -23,6 +23,8 @@ public class FishingMiniGame
         _data.FishingProgressBar.fillAmount = 0;
         var (bottomOfGreenZone, topOfGreenZone) = GetMaxAndMinOfIconWorld(_data.PlayerGreenZone);
         _halfHeightOfGreenPlayerIcon = (topOfGreenZone - bottomOfGreenZone) / 2;
+        Debug.Log($"Green zone half height: {_halfHeightOfGreenPlayerIcon}, bottom: {bottomOfGreenZone}, top: {topOfGreenZone}");
+
         
         var (minOfUsableFishingSpace,maxOfUsableFishingSpace) = GetMaxAndMinOfIconLocal(_data.UsableFishingArea);
         Vector3 startPos = _data.PlayerGreenZone.localPosition;
@@ -38,6 +40,7 @@ public class FishingMiniGame
     
     public void UpdateMiniGame(bool isHoldingButton)
     {
+        if(_data == null) return;
         PlayingMinigame(isHoldingButton);
         CheckFishingProgress(_data.FishingProgressBar);
         FishEscaping();

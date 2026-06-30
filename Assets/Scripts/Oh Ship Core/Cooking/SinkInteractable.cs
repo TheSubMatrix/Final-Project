@@ -46,7 +46,7 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
     void Update()
     {
         timer = timer += 1 * Time.deltaTime;
-        Debug.Log("water" + amountOfWater);
+        //Debug.Log("water" + amountOfWater);
 
         if(timer >= cooldown)
         {
