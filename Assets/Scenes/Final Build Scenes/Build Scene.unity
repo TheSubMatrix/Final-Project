@@ -16,7 +16,7 @@ RenderSettings:
   serializedVersion: 10
   m_Fog: 0
   m_FogColor: {r: 0.10864537, g: 0.2488511, b: 0.040397905, a: 1}
-  m_FogMode: 3
+  m_FogMode: 1
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
@@ -2933,6 +2933,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1421403850}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &436028065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 436028066}
+  - component: {fileID: 436028067}
+  m_Layer: 0
+  m_Name: PipeColliders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &436028066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436028065}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.245, y: -0.9732094, z: -5.912}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1944997287}
+  - {fileID: 1313187237}
+  - {fileID: 1863220966}
+  m_Father: {fileID: 1161538073}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &436028067
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436028065}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.9682693, z: 1}
+  m_Center: {x: 0, y: -0.13495445, z: 0}
 --- !u!21 &443072965
 Material:
   serializedVersion: 8
@@ -7556,6 +7612,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8b053361b5d663459d93206af2412c0, type: 3}
+--- !u!4 &1161538073 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1320048185041333726, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+  m_PrefabInstance: {fileID: 7501252337306102668}
+  m_PrefabAsset: {fileID: 0}
 --- !u!21 &1163082427
 Material:
   serializedVersion: 8
@@ -8742,6 +8803,59 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!1 &1313187236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1313187237}
+  - component: {fileID: 1313187238}
+  m_Layer: 0
+  m_Name: PipeColliders (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1313187237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313187236}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.63, y: 0, z: -1.039}
+  m_LocalScale: {x: 0.54106, y: 1, z: 0.47342}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 436028066}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1313187238
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313187236}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.9682693, z: 1}
+  m_Center: {x: 0, y: -0.13495445, z: 0}
 --- !u!1 &1314393706
 GameObject:
   m_ObjectHideFlags: 0
@@ -9613,7 +9727,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8383185708652989246, guid: c25b6fd3deb70a64b8b144046ce58859, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 16.1
       objectReference: {fileID: 0}
     - target: {fileID: 8383185708652989246, guid: c25b6fd3deb70a64b8b144046ce58859, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9621,7 +9735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8383185708652989246, guid: c25b6fd3deb70a64b8b144046ce58859, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -421.9
+      value: -612
       objectReference: {fileID: 0}
     - target: {fileID: 8383185708652989246, guid: c25b6fd3deb70a64b8b144046ce58859, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11219,6 +11333,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1945998544}
   m_LocalEulerAnglesHint: {x: -13.934, y: 0, z: 0}
+--- !u!1 &1863220965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1863220966}
+  - component: {fileID: 1863220967}
+  m_Layer: 0
+  m_Name: PipeColliders (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1863220966
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863220965}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.908, y: 0, z: -7.3729997}
+  m_LocalScale: {x: 0.54106, y: 1, z: 0.47342}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 436028066}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1863220967
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863220965}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.9682693, z: 1}
+  m_Center: {x: 0, y: -0.13495445, z: 0}
 --- !u!1 &1871025172 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4491393671668240374, guid: a9ae24cad0d094247b5ca193360ed7fc, type: 3}
@@ -12363,6 +12530,59 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
+--- !u!1 &1944997286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1944997287}
+  - component: {fileID: 1944997288}
+  m_Layer: 0
+  m_Name: PipeColliders (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1944997287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944997286}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.63, y: 0, z: 1.0350003}
+  m_LocalScale: {x: 0.54106, y: 1, z: 0.47342}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 436028066}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1944997288
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944997286}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.9682693, z: 1}
+  m_Center: {x: 0, y: -0.13495445, z: 0}
 --- !u!1 &1945998535
 GameObject:
   m_ObjectHideFlags: 0
@@ -18208,6 +18428,9 @@ PrefabInstance:
     - {fileID: 6054143061411281015, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
     - {fileID: 1248082490105378812, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1320048185041333726, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 436028066}
     - targetCorrespondingSourceObject: {fileID: 1771575596740442460, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1726279162}

@@ -29,6 +29,7 @@ public class Crab : FoodClass
 
     public override void Reset()
     {
+        m_material = GetComponent<MeshRenderer>().material;
         if (m_currentCookState == CookState.Raw)
         {
             m_material.SetFloat("_Cooked_Amount", 0);

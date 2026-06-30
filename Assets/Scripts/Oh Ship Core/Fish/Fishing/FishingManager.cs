@@ -179,7 +179,6 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         HungerAndThirst hungerRef = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>();
         Debug.Log($"HungerAndThirst found: {hungerRef}");
         foodClassRef.InitializeHungerAndThirst(hungerRef);
-        //foodClassRef.Reset();
         _currentInteractionSession.End();
     }
 

@@ -233,8 +233,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447475600237692604}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12236947, y: 0.6963069, z: -0.11857926, w: 0.69722414}
-  m_LocalPosition: {x: 0.41991413, y: 3.7892823, z: -212.3322}
+  m_LocalRotation: {x: 0.09582211, y: -0.6754944, z: 0.13380516, w: 0.718764}
+  m_LocalPosition: {x: -4.4643326, y: 3.7839916, z: -211.12717}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1807,14 +1807,6 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: a17da31c-5862-4c79-ae46-edb518b407a1
-    m_ActionName: 'Adjust Pressure/Increase Pressue[/Keyboard/d]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 10655126-f2ef-4f8e-9540-327eb4fd7280
-    m_ActionName: 'Adjust Pressure/Decrease Pressure[/Keyboard/a]'
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 86c198d6-79ed-4294-9d31-1a2829548111
     m_ActionName: 'Adjust Pressure/Interact[/Keyboard/e]'
   - m_PersistentCalls:
@@ -1849,6 +1841,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 40dd324f-0ff4-4e6c-acb5-f234a5c2bfd5
     m_ActionName: 'Player/Use[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2cef8b6a-efb9-412a-8307-d5e06b8382d1
+    m_ActionName: 'Adjust Pressure/Adjust Pressure[/Keyboard/a,/Keyboard/d]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2074,7 +2070,7 @@ RectTransform:
   m_GameObject: {fileID: 7930993891691620026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6496976497301595500}
@@ -2105,7 +2101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 2100000, guid: 6ef33be5089250e4787bd0f90d2a162c, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
+  m_Color: {r: 0.9056604, g: 0.89813364, b: 0.11534355, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
