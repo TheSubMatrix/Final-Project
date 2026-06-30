@@ -47,6 +47,7 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
             {
                 m_currentInteractionSession = new InteractionSession(interactor, this);
                 m_currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
+                cookedAmount = 0;
                 MoveObjectToStove();
                 _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingFish);
                 m_currentInteractionSession.End();
