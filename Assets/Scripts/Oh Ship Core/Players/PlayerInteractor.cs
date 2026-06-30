@@ -20,6 +20,12 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     public bool IsInteracting() => m_session?.IsActive is true;
     /// <inheritdoc/>
     public InteractionSession GetSession() => m_session;
+
+
+    [Header("Sound")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip chewing;
+    [SerializeField] private AudioClip drinking;
     
     /// <inheritdoc/>
     public bool RequestSessionTransfer(InteractionSession session)
@@ -96,12 +102,20 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
         LayerMask playerLayer = 1 << transform.parent.gameObject.layer;
         if (playerLayer == LayerMask.GetMask("Default")) return;
         IUsableItem usableItem = m_heldObjectLocation.GetComponentInChildren<IUsableItem>();
-        if ((m_playerState.CheckInteractionTag(InteractionTag.HoldingFish) || m_playerState.CheckInteractionTag(InteractionTag.HoldingBottleWithWater)) && usableItem != null)
+        if (usableItem != null)
         {
-            Debug.Log("Using holding");
             usableItem.Use();
-            m_playerState.RemoveInteractionTag(InteractionTag.HoldingFish);
-            m_playerState.RemoveInteractionTag(InteractionTag.HoldingBottleWithWater);
+            if (m_playerState.CheckInteractionTag(InteractionTag.HoldingFish))
+            {
+                audioSource.PlayOneShot(chewing);
+                m_playerState.RemoveInteractionTag(InteractionTag.HoldingFish);
+            }
+            else if(m_playerState.CheckInteractionTag(InteractionTag.HoldingBottleWithWater))
+            {
+                audioSource.PlayOneShot(drinking);
+                m_playerState.RemoveInteractionTag(InteractionTag.HoldingBottleWithWater);
+            }
+            Debug.Log("Using holding");
         }
     }
     
