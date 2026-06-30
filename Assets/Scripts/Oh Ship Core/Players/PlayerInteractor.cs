@@ -96,11 +96,12 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
         LayerMask playerLayer = 1 << transform.parent.gameObject.layer;
         if (playerLayer == LayerMask.GetMask("Default")) return;
         IUsableItem usableItem = m_heldObjectLocation.GetComponentInChildren<IUsableItem>();
-        if (m_playerState.CheckInteractionTag(InteractionTag.Holding) && usableItem != null)
+        if ((m_playerState.CheckInteractionTag(InteractionTag.HoldingFish) || m_playerState.CheckInteractionTag(InteractionTag.HoldingBottleWithWater)) && usableItem != null)
         {
             Debug.Log("Using holding");
             usableItem.Use();
-            m_playerState.RemoveInteractionTag(InteractionTag.Holding);
+            m_playerState.RemoveInteractionTag(InteractionTag.HoldingFish);
+            m_playerState.RemoveInteractionTag(InteractionTag.HoldingBottleWithWater);
         }
     }
     

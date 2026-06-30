@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BottleInteractable : MonoBehaviour, IInteractable, IPromptProvider
 {
@@ -9,6 +11,12 @@ public class BottleInteractable : MonoBehaviour, IInteractable, IPromptProvider
     private IPlayerControllable _playerControllable;
     private IPlayerController _playerController;
     private PlayerInteractionState _playerInteractionState;
+
+    private IPlayerControllable _playerControllableForHoldingObject;
+    private Transform _holdingObjectTransform;
+    [SerializeField] private GameObject bottleToSpawn;
+    [SerializeField] private GameObject bottleTaken;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,13 +35,23 @@ public class BottleInteractable : MonoBehaviour, IInteractable, IPromptProvider
         _playerController = _playerControllable.GetActivePlayerController();
         _playerInteractionState = _playerControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
 
-        if (_playerInteractionState.CheckInteractionTag(InteractionTag.Holding))
+        IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
+        IPlayerController controller = oldControllable.GetActivePlayerController();
+        _playerControllableForHoldingObject = oldControllable;
+        _playerController = controller;
+        _playerInteractionState = oldControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
+
+        if (_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish) || _playerInteractionState.CheckInteractionTag(InteractionTag.HoldingBottle) || _playerInteractionState.CheckInteractionTag(InteractionTag.HoldingCookedFish))
         {
             return null;
         }
         else
         {
-            
+            _playerInteractionState.AddInteractionTag(InteractionTag.HoldingBottle);
+            _holdingObjectTransform = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
+            GameObject bottle = Instantiate(bottleToSpawn, _holdingObjectTransform.position, _holdingObjectTransform.rotation);
+            bottle.transform.SetParent(_holdingObjectTransform);
+            gameObject.SetActive(false);
         }
 
         m_currentInteractionSession = new InteractionSession(interactor, this);

@@ -20,7 +20,7 @@ public class StorageInteractable : MonoBehaviour, IInteractable, IPromptProvider
         
         _playerInteractionState = _playerControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
         
-        if (_storedWaterLife.Count < maxStoredFish && _playerInteractionState.CheckInteractionTag(InteractionTag.Holding))
+        if (_storedWaterLife.Count < maxStoredFish && _playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish))
         {
             if (_playerControllable.GetAssociatedGameObject().GetComponentInChildren<FoodClass>().CookStateRef != CookState.Raw)
             {
@@ -30,7 +30,7 @@ public class StorageInteractable : MonoBehaviour, IInteractable, IPromptProvider
             AddFishToStorage(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<FoodClass>().FoodData);
             Destroy(_holdingObjectTransform.GetChild(0).gameObject);
             m_currentInteractionSession = new InteractionSession(interactor,this);
-            _playerInteractionState.RemoveInteractionTag(InteractionTag.Holding);
+            _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingFish);
             m_currentInteractionSession.End();
             return m_currentInteractionSession;
         }
@@ -60,7 +60,7 @@ public class StorageInteractable : MonoBehaviour, IInteractable, IPromptProvider
         GameObject fish = Instantiate(foodData.Model, _holdingObjectTransform.position,_holdingObjectTransform.rotation);
         fish.transform.SetParent(_holdingObjectTransform);
         fish.GetComponent<FoodClass>().InitializeHungerAndThirst(hungerRef);
-        _playerInteractionState.AddInteractionTag(InteractionTag.Holding);
+        _playerInteractionState.AddInteractionTag(InteractionTag.HoldingFish);
         _storedWaterLife.RemoveAt(0);
     }
 

@@ -151,10 +151,10 @@ public class LightingManager : MonoBehaviour
         foreach(GameObject windowLight in windowLights)
         {
             Renderer renderer = windowLight.GetComponent<Renderer>();
-            Material[] currentMaterials = renderer.materials;
+            Material[] currentMaterials = renderer.sharedMaterials;
             foreach(Material mat in currentMaterials)
             {
-                mat.SetFloat("_Emissive_Intensity", 1f);
+                mat.SetFloat("_Emissive_Intensity", 1.3f);
             }
         }
     }
@@ -164,7 +164,7 @@ public class LightingManager : MonoBehaviour
         foreach (GameObject windowLight in windowLights)
         {
             Renderer renderer = windowLight.GetComponent<Renderer>();
-            Material[] currentMaterials = renderer.materials;
+            Material[] currentMaterials = renderer.sharedMaterials;
             foreach (Material mat in currentMaterials)
             {
                 mat.SetFloat("_Emissive_Intensity", 0f);

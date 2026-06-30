@@ -58,8 +58,8 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         _playerControllableForHoldingObject = oldControllable;
         _playerController = controller;
         _playerInteractionState = oldControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
-       
-        if (_playerInteractionState.CheckInteractionTag(InteractionTag.Holding) || _currentInteractionSession is {IsActive: true} )
+
+        if (_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish) || _playerInteractionState.CheckInteractionTag(InteractionTag.HoldingBottle) || _playerInteractionState.CheckInteractionTag(InteractionTag.HoldingBottleWithWater) || _currentInteractionSession is { IsActive: true })
         {
             Debug.Log("Blocked");
             return null;
@@ -173,7 +173,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         _holdingObjectTransform = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
         GameObject caughtItem = Instantiate(usableThingsToCatch[index], _holdingObjectTransform.position,_holdingObjectTransform.rotation);
         caughtItem.transform.SetParent(_holdingObjectTransform);
-        _playerInteractionState.AddInteractionTag(InteractionTag.Holding);
+        _playerInteractionState.AddInteractionTag(InteractionTag.HoldingFish);
         
         foodClassRef = caughtItem.GetComponent<FoodClass>();
         HungerAndThirst hungerRef = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>();
