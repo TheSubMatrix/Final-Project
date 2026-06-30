@@ -21,7 +21,7 @@ public class FishingMiniGame
         _isGameOver = false;
         _data = fishingMiniGameData;
         _data.FishingProgressBar.fillAmount = 0;
-        var (bottomOfGreenZone, topOfGreenZone) = GetMaxAndMinOfIconWorld(_data.PlayerGreenZone);
+        var (bottomOfGreenZone, topOfGreenZone) = GetMaxAndMinOfIconLocal(_data.PlayerGreenZone);
         _halfHeightOfGreenPlayerIcon = (topOfGreenZone - bottomOfGreenZone) / 2;
         Debug.Log($"Green zone half height: {_halfHeightOfGreenPlayerIcon}, bottom: {bottomOfGreenZone}, top: {topOfGreenZone}");
 
@@ -32,7 +32,7 @@ public class FishingMiniGame
         _data.PlayerGreenZone.localPosition = startPos;
         CheckFishingProgress(_data.FishingProgressBar);
         
-        var(bottomOfFishIcon,topOfFishIcon) = GetMaxAndMinOfIconWorld(_data.FishingIcon);
+        var(bottomOfFishIcon,topOfFishIcon) = GetMaxAndMinOfIconLocal(_data.FishingIcon);
         _halfHeightOfFishIcon = (topOfFishIcon - bottomOfFishIcon) / 2;
         _fishSpeed = UnityEngine.Random.Range(_data.FishMinSpeed, _data.FishMaxSpeed);
         _fishDirection = UnityEngine.Random.Range(minOfUsableFishingSpace + _halfHeightOfFishIcon,maxOfUsableFishingSpace - _halfHeightOfFishIcon);
@@ -107,8 +107,8 @@ public class FishingMiniGame
     
     private bool FishingIconOverlap(RectTransform fishIcon, RectTransform greenZone)
     {
-        var (bottomOfFishIcon, topOfFishIcon) = GetMaxAndMinOfIconWorld(fishIcon);
-        var (bottomOfGreenZoneIcon, topOfGreenZoneIcon) = GetMaxAndMinOfIconWorld(greenZone);
+        var (bottomOfFishIcon, topOfFishIcon) = GetMaxAndMinOfIconLocal(fishIcon);
+        var (bottomOfGreenZoneIcon, topOfGreenZoneIcon) = GetMaxAndMinOfIconLocal(greenZone);
         
         if ((bottomOfGreenZoneIcon - _data.IconBuffer) <= bottomOfFishIcon && topOfFishIcon <= (topOfGreenZoneIcon + _data.IconBuffer))
         {
@@ -116,20 +116,14 @@ public class FishingMiniGame
         }
         return false;
     }
-
-    private (float min, float max) GetMaxAndMinOfIconWorld(RectTransform incomingIcon)
-    {
-        Vector3[] worldCorners = new Vector3[4];
-        incomingIcon.GetWorldCorners(worldCorners);
-
-        return (worldCorners[0].y, worldCorners[1].y);
-    }
     
     private (float min, float max) GetMaxAndMinOfIconLocal(RectTransform incomingIcon)
     {
-        Vector3[] worldCorners = new Vector3[4];
-        incomingIcon.GetLocalCorners(worldCorners);
-
-        return (worldCorners[0].y, worldCorners[1].y);
+        Rect rect = incomingIcon.rect;
+        
+        float localY = incomingIcon.localPosition.y;
+        return (localY + rect.yMin, localY + rect.yMax);
     }
+
+    
 }

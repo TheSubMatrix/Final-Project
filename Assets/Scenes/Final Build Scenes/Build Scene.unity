@@ -1130,7 +1130,7 @@ MonoBehaviour:
   _fishingControlActionMap: Fishing
   m_widgetPosition: {fileID: 101565195}
   _speedOfFishIcon: 150
-  _overlapIconBuffer: 30
+  _overlapIconBuffer: 20
   _progressSpeed: 0.5
   usableThingsToCatch:
   - {fileID: 2305006631735972290, guid: 53d3ea83b9420624a981f32cdc0a69ab, type: 3}
@@ -12966,7 +12966,7 @@ MonoBehaviour:
   _fishingControlActionMap: Fishing
   m_widgetPosition: {fileID: 686196560}
   _speedOfFishIcon: 150
-  _overlapIconBuffer: 30
+  _overlapIconBuffer: 0.05
   _progressSpeed: 0.5
   usableThingsToCatch:
   - {fileID: 2305006631735972290, guid: 53d3ea83b9420624a981f32cdc0a69ab, type: 3}
