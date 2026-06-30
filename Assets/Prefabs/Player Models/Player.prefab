@@ -1174,7 +1174,7 @@ AudioSource:
   m_GameObject: {fileID: 2051537735393309202}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -4160611328156980708, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -2787,8 +2787,8 @@ MonoBehaviour:
     m_Bits: 1025
   m_playerState: {fileID: 4259362998317367922}
   audioSource: {fileID: 3216482273624154066}
-  chewing: {fileID: 0}
-  drinking: {fileID: 0}
+  chewing: {fileID: 8300000, guid: 3a8a7bb03a934bc4fb499670ba89f3b4, type: 3}
+  drinking: {fileID: 8300000, guid: d2de5d7b93b024142ad1044bff9199dd, type: 3}
 --- !u!1 &5202064353894193035
 GameObject:
   m_ObjectHideFlags: 0
