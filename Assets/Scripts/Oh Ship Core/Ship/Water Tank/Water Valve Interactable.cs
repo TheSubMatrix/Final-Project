@@ -32,8 +32,7 @@ public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerContr
         IPlayerController controller = oldControllable.GetActivePlayerController();
         m_currentInteractionState = oldControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
 
-        if (m_currentInteractionState.CheckInteractionTag(InteractionTag.Holding) ||
-            m_currentInteractionSession is { IsActive: true })
+        if(m_currentInteractionState.CheckInteractionTag(InteractionTag.HoldingFish) || m_currentInteractionState.CheckInteractionTag(InteractionTag.HoldingBottle) || m_currentInteractionState.CheckInteractionTag(InteractionTag.HoldingBottleWithWater) || m_currentInteractionSession is {IsActive: true})
         {
             Debug.Log("Blocked interaction");
             return null;

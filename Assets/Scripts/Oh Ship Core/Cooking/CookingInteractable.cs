@@ -30,7 +30,7 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
         _playerInteractionState = _playerControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
          
 
-        if (_playerInteractionState.CheckInteractionTag(InteractionTag.Holding))
+        if (_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish))
         {
             _foodClassItem = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().GetComponentInChildren<FoodClass>();
             if (_foodClassItem.CookingProcess == howIsCooked && cookingLocation.childCount == 0)
@@ -38,7 +38,7 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
                 m_currentInteractionSession = new InteractionSession(interactor, this);
                 m_currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
                 MoveObjectToStove();
-                _playerInteractionState.RemoveInteractionTag(InteractionTag.Holding);
+                _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingFish);
                 m_currentInteractionSession.End();
                 return m_currentInteractionSession;
             }
@@ -50,7 +50,7 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
                 MoveObjetToHand();
                 m_currentInteractionSession = new InteractionSession(interactor, this);
                 m_currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
-                _playerInteractionState.AddInteractionTag(InteractionTag.Holding);
+                _playerInteractionState.AddInteractionTag(InteractionTag.HoldingFish);
                 m_currentInteractionSession.End();
                 return m_currentInteractionSession;
             }

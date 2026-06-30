@@ -38,7 +38,7 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         IPlayerController controller = oldControllable.GetActivePlayerController();
         m_playerInteractionState = oldControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
-        if (m_playerInteractionState.CheckInteractionTag(InteractionTag.Holding) || m_currentInteractionSession is {IsActive:true})
+        if (m_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish) || m_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingBottle) || m_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingBottleWithWater) || m_currentInteractionSession is { IsActive: true })
         {
             Debug.Log("Blocking helm interaction");
             return null;
