@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,8 +18,8 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
 
     [SerializeField] private float _speedOfFishIcon;
 
-    [Range(0.01f, 0.05f)] 
-    [SerializeField] private float _overlapIconBuffer = 0.5f;
+    
+    [SerializeField] private float _overlapIconBuffer = 0.9f;
         
     [Range(0f, 1f)]
     [SerializeField] private float _progressSpeed;
@@ -107,15 +108,15 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         _fishingUI.DisplayFishingUI();
     }
 
-    private void SetUpFishingMinigame()
+    private  void SetUpFishingMinigame()
     {
         _isHoldingButton = false;
         SetUpUIElements();
-        
+    
         FishingMiniGameData data = new FishingMiniGameData();
         data.PlayerGreenZone = _greenPlayerZone;
         data.UsableFishingArea = _usableFishingArea;
-        data.FishingIcon =  _fishingIcon;
+        data.FishingIcon = _fishingIcon;
         data.FishingProgressBar = _fishingProgressBar;
         data.SpeedOfFishIcon = _speedOfFishIcon;
         data.ProgressSpeed = _progressSpeed;
@@ -159,6 +160,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         _fishingMiniGame.OnCaughtFish -= HandleObjectCaught;
         _fishingUI.HideFishingUI();
         _player.GetComponentInChildren<MeshRenderer>().enabled = true;
+        _fishingMiniGame.EndMiniGame();
         _activeActionMap = null;
     }
 
