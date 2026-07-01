@@ -6,7 +6,6 @@ using MatrixUtils.DependencyInjection;
 using MatrixUtils.GenericDatatypes;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Pool;
 using Random = UnityEngine.Random;
 
@@ -68,8 +67,6 @@ public class ShipHealth : MonoBehaviour, IDamageable
         {
             m_sceneTransitioner.TransitionToScene("GameOver", 0.5f);
         }
-        
-        if (Keyboard.current.spaceKey.wasPressedThisFrame) Damage(1);
     }
     /// <inheritdoc/>
     public bool Damage(uint amount)
@@ -126,6 +123,5 @@ public class ShipHealth : MonoBehaviour, IDamageable
     {
         Damage(1);
     }
-    
     #endif
 }

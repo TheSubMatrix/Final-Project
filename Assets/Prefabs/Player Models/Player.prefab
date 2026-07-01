@@ -1098,7 +1098,7 @@ MonoBehaviour:
   m_hungerLossRates:
     m_list:
     - Key: 1
-      Value: 0
+      Value: 0.02
     - Key: 3
       Value: 0.02
     - Key: 4
@@ -1110,7 +1110,7 @@ MonoBehaviour:
     m_stagingEntry:
       Key: 0
       Value: 0
-  thirstLossRate: 0
+  thirstLossRate: 0.007
   m_isPassedOut: 0
   m_passedOutEffect: {fileID: 8383372828078370981}
   shipTag: Player Steam Boat
