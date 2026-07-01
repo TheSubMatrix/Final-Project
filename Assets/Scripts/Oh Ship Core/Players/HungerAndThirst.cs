@@ -112,7 +112,6 @@ public class HungerAndThirst: MonoBehaviour
         m_isPassedOut = false;
         gameObject.layer = LayerMask.NameToLayer("Player");
         Debug.Log($"Layer set to: {gameObject.layer}, expected: {LayerMask.NameToLayer("Player")}");
-        m_passedOutEffect.Stop();
         OnEnableMovement.Invoke(true);
 
     }
