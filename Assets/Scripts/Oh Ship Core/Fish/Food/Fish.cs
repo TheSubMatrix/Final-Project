@@ -5,7 +5,8 @@ public class Fish : FoodClass
     private Material m_material;
     private float m_cookedAmount;
     private CookState m_currentCookState = CookState.Raw;
-    
+    [SerializeField] private ParticleSystem cookedVFX;
+
     public override CookState CookStateRef {get{return m_currentCookState;}}
     
     public override CookingProcess CookingProcess => CookingProcess.OnGrill;
@@ -25,6 +26,11 @@ public class Fish : FoodClass
 
         if (newState == m_currentCookState) return;
         m_currentCookState = newState;
+
+        if (m_currentCookState == CookState.Cooked)
+        {
+            cookedVFX.Play();
+        }
     }
 
     public override void Reset()

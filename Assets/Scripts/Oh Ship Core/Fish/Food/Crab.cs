@@ -5,6 +5,7 @@ public class Crab : FoodClass
     private Material m_material;
     private float m_cookedAmount;
     private CookState m_currentCookState = CookState.Raw;
+    [SerializeField] private ParticleSystem cookedVFX;
 
     public override CookState CookStateRef { get { return m_currentCookState; } }
 
@@ -16,6 +17,7 @@ public class Crab : FoodClass
         Reset();
     }
 
+
     public override void UpdateCookedAmount(float incomingAmount)
     {
         m_cookedAmount = incomingAmount;
@@ -25,6 +27,11 @@ public class Crab : FoodClass
 
         if (newState == m_currentCookState) return;
         m_currentCookState = newState;
+
+        if(m_currentCookState == CookState.Cooked)
+        {
+            cookedVFX.Play();
+        }
     }
 
     public override void Reset()
