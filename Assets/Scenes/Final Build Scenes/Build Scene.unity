@@ -1130,7 +1130,7 @@ MonoBehaviour:
   _fishingControlActionMap: Fishing
   m_widgetPosition: {fileID: 101565195}
   _speedOfFishIcon: 150
-  _overlapIconBuffer: 20
+  _overlapIconBuffer: 40
   _progressSpeed: 0.4
   usableThingsToCatch:
   - {fileID: 2305006631735972290, guid: 53d3ea83b9420624a981f32cdc0a69ab, type: 3}
@@ -2008,6 +2008,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 78752143}
   m_LocalEulerAnglesHint: {x: -13.934, y: 0, z: 0}
+--- !u!1 &241297489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 241297490}
+  m_Layer: 0
+  m_Name: Interact
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &241297490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241297489}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.189, y: 0.74, z: -3.48}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1362605803}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &248058789
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,6 +2166,76 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!1 &266713706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 266713707}
+  - component: {fileID: 266713709}
+  - component: {fileID: 266713708}
+  m_Layer: 0
+  m_Name: CuttingBoard (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &266713707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266713706}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1162548454}
+  m_Father: {fileID: 1915843964}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &266713708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266713706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fca6a1db06fbc542a43a7a323a87c1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Cooking::CuttingBoardInteractable
+  _interactDisplayTransform: {fileID: 1162548454}
+  storingLocation: {fileID: 266713707}
+  howIsCooked: 0
+--- !u!65 &266713709
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266713706}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.41751862, y: 0.047072887, z: 0.23583984}
+  m_Center: {x: 1.1538401, y: 0.83725905, z: -3.7035646}
 --- !u!1 &271671366
 GameObject:
   m_ObjectHideFlags: 0
@@ -8093,6 +8194,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1320048185041333726, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
   m_PrefabInstance: {fileID: 7501252337306102668}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1162548453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1162548454}
+  m_Layer: 0
+  m_Name: Interact (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1162548454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162548453}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.189, y: 0.74, z: -3.73}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 266713707}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!21 &1163082427
 Material:
   serializedVersion: 8
@@ -9883,6 +10015,76 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6356297412407155171, guid: a9ae24cad0d094247b5ca193360ed7fc, type: 3}
   m_PrefabInstance: {fileID: 2759527505578783048}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1362605802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1362605803}
+  - component: {fileID: 1362605805}
+  - component: {fileID: 1362605804}
+  m_Layer: 0
+  m_Name: CuttingBoard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1362605803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362605802}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 241297490}
+  m_Father: {fileID: 1915843964}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1362605804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362605802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fca6a1db06fbc542a43a7a323a87c1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Cooking::CuttingBoardInteractable
+  _interactDisplayTransform: {fileID: 241297490}
+  storingLocation: {fileID: 1362605803}
+  howIsCooked: 0
+--- !u!65 &1362605805
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362605802}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.41751862, y: 0.043986082, z: 0.21951771}
+  m_Center: {x: 1.1538401, y: 0.83571565, z: -3.4551492}
 --- !u!4 &1366837206 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7870390068486667695, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
@@ -12538,6 +12740,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4491393671668240374, guid: a9ae24cad0d094247b5ca193360ed7fc, type: 3}
   m_PrefabInstance: {fileID: 2759527505578783048}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1915843964 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6619531314942002035, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+  m_PrefabInstance: {fileID: 1920507445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1917325374 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5494103559505366105, guid: a9ae24cad0d094247b5ca193360ed7fc, type: 3}
@@ -12793,15 +13000,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_buoyancyPoints.Array.data[5].LocalPosition.x
-      value: -3.633266
+      value: -3.6340003
       objectReference: {fileID: 0}
     - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_buoyancyPoints.Array.data[5].LocalPosition.y
-      value: -0.82018656
+      value: -0.82182413
       objectReference: {fileID: 0}
     - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_buoyancyPoints.Array.data[5].LocalPosition.z
-      value: -9.992465
+      value: -9.990909
       objectReference: {fileID: 0}
     - target: {fileID: 3647051531239599917, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_Enabled
@@ -13087,6 +13294,7 @@ PrefabInstance:
     - {fileID: 2864875148593070931, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
     - {fileID: 9138067249538912889, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
     - {fileID: 2547021882634607150, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+    - {fileID: 1137439863318677939, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5768041195369910708, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
     - {fileID: 6098649646471108590, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
@@ -13124,6 +13332,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8710733731300475606, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       insertIndex: 0
       addedObject: {fileID: 850430505}
+    - targetCorrespondingSourceObject: {fileID: 6619531314942002035, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1362605803}
+    - targetCorrespondingSourceObject: {fileID: 6619531314942002035, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 266713707}
     - targetCorrespondingSourceObject: {fileID: 5049912455561075455, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1076635737}

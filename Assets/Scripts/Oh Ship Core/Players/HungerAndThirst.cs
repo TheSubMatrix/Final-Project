@@ -42,6 +42,7 @@ public class HungerAndThirst: MonoBehaviour
         Thirst.Value = Mathf.Clamp01(Thirst.Value - thirstLossRate * Time.deltaTime);
 
         if (Hunger.Value <= 0 && !m_isPassedOut) PassOut();
+        if (Thirst.Value <= 0 && !m_isPassedOut) PassOut();
     }
     public void OnPlayerControllerConnected(IPlayerController controller)
     {
