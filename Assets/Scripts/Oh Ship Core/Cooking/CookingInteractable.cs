@@ -107,7 +107,7 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
             return;
         }
 
-        if(cookingLocation.childCount > 0)
+        if(cookingLocation.childCount > 0 && _foodClassItem.transform.position == cookingLocation.position)
         {
             if(lastCookedObject != _foodClassItem.gameObject)
             {
