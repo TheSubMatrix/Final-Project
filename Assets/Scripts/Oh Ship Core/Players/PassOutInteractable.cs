@@ -42,6 +42,7 @@ public class PassOutInteractable : MonoBehaviour, IInteractable, IPromptProvider
             }
             else
             {
+                Debug.Log("should wake up");
                 _hungerNThirst.WakeUp(0.2f);
             }
             return m_currentInteractionSession;
