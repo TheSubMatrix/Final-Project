@@ -65,6 +65,7 @@ public class ShipHole : MonoBehaviour, IInteractable, IPromptProvider, IProgress
         if (m_repairTimer is null) return;
         if (m_repairTimer.IsFinished)
         {
+            m_currentInteraction?.End();
             m_onRepairComplete?.Invoke();
             m_isRepairing = false;
             m_repairTimer = null;
