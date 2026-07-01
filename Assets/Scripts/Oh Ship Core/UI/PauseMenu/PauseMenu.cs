@@ -3,21 +3,15 @@ using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenuUI;
-    [SerializeField] private InputActionReference togglePauseAction;
+    [SerializeField] GameObject pauseMenuUI;
+    [SerializeField] InputActionReference togglePauseAction;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         pauseMenuUI.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnEnable()
+    void OnEnable()
     {
         if (togglePauseAction != null)
         {
@@ -26,7 +20,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         if (togglePauseAction != null)
         {
@@ -35,10 +29,15 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    private void OnToggleMenu(InputAction.CallbackContext context)
+    public void Resume()
     {
-        Debug.Log("Menu toggled!");
-
+        if(!pauseMenuUI.activeSelf) return;
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+    }
+    
+    void OnToggleMenu(InputAction.CallbackContext context)
+    {
         if(!pauseMenuUI.activeSelf)
         {
             pauseMenuUI.SetActive(true);
