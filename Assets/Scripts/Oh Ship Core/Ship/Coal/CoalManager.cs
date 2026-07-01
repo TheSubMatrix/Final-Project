@@ -140,7 +140,7 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
         interact.performed -= HandleInteract;
         m_coalUI.HideUI();
         m_playerInteractionState.RemoveInteractionTag(InteractionTag.ShovelCoal);
-
+        m_currentInteractionSession.End();
         m_activePlayerController = null;
     }
 

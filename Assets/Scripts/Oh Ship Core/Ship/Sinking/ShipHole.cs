@@ -31,11 +31,14 @@ public class ShipHole : MonoBehaviour, IInteractable, IPromptProvider, IProgress
         m_repairTimer = new(m_repairTime);
         m_repairTimer.OnTimerStop += HandleRepairEnd;
         m_repairTimer.OnTimerTick += () => m_onRepairProgressCheck?.Invoke(1- m_repairTimer.Progress);
+        Debug.Log("Initialize");
         m_leakAudioSource.Play();
     }
     /// <inheritdoc/>
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
+        Debug.Log("BeginInteraction entered");
+        
         if (m_currentInteraction is {IsActive: false}) return null;
         m_controllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         m_playerController = m_controllable.GetActivePlayerController();
@@ -56,6 +59,7 @@ public class ShipHole : MonoBehaviour, IInteractable, IPromptProvider, IProgress
             m_promptDisplay.ShowPrompt(this);
             m_repairTimer.Pause();
         };
+        Debug.Log($"Starting timer, m_repairTimer is null: {m_repairTimer == null}, repair time: {m_repairTime}");
         m_repairTimer.Start();
         return session;
     }
@@ -65,9 +69,11 @@ public class ShipHole : MonoBehaviour, IInteractable, IPromptProvider, IProgress
         if (m_repairTimer is null) return;
         if (m_repairTimer.IsFinished)
         {
+            m_currentInteraction?.End();
             m_onRepairComplete?.Invoke();
             m_isRepairing = false;
             m_repairTimer = null;
+            //m_currentInteraction = null;
             m_repairAudioSource.Stop();
             m_leakAudioSource.Stop();
             m_promptDisplay.HidePrompt(this);
@@ -79,7 +85,7 @@ public class ShipHole : MonoBehaviour, IInteractable, IPromptProvider, IProgress
 
     public PromptData GetPromptData()
     {
-        Debug.Log($"GetPromptData called, isRepairing: {m_isRepairing}, widget: {(m_isRepairing ? m_widgetForRepair : m_widgetForPrompt)}");
+        //Debug.Log($"GetPromptData called, isRepairing: {m_isRepairing}, widget: {(m_isRepairing ? m_widgetForRepair : m_widgetForPrompt)}");
         return new() {AssociatedWidget = m_isRepairing ? m_widgetForRepair : m_widgetForPrompt};
     }
     
