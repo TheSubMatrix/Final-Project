@@ -1585,7 +1585,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -131.6, y: 374.9}
+  m_AnchoredPosition: {x: -131.59998, y: 374.9}
   m_SizeDelta: {x: 248.2, y: 738.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6341032816755589638
@@ -1905,6 +1905,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2cef8b6a-efb9-412a-8307-d5e06b8382d1
     m_ActionName: 'Adjust Pressure/Adjust Pressure[/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: de4bbebd-6bdb-4404-9670-9b27104bd880
+    m_ActionName: 'Player/Pause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
