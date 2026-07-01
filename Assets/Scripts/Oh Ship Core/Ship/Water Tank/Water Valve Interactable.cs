@@ -47,6 +47,7 @@ public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerContr
         
         m_currentInteractionSession = new(interactor, this);
         m_currentInteractionSession.OnEnded += () => controller.ChangeControlledEntity(oldControllable);
+        
         return m_currentInteractionSession;
     }
     /// <inheritdoc/>

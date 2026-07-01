@@ -79,7 +79,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         _player = oldControllable.GetAssociatedGameObject().gameObject;
         _player.GetComponentInChildren<MeshRenderer>().enabled = false;
         
-       
+        _playerInteractionState.AddInteractionTag(InteractionTag.Fishing);
         return _currentInteractionSession;
     }
  
@@ -161,6 +161,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         _fishingUI.HideFishingUI();
         _player.GetComponentInChildren<MeshRenderer>().enabled = true;
         _fishingMiniGame.EndMiniGame();
+        _playerInteractionState.RemoveInteractionTag(InteractionTag.Fishing);
         _activeActionMap = null;
     }
 
