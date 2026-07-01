@@ -44,7 +44,7 @@ public class HungerAndThirst: MonoBehaviour
                 Hunger.Value = Mathf.Clamp01(Hunger.Value - (hungerChecks.Value * Time.deltaTime));
             }
         }
-
+        
         Thirst.Value = Mathf.Clamp01(Thirst.Value - thirstLossRate * Time.deltaTime);
 
         if (Hunger.Value <= 0 && !m_isPassedOut) PassOut(1);
