@@ -5651,7 +5651,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1, y: 1e-45, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
@@ -13551,7 +13551,7 @@ PrefabInstance:
     - target: {fileID: 571093363842849361, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: dropCrabSound
       value: 
-      objectReference: {fileID: 8300000, guid: 68363452366e6424281fbb1663fe6fe5, type: 3}
+      objectReference: {fileID: 8300000, guid: b10dbd6156ddaba4cbdc05dcce7dd04e, type: 3}
     - target: {fileID: 571093363842849361, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: cookingLocation
       value: 
@@ -13909,6 +13909,7 @@ PrefabInstance:
     - {fileID: 9138067249538912889, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
     - {fileID: 2547021882634607150, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
     - {fileID: 1137439863318677939, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+    - {fileID: 217558331183837081, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5768041195369910708, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
     - {fileID: 6098649646471108590, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
