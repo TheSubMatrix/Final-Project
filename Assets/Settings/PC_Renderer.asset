@@ -46,7 +46,8 @@ MonoBehaviour:
     probeVolumeBlendStatesCS: {fileID: 7200000, guid: b9a23f869c4fd45f19c5ada54dd82176, type: 3}
   m_RendererFeatures:
   - {fileID: -3103123832072072841}
-  m_RendererFeatureMap: 77914bd7507defd4
+  - {fileID: 6481053155696718657}
+  m_RendererFeatureMap: 77914bd7507defd44133bacb8153f159
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -75,3 +76,17 @@ MonoBehaviour:
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 0
+--- !u!114 &6481053155696718657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ecb48acc13541d782b07ec8d6249708, type: 3}
+  m_Name: BlurRendererFeature
+  m_EditorClassIdentifier: OhShip.Core.PostProcessing::BlurRendererFeature
+  m_Active: 1
+  m_blurMaterial: {fileID: 2100000, guid: 9d1bd898c86d9724886d8bc22602033f, type: 2}
