@@ -12,6 +12,10 @@ public class SceneTransitionerProxy : MonoBehaviour
         FindAnyObjectByType<Injector>().Inject(this);
     }
 
-    public void TransitionToScene(string sceneName) => m_sceneTransitioner.TransitionToScene(sceneName, m_transitionDuration);
+    public void TransitionToScene(string sceneName)
+    {
+        Time.timeScale = 1f;
+        m_sceneTransitioner.TransitionToScene(sceneName, m_transitionDuration);
+    }
     
 }

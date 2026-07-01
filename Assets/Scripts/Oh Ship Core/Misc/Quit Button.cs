@@ -11,6 +11,7 @@ public class QuitButton : MonoBehaviour
 
     public void Quit()
     {
+        Time.timeScale = 1f;
         Application.Quit();
     }
 
