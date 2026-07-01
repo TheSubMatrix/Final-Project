@@ -16,19 +16,7 @@ public class BottleInteractable : MonoBehaviour, IInteractable, IPromptProvider
     private Transform _holdingObjectTransform;
     [SerializeField] private GameObject bottleToSpawn;
     [SerializeField] private GameObject bottleTaken;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
         _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
