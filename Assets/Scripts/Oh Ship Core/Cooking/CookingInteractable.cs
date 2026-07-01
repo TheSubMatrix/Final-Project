@@ -14,8 +14,7 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
     private PlayerInteractionState _playerInteractionState;
     private FoodClass _foodClassItem;
     private float cookedAmount;
-    private FoodClass currentFood;
-    private Fish fish;
+    private bool hasDropped = false;
     private GameObject lastCookedObject;
 
     [Header("Sound")]
@@ -31,6 +30,11 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
     public void Update()
     {
         Cook();
+
+        if(cookedAmount >= 1)
+        {
+            audioSource.Stop();
+        }
     }
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
@@ -89,8 +93,9 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
         _foodClassItem.transform.position = cookingLocation.position;
         _foodClassItem.transform.SetParent(cookingLocation);
 
-        if(_foodClassItem.CookingProcess == CookingProcess.InPot)
+        if(_foodClassItem.CookingProcess == CookingProcess.InPot && !hasDropped)
         {
+            hasDropped = true;
             audioSource.PlayOneShot(dropCrabSound);
             Invoke("PlaySound", 1.5f);
         }
@@ -122,6 +127,7 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
     private void MoveObjetToHand()
     {
         audioSource.Stop();
+        hasDropped = false;
         FoodClass cookingItem = cookingLocation.GetComponentInChildren<FoodClass>();
         cookingItem.transform.position = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform.position;
         cookingItem.transform.SetParent(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform);
@@ -134,8 +140,8 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
     private void PlaySound()
     {
-        audioSource.clip = cookSound;
-        audioSource.Play();
+        audioSource.PlayOneShot(cookSound);
+
     }
     
 }
