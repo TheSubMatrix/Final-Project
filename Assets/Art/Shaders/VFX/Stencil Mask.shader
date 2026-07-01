@@ -13,6 +13,7 @@ Shader "Custom/Stencil Mask"
             
             ColorMask 0
             ZWrite Off
+            
             Stencil
             {
                 Ref [_StencilRef]

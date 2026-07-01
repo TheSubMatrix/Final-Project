@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Water
-  m_Shader: {fileID: -6465566751694194690, guid: df941d7d449ad9f4fba17fc5135bd7bc, type: 3}
+  m_Shader: {fileID: 4800000, guid: 19a201af4dcb4d84eb898d77b962a9be, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -26,8 +26,7 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses:
-  - MOTIONVECTORS
+  disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -84,6 +83,14 @@ Material:
     - _SHADOWS_SOFT: 1
     - _SHADOW_MASKS: 1
     - _Smoothness: 0.9
+    - _StencilComp: 0
+    - _StencilEnabled: 0
+    - _StencilFail: 0
+    - _StencilPass: 0
+    - _StencilReadMask: 255
+    - _StencilRef: 6
+    - _StencilWriteMask: 255
+    - _StencilZFail: 0
     - _Strength: 0.37
     - _Texture_Scale: 5
     - _Transition_Sharpness: 0.76
