@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,5 +22,11 @@ public class PlayerInteractionState : MonoBehaviour
     public bool CheckInteractionTag(InteractionTag interactionTag)
     {
         return  m_interactionTags.Contains(interactionTag);
+    }
+
+    private void Update()
+    {
+        if (m_interactionTags.Count > 0)
+            Debug.Log($"Active tags: {string.Join(", ", m_interactionTags)}");
     }
 }
