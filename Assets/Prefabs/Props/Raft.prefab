@@ -75,6 +75,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1672f6ae56b80f946b2a6e3c94c77b28, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6916760691424138530}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1672f6ae56b80f946b2a6e3c94c77b28, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3822540587202558068}
   m_SourcePrefab: {fileID: 100100000, guid: 1672f6ae56b80f946b2a6e3c94c77b28, type: 3}
 --- !u!1 &3102601640029440807 stripped
 GameObject:
@@ -102,3 +105,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.2438164, y: 27.91447, z: 6.3782816}
   m_Center: {x: -0.00000047683716, y: -5.012682, z: 0.00000047683716}
+--- !u!114 &3822540587202558068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3102601640029440807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::CollisionDamager
