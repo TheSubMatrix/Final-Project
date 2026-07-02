@@ -9,9 +9,15 @@ public class StorageInteractable : MonoBehaviour, IInteractable, IPromptProvider
     InteractionSession m_currentInteractionSession;
     [SerializeField] private List<SO_CookableFoodData> _storedWaterLife =  new List<SO_CookableFoodData>();
     [SerializeField] private string _widgetForPrompt = "interact";
-    [SerializeField] private int maxStoredFish = 5;
+    [SerializeField] private int maxStoredFish = 6;
     private PlayerInteractionState _playerInteractionState;
-    
+
+    [SerializeField] private GameObject[] fishes = new GameObject[3];
+    [SerializeField] private GameObject[] crabs = new GameObject[3];
+
+    private int fishDisplayed = 0;
+    private int crabsDisplayed = 0;
+
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
         _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
@@ -51,6 +57,14 @@ public class StorageInteractable : MonoBehaviour, IInteractable, IPromptProvider
     public void AddFishToStorage(SO_CookableFoodData foodData)
     {
         _storedWaterLife.Add(foodData);
+        if(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<Fish>() != null)
+        {
+            fishDisplayed += 1;
+        }
+        else if (_playerControllable.GetAssociatedGameObject().GetComponentInChildren<Crab>() != null)
+        {
+            crabsDisplayed += 1;
+        }
     }
 
     public void RemoveFishFromStorage(SO_CookableFoodData foodData)
@@ -73,5 +87,52 @@ public class StorageInteractable : MonoBehaviour, IInteractable, IPromptProvider
     public Vector3 GetWidgetWorldPosition()
     {
         return transform.position;
+    }
+
+    private void Update()
+    {
+        UpdateCrabCount();
+        UpdateFishCount();
+    }
+
+    private void UpdateFishCount()
+    {
+        
+        switch (fishDisplayed)
+        {
+            case (1):
+                fishes[0].SetActive(true);
+                break;
+            case (2):
+                fishes[0].SetActive(true);
+                fishes[1].SetActive(true);
+                break;
+            case (3):
+                fishes[0].SetActive(true);
+                fishes[1].SetActive(true);
+                fishes[2].SetActive(true);
+                break;
+        }
+        
+    }
+
+    private void UpdateCrabCount()
+    {
+        switch (crabsDisplayed)
+        {
+            case (1):
+                crabs[0].SetActive(true);
+                break;
+            case (2):
+                crabs[0].SetActive(true);
+                crabs[1].SetActive(true);
+                break;
+            case (3):
+                crabs[0].SetActive(true);
+                crabs[1].SetActive(true);
+                crabs[2].SetActive(true);
+                break;
+        }
+
     }
 }
