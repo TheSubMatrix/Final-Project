@@ -4,6 +4,7 @@ using MatrixUtils.DependencyInjection;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using UnityEngine.VFX;
 
 public class WaterController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class WaterController : MonoBehaviour
 
     [Header("Required References")]
     [SerializeField, RequiredField] MeshRenderer m_waterFillMesh;
-
+    [SerializeField, RequiredField] VisualEffect m_smokeEffect;
     [Header("Settings")]
     [SerializeField] float m_maxFill = 1f;
     [SerializeField] float m_minFill = -1f;
@@ -30,7 +31,7 @@ public class WaterController : MonoBehaviour
     [SerializeField] UnityEvent OnOverPressureThresholdReached;
     [SerializeField] UnityEvent OnOverPressureMaximumReached;
     [SerializeField] UnityEvent OnUnderPressureFailure;
-    [SerializeField] private UnityEvent<float> OnWaterFillUpdate =  new UnityEvent<float>();
+    [SerializeField] UnityEvent<float> OnWaterFillUpdate =  new UnityEvent<float>();
 
     [Header("Sounds")]
     [SerializeField] SoundData m_overPressureThresholdReached;
@@ -53,6 +54,7 @@ public class WaterController : MonoBehaviour
     {
         UpdateCurrentFill(FillCenter);
         ScheduleNextDrift();
+        OnWaterFillUpdate.AddListener(fill => m_smokeEffect.SetFloat("Smoke Lightness", fill));
     }
 
     void Update()
