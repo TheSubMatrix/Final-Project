@@ -137,6 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1813347254336453039}
   - component: {fileID: 285802826287183872}
+  - component: {fileID: 5171340214723778223}
   m_Layer: 0
   m_Name: GameObject (5)
   m_TagString: Untagged
@@ -180,6 +181,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 63.416992, y: 50.351242, z: 68.40325}
   m_Center: {x: -29.053745, y: 2.5439835, z: -56.63296}
+--- !u!114 &5171340214723778223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670310997761899148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::CollisionDamager
 --- !u!1 &2721876160816603384
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6892644194721307709}
   - component: {fileID: 6780801120554150891}
+  - component: {fileID: 5919700822595347726}
   m_Layer: 0
   m_Name: GameObject (01)
   m_TagString: Untagged
@@ -286,6 +300,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 61.26288, y: 38.041695, z: 124.469284}
   m_Center: {x: -30.131456, y: -3.6107903, z: -59.197}
+--- !u!114 &5919700822595347726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3059136018319069907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::CollisionDamager
 --- !u!1 &3662650177678825486
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1059956898380130482}
   - component: {fileID: 8480014016480933954}
+  - component: {fileID: 7804010089346595317}
   m_Layer: 0
   m_Name: GameObject (11)
   m_TagString: Untagged
@@ -339,6 +366,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 63.416992, y: 50.351242, z: 68.40325}
   m_Center: {x: -29.053745, y: 2.5439835, z: -56.63296}
+--- !u!114 &7804010089346595317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3662650177678825486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::CollisionDamager
 --- !u!1 &4984927427743560156
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,6 +388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 570904399500986664}
   - component: {fileID: 8774554750757010107}
+  - component: {fileID: 5854608274933732416}
   m_Layer: 0
   m_Name: GameObject (12)
   m_TagString: Untagged
@@ -392,6 +432,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 63.416992, y: 50.351242, z: 30.796686}
   m_Center: {x: -29.053759, y: 2.5439835, z: -31.544107}
+--- !u!114 &5854608274933732416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4984927427743560156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::CollisionDamager
 --- !u!1 &5416337359180284138
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3265255215921991555}
   - component: {fileID: 9180752035845158}
+  - component: {fileID: 8227010624555254402}
   m_Layer: 0
   m_Name: GameObject (6)
   m_TagString: Untagged
@@ -445,6 +498,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 63.416992, y: 50.351242, z: 68.40325}
   m_Center: {x: -29.053745, y: 2.5439835, z: -56.63296}
+--- !u!114 &8227010624555254402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5416337359180284138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::CollisionDamager
 --- !u!1 &6052036814412925315
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,6 +520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1712159144005912729}
   - component: {fileID: 3680681872729561113}
+  - component: {fileID: 3024953267325742808}
   m_Layer: 0
   m_Name: GameObject (10)
   m_TagString: Untagged
@@ -498,6 +564,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 63.416992, y: 50.351242, z: 33.993103}
   m_Center: {x: -29.053942, y: 2.5439835, z: -98.260124}
+--- !u!114 &3024953267325742808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6052036814412925315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::CollisionDamager
 --- !u!1 &6503977039176495139
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1838950260159804472}
   - component: {fileID: 8377821318094036698}
+  - component: {fileID: 1446044545982972026}
   m_Layer: 0
   m_Name: GameObject (8)
   m_TagString: Untagged
@@ -551,6 +630,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 63.416992, y: 50.351242, z: 53.026493}
   m_Center: {x: -29.05388, y: 2.5439835, z: -88.44964}
+--- !u!114 &1446044545982972026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6503977039176495139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::CollisionDamager
 --- !u!1 &7255730902778337900
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,6 +652,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5138135394203748442}
   - component: {fileID: 7782140915106102983}
+  - component: {fileID: 5332361297184097677}
   m_Layer: 0
   m_Name: GameObject (3)
   m_TagString: Untagged
@@ -604,6 +696,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 63.416992, y: 50.351242, z: 66.325966}
   m_Center: {x: -29.053965, y: 2.5439835, z: -61.57595}
+--- !u!114 &5332361297184097677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255730902778337900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::CollisionDamager
 --- !u!1 &8143182931953832281
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,6 +718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7419496169977338603}
   - component: {fileID: 3860519563439830756}
+  - component: {fileID: 5640311508280234599}
   m_Layer: 0
   m_Name: GameObject (4)
   m_TagString: Untagged
@@ -657,6 +762,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 63.416992, y: 50.351242, z: 59.390785}
   m_Center: {x: -29.053583, y: 2.5439835, z: -34.912586}
+--- !u!114 &5640311508280234599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8143182931953832281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6fbc7c0f22d4187865da4d941327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Ship::CollisionDamager
 --- !u!1001 &4429429169834641
 PrefabInstance:
   m_ObjectHideFlags: 0
