@@ -39,6 +39,7 @@ public class CuttingBoardInteractable : MonoBehaviour, IInteractable, IPromptPro
                 m_currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
                 MoveObjectToBoard();
                 _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingCookedFish);
+                _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingFish);
                 m_currentInteractionSession.End();
                 return m_currentInteractionSession;
             }
@@ -77,6 +78,7 @@ public class CuttingBoardInteractable : MonoBehaviour, IInteractable, IPromptPro
     {
         _foodClassItem.transform.position = storingLocation.position;
         _foodClassItem.transform.SetParent(storingLocation);
+        Debug.Log("foodclass:" + _foodClassItem.transform.position);
 
     }
 
