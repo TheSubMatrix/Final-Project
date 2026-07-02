@@ -119,6 +119,7 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
             animSink.SetBool("waterRunning", false);
             _audioSource.Stop();
             timer = 0f;
+            _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingBottleWithWater);
         }
 
         m_currentInteractionSession = new InteractionSession(interactor, this);

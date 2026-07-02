@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInteractionState : MonoBehaviour
 {
     [SerializeField] private HashSet<InteractionTag> m_interactionTags =  new HashSet<InteractionTag>();
+    
     public void AddInteractionTag(InteractionTag interactionTag)
     {
         

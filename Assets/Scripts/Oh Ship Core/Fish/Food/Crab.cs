@@ -6,6 +6,9 @@ public class Crab : FoodClass
     private float m_cookedAmount;
     private CookState m_currentCookState = CookState.Raw;
     [SerializeField] private ParticleSystem cookedVFX;
+    private PlayerInteractionState playerInteractionState;
+    private HeldObjectLocation heldObjectLocation;
+    private Transform locationOfHeldObject;
 
     public override CookState CookStateRef { get { return m_currentCookState; } }
 
@@ -14,7 +17,12 @@ public class Crab : FoodClass
     private void Start()
     {
         m_material = GetComponent<MeshRenderer>().material;
-        Reset();
+        heldObjectLocation = GetComponentInParent<HeldObjectLocation>();
+        Debug.Log(heldObjectLocation);
+        locationOfHeldObject = heldObjectLocation.transform;
+        Debug.Log(locationOfHeldObject);
+        playerInteractionState = locationOfHeldObject.GetComponentInParent<PlayerInteractionState>();
+        Debug.Log(playerInteractionState);
     }
 
 
@@ -47,6 +55,16 @@ public class Crab : FoodClass
 
     public override float Eat()
     {
+        if (playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish) && playerInteractionState.CheckInteractionTag(InteractionTag.HoldingCookedFish))
+        {
+            Debug.Log("Removed Holding Fish");
+            playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingFish);
+            playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingCookedFish);
+        }
+
+
+
+
         return foodData.HungerRestored(m_currentCookState);
     }
 

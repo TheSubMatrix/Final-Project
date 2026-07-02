@@ -119,6 +119,7 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         hornAction.performed -= HandleHornStartedInput;
         hornAction.canceled -= HandleHornEndedInput;
         m_playerInteractionState.RemoveInteractionTag(InteractionTag.Steering);
+        m_currentInteractionSession.End();
         m_activePlayerController = null;
     }
     ///<inheritdoc/>

@@ -3,40 +3,43 @@ using UnityEngine;
 
 public abstract class FoodClass : MonoBehaviour, IUsableItem
 {
- [SerializeField] protected SO_CookableFoodData foodData;
- 
- public SO_CookableFoodData FoodData { get => foodData; set => foodData = value; }
- 
- public abstract CookingProcess CookingProcess { get; }
- 
- public abstract CookState CookStateRef { get; }
- 
- private HungerAndThirst m_HungerAndThirst;
+    [SerializeField] protected SO_CookableFoodData foodData;
+    
 
- public void InitializeHungerAndThirst(HungerAndThirst hungerAndThirst)
- {
-  m_HungerAndThirst = hungerAndThirst;
-    //Reset();
- }
+ public SO_CookableFoodData FoodData
+    { get => foodData; set => foodData = value; }
 
- public void Use()
- {
-  m_HungerAndThirst.Hunger.Value += Eat();
-  Debug.Log(gameObject.name + " has been used!");
-  Destroy(gameObject);
- }
- 
+    public abstract CookingProcess CookingProcess { get; }
 
-public float GetCookingSpeed()
-{
-    return FoodData.CookSpeed;
-}
+    public abstract CookState CookStateRef { get; }
 
-public virtual void UpdateCookedAmount(float amount) { }
+    private HungerAndThirst m_HungerAndThirst;
 
-public virtual void Reset() { }
+    public void InitializeHungerAndThirst(HungerAndThirst hungerAndThirst)
+    {
+        m_HungerAndThirst = hungerAndThirst;
+        //Reset();
+    }
 
-public abstract float Eat();
+    public void Use()
+    {
+        m_HungerAndThirst.Hunger.Value += Eat();
+
+        Debug.Log(gameObject.name + " has been used!");
+        Destroy(gameObject);
+    }
+
+
+    public float GetCookingSpeed()
+    {
+        return FoodData.CookSpeed;
+    }
+
+    public virtual void UpdateCookedAmount(float amount) { }
+
+    public virtual void Reset() { }
+
+    public abstract float Eat();
 
 
 }
