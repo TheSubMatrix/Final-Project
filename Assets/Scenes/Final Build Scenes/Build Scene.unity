@@ -16910,21 +16910,21 @@ MonoBehaviour:
   - {fileID: 1541328528}
   - {fileID: 1664817086}
   windowLights:
-  - {fileID: 432703618}
-  - {fileID: 161220174}
-  - {fileID: 1261464367}
-  - {fileID: 685223314}
-  - {fileID: 1326184886}
-  - {fileID: 905900573}
   - {fileID: 33532787}
   - {fileID: 158011521}
+  - {fileID: 161220174}
+  - {fileID: 432703618}
   - {fileID: 646292327}
+  - {fileID: 685223314}
   - {fileID: 831891623}
   - {fileID: 891898774}
+  - {fileID: 905900573}
   - {fileID: 924459270}
   - {fileID: 939038605}
   - {fileID: 1011600057}
   - {fileID: 1217443449}
+  - {fileID: 1261464367}
+  - {fileID: 1326184886}
   - {fileID: 1346459362}
   - {fileID: 1606100548}
   - {fileID: 1732573400}
@@ -18345,6 +18345,26 @@ PrefabInstance:
       propertyPath: cookSound
       value: 
       objectReference: {fileID: 8300000, guid: 440fa44a1c893e44584fc6b41e65edba, type: 3}
+    - target: {fileID: 5996547367357011078, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_Size.y
+      value: 8.552471
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996547367357011078, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_Size.z
+      value: 31.761276
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996547367357011078, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_Center.x
+      value: 0.32318163
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996547367357011078, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_Center.y
+      value: 1.4826038
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996547367357011078, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_Center.z
+      value: -0.36208153
+      objectReference: {fileID: 0}
     - target: {fileID: 6209415758916147482, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: 'm_gramophoneTracks.Array.data[0]'
       value: 
