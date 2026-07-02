@@ -5531,6 +5531,7 @@ MonoBehaviour:
   m_pauseMenuUI: {fileID: 1946499101}
   m_togglePauseAction: {fileID: -5058815930132469946, guid: 0f2aaf25f341e1843bac8e2259f7d29a, type: 3}
   m_pauseMenuVolume: {fileID: 2009303908}
+  m_firstSelectedButton: {fileID: 2130940324}
 --- !u!4 &511390752 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f08291e091e536f4f968d1b921ba7e35, type: 3}
@@ -8833,7 +8834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 2130940324}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &894782335
@@ -15474,6 +15475,7 @@ MonoBehaviour:
   m_pauseMenuUI: {fileID: 2032416938}
   m_togglePauseAction: {fileID: -5058815930132469946, guid: 0f2aaf25f341e1843bac8e2259f7d29a, type: 3}
   m_pauseMenuVolume: {fileID: 875955864}
+  m_firstSelectedButton: {fileID: 0}
 --- !u!114 &1649405034
 MonoBehaviour:
   m_ObjectHideFlags: 0
