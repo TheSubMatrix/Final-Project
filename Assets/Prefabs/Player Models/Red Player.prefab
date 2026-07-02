@@ -296,9 +296,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -862725965146413658, guid: fe2e2657b69f9ca4aa4fb8b9c1fbde16, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 300982676332614152}
+    - target: {fileID: -862725965146413658, guid: fe2e2657b69f9ca4aa4fb8b9c1fbde16, type: 3}
       propertyPath: m_passedOutEffect
       value: 
       objectReference: {fileID: 4301958804915997133}
+    - target: {fileID: -552900803527440259, guid: fe2e2657b69f9ca4aa4fb8b9c1fbde16, type: 3}
+      propertyPath: _interactDisplayTransform
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2051537735393309202, guid: fe2e2657b69f9ca4aa4fb8b9c1fbde16, type: 3}
       propertyPath: m_Name
       value: Red Player
