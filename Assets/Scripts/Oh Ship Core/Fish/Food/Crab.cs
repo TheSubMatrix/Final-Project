@@ -55,7 +55,7 @@ public class Crab : FoodClass
 
     public override float Eat()
     {
-        if (playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish) && playerInteractionState.CheckInteractionTag(InteractionTag.HoldingCookedFish))
+        if (playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish) || playerInteractionState.CheckInteractionTag(InteractionTag.HoldingCookedFish))
         {
             Debug.Log("Removed Holding Fish");
             playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingFish);
