@@ -30,8 +30,10 @@ public class ShipHealth : MonoBehaviour, IDamageable
     uint m_holeCount;
     bool m_isInvulnerable;
     bool m_warningEnabled;
+    private Rigidbody shipBody;
     void Awake()
     {
+         shipBody = GetComponent<Rigidbody>();
         m_availableHoles = new(m_holePositions);
         m_shipHoles = new ObjectPool<ShipHole>
         (
@@ -100,6 +102,9 @@ public class ShipHealth : MonoBehaviour, IDamageable
                 
             });
             m_impulseSource.GenerateImpulse();
+            
+            shipBody.angularVelocity = Vector3.zero;
+            
             selectedHole.transform.SetParent(holeTransform.parent);
             selectedHole.transform.position = holeTransform.position;
             selectedHole.transform.rotation = holeTransform.rotation;
@@ -122,8 +127,8 @@ public class ShipHealth : MonoBehaviour, IDamageable
     void DamageFromInspector()
     {
         Damage(1);
-        Rigidbody shipBody = GetComponent<Rigidbody>();
-        shipBody.angularVelocity = Vector3.zero;
+       
+        
     }
     #endif
 }
