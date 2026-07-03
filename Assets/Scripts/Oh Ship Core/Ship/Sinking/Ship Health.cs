@@ -33,7 +33,8 @@ public class ShipHealth : MonoBehaviour, IDamageable
     private Rigidbody shipBody;
     void Awake()
     {
-         shipBody = GetComponent<Rigidbody>();
+        shipBody = GetComponent<Rigidbody>();
+        shipBody.maxAngularVelocity = 1f;
         m_availableHoles = new(m_holePositions);
         m_shipHoles = new ObjectPool<ShipHole>
         (
@@ -104,6 +105,7 @@ public class ShipHealth : MonoBehaviour, IDamageable
             m_impulseSource.GenerateImpulse();
             
             shipBody.angularVelocity = Vector3.zero;
+            StartCoroutine(TemporayAngularDamping());
             
             selectedHole.transform.SetParent(holeTransform.parent);
             selectedHole.transform.position = holeTransform.position;
@@ -115,6 +117,15 @@ public class ShipHealth : MonoBehaviour, IDamageable
         StartCoroutine(StartInvulnerability());
         return true;
     }
+
+    IEnumerator TemporayAngularDamping()
+    {
+        float originalDamping = shipBody.angularDamping;
+        shipBody.angularDamping = 20f;
+        yield return new WaitForSeconds(0.5f);
+        shipBody.angularDamping = originalDamping;
+    }
+    
 
     IEnumerator StartInvulnerability()
     {
