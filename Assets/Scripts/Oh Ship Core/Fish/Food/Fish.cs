@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Fish : FoodClass
 {
@@ -10,6 +11,9 @@ public class Fish : FoodClass
     private HeldObjectLocation heldObjectLocation;
     Transform locationOfHeldObject;
 
+    [Header("Audio")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] private AudioClip cookingDone;
 
     public override CookState CookStateRef {get{return m_currentCookState;}}
     
@@ -17,6 +21,7 @@ public class Fish : FoodClass
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         m_material = GetComponent<MeshRenderer>().material;
         heldObjectLocation = GetComponentInParent<HeldObjectLocation>();
         Debug.Log(heldObjectLocation);
@@ -41,6 +46,7 @@ public class Fish : FoodClass
         if (m_currentCookState == CookState.Cooked)
         {
             cookedVFX.Play();
+            audioSource.PlayOneShot(cookingDone);
         }
     }
 

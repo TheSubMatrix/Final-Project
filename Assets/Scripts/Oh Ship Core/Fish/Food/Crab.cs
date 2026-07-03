@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Crab : FoodClass
@@ -10,12 +11,17 @@ public class Crab : FoodClass
     private HeldObjectLocation heldObjectLocation;
     private Transform locationOfHeldObject;
 
+    [Header("Audio")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] private AudioClip cookingDone;
+
     public override CookState CookStateRef { get { return m_currentCookState; } }
 
     public override CookingProcess CookingProcess => CookingProcess.InPot;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         m_material = GetComponent<MeshRenderer>().material;
         heldObjectLocation = GetComponentInParent<HeldObjectLocation>();
         Debug.Log(heldObjectLocation);
@@ -39,6 +45,7 @@ public class Crab : FoodClass
         if(m_currentCookState == CookState.Cooked)
         {
             cookedVFX.Play();
+            audioSource.PlayOneShot(cookingDone);
         }
     }
 
