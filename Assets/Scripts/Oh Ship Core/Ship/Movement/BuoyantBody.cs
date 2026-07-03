@@ -20,6 +20,7 @@ public class BuoyantBody : MonoBehaviour
             Vector3 globalPointPosition = transform.TransformPoint(point.LocalPosition);
             float depth = m_waterHeight - globalPointPosition.y;
             if (depth <= 0) continue;
+            Debug.Log($"Buoyancy point firing: {point.LocalPosition}, depth: {depth}");
             float submersion = Mathf.Clamp01(depth / point.Radius);
             m_rigidbody.AddForceAtPosition(Vector3.up * (submersion * point.PointBuoyancy * Physics.gravity.magnitude * m_rigidbody.mass * m_buoyancyPercentage), globalPointPosition);
             Vector3 pointVelocity = m_rigidbody.GetPointVelocity(globalPointPosition);
@@ -28,6 +29,7 @@ public class BuoyantBody : MonoBehaviour
             Vector3 lateralVel = pointVelocity - verticalVel - longitudinalVel;
             Vector3 drag = submersion * (verticalVel * point.Drag.y + longitudinalVel * point.Drag.x + lateralVel * point.Drag.z);
             m_rigidbody.AddForceAtPosition(-drag, globalPointPosition);
+                
         }
     }
 

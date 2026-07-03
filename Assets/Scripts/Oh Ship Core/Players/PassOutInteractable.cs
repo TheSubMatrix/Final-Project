@@ -25,7 +25,6 @@ public class PassOutInteractable : MonoBehaviour, IInteractable, IPromptProvider
     void Start()
     {
         _hungerNThirst = GetComponent<HungerAndThirst>();
-        Debug.Log(_hungerNThirst);
     }
 
     void Update()

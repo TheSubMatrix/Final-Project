@@ -46,7 +46,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     public void OnInteractionButtonPressed()
     {
         LayerMask playerLayer = 1 << transform.parent.gameObject.layer;
-        Debug.Log($"Player layer: {transform.parent.gameObject.layer}, Default mask: {LayerMask.GetMask("Default")}, blocked: {playerLayer == LayerMask.GetMask("Default")}");
+        //Debug.Log($"Player layer: {transform.parent.gameObject.layer}, Default mask: {LayerMask.GetMask("Default")}, blocked: {playerLayer == LayerMask.GetMask("Default")}");
 
         if (playerLayer == LayerMask.GetMask("Default")) return;
         if (IsInteracting())
