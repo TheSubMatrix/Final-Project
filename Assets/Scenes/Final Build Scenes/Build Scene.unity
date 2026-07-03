@@ -5752,6 +5752,7 @@ GameObject:
   - component: {fileID: 495906058}
   - component: {fileID: 495906057}
   - component: {fileID: 495906061}
+  - component: {fileID: 495906062}
   m_Layer: 5
   m_Name: Menu - Pause
   m_TagString: Untagged
@@ -5857,10 +5858,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fae0313e7a2aa740b2f61ccc2f099c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.UI::PauseMenu
-  m_pauseMenuUI: {fileID: 1946499101}
-  m_togglePauseAction: {fileID: -5058815930132469946, guid: 0f2aaf25f341e1843bac8e2259f7d29a, type: 3}
+  m_pauseMenuUI: {fileID: 495906056}
   m_pauseMenuVolume: {fileID: 2009303908}
-  m_firstSelectedButton: {fileID: 2130940324}
+  m_pauseMenuNavigation: {fileID: 495906062}
+--- !u!114 &495906062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495906056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba072ae69b4914eb54ffe9d08c53a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.Players::PauseMenuNavigation
+  m_buttons:
+  - {fileID: 2130940327}
+  - {fileID: 1705417441}
+  - {fileID: 629839269}
 --- !u!4 &511390752 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f08291e091e536f4f968d1b921ba7e35, type: 3}
@@ -9236,7 +9252,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894782332}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
@@ -9272,7 +9288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
-  m_FirstSelected: {fileID: 2130940324}
+  m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &894782335
@@ -16099,10 +16115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fae0313e7a2aa740b2f61ccc2f099c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.UI::PauseMenu
-  m_pauseMenuUI: {fileID: 2032416938}
-  m_togglePauseAction: {fileID: -5058815930132469946, guid: 0f2aaf25f341e1843bac8e2259f7d29a, type: 3}
-  m_pauseMenuVolume: {fileID: 875955864}
-  m_firstSelectedButton: {fileID: 0}
+  m_pauseMenuUI: {fileID: 0}
+  m_pauseMenuVolume: {fileID: 0}
+  m_pauseMenuNavigation: {fileID: 0}
 --- !u!114 &1649405034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16913,6 +16928,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 495906061}
+        m_TargetAssemblyTypeName: PauseMenu, OhShip.Core.Players
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1705417440}
         m_TargetAssemblyTypeName: SceneTransitionerProxy, OhShip.Core.UI
         m_MethodName: TransitionToScene
