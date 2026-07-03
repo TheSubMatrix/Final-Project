@@ -16,11 +16,14 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
     private float cookedAmount;
     private bool hasDropped = false;
     private GameObject lastCookedObject;
+    private Transform holdingRotation;
 
     [Header("Sound")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip dropCrabSound;
     [SerializeField] private AudioClip cookSound;
+
+
 
     private void Start()
     {
@@ -92,8 +95,14 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
     { 
         _foodClassItem.transform.position = cookingLocation.position;
         _foodClassItem.transform.SetParent(cookingLocation);
+        holdingRotation = _foodClassItem.transform;
+        if (_foodClassItem.GetComponentInChildren<Fish>())
+        {
+            _foodClassItem.transform.localRotation = Quaternion.Euler(1.4f, -0.6f, 88.8f);
+        }
+        //_foodClassItem.transform.localRotation = Quaternion.Euler(1.2f, 88.7f, 91.4f);
 
-        if(_foodClassItem.CookingProcess == CookingProcess.InPot && !hasDropped)
+        if (_foodClassItem.CookingProcess == CookingProcess.InPot && !hasDropped)
         {
             hasDropped = true;
             audioSource.PlayOneShot(dropCrabSound);
@@ -131,6 +140,7 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
         FoodClass cookingItem = cookingLocation.GetComponentInChildren<FoodClass>();
         cookingItem.transform.position = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform.position;
         cookingItem.transform.SetParent(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform);
+        cookingItem.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         cookingItem.InitializeHungerAndThirst(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>());
         if(cookedAmount > 0.3f)
         {

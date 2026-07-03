@@ -78,8 +78,15 @@ public class CuttingBoardInteractable : MonoBehaviour, IInteractable, IPromptPro
     {
         _foodClassItem.transform.position = storingLocation.position;
         _foodClassItem.transform.SetParent(storingLocation);
+        if (_foodClassItem.GetComponentInChildren<Fish>())
+        {
+            _foodClassItem.transform.localRotation = Quaternion.Euler(1.2f, 88.7f, 91.4f);
+        }
+        else if (_foodClassItem.GetComponentInChildren<Crab>())
+        {
+            _foodClassItem.transform.localRotation = Quaternion.Euler(186.8f, 181.7f, 3.2f);
+        }
         Debug.Log("foodclass:" + _foodClassItem.transform.position);
-
     }
 
 
@@ -88,6 +95,7 @@ public class CuttingBoardInteractable : MonoBehaviour, IInteractable, IPromptPro
         FoodClass cookingItem = storingLocation.GetComponentInChildren<FoodClass>();
         cookingItem.transform.position = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform.position;
         cookingItem.transform.SetParent(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform);
+        cookingItem.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         cookingItem.InitializeHungerAndThirst(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>());
     }
 }
