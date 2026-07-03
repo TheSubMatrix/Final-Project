@@ -7913,7 +7913,7 @@ Transform:
   m_GameObject: {fileID: 686492582}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.149, y: 0.856, z: -3.743}
+  m_LocalPosition: {x: 1.149, y: 0.8821, z: -3.743}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11152,7 +11152,7 @@ Transform:
   m_GameObject: {fileID: 1071740302}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.102, y: 0.866, z: -3.511}
+  m_LocalPosition: {x: 1.102, y: 0.8787, z: -3.511}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19128,6 +19128,10 @@ PrefabInstance:
       propertyPath: drinkingRate
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 6692552796192750167, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0679
+      objectReference: {fileID: 0}
     - target: {fileID: 7148599182423102257, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -19264,6 +19268,10 @@ PrefabInstance:
       propertyPath: bottleToSpawn
       value: 
       objectReference: {fileID: 8639637011807921681, guid: 2be1bbbd634596d499a4df1419a04a6f, type: 3}
+    - target: {fileID: 8728567458868001204, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.074
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5624420122251007069, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
     - {fileID: 26749857677897185, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
