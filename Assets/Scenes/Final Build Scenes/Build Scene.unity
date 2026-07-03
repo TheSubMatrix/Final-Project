@@ -1772,6 +1772,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 78752143}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &104715368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 104715369}
+  - component: {fileID: 104715371}
+  - component: {fileID: 104715370}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &104715369
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104715368}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 495906060}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 15, y: 1100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &104715370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104715368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &104715371
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104715368}
+  m_CullTransparentMesh: 1
 --- !u!4 &108191897 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7107268528352981421, guid: 4bf2e168c19122c49abcaed22e27e154, type: 3}
@@ -5759,6 +5834,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 104715369}
   - {fileID: 1946499102}
   - {fileID: 1312286733}
   - {fileID: 2009303909}
@@ -18818,15 +18894,15 @@ PrefabInstance:
       objectReference: {fileID: -4227325072015316056, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
     - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_buoyancyPoints.Array.data[1].PointBuoyancy
-      value: 0.22
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_buoyancyPoints.Array.data[2].PointBuoyancy
-      value: 0.22
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_buoyancyPoints.Array.data[5].PointBuoyancy
-      value: 0.22
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_buoyancyPoints.Array.data[0].LocalPosition.x
