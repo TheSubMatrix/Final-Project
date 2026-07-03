@@ -122,6 +122,8 @@ public class ShipHealth : MonoBehaviour, IDamageable
     void DamageFromInspector()
     {
         Damage(1);
+        Rigidbody shipBody = GetComponent<Rigidbody>();
+        shipBody.angularVelocity = Vector3.zero;
     }
     #endif
 }

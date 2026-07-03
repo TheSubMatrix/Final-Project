@@ -24,4 +24,6 @@ internal struct BuoyancyPoint
     /// The drag force applied to the point on each axis at this point.
     /// </summary>
     public Vector3 Drag;
+
+    public float MaxForce;
 }
