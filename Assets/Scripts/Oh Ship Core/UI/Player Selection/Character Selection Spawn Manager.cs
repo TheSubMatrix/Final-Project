@@ -62,6 +62,7 @@ public class CharacterSelectionSpawnManager : MonoBehaviour
     {
         Debug.Log("OnSceneLoaded");
         m_playerSelectionCursorPrefab.PlayerCount = 0;
+        
     }
 
 }
