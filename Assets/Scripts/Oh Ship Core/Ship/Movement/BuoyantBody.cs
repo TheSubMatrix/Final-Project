@@ -19,6 +19,15 @@ public class BuoyantBody : MonoBehaviour
     }
     void FixedUpdate()
     {
+        Vector3 up = transform.up;
+        float tiltAngle = Vector3.Angle(up, Vector3.up);
+        if (tiltAngle > 5f)
+        {
+            Vector3 stabilizeForce = Vector3.Cross(up, Vector3.up);
+            m_rigidbody.AddTorque(stabilizeForce * tiltAngle * 500f);
+        }
+
+        
         for (int i = 0; i < m_buoyancyPoints.Length; i++)
         {
             BuoyancyPoint point = m_buoyancyPoints[i];
