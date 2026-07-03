@@ -3,6 +3,7 @@ using System.Collections;
 using JetBrains.Annotations;
 using MatrixUtils.DependencyInjection;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WarningIconMessageListener : MonoBehaviour
 {
@@ -14,7 +15,10 @@ public class WarningIconMessageListener : MonoBehaviour
         foreach (WarningIcon warningIcon in m_warningIcons)
         {
             messenger.TrySubscribe(warningIcon.EnableMessage, () => StartCoroutine(warningIcon.EnableWarning()));
+            messenger.TrySubscribe(warningIcon.EnableMessage, () => StartCoroutine(warningIcon.FlashWarningLabel(true)));
             messenger.TrySubscribe(warningIcon.DisableMessage, () => StartCoroutine(warningIcon.DisableWarning()));
+            messenger.TrySubscribe(warningIcon.DisableMessage, () => StartCoroutine(warningIcon.FlashWarningLabel(false)));
+
         }
 
         foreach (WorldWarningIcon worldIcon in m_worldWarningIcons)
@@ -29,15 +33,39 @@ public class WarningIconMessageListener : MonoBehaviour
         public CanvasGroup CanvasGroup;
         public string EnableMessage;
         public string DisableMessage;
-       
+        public Sprite[] sprites;
+        public Image image;
         public IEnumerator EnableWarning()
         {
-           
             yield return CanvasGroup.FadeToOpacity(1, 0.5f);
+            
         }
         public IEnumerator DisableWarning()
         {
             yield return CanvasGroup.FadeToOpacity(0, 0.5f);
+        }
+
+        public IEnumerator FlashWarningLabel(bool enable)
+        {
+            if (!enable || sprites.Length < 2)
+            {
+                image.sprite = sprites[0];
+                yield break;
+            }
+
+            float flashDuration = 2f;
+            float flashInterval = 0.5f;
+            float elapsed  = 0f;
+            bool toggle = false;
+            while (elapsed < flashDuration)
+            {
+                image.sprite = sprites[toggle ? 1 : 0];
+                toggle = !toggle;
+                yield return new WaitForSeconds(flashInterval);
+                elapsed += flashInterval;
+            }
+
+            image.sprite = sprites[0];
         }
     }
 

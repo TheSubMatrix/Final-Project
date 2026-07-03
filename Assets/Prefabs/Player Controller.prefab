@@ -232,8 +232,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447475600237692604}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000035762784}
-  m_LocalPosition: {x: -2.0000052, y: 4.619, z: -223.278}
+  m_LocalRotation: {x: 0.09582211, y: -0.6754944, z: 0.13380516, w: 0.718764}
+  m_LocalPosition: {x: -4.4643326, y: 3.7839916, z: -207.22217}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -741,7 +741,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2201799278739802032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -752,8 +752,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: -1}
-  m_SizeDelta: {x: 200, y: 550}
+  m_AnchoredPosition: {x: 258, y: -4}
+  m_SizeDelta: {x: 436.2, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6814041506211435755
 MonoBehaviour:
@@ -775,7 +775,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 1
-  m_CellSize: {x: 150, y: 150}
+  m_CellSize: {x: 241.5, y: 150}
   m_Spacing: {x: 50, y: 50}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -795,12 +795,23 @@ MonoBehaviour:
   - CanvasGroup: {fileID: 5916050538489732959}
     EnableMessage: enable coal
     DisableMessage: disable coal
+    sprites:
+    - {fileID: 21300000, guid: 008050e59f7c7f948907baf912a62a50, type: 3}
+    - {fileID: 21300000, guid: d9affe32078df944e9a3d36dd7bed9be, type: 3}
+    image: {fileID: 4223749488332393191}
   - CanvasGroup: {fileID: 7328535117769728158}
     EnableMessage: enable steam
     DisableMessage: disable steam
+    sprites:
+    - {fileID: 21300000, guid: 4fcbab426ec0da24cb2040e0cbac98ca, type: 3}
+    - {fileID: 21300000, guid: 5756e6fce3852494bbe9b508a3e8c53b, type: 3}
+    image: {fileID: 2746712389559781253}
   - CanvasGroup: {fileID: 4106917271935715055}
     EnableMessage: enable repair
     DisableMessage: disable repair
+    sprites:
+    - {fileID: 21300000, guid: 2d173148d43445d4bbf2bf748abc9eab, type: 3}
+    image: {fileID: 7045992356486355126}
   m_worldWarningIcons:
   - GameObjectTag: Coal Warning
     EnableMessage: enable coal
@@ -835,7 +846,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2800148069993171774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -874,7 +885,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 95a802123a971814587994235dd86bd2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 008050e59f7c7f948907baf912a62a50, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1349,7 +1360,7 @@ RectTransform:
   m_GameObject: {fileID: 4684217763298530610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4035679929243489008}
@@ -1437,7 +1448,7 @@ RectTransform:
   m_GameObject: {fileID: 5104949668092265658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.15, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4035679929243489008}
@@ -1475,7 +1486,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8e63c20de26bee44b9425c5f51675d2b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4fcbab426ec0da24cb2040e0cbac98ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
