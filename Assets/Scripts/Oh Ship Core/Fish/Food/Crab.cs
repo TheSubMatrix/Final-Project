@@ -8,9 +8,7 @@ public class Crab : FoodClass
     private CookState m_currentCookState = CookState.Raw;
     [SerializeField] private ParticleSystem cookedVFX;
     private PlayerInteractionState playerInteractionState;
-    private HeldObjectLocation heldObjectLocation;
-    private Transform locationOfHeldObject;
-
+   
     [Header("Audio")]
     [SerializeField] AudioSource audioSource;
     [SerializeField] private AudioClip cookingDone;
@@ -23,11 +21,9 @@ public class Crab : FoodClass
     {
         audioSource = GetComponent<AudioSource>();
         m_material = GetComponent<MeshRenderer>().material;
-        heldObjectLocation = GetComponentInParent<HeldObjectLocation>();
-        Debug.Log(heldObjectLocation);
-        locationOfHeldObject = heldObjectLocation.transform;
-        Debug.Log(locationOfHeldObject);
-        playerInteractionState = locationOfHeldObject.GetComponentInParent<PlayerInteractionState>();
+       
+        playerInteractionState = GetComponentInParent<PlayerInteractionState>();
+       
         Debug.Log(playerInteractionState);
     }
 
@@ -44,6 +40,7 @@ public class Crab : FoodClass
 
         if(m_currentCookState == CookState.Cooked)
         {
+            Debug.Log("Cooked");
             cookedVFX.Play();
             audioSource.PlayOneShot(cookingDone);
         }
@@ -62,16 +59,10 @@ public class Crab : FoodClass
 
     public override float Eat()
     {
-        if (playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish) || playerInteractionState.CheckInteractionTag(InteractionTag.HoldingCookedFish))
-        {
-            Debug.Log("Removed Holding Fish");
-            playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingFish);
-            playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingCookedFish);
-        }
-
-
-
-
+        playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingFish);
+        playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingCookedFish);
+        playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingBurntFish);
+ 
         return foodData.HungerRestored(m_currentCookState);
     }
 

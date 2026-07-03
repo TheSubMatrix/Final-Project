@@ -68,7 +68,20 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
                 MoveObjetToHand();
                 m_currentInteractionSession = new InteractionSession(interactor, this);
                 m_currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
-                _playerInteractionState.AddInteractionTag(InteractionTag.HoldingFish);
+
+                switch (_foodClassItem.CookStateRef)
+                {
+                    case CookState.Cooked:
+                        _playerInteractionState.AddInteractionTag(InteractionTag.HoldingCookedFish);
+                        break;
+                    case CookState.Raw:
+                        _playerInteractionState.AddInteractionTag(InteractionTag.HoldingFish);
+                        break;
+                    case CookState.Burnt:
+                        _playerInteractionState.AddInteractionTag(InteractionTag.HoldingCookedFish);
+                        break;
+                }
+                //_playerInteractionState.AddInteractionTag(InteractionTag.HoldingFish);
                 m_currentInteractionSession.End();
                 return m_currentInteractionSession;
             }

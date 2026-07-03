@@ -13,4 +13,5 @@ public class SO_CookableFoodData : ScriptableObject
     public float HungerRestored(CookState cookState) => hungerRestoreValue.TryGetValue(cookState, out float value) ? value : -1f;
     public float CookSpeed => cookSpeed;
     public GameObject Model => model;
+    
 }

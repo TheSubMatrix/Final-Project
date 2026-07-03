@@ -9,5 +9,6 @@ using UnityEngine;
         HoldingBottle,
         HoldingFish,
         HoldingBottleWithWater,
-        HoldingCookedFish
+        HoldingCookedFish,
+        HoldingBurntFish
     }
