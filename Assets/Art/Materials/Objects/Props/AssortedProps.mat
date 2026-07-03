@@ -46,8 +46,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Cooked_Amount: 0
-    m_Colors: []
+    - _Cooked_Amount: 0.412
+    m_Colors:
+    - _Burnt_Color_Tint: {r: 0.21698111, g: 0.10216099, b: 0, a: 1}
+    - _Cooked_Color_Tint: {r: 0.8018868, g: 0.51622117, b: 0.1021271, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &8707707105727241512
