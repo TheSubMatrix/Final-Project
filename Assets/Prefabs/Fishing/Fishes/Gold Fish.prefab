@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8439440430643992711}
   - component: {fileID: 7480448897958984692}
   m_Layer: 0
-  m_Name: Fish
+  m_Name: Gold Fish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: OhShip.Core.Fish::Fish
   foodData: {fileID: 11400000, guid: e4701296abe509c4ca23e7eb752bd2fc, type: 2}
   cookedVFX: {fileID: 3026701635277317021}
-  playerInteractionState: {fileID: 0}
 --- !u!33 &8439440430643992711
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -83,7 +82,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3c5707d1e238cdc45abecdc22ea9bd3f, type: 2}
+  - {fileID: 2100000, guid: f4b38e44846c29746ab86e1b5b482f42, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
