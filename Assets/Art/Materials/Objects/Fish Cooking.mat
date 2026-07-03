@@ -14,9 +14,11 @@ Material:
   m_ValidKeywords:
   - _ADDITIONAL_LIGHTS
   - _ADDITIONAL_LIGHT_SHADOWS
+  - _CLUSTER_LIGHT_LOOP
   - _LIGHTMAP_SHADOW_MIXING
   - _MAIN_LIGHT_SHADOWS
   - _MAIN_LIGHT_SHADOWS_CASCADE
+  - _SHADOWS_SOFT
   - _SHADOW_MASKS
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -67,11 +69,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Metallic_Smoothness_Texture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: cc89be3c7822f2048827fe17304bf19e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Texture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 97e458850c6ca88498948661509baaa6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -109,7 +111,7 @@ Material:
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
     - _Burnt_Smoothness_Scale: 0
-    - _CLUSTER_LIGHT_LOOP: 0
+    - _CLUSTER_LIGHT_LOOP: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cooked_Amount: 0
@@ -139,7 +141,7 @@ Material:
     - _Raw_Blend_Start: 0
     - _Raw_Smoothness_Scale: 0
     - _ReceiveShadows: 1
-    - _SHADOWS_SOFT: 0
+    - _SHADOWS_SOFT: 1
     - _SHADOW_MASKS: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -154,7 +156,7 @@ Material:
     - _BaseColor: {r: 1, g: 0, b: 0, a: 1}
     - _Burnt_Color_Tint: {r: 0.24528301, g: 0.12129259, b: 0, a: 1}
     - _Color: {r: 1, g: 0, b: 0, a: 1}
-    - _Cooked_Color_Tint: {r: 0.8867924, g: 0.61423934, b: 0.33882165, a: 1}
+    - _Cooked_Color_Tint: {r: 0.8773585, g: 0.69990623, b: 0.51731044, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Raw_Color_Tint: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
