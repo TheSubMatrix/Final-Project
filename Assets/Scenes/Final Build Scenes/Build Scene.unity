@@ -3287,7 +3287,7 @@ MonoBehaviour:
   m_buoyancyPoints:
   - PointBuoyancy: 6
     LocalPosition: {x: 0, y: 0, z: 0}
-    Radius: 0.1
+    Radius: 0.05
     Drag: {x: 0.4, y: 0.4, z: 0.4}
 --- !u!135 &299706312
 SphereCollider:
@@ -3377,7 +3377,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.165, y: 1.977, z: -207.147}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -16711,8 +16711,8 @@ Transform:
   m_GameObject: {fileID: 1690915591}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.306, y: 2, z: -208.332}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2.306, y: 2, z: -208.176}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -16733,7 +16733,7 @@ MonoBehaviour:
   m_buoyancyPoints:
   - PointBuoyancy: 6
     LocalPosition: {x: 0, y: 0, z: 0}
-    Radius: 0.1
+    Radius: 0.05
     Drag: {x: 0.4, y: 0.4, z: 0.4}
 --- !u!1 &1695498871 stripped
 GameObject:
@@ -18816,6 +18816,18 @@ PrefabInstance:
       propertyPath: m_interactSound.MixerGroup
       value: 
       objectReference: {fileID: -4227325072015316056, guid: 141b63e12c5fde24f8b360b61ba9fdb9, type: 2}
+    - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_buoyancyPoints.Array.data[1].PointBuoyancy
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_buoyancyPoints.Array.data[2].PointBuoyancy
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: m_buoyancyPoints.Array.data[5].PointBuoyancy
+      value: 0.22
+      objectReference: {fileID: 0}
     - target: {fileID: 3511390657383237687, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_buoyancyPoints.Array.data[0].LocalPosition.x
       value: 3.5307026
