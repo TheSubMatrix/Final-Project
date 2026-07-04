@@ -30,7 +30,7 @@ public class PoliceBridge : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(playerShipTag))
         {
             StartCoroutine(PlayAudio());
         }
@@ -39,7 +39,7 @@ public class PoliceBridge : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(playerShipTag))
         {
             policeBoats.SetActive(true);
         }
