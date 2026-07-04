@@ -36,13 +36,13 @@ public class BuoyantBody : MonoBehaviour
 
             if (depth <= .005)
             {
-                if (m_activeBuoyancyPoints.Remove(i))
-                    Debug.Log($"Point {i} deactivated");
+                /*if (m_activeBuoyancyPoints.Remove(i))
+                    Debug.Log($"Point {i} deactivated");*/
                 continue;
             }
 
-            if (m_activeBuoyancyPoints.Add(i))
-                Debug.Log($"Point {i} newly activated! depth: {depth}");
+            /*if (m_activeBuoyancyPoints.Add(i))
+                Debug.Log($"Point {i} newly activated! depth: {depth}");*/
 
             float submersion = Mathf.Clamp01(depth / point.Radius);
             //m_rigidbody.AddForceAtPosition(Vector3.up * (submersion * point.PointBuoyancy * Physics.gravity.magnitude * m_rigidbody.mass * m_buoyancyPercentage), globalPointPosition);

@@ -4,7 +4,6 @@ using UnityEngine.Splines;
 
 public class UnderbellyFollow : MonoBehaviour
 {
-    [SerializeField] private float _speed = 5.0f;
     [SerializeField] private GameObject _playerSteamBoat;
     [SerializeField] private float yOffset;
     private Rigidbody m_rigidbody;
