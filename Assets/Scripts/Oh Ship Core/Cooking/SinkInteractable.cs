@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Threading;
+using MatrixUtils.DependencyInjection;
 using UnityEngine;
 
 public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
@@ -15,8 +16,8 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
     public Animator animSink;
 
     private HungerAndThirst _thirstManager;
-    //[SerializeField] StatusBar m_thirstBar;
 
+    [Inject] INotificationMessenger m_notificationMessenger;
     private bool fillingUp = false;
     private bool drinking = false;
     [SerializeField] private float drinkingRate = 0.4f;
@@ -43,6 +44,7 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        FindAnyObjectByType<Injector>().Inject(this);
     }
 
     // Update is called once per frame
@@ -125,6 +127,8 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
         m_currentInteractionSession = new InteractionSession(interactor, this);
         m_currentInteractionSession.End();
 
+        StartCoroutine(PlayerNotificationBlock());
+
         return m_currentInteractionSession;
 
     }
@@ -145,5 +149,13 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
         _thirstManager.Thirst.Value += toDrink;
         amountOfWater = 0f;
         _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingBottleWithWater);
+    }
+
+    IEnumerator PlayerNotificationBlock()
+    {
+        int playerIndex = _playerInteractionState.PlayerIndex;
+        m_notificationMessenger.TryNotify($"enable bottle player{playerIndex}");
+        yield return new WaitForSeconds(1.2f);
+        m_notificationMessenger.TryNotify($"disable bottle player{playerIndex}");
     }
 }
