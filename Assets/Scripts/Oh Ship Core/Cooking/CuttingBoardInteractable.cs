@@ -1,4 +1,6 @@
-using System.Collections.Generic;
+using System;
+using System.Collections;
+using MatrixUtils.DependencyInjection;
 using UnityEngine;
 
 public class CuttingBoardInteractable : MonoBehaviour, IInteractable, IPromptProvider
@@ -16,11 +18,13 @@ public class CuttingBoardInteractable : MonoBehaviour, IInteractable, IPromptPro
     private Fish fish;
     private GameObject lastCookedObject;
 
+    [Inject] INotificationMessenger m_notificationMessenger;
 
-    public void Update()
+    private void Awake()
     {
-
+        FindAnyObjectByType<Injector>().Inject(this);
     }
+
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
         _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
@@ -60,6 +64,7 @@ public class CuttingBoardInteractable : MonoBehaviour, IInteractable, IPromptPro
         m_currentInteractionSession = new InteractionSession(interactor, this);
         m_currentInteractionSession.End();
 
+        StartCoroutine(DisplayWarning());
         return m_currentInteractionSession;
 
     }
@@ -97,5 +102,16 @@ public class CuttingBoardInteractable : MonoBehaviour, IInteractable, IPromptPro
         cookingItem.transform.SetParent(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform);
         cookingItem.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         cookingItem.InitializeHungerAndThirst(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>());
+    }
+    
+    IEnumerator DisplayWarning()
+    {
+        Debug.Log("Warning Label");
+        int playerIndex = _playerInteractionState.PlayerIndex;
+        Debug.Log($"Firing: 'enable cooked player{playerIndex}'");
+        Debug.Log(m_notificationMessenger);
+        m_notificationMessenger.TryNotify($"enable cooked player{playerIndex}");
+        yield return new WaitForSeconds(3f);
+        m_notificationMessenger.TryNotify($"disable cooked player{playerIndex}");;
     }
 }
