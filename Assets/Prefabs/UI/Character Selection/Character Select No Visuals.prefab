@@ -232,10 +232,33 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2964877637978883661, guid: bea33590d98742a47b91dca55eed87a8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6536678776186286591}
+    - targetCorrespondingSourceObject: {fileID: 3467154883091800090, guid: bea33590d98742a47b91dca55eed87a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7296938081194258036}
     - targetCorrespondingSourceObject: {fileID: 4616228327661755817, guid: bea33590d98742a47b91dca55eed87a8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7115884419922660668}
   m_SourcePrefab: {fileID: 100100000, guid: bea33590d98742a47b91dca55eed87a8, type: 3}
+--- !u!1 &192243186414730892 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3467154883091800090, guid: bea33590d98742a47b91dca55eed87a8, type: 3}
+  m_PrefabInstance: {fileID: 3654445524977688214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7296938081194258036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192243186414730892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cc03acfffa0eb44fbc133a0a231b35f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core.UI::CharacterSelectionConfirm
+  m_playerConfirmImage:
+  - {fileID: 21300000, guid: 9e9d7e350b020484bbcbafc907247093, type: 3}
+  - {fileID: 21300000, guid: 70398203c5b519e4587b7f0813d9d28c, type: 3}
 --- !u!1 &1986771705723656411 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2964877637978883661, guid: bea33590d98742a47b91dca55eed87a8, type: 3}
@@ -301,6 +324,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7296938081194258036}
+        m_TargetAssemblyTypeName: CharacterSelectionConfirm, OhShip.Core.UI
+        m_MethodName: OnSelected
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnCharacterSelectionFailed:
     m_PersistentCalls:
       m_Calls: []
@@ -311,6 +346,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: TransitionReadyUpProxy, OhShip.Core.UI
         m_MethodName: OnPlayerNotReadyUp
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7296938081194258036}
+        m_TargetAssemblyTypeName: CharacterSelectionConfirm, OhShip.Core.UI
+        m_MethodName: OnUnSelected
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -412,6 +459,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7296938081194258036}
+        m_TargetAssemblyTypeName: CharacterSelectionConfirm, OhShip.Core.UI
+        m_MethodName: OnSelected
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnCharacterSelectionFailed:
     m_PersistentCalls:
       m_Calls: []
@@ -422,6 +481,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: TransitionReadyUpProxy, OhShip.Core.UI
         m_MethodName: OnPlayerNotReadyUp
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7296938081194258036}
+        m_TargetAssemblyTypeName: CharacterSelectionConfirm, OhShip.Core.UI
+        m_MethodName: OnUnSelected
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

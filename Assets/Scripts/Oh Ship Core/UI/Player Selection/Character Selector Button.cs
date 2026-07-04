@@ -36,6 +36,7 @@ public class CharacterSelectorButton : Button
         {
             m_ownerPlayerIndex = playerInput.playerIndex;
             OnCharacterSelectedSuccessfully.Invoke(playerInput.playerIndex);
+            Debug.Log("Successfully set character selection");
             base.OnSubmit(eventData);
         }
         else
