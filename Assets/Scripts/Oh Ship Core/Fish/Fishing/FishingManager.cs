@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Collections;
+using MatrixUtils.DependencyInjection;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
@@ -177,7 +178,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         GameObject caughtItem = Instantiate(usableThingsToCatch[index], _holdingObjectTransform.position,_holdingObjectTransform.rotation);
         caughtItem.transform.SetParent(_holdingObjectTransform);
         _playerInteractionState.AddInteractionTag(InteractionTag.HoldingFish);
-        _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingCookedFish);
+       // _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingCookedFish);
 
         foodClassRef = caughtItem.GetComponent<FoodClass>();
         HungerAndThirst hungerRef = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>();

@@ -26,5 +26,7 @@ public interface IPlayerController
     public bool TryGetCurrentInputActionMap(out InputActionMap currentMap);
     /// <returns>The <see cref="GameObject"/> associated with this <see cref="IPlayerController"/></returns>
     public GameObject GetAssociatedGameObject();
+    
+    public bool TryGetPlayerIndex(out int playerIndex);
 
 }

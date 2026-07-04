@@ -9,24 +9,34 @@ public class WarningIconMessageListener : MonoBehaviour
 {
     [SerializeField] WarningIcon[] m_warningIcons;
     [SerializeField] WorldWarningIcon[] m_worldWarningIcons;
+    private INotificationMessenger m_messenger;
+
+    
     [Inject, UsedImplicitly]
     void InjectMessenger(INotificationMessenger messenger)
     {
+       m_messenger = messenger;
+    }
+
+    public void OnPlayerControllerConnect(IPlayerController playerController)
+    {
+        if (!playerController.TryGetPlayerIndex(out int playerIndex)) return;
+    
         foreach (WarningIcon warningIcon in m_warningIcons)
         {
-            messenger.TrySubscribe(warningIcon.EnableMessage, () => StartCoroutine(warningIcon.EnableWarning()));
-            messenger.TrySubscribe(warningIcon.EnableMessage, () => StartCoroutine(warningIcon.FlashWarningLabel(true)));
-            messenger.TrySubscribe(warningIcon.DisableMessage, () => StartCoroutine(warningIcon.DisableWarning()));
-            messenger.TrySubscribe(warningIcon.DisableMessage, () => StartCoroutine(warningIcon.FlashWarningLabel(false)));
-
+            m_messenger.TrySubscribe($"{warningIcon.EnableMessage} player{playerIndex}", () => StartCoroutine(warningIcon.EnableWarning()));
+            m_messenger.TrySubscribe($"{warningIcon.EnableMessage} player{playerIndex}", () => StartCoroutine(warningIcon.FlashWarningLabel(true)));
+            m_messenger.TrySubscribe($"{warningIcon.DisableMessage} player{playerIndex}", () => StartCoroutine(warningIcon.DisableWarning()));
+            m_messenger.TrySubscribe($"{warningIcon.DisableMessage} player{playerIndex}", () => StartCoroutine(warningIcon.FlashWarningLabel(false)));
         }
 
         foreach (WorldWarningIcon worldIcon in m_worldWarningIcons)
         {
-            messenger.TrySubscribe(worldIcon.EnableMessage, () => worldIcon.Enable());
-            messenger.TrySubscribe(worldIcon.DisableMessage, () => worldIcon.Disable());
+            m_messenger.TrySubscribe($"{worldIcon.EnableMessage} player{playerIndex}", () => worldIcon.Enable());
+            m_messenger.TrySubscribe($"{worldIcon.DisableMessage} player{playerIndex}", () => worldIcon.Disable());
         }
-    }
+    }}
+    
     [Serializable]
     struct WarningIcon
     {
@@ -64,7 +74,7 @@ public class WarningIconMessageListener : MonoBehaviour
                 yield return new WaitForSeconds(flashInterval);
                 elapsed += flashInterval;
             }
-
+            Debug.Log("Display");
             image.sprite = sprites[0];
         }
     }
@@ -95,4 +105,4 @@ public class WarningIconMessageListener : MonoBehaviour
             }
         }
     }
-}
+

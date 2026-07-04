@@ -1,10 +1,10 @@
 using System;
+using MatrixUtils.DependencyInjection;
 using UnityEngine;
 
 public abstract class FoodClass : MonoBehaviour, IUsableItem
 {
     [SerializeField] protected SO_CookableFoodData foodData;
-    
 
  public SO_CookableFoodData FoodData
     { get => foodData; set => foodData = value; }
@@ -24,7 +24,6 @@ public abstract class FoodClass : MonoBehaviour, IUsableItem
     public void Use()
     {
         m_HungerAndThirst.Hunger.Value += Eat();
-
         Debug.Log(gameObject.name + " has been used!");
         Destroy(gameObject);
     }
@@ -42,4 +41,5 @@ public abstract class FoodClass : MonoBehaviour, IUsableItem
     public abstract float Eat();
 
 
+    
 }

@@ -44,6 +44,8 @@ public class PlayerSpawnManager : MonoBehaviour
         IPlayerControllable selectedControllable = data?.CharacterModelPrefab.GetComponent<IPlayerControllable>() ?? m_playerControllable.Value;
         GameObject player = Instantiate(selectedControllable.GetAssociatedGameObject(), spawnPosition, spawnRotation);
         controller.ChangeControlledEntity(player.GetComponent<IPlayerControllable>());
+        
+        controller.GetAssociatedGameObject().GetComponentInChildren<WarningIconMessageListener>()?.OnPlayerControllerConnect(controller);
         if (data != null && controller.GetAssociatedGameObject().GetComponentInChildren<UniversalAdditionalCameraData>() is { } cam && controller.GetAssociatedGameObject().GetComponentInChildren<Volume>() is { } volume)
         {
             cam.volumeLayerMask |= data.CharacterPostEffectLayer;
