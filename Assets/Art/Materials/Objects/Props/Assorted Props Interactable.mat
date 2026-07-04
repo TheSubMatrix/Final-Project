@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WaterTankWheel
+  m_Name: Assorted Props Interactable
   m_Shader: {fileID: -6465566751694194690, guid: 9815596a55c5d7b4d80de6e7e4a92d3d, type: 3}
   m_Parent: {fileID: 2100000, guid: a3d9669143ebb2f4fae8a62bf1d10091, type: 2}
   m_ModifiedSerializedProperties: 0
@@ -23,9 +23,7 @@ Material:
   - _REFLECTION_PROBE_BOX_PROJECTION
   - _SHADOWS_SOFT
   - _SHADOW_MASKS
-  m_InvalidKeywords:
-  - _METALLICSPECGLOSSMAP
-  - _NORMALMAP
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -39,39 +37,26 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Base:
-        m_Texture: {fileID: 2800000, guid: 7e10c6bf7abeeaf468e25bdf080e5f97, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 7e10c6bf7abeeaf468e25bdf080e5f97, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 8cf6c90cf0b700e4d875dacd4894a907, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 7e10c6bf7abeeaf468e25bdf080e5f97, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: e91b55ef8b0873348a6f635cbd479721, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5af877640df1b924582168ba538d2c1a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Metallic_Smoothness:
-        m_Texture: {fileID: 2800000, guid: e91b55ef8b0873348a6f635cbd479721, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7017990ab72ea6e4cb43583c67b5fbe5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 8cf6c90cf0b700e4d875dacd4894a907, type: 3}
+        m_Texture: {fileID: 2800000, guid: 97e458850c6ca88498948661509baaa6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - _Cooked_Amount: 0
+    m_Colors:
+    - _Burnt_Color_Tint: {r: 0.21698111, g: 0.10216099, b: 0, a: 1}
+    - _Cooked_Color_Tint: {r: 0.8018868, g: 0.51622117, b: 0.1021271, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &4088501204238121523
+--- !u!114 &8707707105727241512
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

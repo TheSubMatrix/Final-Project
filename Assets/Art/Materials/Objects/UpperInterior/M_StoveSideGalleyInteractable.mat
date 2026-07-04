@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
-  m_Shader: {fileID: -6465566751694194690, guid: d5e6fe27f856b3b419f43359e1992f7b, type: 3}
-  m_Parent: {fileID: 2100000, guid: b1aa66268261d4a47b9f014ea729e4f1, type: 2}
+  m_Name: M_StoveSideGalleyInteractable
+  m_Shader: {fileID: -6465566751694194690, guid: 9815596a55c5d7b4d80de6e7e4a92d3d, type: 3}
+  m_Parent: {fileID: 2100000, guid: a3d9669143ebb2f4fae8a62bf1d10091, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ADDITIONAL_LIGHTS
@@ -37,24 +37,23 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Base:
-        m_Texture: {fileID: 2800000, guid: c4222f751cc7b8b41b6b3fa80d20444d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 70c52fba6e748a24f98919d1b4ae00e4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Metallic_Smoothness:
-        m_Texture: {fileID: 2800000, guid: f80c15bb8e75d954491c8f3a3fd0924a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8c950781ed48fd14e88bc48b46774e0b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 18a80ffd8ffa17e4daca6bccb82ce8f1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0114bf99c7b21d4409492c82a0b1a783, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats:
-    - _Rim_Light: 0
+    m_Floats: []
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &1056680906493901341
+--- !u!114 &2772036354629834256
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

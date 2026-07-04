@@ -1688,7 +1688,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f4b38e44846c29746ab86e1b5b482f42, type: 2}
+  - {fileID: 2100000, guid: a46d5c05d263def4889bcc9f25858d3b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19451,6 +19451,10 @@ PrefabInstance:
       propertyPath: _speedOfFishIcon
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 5325542218693309195, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 39888d877fcedf244a80b521f53b1059, type: 2}
     - target: {fileID: 5554029791178653263, guid: a303f6bc281db0740b6c79c44d9da4ba, type: 3}
       propertyPath: m_IsActive
       value: 0

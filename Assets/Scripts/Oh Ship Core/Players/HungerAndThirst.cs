@@ -13,19 +13,21 @@ public class HungerAndThirst: MonoBehaviour
     [SerializeField] private SerializableDictionary<InteractionTag, float> m_hungerLossRates;
     [SerializeField] private float thirstLossRate = 0.01f;
     static int numberOfPassedOutPlayers;
+    static readonly int s_passedOutAnimatorProperty = Animator.StringToHash("Passed Out");
     [FormerlySerializedAs("isPassedOut")] [SerializeField] bool m_isPassedOut;
     [SerializeField] VisualEffect m_passedOutEffect;
-    [SerializeField] private string shipTag;
-     private PlayerInteractionState m_playerInteractionState;
-     private PlayerInteractor m_playerInteractor;
-
-    private bool fromHunger = false;
-    private bool fromThirst = false;
+    [SerializeField] string shipTag;
+    PlayerInteractionState m_playerInteractionState;
+    PlayerInteractor m_playerInteractor;
+    bool fromHunger;
+    bool fromThirst;
+    
     public bool IsPassedOut => m_isPassedOut;
-    [SerializeField] private UnityEvent<bool> OnEnableMovement = new UnityEvent<bool>();
+    [SerializeField] UnityEvent<bool> OnEnableMovement = new();
+    
 
 
-    [SerializeField] private Animator anim;
+    [FormerlySerializedAs("anim")] [SerializeField] Animator m_animator;
     void Start()
     {
          m_playerInteractor = GetComponentInChildren<PlayerInteractor>();
@@ -74,6 +76,7 @@ public class HungerAndThirst: MonoBehaviour
 
     public void PassOut(int cause)
     {
+        if(m_isPassedOut) return;
         if(cause == 1)
         {
             fromHunger = true;
@@ -82,7 +85,7 @@ public class HungerAndThirst: MonoBehaviour
         {
             fromThirst = true;
         }
-        anim.SetBool("Faints", true);
+        m_animator.SetBool(s_passedOutAnimatorProperty, true);
         m_playerInteractor.EndActiveInteraction();
         numberOfPassedOutPlayers++;
         m_isPassedOut = true;
@@ -94,6 +97,7 @@ public class HungerAndThirst: MonoBehaviour
 
     public void WakeUp(float value)
     {
+        if(!m_isPassedOut) return;
         if(fromHunger)
         {
             Hunger.Value = value;
@@ -105,7 +109,7 @@ public class HungerAndThirst: MonoBehaviour
             fromThirst = false;
         }
 
-        anim.SetBool("Faints", false);
+        m_animator.SetBool(s_passedOutAnimatorProperty, false);
         Debug.Log("Waking Up");
         numberOfPassedOutPlayers--;
         GetComponent<Rigidbody>().isKinematic = false;
