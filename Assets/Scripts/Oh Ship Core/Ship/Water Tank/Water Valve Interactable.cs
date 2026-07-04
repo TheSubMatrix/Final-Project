@@ -1,5 +1,6 @@
 using System;
 using MatrixUtils.Attributes;
+using MatrixUtils.DependencyInjection;
 using MatrixUtils.Extensions;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -25,6 +26,7 @@ public class WaterValveInteractable : MonoBehaviour, IInteractable, IPlayerContr
     PlayerInteractionState m_currentInteractionState;
     InteractionSession m_currentInteractionSession;
     GameObject m_player;
+    
     /// <inheritdoc/>
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
