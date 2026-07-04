@@ -20,10 +20,14 @@ public class WarningIconMessageListener : MonoBehaviour
 
     public void OnPlayerControllerConnect(IPlayerController playerController)
     {
+        Debug.Log($"OnPlayerControllerConnect called, messenger null: {m_messenger == null}");
         if (!playerController.TryGetPlayerIndex(out int playerIndex)) return;
+        Debug.Log($"Subscribing for player {playerIndex}");
     
         foreach (WarningIcon warningIcon in m_warningIcons)
         {
+            Debug.Log($"Subscribing to: '{warningIcon.EnableMessage} player{playerIndex}'");
+
             m_messenger.TrySubscribe($"{warningIcon.EnableMessage} player{playerIndex}", () => StartCoroutine(warningIcon.EnableWarning()));
             m_messenger.TrySubscribe($"{warningIcon.EnableMessage} player{playerIndex}", () => StartCoroutine(warningIcon.FlashWarningLabel(true)));
             m_messenger.TrySubscribe($"{warningIcon.DisableMessage} player{playerIndex}", () => StartCoroutine(warningIcon.DisableWarning()));
