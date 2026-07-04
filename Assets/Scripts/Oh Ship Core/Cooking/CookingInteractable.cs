@@ -1,3 +1,5 @@
+using System.Collections;
+using MatrixUtils.DependencyInjection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,7 +25,7 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
     [SerializeField] private AudioClip dropCrabSound;
     [SerializeField] private AudioClip cookSound;
 
-
+    [Inject] INotificationMessenger m_notificationMessenger;
 
     private void Start()
     {
@@ -89,6 +91,7 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
         
         m_currentInteractionSession = new InteractionSession(interactor, this);
         m_currentInteractionSession.End();
+        StartCoroutine(DisplayWarning());
        
         return m_currentInteractionSession;
        
@@ -165,6 +168,16 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
     {
         audioSource.PlayOneShot(cookSound);
 
+    }
+
+    IEnumerator DisplayWarning()
+    {
+        Debug.Log("Warning Label");
+        int playerIndex = _playerInteractionState.PlayerIndex;
+        Debug.Log($"Firing: 'enable raw player{playerIndex}'");
+        m_notificationMessenger.TryNotify($"enable raw player{playerIndex}");
+        yield return new WaitForSeconds(3f);
+        m_notificationMessenger.TryNotify($"disable raw player{playerIndex}");;
     }
     
 }

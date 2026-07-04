@@ -9,6 +9,8 @@ public class PlayerInteractionState : MonoBehaviour
     [SerializeField] private HashSet<InteractionTag> m_interactionTags =  new HashSet<InteractionTag>();
     [Inject] INotificationMessenger m_notificationMessenger;
     private int m_playerIndex = -1;
+    
+    public int PlayerIndex => m_playerIndex;
     private void Start()
     { 
         FindAnyObjectByType<Injector>().Inject(this);
