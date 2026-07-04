@@ -23,6 +23,9 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
     [SerializeField, RequiredField] AudioSource m_steeringSoundSource;
     [SerializeField] float m_hornMin;
     [SerializeField] float m_hornMax;
+    [SerializeField] private float m_maxCameraY = 90f;
+    private float m_currentCameraY = 0f;
+    
     float m_hornVelocity;
     bool m_usingHorn;
     bool m_steeringSoundPlaying;
@@ -76,7 +79,13 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         m_throttleElement.Transform.localEulerAngles = new(m_throttleElement.GetNextAngle(-m_shipMovement.Throttle, m_throttleElement.Transform.localEulerAngles.x), 0, 0);
         m_speedometerElement.Transform.localEulerAngles = new(0, 0, m_speedometerElement.GetNextAngle(Vector3.Dot(m_shipMovement.Rigidbody.linearVelocity, m_shipMovement.Rigidbody.transform.forward).Remap(-14, 14, -1, 1), m_speedometerElement.Transform.localEulerAngles.z));
         m_hornPosition.localPosition = new(m_hornPosition.localPosition.x, Mathf.SmoothDamp(m_hornPosition.localPosition.y, m_usingHorn ? m_hornMax : m_hornMin, ref m_hornVelocity, 0.1f), m_hornPosition.localPosition.z);
-        m_helmCamera.transform.Rotate(0, m_lookInput.x * Time.deltaTime * 100, 0);
+
+        m_currentCameraY += m_lookInput.x * Time.deltaTime * 100;
+        m_currentCameraY = Mathf.Clamp(m_currentCameraY,-m_maxCameraY,m_maxCameraY);
+        
+        m_helmCamera.transform.localRotation = Quaternion.Euler(0,m_currentCameraY, 0);
+        //m_helmCamera.transform.Rotate(0, m_currentCameraY, 0);
+       
     }
     ///<inheritdoc/>
     public void OnControlRequested(IPlayerController player)
@@ -120,6 +129,7 @@ public class HelmInteractable : MonoBehaviour, IInteractable, IPlayerControllabl
         hornAction.canceled -= HandleHornEndedInput;
         m_playerInteractionState.RemoveInteractionTag(InteractionTag.Steering);
         m_currentInteractionSession.End();
+        m_currentCameraY = 0;
         m_activePlayerController = null;
     }
     ///<inheritdoc/>
