@@ -45,6 +45,7 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
     {
         _audioSource = GetComponent<AudioSource>();
         FindAnyObjectByType<Injector>().Inject(this);
+        _audioSource.clip = drink;
     }
 
     // Update is called once per frame
@@ -80,27 +81,28 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
     public InteractionSession BeginInteraction(IInteractor interactor)
     {
-        _playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
-        _thirstManager = _playerControllable.GetAssociatedGameObject().GetComponent<HungerAndThirst>();
-
+        //_playerControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
         IPlayerControllable oldControllable = interactor.GetAssociatedGameObject().transform.parent.GetComponent<IPlayerControllable>();
-        IPlayerController controller = oldControllable.GetActivePlayerController();
-        _playerControllableForHoldingObject = oldControllable;
 
-        _playerController = _playerControllable.GetActivePlayerController();
+        _thirstManager = oldControllable.GetAssociatedGameObject().GetComponent<HungerAndThirst>();
 
-        _playerInteractionState = _playerControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
+      //  IPlayerController controller = oldControllable.GetActivePlayerController();
+       // _playerControllableForHoldingObject = oldControllable;
 
-        if (_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish))
+      //  _playerController = _playerControllable.GetActivePlayerController();
+
+        _playerInteractionState = oldControllable.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
+
+        /*if (_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish))
         {
             return null;
-        }
+        }*/
         
         if(_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingBottle))
         {
             _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingBottle);
             bottleInSink.SetActive(true);
-            _holdingObjectTransform = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
+            _holdingObjectTransform = oldControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
             if (_holdingObjectTransform.childCount > 0)
             {
                 Destroy(_holdingObjectTransform.GetChild(0).gameObject);
@@ -108,27 +110,31 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
             timer = 0f;
             fillingUp = true;
         }
-        else if (!_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingBottle))
-        {
-            _playerInteractionState.AddInteractionTag(InteractionTag.HoldingBottleWithWater);
-            _audioSource.clip = drink;
-            _audioSource.PlayOneShot(drink);
-            DrinkWater(amountOfWater);
-            bottleInSink.SetActive(false);
-            bottleBack.SetActive(true);
-            filledUp = false;
-            fillingUp = false;
-            animSink.SetBool("waterRunning", false);
-            _audioSource.Stop();
-            timer = 0f;
-            _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingBottleWithWater);
-        }
+       // else if (!_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingBottle))
+       else if(filledUp || fillingUp) 
+       {
+           //Debug.Log("Doesn't contain bottle in hand?");
+          // _playerInteractionState.AddInteractionTag(InteractionTag.HoldingBottleWithWater);
+           
+           _audioSource.PlayOneShot(drink);
+           DrinkWater(amountOfWater);
+           bottleInSink.SetActive(false);
+           bottleBack.SetActive(true);
+           filledUp = false;
+           fillingUp = false;
+           animSink.SetBool("waterRunning", false);
+           _audioSource.Stop();
+           timer = 0f;
+         //  _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingBottleWithWater);
+       }
+       else
+       {
+           StartCoroutine(PlayerNotificationBlock());
+       }
 
         m_currentInteractionSession = new InteractionSession(interactor, this);
         m_currentInteractionSession.End();
-
-        StartCoroutine(PlayerNotificationBlock());
-
+        
         return m_currentInteractionSession;
 
     }
