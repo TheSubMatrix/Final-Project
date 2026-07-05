@@ -138,7 +138,6 @@ GameObject:
   - component: {fileID: 8428141935717895241}
   - component: {fileID: 841754085537700692}
   - component: {fileID: 5382419015163762440}
-  - component: {fileID: 69798732812952048}
   m_Layer: 0
   m_Name: Lampposts_Large
   m_TagString: Untagged
@@ -220,28 +219,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &69798732812952048
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2423842109117972608}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4675141087770900413, guid: 7a407bb03bfe9c44ea2fbca33d5c7bb5, type: 3}
 --- !u!1 &3499825116131698556
 GameObject:
   m_ObjectHideFlags: 0
