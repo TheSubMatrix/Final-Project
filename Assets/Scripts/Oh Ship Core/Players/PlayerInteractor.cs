@@ -1,4 +1,5 @@
 ﻿using System;
+using MatrixUtils.Attributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,7 +14,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     [SerializeField] float m_interactionRange = 2;
     [SerializeField] LayerMask m_interactionLayer;
     InteractionSession m_session;
-    HeldObjectLocation m_heldObjectLocation;
+    [SerializeField, RequiredField]HeldObjectLocation m_heldObjectLocation;
     [SerializeField] PlayerInteractionState m_playerState;
     
     /// <inheritdoc/>
@@ -21,7 +22,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     /// <inheritdoc/>
     public InteractionSession GetSession() => m_session;
 
-
+    //This should not be in here. This should be handled by the interactable calling to the audio manager
     [Header("Sound")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip chewing;
@@ -96,16 +97,18 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     
     private void Start()
     {
-        m_heldObjectLocation = GetComponentInChildren<HeldObjectLocation>();
+        m_heldObjectLocation ??= GetComponentInChildren<HeldObjectLocation>();
+        //Why do this here?
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-
+    //Encapsulate this functionality to the held items, this doesn't belong in the interactor
     public void UseHeldItem()
     {
         LayerMask playerLayer = 1 << transform.parent.gameObject.layer;
         if (playerLayer == LayerMask.GetMask("Default")) return;
         IUsableItem usableItem = m_heldObjectLocation.GetComponentInChildren<IUsableItem>();
+        // This is awful for expansion and why the data should be encapsulated in the IUsableItem as Logan set up
         if (usableItem != null)
         {
             usableItem.Use();

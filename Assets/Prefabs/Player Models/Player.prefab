@@ -401,7 +401,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8637963116083372980}
-  - component: {fileID: 4283127309468755903}
   m_Layer: 3
   m_Name: Holding Hand
   m_TagString: Untagged
@@ -421,21 +420,10 @@ Transform:
   m_LocalPosition: {x: 0.163, y: 1.42, z: 0.43}
   m_LocalScale: {x: 1.1111113, y: 1.1111112, z: 1.1111112}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7005066921179583112}
   m_Father: {fileID: 6736218555524400023}
   m_LocalEulerAnglesHint: {x: 75.242, y: 293.565, z: 127.48}
---- !u!114 &4283127309468755903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 800990461458659111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b58b37ba5cf574048a8350bbe9fca945, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OhShip.Core::HeldObjectLocation
 --- !u!1 &1097891847939402230
 GameObject:
   m_ObjectHideFlags: 0
@@ -2926,6 +2914,7 @@ MonoBehaviour:
   m_interactionLayer:
     serializedVersion: 2
     m_Bits: 1025
+  m_heldObjectLocation: {fileID: 5416058856998888879}
   m_playerState: {fileID: 4259362998317367922}
   audioSource: {fileID: 3216482273624154066}
   chewing: {fileID: 8300000, guid: 3a8a7bb03a934bc4fb499670ba89f3b4, type: 3}
@@ -3286,6 +3275,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6889472072280373547}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6215161732219693725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7005066921179583112}
+  - component: {fileID: 5416058856998888879}
+  m_Layer: 3
+  m_Name: Held Object Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7005066921179583112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6215161732219693725}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000044703484, y: -0.00000011920929, z: -0.70710665, w: 0.707107}
+  m_LocalPosition: {x: -0, y: 0.0207, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8637963116083372980}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &5416058856998888879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6215161732219693725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58b37ba5cf574048a8350bbe9fca945, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OhShip.Core::HeldObjectLocation
+  m_objectHoldConstraint: {fileID: 9181579911896238800}
 --- !u!1 &6237274097629161799
 GameObject:
   m_ObjectHideFlags: 0

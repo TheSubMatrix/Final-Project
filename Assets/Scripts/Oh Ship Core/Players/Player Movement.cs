@@ -9,6 +9,8 @@ using UnityEngine.Serialization;
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
+    static readonly int s_xVelocityProperty = Animator.StringToHash("X Velocity");
+    static readonly int s_zVelocityProperty = Animator.StringToHash("Z Velocity");
     [SerializeField, Range(0f, 90f)] float maxGroundAngle = 25f;
     [SerializeField] Animator anim;
     float minGroundDotProduct;
@@ -211,8 +213,8 @@ public class PlayerMovement : MonoBehaviour
 
             float currentX = Vector3.Dot(velocity, xAxis);
             float currentZ = Vector3.Dot(velocity, zAxis);
-            anim.SetFloat("X Velocity", currentX);
-            anim.SetFloat("Z Velocity", currentZ);
+            anim.SetFloat(s_xVelocityProperty, currentX);
+            anim.SetFloat(s_zVelocityProperty, currentZ);
             if (m_disableMovement)
             {
                  newForward = Mathf.MoveTowards(currentX, 0, GetRate(currentX, 0));
