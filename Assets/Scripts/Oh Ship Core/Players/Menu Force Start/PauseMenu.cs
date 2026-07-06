@@ -71,7 +71,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        foreach (PlayerController controller in FindObjectsByType<PlayerController>(FindObjectsSortMode.None))
+        foreach (PlayerController controller in FindObjectsOfType<PlayerController>())
         {
             controller.TryChangeInputActionMap("Player", out _);
         }
@@ -83,7 +83,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        foreach (PlayerController controller in FindObjectsByType<PlayerController>(FindObjectsSortMode.None))
+        foreach (PlayerController controller in FindObjectsOfType<PlayerController>())
         {
             controller.TryChangeInputActionMap("UI", out _);
         }
