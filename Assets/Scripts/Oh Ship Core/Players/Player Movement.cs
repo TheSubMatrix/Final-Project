@@ -72,9 +72,7 @@ public class PlayerMovement : MonoBehaviour
     public void SetMovementEnabled(bool toggle)
     {
         m_disableMovement = !toggle;
-
         Debug.Log($"SetMovementEnabled called with: {toggle}, m_disableMovement now: {m_disableMovement}");
-
     }
 
     void Start()
@@ -82,14 +80,9 @@ public class PlayerMovement : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody>();
     }
 
-    void Awake()
-    {
-        OnValidate();
-    }
-    private void OnValidate()
-    {
-        minGroundDotProduct = Mathf.Cos(maxGroundAngle * Mathf.Deg2Rad);
-    }
+    void Awake() => OnValidate();
+
+    void OnValidate() => minGroundDotProduct = Mathf.Cos(maxGroundAngle * Mathf.Deg2Rad);
 
     void FixedUpdate()
     {
@@ -110,15 +103,9 @@ public class PlayerMovement : MonoBehaviour
     }
     float GetRate(float current, float desired) => Mathf.Abs(current) < Mathf.Abs(desired) || !Mathf.Approximately(Mathf.Sign(current), Mathf.Sign(desired)) ? m_acceleration : m_deceleration;
     
-    void OnCollisionEnter(Collision collision)
-    {
-        EvaluateCollision(collision);
-    }
+    void OnCollisionEnter(Collision collision) => EvaluateCollision(collision);
 
-    void OnCollisionStay(Collision collision)
-    {
-        EvaluateCollision(collision);
-    }
+    void OnCollisionStay(Collision collision) => EvaluateCollision(collision);
 
     void EvaluateCollision(Collision collision)
     {
@@ -200,36 +187,34 @@ public class PlayerMovement : MonoBehaviour
 
     void AdjustVelocityAndRotation()
     {
-        if (connectedBody)
+        if (!connectedBody) return;
+        float newForward;
+        float newSideways;
+        Vector3 xAxis = ProjectOnContactPlane(m_lookYaw * Vector3.right).normalized;
+        Vector3 zAxis = ProjectOnContactPlane(m_lookYaw * Vector3.forward).normalized;
+
+        float currentX = Vector3.Dot(velocity, xAxis);
+        float currentZ = Vector3.Dot(velocity, zAxis);
+        if (m_disableMovement)
         {
-            float newForward;
-            float newSideways;
-            Vector3 xAxis = ProjectOnContactPlane(m_lookYaw * Vector3.right).normalized;
-            Vector3 zAxis = ProjectOnContactPlane(m_lookYaw * Vector3.forward).normalized;
+            newForward = Mathf.MoveTowards(currentX, 0, GetRate(currentX, 0));
+            newSideways = Mathf.MoveTowards(currentZ, 0, GetRate(currentZ, 0));
+        }
+        else
+        {
+            newForward = Mathf.MoveTowards(currentX, m_desiredMovement.y, GetRate(currentX, m_desiredMovement.y));
+            newSideways = Mathf.MoveTowards(currentZ, m_desiredMovement.x, GetRate(currentZ, m_desiredMovement.x));
+        }
+        Vector3 localVelocity = new(newSideways, 0, newForward);
+        Vector3 worldVelocity = m_lookYaw * localVelocity;
+        worldVelocity += new Vector3(connectionVelocity.x, 0, connectionVelocity.z);
+        anim.SetFloat(s_xVelocityProperty, currentX / m_moveSpeed);
+        anim.SetFloat(s_zVelocityProperty, currentZ / m_moveSpeed);
+        m_rigidbody.linearVelocity = new(worldVelocity.x, m_rigidbody.linearVelocity.y, worldVelocity.z);
 
-            float currentX = Vector3.Dot(velocity, xAxis);
-            float currentZ = Vector3.Dot(velocity, zAxis);
-            if (m_disableMovement)
-            {
-                 newForward = Mathf.MoveTowards(currentX, 0, GetRate(currentX, 0));
-                 newSideways = Mathf.MoveTowards(currentZ, 0, GetRate(currentZ, 0));
-            }
-            else
-            {
-                 newForward = Mathf.MoveTowards(currentX, m_desiredMovement.y, GetRate(currentX, m_desiredMovement.y));
-                 newSideways = Mathf.MoveTowards(currentZ, m_desiredMovement.x, GetRate(currentZ, m_desiredMovement.x));
-            }
-            Vector3 localVelocity = new(newSideways, 0, newForward);
-            Vector3 worldVelocity = m_lookYaw * localVelocity;
-            worldVelocity += new Vector3(connectionVelocity.x, 0, connectionVelocity.z);
-            anim.SetFloat(s_xVelocityProperty, localVelocity.x / m_moveSpeed);
-            anim.SetFloat(s_zVelocityProperty, localVelocity.z / m_moveSpeed);
-            m_rigidbody.linearVelocity = new(worldVelocity.x, m_rigidbody.linearVelocity.y, worldVelocity.z);
-
-            if (onGround)
-            {
-                m_rigidbody.linearVelocity = Vector3.ProjectOnPlane(m_rigidbody.linearVelocity, contactNormal);
-            }
+        if (onGround)
+        {
+            m_rigidbody.linearVelocity = Vector3.ProjectOnPlane(m_rigidbody.linearVelocity, contactNormal);
         }
     }
 
