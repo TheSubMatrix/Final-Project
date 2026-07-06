@@ -190,11 +190,12 @@ public class PlayerMovement : MonoBehaviour
         if (!connectedBody) return;
         float newForward;
         float newSideways;
+        Vector3 relativeVelocity = m_rigidbody.linearVelocity - connectionVelocity;
         Vector3 xAxis = ProjectOnContactPlane(m_lookYaw * Vector3.right).normalized;
         Vector3 zAxis = ProjectOnContactPlane(m_lookYaw * Vector3.forward).normalized;
 
-        float currentX = Vector3.Dot(velocity, xAxis);
-        float currentZ = Vector3.Dot(velocity, zAxis);
+        float currentX = Vector3.Dot(relativeVelocity, xAxis);
+        float currentZ = Vector3.Dot(relativeVelocity, zAxis);
         if (m_disableMovement)
         {
             newForward = Mathf.MoveTowards(currentX, 0, GetRate(currentX, 0));
@@ -208,8 +209,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 localVelocity = new(newSideways, 0, newForward);
         Vector3 worldVelocity = m_lookYaw * localVelocity;
         worldVelocity += new Vector3(connectionVelocity.x, 0, connectionVelocity.z);
-        anim.SetFloat(s_xVelocityProperty, currentX / m_moveSpeed);
-        anim.SetFloat(s_zVelocityProperty, currentZ / m_moveSpeed);
+        anim.SetFloat(s_xVelocityProperty, currentX > 0.1f || currentX < -0.1 ? currentX : 0 / m_moveSpeed);
+        anim.SetFloat(s_zVelocityProperty, currentZ > 0.1f || currentZ < -0.1 ? currentZ : 0 / m_moveSpeed);
         m_rigidbody.linearVelocity = new(worldVelocity.x, m_rigidbody.linearVelocity.y, worldVelocity.z);
 
         if (onGround)
