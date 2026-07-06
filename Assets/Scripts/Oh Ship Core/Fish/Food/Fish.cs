@@ -3,29 +3,30 @@ using UnityEngine.Audio;
 
 public class Fish : FoodClass
 {
+    static readonly int s_cookedAmount = Shader.PropertyToID("_Cooked_Amount");
     private Material m_material;
     private float m_cookedAmount;
     private CookState m_currentCookState = CookState.Raw;
     [SerializeField] private ParticleSystem cookedVFX;
     [SerializeField] private PlayerInteractionState playerInteractionState;
-    private HeldObjectLocation heldObjectLocation;
+    private HeldObjectHandler m_heldObjectHandler;
     Transform locationOfHeldObject;
 
     [Header("Audio")]
     [SerializeField] AudioSource audioSource;
     [SerializeField] private AudioClip cookingDone;
 
-    public override CookState CookStateRef {get{return m_currentCookState;}}
-    
+    public override CookState CookStateRef => m_currentCookState;
+
     public override CookingProcess CookingProcess => CookingProcess.OnGrill;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         m_material = GetComponent<MeshRenderer>().material;
-        heldObjectLocation = GetComponentInParent<HeldObjectLocation>();
-        Debug.Log(heldObjectLocation);
-        locationOfHeldObject = heldObjectLocation.transform;
+        m_heldObjectHandler = GetComponentInParent<HeldObjectHandler>();
+        Debug.Log(m_heldObjectHandler);
+        locationOfHeldObject = m_heldObjectHandler.transform;
         Debug.Log(locationOfHeldObject);
         playerInteractionState = locationOfHeldObject.GetComponentInParent<PlayerInteractionState>();
         Debug.Log(playerInteractionState);
@@ -36,7 +37,7 @@ public class Fish : FoodClass
     public override void UpdateCookedAmount(float incomingAmount)
     {
         m_cookedAmount = incomingAmount;
-        m_material.SetFloat("_Cooked_Amount", m_cookedAmount);
+        m_material.SetFloat(s_cookedAmount, m_cookedAmount);
         
         CookState newState = DetermineCookState(m_cookedAmount);
 
@@ -55,7 +56,7 @@ public class Fish : FoodClass
         m_material = GetComponent<MeshRenderer>().material;
         if (m_currentCookState == CookState.Raw)
         {
-            m_material.SetFloat("_Cooked_Amount", 0);
+            m_material.SetFloat(s_cookedAmount, 0);
             m_cookedAmount = 0;
             m_currentCookState = CookState.Raw;
         }
@@ -68,17 +69,17 @@ public class Fish : FoodClass
         playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingCookedFish);
         playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingBurntFish);
  
-        return foodData.HungerRestored(m_currentCookState);
+        return m_foodData.HungerRestored(m_currentCookState);
 
     }
 
 
     CookState DetermineCookState(float cookedAmount)
     {
-        if (foodData.GetThreshold(CookState.Burnt) >= 0 && cookedAmount >= foodData.GetThreshold(CookState.Burnt))
+        if (m_foodData.GetThreshold(CookState.Burnt) >= 0 && cookedAmount >= m_foodData.GetThreshold(CookState.Burnt))
             return CookState.Burnt;
         
-        if (foodData.GetThreshold(CookState.Cooked) >= 0 && cookedAmount >= foodData.GetThreshold(CookState.Cooked))
+        if (m_foodData.GetThreshold(CookState.Cooked) >= 0 && cookedAmount >= m_foodData.GetThreshold(CookState.Cooked))
             return CookState.Cooked;
         
         return CookState.Raw;

@@ -63,16 +63,16 @@ public class Crab : FoodClass
         playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingCookedFish);
         playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingBurntFish);
  
-        return foodData.HungerRestored(m_currentCookState);
+        return m_foodData.HungerRestored(m_currentCookState);
     }
 
 
     CookState DetermineCookState(float cookedAmount)
     {
-        if (foodData.GetThreshold(CookState.Burnt) >= 0 && cookedAmount >= foodData.GetThreshold(CookState.Burnt))
+        if (m_foodData.GetThreshold(CookState.Burnt) >= 0 && cookedAmount >= m_foodData.GetThreshold(CookState.Burnt))
             return CookState.Burnt;
 
-        if (foodData.GetThreshold(CookState.Cooked) >= 0 && cookedAmount >= foodData.GetThreshold(CookState.Cooked))
+        if (m_foodData.GetThreshold(CookState.Cooked) >= 0 && cookedAmount >= m_foodData.GetThreshold(CookState.Cooked))
             return CookState.Cooked;
 
         return CookState.Raw;

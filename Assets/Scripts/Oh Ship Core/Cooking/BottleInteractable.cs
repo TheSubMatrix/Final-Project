@@ -36,7 +36,7 @@ public class BottleInteractable : MonoBehaviour, IInteractable, IPromptProvider
         else
         {
             _playerInteractionState.AddInteractionTag(InteractionTag.HoldingBottle);
-            _holdingObjectTransform = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
+            _holdingObjectTransform = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HeldObjectHandler>().transform;
             GameObject bottle = Instantiate(bottleToSpawn, _holdingObjectTransform.position, _holdingObjectTransform.rotation);
             bottle.transform.SetParent(_holdingObjectTransform);
             gameObject.SetActive(false);
