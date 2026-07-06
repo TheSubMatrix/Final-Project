@@ -20,6 +20,7 @@ public class PlayerSelectionCursor : MonoBehaviour
         playerCount++;
         m_cursorTransform = GetComponent<RectTransform>();
         GetComponent<Image>().sprite = playerIcons[playerCount -1];
+        gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1f);
     }
     public void Initialize(MultiplayerEventSystem eventSystem) => m_eventSystem = eventSystem;
     void Update()
