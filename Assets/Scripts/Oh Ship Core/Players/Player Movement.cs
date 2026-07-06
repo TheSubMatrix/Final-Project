@@ -100,15 +100,13 @@ public class PlayerMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        if (!m_disableMovement)
-        {
-            m_lookYaw *= Quaternion.Euler(0, m_currentLookInput.x * m_lookSensitivity * Time.deltaTime, 0);
-            m_lookPitch = Mathf.Clamp(m_lookPitch - m_currentLookInput.y * m_lookSensitivity * Time.deltaTime, -90, 90);
-            m_camera.rotation = m_lookYaw * Quaternion.Euler(m_lookPitch, 0, 0);
-            m_rigidbody.MoveRotation(m_lookYaw);
-            m_camera.rotation = m_lookYaw * Quaternion.Euler(m_lookPitch, 0, 0); 
-        }
-        
+        if (m_disableMovement) return;
+        m_lookYaw *= Quaternion.Euler(0, m_currentLookInput.x * m_lookSensitivity * Time.deltaTime, 0);
+        m_lookPitch = Mathf.Clamp(m_lookPitch - m_currentLookInput.y * m_lookSensitivity * Time.deltaTime, -90, 90);
+        m_camera.rotation = m_lookYaw * Quaternion.Euler(m_lookPitch, 0, 0);
+        m_rigidbody.MoveRotation(m_lookYaw);
+        m_camera.rotation = m_lookYaw * Quaternion.Euler(m_lookPitch, 0, 0);
+
     }
     float GetRate(float current, float desired) => Mathf.Abs(current) < Mathf.Abs(desired) || !Mathf.Approximately(Mathf.Sign(current), Mathf.Sign(desired)) ? m_acceleration : m_deceleration;
     
@@ -174,12 +172,10 @@ public class PlayerMovement : MonoBehaviour
             contactNormal = Vector3.up;
         }
         velocity = m_rigidbody.linearVelocity;
-        if (connectedBody)
+        if (!connectedBody) return;
+        if (connectedBody.isKinematic || connectedBody.mass >= m_rigidbody.mass)
         {
-            if (connectedBody.isKinematic || connectedBody.mass >= m_rigidbody.mass)
-            {
-                UpdateConnectionState();
-            }
+            UpdateConnectionState();
         }
     }
 
@@ -213,8 +209,6 @@ public class PlayerMovement : MonoBehaviour
 
             float currentX = Vector3.Dot(velocity, xAxis);
             float currentZ = Vector3.Dot(velocity, zAxis);
-            anim.SetFloat(s_xVelocityProperty, currentX);
-            anim.SetFloat(s_zVelocityProperty, currentZ);
             if (m_disableMovement)
             {
                  newForward = Mathf.MoveTowards(currentX, 0, GetRate(currentX, 0));
@@ -225,10 +219,11 @@ public class PlayerMovement : MonoBehaviour
                  newForward = Mathf.MoveTowards(currentX, m_desiredMovement.y, GetRate(currentX, m_desiredMovement.y));
                  newSideways = Mathf.MoveTowards(currentZ, m_desiredMovement.x, GetRate(currentZ, m_desiredMovement.x));
             }
-            
-            Vector3 worldVelocity = m_lookYaw * new Vector3(newSideways, 0, newForward);
+            Vector3 localVelocity = new(newSideways, 0, newForward);
+            Vector3 worldVelocity = m_lookYaw * localVelocity;
             worldVelocity += new Vector3(connectionVelocity.x, 0, connectionVelocity.z);
-
+            anim.SetFloat(s_xVelocityProperty, localVelocity.x / m_moveSpeed);
+            anim.SetFloat(s_zVelocityProperty, localVelocity.z / m_moveSpeed);
             m_rigidbody.linearVelocity = new(worldVelocity.x, m_rigidbody.linearVelocity.y, worldVelocity.z);
 
             if (onGround)
