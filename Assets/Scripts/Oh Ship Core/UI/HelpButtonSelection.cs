@@ -10,11 +10,11 @@ public class HelpButtonSelection : MonoBehaviour, ISelectHandler, IDeselectHandl
 
     private GameObject m_helpPictureLabel;
     
-    private Sprite _sprite;
+    public Sprite _sprite;
 
     private void Start()
     {
-        _sprite = GetComponent<Image>().sprite;
+        
         m_helpPictureLabel = transform.GetChild(0).gameObject;
         m_helpPictureLabel.SetActive(false);
     }
