@@ -1,7 +1,7 @@
 ﻿using System;
 using MatrixUtils.Attributes;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Handles interactions with <see cref="IInteractable"/> by the player.
@@ -14,7 +14,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     [SerializeField] float m_interactionRange = 2;
     [SerializeField] LayerMask m_interactionLayer;
     InteractionSession m_session;
-    [FormerlySerializedAs("m_heldObjectLocation")] [SerializeField, RequiredField]HeldObjectHandler m_heldObjectHandler;
+    [SerializeField, RequiredField]HeldObjectLocation m_heldObjectLocation;
     [SerializeField] PlayerInteractionState m_playerState;
     
     /// <inheritdoc/>
@@ -22,12 +22,11 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     /// <inheritdoc/>
     public InteractionSession GetSession() => m_session;
 
-    //TODO: This should not be in here. This should be handled by the interactable calling to the audio manager
+    //This should not be in here. This should be handled by the interactable calling to the audio manager
     [Header("Sound")]
-    [SerializeField]
-    AudioSource audioSource;
-    [SerializeField] AudioClip chewing;
-    [SerializeField] AudioClip drinking;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip chewing;
+    [SerializeField] private AudioClip drinking;
 
     public bool feeding = false;
     
@@ -49,6 +48,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     {
         LayerMask playerLayer = 1 << transform.parent.gameObject.layer;
         //Debug.Log($"Player layer: {transform.parent.gameObject.layer}, Default mask: {LayerMask.GetMask("Default")}, blocked: {playerLayer == LayerMask.GetMask("Default")}");
+
         if (playerLayer == LayerMask.GetMask("Default")) return;
         if (IsInteracting())
         {
@@ -94,38 +94,41 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
         session.End();
     }
     void OnDisable() => EndActiveInteraction();
-
-    void Start()
+    
+    private void Start()
     {
-        m_heldObjectHandler ??= GetComponentInChildren<HeldObjectHandler>();
-        //TODO: Why do this here? This should be handled by the player controller
+        m_heldObjectLocation ??= GetComponentInChildren<HeldObjectLocation>();
+        //Why do this here?
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-    //TODO: Encapsulate this functionality to the held items, this doesn't belong in the interactor
+    //Encapsulate this functionality to the held items, this doesn't belong in the interactor
     public void UseHeldItem()
     {
         LayerMask playerLayer = 1 << transform.parent.gameObject.layer;
         if (playerLayer == LayerMask.GetMask("Default")) return;
-        IHeldItem heldItem = m_heldObjectHandler.GetComponentInChildren<IHeldItem>();
-        // TODO: This is awful for expansion and is the reason why the data should be encapsulated in the IHeldItem as Logan set up. You can also use the SoundManager to prevent the GC as it's fully pooled
-        if (heldItem == null) return;
-        heldItem.Use();
-        if (m_playerState.CheckInteractionTag(InteractionTag.HoldingFish) && !feeding)
+        IUsableItem usableItem = m_heldObjectLocation.GetComponentInChildren<IUsableItem>();
+        // This is awful for expansion and why the data should be encapsulated in the IUsableItem as Logan set up
+        if (usableItem != null)
         {
-            audioSource.clip = chewing;
-            audioSource.PlayOneShot(chewing);
-            m_playerState.RemoveInteractionTag(InteractionTag.HoldingFish);
+            usableItem.Use();
+            if (m_playerState.CheckInteractionTag(InteractionTag.HoldingFish) || m_playerState.CheckInteractionTag(InteractionTag.HoldingCookedFish) || m_playerState.CheckInteractionTag(InteractionTag.HoldingBurntFish))
+            {
+                audioSource.clip = chewing;
+                audioSource.PlayOneShot(chewing);
+                m_playerState.RemoveInteractionTag(InteractionTag.HoldingFish);
+                Debug.Log("eats");
+            }
+            else if(m_playerState.CheckInteractionTag(InteractionTag.HoldingBottleWithWater) && !feeding)
+            {
+                Debug.Log("plays");
+                audioSource.clip = drinking;
+                audioSource.PlayOneShot(drinking);
+                m_playerState.RemoveInteractionTag(InteractionTag.HoldingBottleWithWater);
+            }
+            feeding = false;
+            Debug.Log("Using holding");
         }
-        else if(m_playerState.CheckInteractionTag(InteractionTag.HoldingBottleWithWater) && !feeding)
-        {
-            Debug.Log("plays");
-            audioSource.clip = drinking;
-            audioSource.PlayOneShot(drinking);
-            m_playerState.RemoveInteractionTag(InteractionTag.HoldingBottleWithWater);
-        }
-        feeding = false;
-        Debug.Log("Using holding");
     }
     
 }
