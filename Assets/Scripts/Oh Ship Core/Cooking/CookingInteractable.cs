@@ -52,7 +52,7 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
         if (_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish))
         {
-            _foodClassItem = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().GetComponentInChildren<FoodClass>();
+            _foodClassItem = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectHandler>().GetComponentInChildren<FoodClass>();
             if (_foodClassItem.CookingProcess == howIsCooked && cookingLocation.childCount == 0)
             {
                 m_currentInteractionSession = new InteractionSession(interactor, this);
@@ -154,8 +154,8 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
         audioSource.Stop();
         hasDropped = false;
         FoodClass cookingItem = cookingLocation.GetComponentInChildren<FoodClass>();
-        cookingItem.transform.position = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform.position;
-        cookingItem.transform.SetParent(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform);
+        cookingItem.transform.position = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectHandler>().transform.position;
+        cookingItem.transform.SetParent(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectHandler>().transform);
         cookingItem.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         cookingItem.InitializeHungerAndThirst(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>());
         if(cookedAmount > 0.3f)

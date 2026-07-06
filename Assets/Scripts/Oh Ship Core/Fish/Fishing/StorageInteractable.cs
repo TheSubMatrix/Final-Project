@@ -32,7 +32,7 @@ public class StorageInteractable : MonoBehaviour, IInteractable, IPromptProvider
             {
                 return null;
             }
-            _holdingObjectTransform =  _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
+            _holdingObjectTransform =  _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectHandler>().transform;
             AddFishToStorage(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<FoodClass>().FoodData);
             Destroy(_holdingObjectTransform.GetChild(0).gameObject);
             m_currentInteractionSession = new InteractionSession(interactor,this);
@@ -70,7 +70,7 @@ public class StorageInteractable : MonoBehaviour, IInteractable, IPromptProvider
     public void RemoveFishFromStorage(SO_CookableFoodData foodData)
     {
         HungerAndThirst hungerRef = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>();
-        _holdingObjectTransform =  _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
+        _holdingObjectTransform =  _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectHandler>().transform;
         GameObject fish = Instantiate(foodData.Model, _holdingObjectTransform.position,_holdingObjectTransform.rotation);
         fish.transform.SetParent(_holdingObjectTransform);
         fish.GetComponent<FoodClass>().InitializeHungerAndThirst(hungerRef);

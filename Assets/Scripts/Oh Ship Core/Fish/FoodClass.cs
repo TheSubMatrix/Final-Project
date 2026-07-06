@@ -1,45 +1,37 @@
 using System;
 using MatrixUtils.DependencyInjection;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public abstract class FoodClass : MonoBehaviour, IUsableItem
+public abstract class FoodClass : MonoBehaviour, IHeldItem
 {
-    [SerializeField] protected SO_CookableFoodData foodData;
-
- public SO_CookableFoodData FoodData
-    { get => foodData; set => foodData = value; }
+    [FormerlySerializedAs("foodData")] [SerializeField] protected SO_CookableFoodData m_foodData;
+    public SO_CookableFoodData FoodData => m_foodData;
 
     public abstract CookingProcess CookingProcess { get; }
 
     public abstract CookState CookStateRef { get; }
 
-    private HungerAndThirst m_HungerAndThirst;
+    HungerAndThirst m_hungerAndThirst;
 
     public void InitializeHungerAndThirst(HungerAndThirst hungerAndThirst)
     {
-        m_HungerAndThirst = hungerAndThirst;
+        m_hungerAndThirst = hungerAndThirst;
         //Reset();
     }
 
     public void Use()
     {
-        m_HungerAndThirst.Hunger.Value += Eat();
+        m_hungerAndThirst.Hunger.Value += Eat();
         Debug.Log(gameObject.name + " has been used!");
         Destroy(gameObject);
     }
 
-
-    public float GetCookingSpeed()
-    {
-        return FoodData.CookSpeed;
-    }
-
+    public Transform GetTransform() => transform;
+    public virtual Vector3 GetPositionOffset() => Vector3.zero;
+    public virtual Quaternion GetRotationOffset() => Quaternion.identity;
+    public float GetCookingSpeed() => FoodData.CookSpeed;
     public virtual void UpdateCookedAmount(float amount) { }
-
     public virtual void Reset() { }
-
     public abstract float Eat();
-
-
-    
 }

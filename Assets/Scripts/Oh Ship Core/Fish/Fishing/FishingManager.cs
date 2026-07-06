@@ -174,7 +174,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
         Debug.Log("Fish Caught");
         int index = UnityEngine.Random.Range(0, usableThingsToCatch.Length);
         
-        _holdingObjectTransform = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HeldObjectLocation>().transform;
+        _holdingObjectTransform = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HeldObjectHandler>().transform;
         GameObject caughtItem = Instantiate(usableThingsToCatch[index], _holdingObjectTransform.position,_holdingObjectTransform.rotation);
         caughtItem.transform.SetParent(_holdingObjectTransform);
         _playerInteractionState.AddInteractionTag(InteractionTag.HoldingFish);
