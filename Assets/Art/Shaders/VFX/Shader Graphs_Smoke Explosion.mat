@@ -51,19 +51,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Displacement: 0.17
+    - _Displacement: 0.33
     - _Dissolve: 0
     - _Edges: 1
-    - _Fire_Dissolve: 0.505
+    - _Fire_Dissolve: 0.543
     - _Fire_Edge: 0
     - _Offset: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoke_Dissolve: 0
+    - _Smoke_Dissolve: 0.19
     - _Smoke_Edge: 0.38
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Fire_Color: {r: 14.933335, g: 6.2487183, b: 0, a: 1}
+    - _Noise_Scale: {r: 2, g: 2, b: 2, a: 0}
     - _Smoke_Color: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
