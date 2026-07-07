@@ -12327,7 +12327,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Cooking::BottleInteractable
   _interactDisplayTransform: {fileID: 0}
-  bottleToSpawn: {fileID: 0}
+  bottleToSpawn:
+    m_underlyingValue: {fileID: 0}
   bottleTaken: {fileID: 0}
 --- !u!23 &1076635740
 MeshRenderer:
@@ -40286,7 +40287,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Cooking::BottleInteractable
   _interactDisplayTransform: {fileID: 3087021416550592731}
-  bottleToSpawn: {fileID: 6417588570089594477}
+  bottleToSpawn:
+    m_underlyingValue: {fileID: -5644221482072922276, guid: b2c977734424ed94bbf43ce2b9971480, type: 3}
   bottleTaken: {fileID: 6417588570089594477}
 --- !u!1001 &5856358733838577596
 PrefabInstance:
@@ -42942,11 +42944,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
       propertyPath: m_maxHoldDuration
-      value: 40
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
       propertyPath: m_minHoldDuration
-      value: 20
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5523844188059048367, guid: 00a0a69a1175a9a4ea12b6dcb511a9c9, type: 3}
       propertyPath: m_warningThreshold

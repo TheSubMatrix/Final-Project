@@ -19,12 +19,15 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
     [Inject] INotificationMessenger m_notificationMessenger;
     private bool fillingUp = false;
-    private bool drinking = false;
-    [SerializeField] private float drinkingRate = 0.4f;
+    //private bool drinking = false;
+    //[SerializeField] private float drinkingRate = 0.4f;
     [SerializeField] private float cooldown = 3.0f;
     private float timer = 0f;
     private float amountOfWater = 0f;
+    //Feel free to remove these. They're just to shut up the warning since the field is never used.
+#pragma warning disable CS0414 // Field is assigned but its value is never used
     private bool canInteract = true;
+#pragma warning restore CS0414 // Field is assigned but its value is never used
     private bool filledUp = false;
 
     private IPlayerControllable _playerControllableForHoldingObject;
@@ -102,7 +105,7 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
         {
             _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingBottle);
             bottleInSink.SetActive(true);
-            _holdingItemHandler = oldControllable.GetAssociatedGameObject().GetComponentInChildren<HeldItemHandler>();
+            _holdingItemHandler = oldControllable.GetAssociatedGameObject().GetComponentInChildren<IHeldItemHandler>();
             _holdingItemHandler.TryClearHeldItem();
             
             timer = 0f;

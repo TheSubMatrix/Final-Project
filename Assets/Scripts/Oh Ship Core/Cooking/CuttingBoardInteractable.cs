@@ -36,7 +36,8 @@ public class CuttingBoardInteractable : MonoBehaviour, IInteractable, IPromptPro
 
         if (_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingCookedFish))
         {
-            _foodClassItem = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldItemHandler>().GetComponentInChildren<FoodClass>();
+            _foodClassItem = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<IHeldItemHandler>().HeldItem as FoodClass;
+            Debug.Log($"<color=blue>FoodClassItem: {_foodClassItem} </color>");
             if (storingLocation.childCount == 0)
             {
                 m_currentInteractionSession = new InteractionSession(interactor, this);
@@ -85,6 +86,7 @@ public class CuttingBoardInteractable : MonoBehaviour, IInteractable, IPromptPro
         _foodClassItem.transform.SetParent(storingLocation);
         if (_foodClassItem.GetComponentInChildren<Fish>())
         {
+            //Why are you hardcoding this?
             _foodClassItem.transform.localRotation = Quaternion.Euler(1.2f, 88.7f, 91.4f);
         }
         else if (_foodClassItem.GetComponentInChildren<Crab>())
@@ -98,9 +100,9 @@ public class CuttingBoardInteractable : MonoBehaviour, IInteractable, IPromptPro
     private void MoveObjetToHand()
     {
         FoodClass cookingItem = storingLocation.GetComponentInChildren<FoodClass>();
-        cookingItem.transform.position = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldItemHandler>().transform.position;
-        cookingItem.transform.SetParent(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldItemHandler>().transform);
-        cookingItem.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        Debug.Log("cookingItem:" + cookingItem);
+        if(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<IHeldItemHandler>() is not {} handler){ Debug.LogError("No handler found"); return; }
+        handler.TryHoldItem(cookingItem);
         cookingItem.InitializeHungerAndThirst(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>());
     }
     
