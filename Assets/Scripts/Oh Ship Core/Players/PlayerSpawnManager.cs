@@ -49,7 +49,16 @@ public class PlayerSpawnManager : MonoBehaviour
         if (data != null && controller.GetAssociatedGameObject().GetComponentInChildren<UniversalAdditionalCameraData>() is { } cam && controller.GetAssociatedGameObject().GetComponentInChildren<Volume>() is { } volume)
         {
             cam.volumeLayerMask |= data.CharacterPostEffectLayer;
+            cam.GetComponent<Camera>().cullingMask &= ~data.CharacterPostEffectLayer;
             volume.gameObject.layer = LayerMaskToLayer(data.CharacterPostEffectLayer);
+        }
+        if (data && GetChildrenWithTag(player.transform, "Player Model") is { Count: > 0 } playerModels)
+        {
+            foreach (Transform child in playerModels)
+            {
+                child.gameObject.layer = LayerMaskToLayer(data.CharacterPostEffectLayer);
+                Debug.Log($"<color=cyan>Player Model Layer: {child.gameObject.layer} Correct Layer: {LayerMaskToLayer(data.CharacterPostEffectLayer)}</color>");
+            }
         }
         if (!m_playerOutputChannels.TryGetValue(controller, out OutputChannels channels))
         {
@@ -83,5 +92,19 @@ public class PlayerSpawnManager : MonoBehaviour
             }
         }
         return 0;
+    }
+    static List<Transform> GetChildrenWithTag(Transform transform, string tag, List<Transform> childrenList = null)
+    {
+        childrenList ??= new();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Transform child = transform.GetChild(i);
+            if (child.CompareTag(tag))
+            {
+                childrenList.Add(child);
+            }
+            GetChildrenWithTag(child, tag, childrenList);
+        }
+        return childrenList;
     }
 }

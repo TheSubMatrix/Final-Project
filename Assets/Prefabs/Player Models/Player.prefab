@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 8557008608856616573}
   m_Layer: 3
   m_Name: body.001
-  m_TagString: Untagged
+  m_TagString: Player Model
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2914,7 +2914,7 @@ MonoBehaviour:
   m_interactionLayer:
     serializedVersion: 2
     m_Bits: 1025
-  m_heldObjectLocation: {fileID: 5416058856998888879}
+  m_heldObjectHandler: {fileID: 5416058856998888879}
   m_playerState: {fileID: 4259362998317367922}
   audioSource: {fileID: 3216482273624154066}
   chewing: {fileID: 8300000, guid: 3a8a7bb03a934bc4fb499670ba89f3b4, type: 3}
@@ -4022,7 +4022,7 @@ GameObject:
   - component: {fileID: 3763557867661331311}
   m_Layer: 3
   m_Name: body
-  m_TagString: Untagged
+  m_TagString: Player Model
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
