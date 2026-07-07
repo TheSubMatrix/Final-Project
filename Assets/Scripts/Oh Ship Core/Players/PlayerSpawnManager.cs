@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using MatrixUtils.DependencyInjection;
@@ -17,9 +16,9 @@ public class PlayerSpawnManager : MonoBehaviour
     [Inject] ICharacterSelectionDataHandler m_characterSelectionDataHandler;
     readonly Dictionary<IPlayerController, OutputChannels> m_playerOutputChannels = new();
     int m_spawnedPlayers = 1;
-    private List<Transform> m_spawnPointsLeft = new();
+    readonly List<Transform> m_spawnPointsLeft = new();
 
-    private void Awake()
+    void Awake()
     {
         foreach (Transform location in m_playerSpawnPoints)
         {
@@ -44,7 +43,6 @@ public class PlayerSpawnManager : MonoBehaviour
         IPlayerControllable selectedControllable = data?.CharacterModelPrefab.GetComponent<IPlayerControllable>() ?? m_playerControllable.Value;
         GameObject player = Instantiate(selectedControllable.GetAssociatedGameObject(), spawnPosition, spawnRotation);
         controller.ChangeControlledEntity(player.GetComponent<IPlayerControllable>());
-        
         controller.GetAssociatedGameObject().GetComponentInChildren<WarningIconMessageListener>()?.OnPlayerControllerConnect(controller);
         if (data != null && controller.GetAssociatedGameObject().GetComponentInChildren<UniversalAdditionalCameraData>() is { } cam && controller.GetAssociatedGameObject().GetComponentInChildren<Volume>() is { } volume)
         {
