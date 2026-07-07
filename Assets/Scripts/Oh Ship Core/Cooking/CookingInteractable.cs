@@ -52,11 +52,14 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
         if (_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingFish))
         {
-            _foodClassItem = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldItemHandler>().GetComponentInChildren<FoodClass>();
-            if (_foodClassItem.CookingProcess == howIsCooked && cookingLocation.childCount == 0)
+            IHeldItemHandler handler = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<IHeldItemHandler>();
+            _foodClassItem = handler.HeldItem as FoodClass;
+            if (_foodClassItem != null && _foodClassItem.CookingProcess == howIsCooked && cookingLocation.childCount == 0)
             {
                 m_currentInteractionSession = new InteractionSession(interactor, this);
                 m_currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
+                handler.TryDropItem();
+
                 MoveObjectToStove();
                 _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingFish);
                 m_currentInteractionSession.End();
@@ -67,7 +70,13 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
         {
             if (cookingLocation.childCount > 0)
             {
-                MoveObjetToHand();
+                if (!MoveObjetToHand())
+                {
+                    m_currentInteractionSession = new InteractionSession(interactor, this);
+                    m_currentInteractionSession.End();
+                    return m_currentInteractionSession;
+                }
+
                 m_currentInteractionSession = new InteractionSession(interactor, this);
                 m_currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
 
@@ -122,7 +131,7 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
         {
             hasDropped = true;
             audioSource.PlayOneShot(dropCrabSound);
-            Invoke("PlaySound", 1.5f);
+            Invoke(nameof(PlaySound), 1.5f);
         }
         else if (_foodClassItem.CookingProcess == CookingProcess.OnGrill)
         {
@@ -149,19 +158,31 @@ public class CookingInteractable : MonoBehaviour, IInteractable, IPromptProvider
         }
     }
 
-    private void MoveObjetToHand()
+    private bool MoveObjetToHand()
     {
         audioSource.Stop();
         hasDropped = false;
         FoodClass cookingItem = cookingLocation.GetComponentInChildren<FoodClass>();
-        cookingItem.transform.position = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldItemHandler>().transform.position;
-        cookingItem.transform.SetParent(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldItemHandler>().transform);
-        cookingItem.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+
+        if (_playerControllable.GetAssociatedGameObject().GetComponentInChildren<IHeldItemHandler>() is not { } handler)
+        {
+            Debug.LogError("No handler found");
+            return false;
+        }
+
+        if (!handler.TryHoldItem(cookingItem))
+        {
+            Debug.LogWarning("Player's hands were already full, could not pick up from stove.");
+            return false;
+        }
+
+        _foodClassItem = cookingItem;
         cookingItem.InitializeHungerAndThirst(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>());
         if(cookedAmount > 0.3f)
         {
             _playerInteractionState.AddInteractionTag(InteractionTag.HoldingCookedFish);
         }
+        return true;
     }
 
     private void PlaySound()

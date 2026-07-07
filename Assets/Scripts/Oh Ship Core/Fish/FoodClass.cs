@@ -23,8 +23,14 @@ public abstract class FoodClass : MonoBehaviour, IHeldItem
     public void Use()
     {
         m_hungerAndThirst.Hunger.Value += Eat();
-        Debug.Log(gameObject.name + " has been used!");
-        Destroy(gameObject);
+        if (GetComponentInParent<IHeldItemHandler>() is { } handler)
+        {
+            handler.TryClearHeldItem();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public Transform GetTransform() => transform;

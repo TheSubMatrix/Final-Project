@@ -36,12 +36,15 @@ public class CuttingBoardInteractable : MonoBehaviour, IInteractable, IPromptPro
 
         if (_playerInteractionState.CheckInteractionTag(InteractionTag.HoldingCookedFish))
         {
-            _foodClassItem = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<IHeldItemHandler>().HeldItem as FoodClass;
+            IHeldItemHandler handler = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<IHeldItemHandler>();
+            _foodClassItem = handler.HeldItem as FoodClass;
             Debug.Log($"<color=blue>FoodClassItem: {_foodClassItem} </color>");
             if (storingLocation.childCount == 0)
             {
                 m_currentInteractionSession = new InteractionSession(interactor, this);
                 m_currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
+                handler.TryDropItem();
+
                 MoveObjectToBoard();
                 _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingCookedFish);
                 _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingFish);
@@ -102,7 +105,13 @@ public class CuttingBoardInteractable : MonoBehaviour, IInteractable, IPromptPro
         FoodClass cookingItem = storingLocation.GetComponentInChildren<FoodClass>();
         Debug.Log("cookingItem:" + cookingItem);
         if(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<IHeldItemHandler>() is not {} handler){ Debug.LogError("No handler found"); return; }
-        handler.TryHoldItem(cookingItem);
+
+        if (!handler.TryHoldItem(cookingItem))
+        {
+            Debug.LogWarning("Player's hands were already full, could not pick up from board.");
+            return;
+        }
+
         cookingItem.InitializeHungerAndThirst(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>());
     }
     
