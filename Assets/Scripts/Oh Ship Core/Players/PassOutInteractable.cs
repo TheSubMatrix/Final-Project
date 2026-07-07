@@ -18,7 +18,7 @@ public class PassOutInteractable : MonoBehaviour, IInteractable, IPromptProvider
 
     private HungerAndThirst _hungerNThirst;
 
-    HeldObjectHandler m_heldObjectHandler;
+    IHeldItemHandler m_heldItemHandler;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -42,14 +42,14 @@ public class PassOutInteractable : MonoBehaviour, IInteractable, IPromptProvider
         _playerController02 = _playerControllable02.GetActivePlayerController();
         _playerInteractionState02 = _playerControllable02.GetAssociatedGameObject().GetComponent<PlayerInteractionState>();
 
-        m_heldObjectHandler = interactor.GetAssociatedGameObject().transform.parent.GetComponentInChildren<HeldObjectHandler>();
+        m_heldItemHandler = interactor.GetAssociatedGameObject().transform.parent.GetComponentInChildren<IHeldItemHandler>();
 
         if (_hungerNThirst.IsPassedOut)
         {   
             Debug.Log("went through pass");
             m_currentInteractionSession = new InteractionSession(interactor, this);
             m_currentInteractionSession.OnEnded += () => _playerController.ChangeControlledEntity(_playerControllable);
-            IHeldItem heldItem = m_heldObjectHandler.GetComponentInChildren<IHeldItem>();
+            IHeldItem heldItem = m_heldItemHandler.HeldItem;
 
             if (_playerInteractionState02.CheckInteractionTag(InteractionTag.HoldingCookedFish))
             {

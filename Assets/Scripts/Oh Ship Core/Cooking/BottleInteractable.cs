@@ -13,8 +13,8 @@ public class BottleInteractable : MonoBehaviour, IInteractable, IPromptProvider
     private PlayerInteractionState _playerInteractionState;
 
     private IPlayerControllable _playerControllableForHoldingObject;
-    private Transform _holdingObjectTransform;
-    [SerializeField] private GameObject bottleToSpawn;
+    private IHeldItemHandler _holdingObjectTransform;
+    [SerializeField] private InterfaceReference<IHeldItem> bottleToSpawn;
     [SerializeField] private GameObject bottleTaken;
     
     public InteractionSession BeginInteraction(IInteractor interactor)
@@ -36,9 +36,9 @@ public class BottleInteractable : MonoBehaviour, IInteractable, IPromptProvider
         else
         {
             _playerInteractionState.AddInteractionTag(InteractionTag.HoldingBottle);
-            _holdingObjectTransform = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HeldObjectHandler>().transform;
-            GameObject bottle = Instantiate(bottleToSpawn, _holdingObjectTransform.position, _holdingObjectTransform.rotation);
-            bottle.transform.SetParent(_holdingObjectTransform);
+            _holdingObjectTransform = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<IHeldItemHandler>();
+            IHeldItem bottle = Instantiate(bottleToSpawn.Value.GetAssociatedGameObject()).GetComponent<IHeldItem>();
+            _holdingObjectTransform.TryHoldItem(bottle);
             gameObject.SetActive(false);
         }
 

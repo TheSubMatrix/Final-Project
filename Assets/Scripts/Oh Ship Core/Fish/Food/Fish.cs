@@ -9,7 +9,7 @@ public class Fish : FoodClass
     private CookState m_currentCookState = CookState.Raw;
     [SerializeField] private ParticleSystem cookedVFX;
     [SerializeField] private PlayerInteractionState playerInteractionState;
-    private HeldObjectHandler m_heldObjectHandler;
+    private IHeldItemHandler m_heldItemHandler;
     Transform locationOfHeldObject;
 
     [Header("Audio")]
@@ -24,9 +24,9 @@ public class Fish : FoodClass
     {
         audioSource = GetComponent<AudioSource>();
         m_material = GetComponent<MeshRenderer>().material;
-        m_heldObjectHandler = GetComponentInParent<HeldObjectHandler>();
-        Debug.Log(m_heldObjectHandler);
-        locationOfHeldObject = m_heldObjectHandler.transform;
+        m_heldItemHandler = GetComponentInParent<IHeldItemHandler>();
+        Debug.Log(m_heldItemHandler);
+        locationOfHeldObject = m_heldItemHandler.GetAssociatedGameObject().transform;
         Debug.Log(locationOfHeldObject);
         playerInteractionState = locationOfHeldObject.GetComponentInParent<PlayerInteractionState>();
         Debug.Log(playerInteractionState);

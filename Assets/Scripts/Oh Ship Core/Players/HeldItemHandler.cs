@@ -3,14 +3,18 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Serialization;
 
-public class HeldObjectHandler: MonoBehaviour, IHeldObjectHandler
+public class HeldItemHandler: MonoBehaviour, IHeldItemHandler
 {
     public IHeldItem HeldItem { get; private set; }
+
+    public bool IsHoldingItem => HeldItem != null;
+
     //TODO: Swap the old system over to this so I can easily get held object offset data
     public bool TryHoldItem(IHeldItem item)
     {
-        if(HasSomethingInHand) return false;
+        if(IsHoldingItem) return false;
         item.GetTransform().SetParent(transform);
+        Debug.Log("<color=green>Held item</color>");
         item.GetTransform().localPosition = item.GetPositionOffset();
         item.GetTransform().localRotation = item.GetRotationOffset();
         HeldItem = item;
@@ -19,25 +23,29 @@ public class HeldObjectHandler: MonoBehaviour, IHeldObjectHandler
     
     public bool TryDropItem()
     {
-        if(!HasSomethingInHand) return false;
+        if(!IsHoldingItem) return false;
         HeldItem.GetTransform().SetParent(null);
         HeldItem = null;
         return true;
     }
-    
-    public bool HasSomethingInHand => transform.childCount > 0;
-    [FormerlySerializedAs("objectHoldConstraint"), RequiredField] public TwoBoneIKConstraint m_objectHoldConstraint;
-    //TODO: This shouldn't be in update, but since there isn't any easy way to track when an object is picked up at this point. This is part of the reason why moving to the updated system I outlined above would be an improvement on top of allowing asynchronous transitions between holding animations and allowing for offsets
-    void Update()
+
+    public bool TryClearHeldItem()
     {
-        m_objectHoldConstraint.weight = !HasSomethingInHand ? 0 : 1;
-    }
-    public void DestroyObjectsInHand()
-    {
+        if(!IsHoldingItem) return false;
         foreach(Transform child in transform)
         {
             Destroy(child.gameObject);
         }
+        HeldItem = null;
+        return true;
+    }
+
+    public GameObject GetAssociatedGameObject() => gameObject;
+    [FormerlySerializedAs("objectHoldConstraint"), RequiredField] public TwoBoneIKConstraint m_objectHoldConstraint;
+    //TODO: This shouldn't be in update, but since there isn't any easy way to track when an object is picked up at this point. This is part of the reason why moving to the updated system I outlined above would be an improvement on top of allowing asynchronous transitions between holding animations and allowing for offsets
+    void Update()
+    {
+        m_objectHoldConstraint.weight = !IsHoldingItem ? 0 : 1;
     }
     
 

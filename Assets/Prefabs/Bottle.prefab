@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ad53f7c9c09cec7489e4eef96b945967, type: 2}
+  - {fileID: 2100000, guid: ed878ac91d2488c4581adf2bd0b8c690, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,7 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Cooking::BottleInteractable
   _interactDisplayTransform: {fileID: 305892125573744807}
-  bottleToSpawn: {fileID: 8639637011807921681}
+  bottleToSpawn:
+    m_underlyingValue: {fileID: 0}
   bottleTaken: {fileID: 8639637011807921681}
 --- !u!65 &3821731496647525076
 BoxCollider:

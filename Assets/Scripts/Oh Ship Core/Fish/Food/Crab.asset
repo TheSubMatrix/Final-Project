@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e60263cdf0a40240a4d9538b331568c, type: 3}
   m_Name: Crab
   m_EditorClassIdentifier: OhShip.Core.Fish::SO_CookableFoodData
-  model: {fileID: 2305006631735972290, guid: 53d3ea83b9420624a981f32cdc0a69ab, type: 3}
+  m_itemToHold:
+    m_underlyingValue: {fileID: -8625624853159143119, guid: 53d3ea83b9420624a981f32cdc0a69ab, type: 3}
   cookTimeThresholds:
     m_list:
     - Key: 0

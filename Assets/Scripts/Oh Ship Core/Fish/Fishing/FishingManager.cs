@@ -27,7 +27,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
 
     [Header("Add edible catchable models here!")] 
     [SerializeField]
-    private GameObject[] usableThingsToCatch;
+    private FoodClass[] usableThingsToCatch;
     
     private bool _isHoldingButton = false;
 
@@ -41,7 +41,7 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
     private RectTransform _fishingIcon;
     private Image _fishingProgressBar;
     private RectTransform _usableFishingArea;
-    private Transform _holdingObjectTransform;
+    private IHeldItemHandler _holdingObjectTransform;
     private IInteractor _interactor;
     private GameObject _player; //Used to disable model renderer
     private PlayerInteractionState _playerInteractionState;
@@ -170,20 +170,17 @@ public class FishingManager : MonoBehaviour, IInteractable, IPlayerControllable,
 
     private void HandleObjectCaught()
     {
-        FoodClass foodClassRef;
+
         Debug.Log("Fish Caught");
         int index = UnityEngine.Random.Range(0, usableThingsToCatch.Length);
         
-        _holdingObjectTransform = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HeldObjectHandler>().transform;
-        GameObject caughtItem = Instantiate(usableThingsToCatch[index], _holdingObjectTransform.position,_holdingObjectTransform.rotation);
-        caughtItem.transform.SetParent(_holdingObjectTransform);
+        _holdingObjectTransform = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<IHeldItemHandler>();
+        FoodClass caughtItem = Instantiate(usableThingsToCatch[index]);
+        _holdingObjectTransform.TryHoldItem(caughtItem);
         _playerInteractionState.AddInteractionTag(InteractionTag.HoldingFish);
-       // _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingCookedFish);
-
-        foodClassRef = caughtItem.GetComponent<FoodClass>();
         HungerAndThirst hungerRef = _playerControllableForHoldingObject.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>();
         Debug.Log($"HungerAndThirst found: {hungerRef}");
-        foodClassRef.InitializeHungerAndThirst(hungerRef);
+        caughtItem.InitializeHungerAndThirst(hungerRef);
         _currentInteractionSession.End();
     }
 

@@ -28,7 +28,7 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
     private bool filledUp = false;
 
     private IPlayerControllable _playerControllableForHoldingObject;
-    private Transform _holdingObjectTransform;
+    private IHeldItemHandler _holdingItemHandler;
     private GameObject heldObject;
     [SerializeField] private GameObject bottleToSpawn;
     [SerializeField] private GameObject bottleInSink;
@@ -102,11 +102,9 @@ public class SinkInteractable : MonoBehaviour, IInteractable, IPromptProvider
         {
             _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingBottle);
             bottleInSink.SetActive(true);
-            _holdingObjectTransform = oldControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectHandler>().transform;
-            if (_holdingObjectTransform.childCount > 0)
-            {
-                Destroy(_holdingObjectTransform.GetChild(0).gameObject);
-            }
+            _holdingItemHandler = oldControllable.GetAssociatedGameObject().GetComponentInChildren<HeldItemHandler>();
+            _holdingItemHandler.TryClearHeldItem();
+            
             timer = 0f;
             fillingUp = true;
         }

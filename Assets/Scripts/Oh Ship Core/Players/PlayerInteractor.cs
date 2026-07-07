@@ -14,7 +14,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     [SerializeField] float m_interactionRange = 2;
     [SerializeField] LayerMask m_interactionLayer;
     InteractionSession m_session;
-    [FormerlySerializedAs("m_heldObjectLocation")] [SerializeField, RequiredField]HeldObjectHandler m_heldObjectHandler;
+    [FormerlySerializedAs("m_heldObjectLocation")] [SerializeField, RequiredField] InterfaceReference<IHeldItemHandler> m_heldObjectHandler;
     [SerializeField] PlayerInteractionState m_playerState;
     
     /// <inheritdoc/>
@@ -97,7 +97,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
 
     void Start()
     {
-        m_heldObjectHandler ??= GetComponentInChildren<HeldObjectHandler>();
+        m_heldObjectHandler.Value ??= GetComponentInChildren<IHeldItemHandler>();
         //TODO: Why do this here? This should be handled by the player controller
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -107,7 +107,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractor
     {
         LayerMask playerLayer = 1 << transform.parent.gameObject.layer;
         if (playerLayer == LayerMask.GetMask("Default")) return;
-        IHeldItem heldItem = m_heldObjectHandler.GetComponentInChildren<IHeldItem>();
+        IHeldItem heldItem = m_heldObjectHandler.Value.HeldItem;
         // TODO: This is awful for expansion and is the reason why the data should be encapsulated in the IHeldItem as Logan set up. You can also use the SoundManager to prevent the GC as it's fully pooled
         if (heldItem == null) return;
         heldItem.Use();
