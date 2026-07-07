@@ -7,4 +7,5 @@ public interface IHeldItem
     [Pure] public Transform GetTransform();
     [Pure] public Vector3 GetPositionOffset();
     [Pure] public Quaternion GetRotationOffset();
+    [Pure] public GameObject GetAssociatedGameObject();
 }

@@ -30,6 +30,7 @@ public abstract class FoodClass : MonoBehaviour, IHeldItem
     public Transform GetTransform() => transform;
     public virtual Vector3 GetPositionOffset() => Vector3.zero;
     public virtual Quaternion GetRotationOffset() => Quaternion.identity;
+    public GameObject GetAssociatedGameObject() => gameObject;
     public float GetCookingSpeed() => FoodData.CookSpeed;
     public virtual void UpdateCookedAmount(float amount) { }
     public virtual void Reset() { }

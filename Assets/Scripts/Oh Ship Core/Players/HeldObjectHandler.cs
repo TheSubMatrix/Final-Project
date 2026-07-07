@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Serialization;
 
-public class HeldObjectHandler: MonoBehaviour
+public class HeldObjectHandler: MonoBehaviour, IHeldObjectHandler
 {
     public IHeldItem HeldItem { get; private set; }
     //TODO: Swap the old system over to this so I can easily get held object offset data

@@ -5,7 +5,7 @@ public class StorageInteractable : MonoBehaviour, IInteractable, IPromptProvider
 {
     private IPlayerControllable _playerControllable;
     private IPlayerController _playerController;
-    private Transform _holdingObjectTransform;
+    private HeldObjectHandler _holdingObjectTransform;
     InteractionSession m_currentInteractionSession;
     [SerializeField] private List<SO_CookableFoodData> _storedWaterLife =  new List<SO_CookableFoodData>();
     [SerializeField] private string _widgetForPrompt = "interact";
@@ -32,9 +32,9 @@ public class StorageInteractable : MonoBehaviour, IInteractable, IPromptProvider
             {
                 return null;
             }
-            _holdingObjectTransform =  _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectHandler>().transform;
+            _holdingObjectTransform =  _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectHandler>();
             AddFishToStorage(_playerControllable.GetAssociatedGameObject().GetComponentInChildren<FoodClass>().FoodData);
-            Destroy(_holdingObjectTransform.GetChild(0).gameObject);
+            _holdingObjectTransform.DestroyObjectsInHand();
             m_currentInteractionSession = new InteractionSession(interactor,this);
             _playerInteractionState.RemoveInteractionTag(InteractionTag.HoldingFish);
             m_currentInteractionSession.End();
@@ -70,10 +70,9 @@ public class StorageInteractable : MonoBehaviour, IInteractable, IPromptProvider
     public void RemoveFishFromStorage(SO_CookableFoodData foodData)
     {
         HungerAndThirst hungerRef = _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HungerAndThirst>();
-        _holdingObjectTransform =  _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectHandler>().transform;
-        GameObject fish = Instantiate(foodData.Model, _holdingObjectTransform.position,_holdingObjectTransform.rotation);
-        fish.transform.SetParent(_holdingObjectTransform);
-        fish.GetComponent<FoodClass>().InitializeHungerAndThirst(hungerRef);
+        _holdingObjectTransform =  _playerControllable.GetAssociatedGameObject().GetComponentInChildren<HeldObjectHandler>();
+        IHeldItem fish = Instantiate(foodData.ItemToHold.GetAssociatedGameObject()).GetComponent<IHeldItem>();
+        if(!_holdingObjectTransform.TryHoldItem(fish)) return;
         _playerInteractionState.AddInteractionTag(InteractionTag.HoldingFish);
         _storedWaterLife.RemoveAt(0);
     }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a51cfd67177569c439794a73a83a62e8
+guid: fd3305cbb6b3ab641b11bc3fe7038dd2
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -20,15 +20,14 @@ ModelImporter:
     animationImportWarnings: "\nClip 'mixamo.com' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'shoulder.L' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'palm.04.L' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\t'shoulder.R'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'palm.04.R'
+      and has rotation animation that will be discarded.\n\t'shoulder.R' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'palm.04.R'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -37,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walking Backwards
+      name: Jog Strafe Left
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 36
+      lastFrame: 21
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
