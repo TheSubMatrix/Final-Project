@@ -1,3 +1,4 @@
+using System.Collections;
 using MatrixUtils.Attributes;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
@@ -6,10 +7,9 @@ using UnityEngine.Serialization;
 public class HeldItemHandler: MonoBehaviour, IHeldItemHandler
 {
     public IHeldItem HeldItem { get; private set; }
-
+    Coroutine m_moveArmWeightCoroutine;
     public bool IsHoldingItem => HeldItem != null;
-
-    //TODO: Swap the old system over to this so I can easily get held object offset data
+    [SerializeField] float m_armSpeed = 2f;
     public bool TryHoldItem(IHeldItem item)
     {
         if(IsHoldingItem) return false;
@@ -18,6 +18,8 @@ public class HeldItemHandler: MonoBehaviour, IHeldItemHandler
         item.GetTransform().localPosition = item.GetPositionOffset();
         item.GetTransform().localRotation = item.GetRotationOffset();
         HeldItem = item;
+        if(m_moveArmWeightCoroutine != null){ StopCoroutine(m_moveArmWeightCoroutine);}
+        m_moveArmWeightCoroutine = StartCoroutine(MoveArmWeight(1, m_armSpeed));
         return true;
     }
     
@@ -26,6 +28,8 @@ public class HeldItemHandler: MonoBehaviour, IHeldItemHandler
         if(!IsHoldingItem) return false;
         HeldItem.GetTransform().SetParent(null);
         HeldItem = null;
+        if(m_moveArmWeightCoroutine != null){ StopCoroutine(m_moveArmWeightCoroutine);}
+        m_moveArmWeightCoroutine = StartCoroutine(MoveArmWeight(0, m_armSpeed));
         return true;
     }
 
@@ -37,16 +41,35 @@ public class HeldItemHandler: MonoBehaviour, IHeldItemHandler
             Destroy(child.gameObject);
         }
         HeldItem = null;
+        if(m_moveArmWeightCoroutine != null){ StopCoroutine(m_moveArmWeightCoroutine);}
+        m_moveArmWeightCoroutine = StartCoroutine(MoveArmWeight(0, m_armSpeed));
         return true;
     }
 
     public GameObject GetAssociatedGameObject() => gameObject;
     [FormerlySerializedAs("objectHoldConstraint"), RequiredField] public TwoBoneIKConstraint m_objectHoldConstraint;
-    //TODO: This shouldn't be in update, but since there isn't any easy way to track when an object is picked up at this point. This is part of the reason why moving to the updated system I outlined above would be an improvement on top of allowing asynchronous transitions between holding animations and allowing for offsets
-    void Update()
+
+    IEnumerator MoveArmWeight(float desiredWeight, float speed)
     {
-        m_objectHoldConstraint.weight = !IsHoldingItem ? 0 : 1;
+        float startWeight = m_objectHoldConstraint.weight;
+        float distance = Mathf.Abs(desiredWeight - startWeight);
+        if (distance <= Mathf.Epsilon)
+        {
+            m_objectHoldConstraint.weight = desiredWeight;
+            yield break;
+        }
+        float duration = distance / speed;
+        float timeElapsed = 0;
+        while (timeElapsed <= duration)
+        {
+            m_objectHoldConstraint.weight = Mathf.Lerp(startWeight, desiredWeight, timeElapsed / duration);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        m_objectHoldConstraint.weight = desiredWeight;
+        m_moveArmWeightCoroutine = null;
     }
+    
     
 
         /*/| _ ╱|、

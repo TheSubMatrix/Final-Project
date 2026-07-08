@@ -11,7 +11,8 @@ public class Fish : FoodClass
     [SerializeField] private PlayerInteractionState playerInteractionState;
     private IHeldItemHandler m_heldItemHandler;
     Transform locationOfHeldObject;
-
+    [SerializeField] Vector3 m_positionOffset;
+    [SerializeField] Vector3 m_rotationOffset;
     [Header("Audio")]
     [SerializeField] AudioSource audioSource;
     [SerializeField] private AudioClip cookingDone;
@@ -84,4 +85,6 @@ public class Fish : FoodClass
         
         return CookState.Raw;
     }
+    public override Vector3 GetPositionOffset() => m_positionOffset;
+    public override Quaternion GetRotationOffset() => Quaternion.Euler(m_rotationOffset);
 }

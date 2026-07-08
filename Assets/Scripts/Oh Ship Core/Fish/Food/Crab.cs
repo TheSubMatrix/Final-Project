@@ -8,7 +8,8 @@ public class Crab : FoodClass
     private CookState m_currentCookState = CookState.Raw;
     [SerializeField] private ParticleSystem cookedVFX;
     private PlayerInteractionState playerInteractionState;
-   
+    [SerializeField] Vector3 m_positionOffset;
+    [SerializeField] Vector3 m_rotationOffset;
     [Header("Audio")]
     [SerializeField] AudioSource audioSource;
     [SerializeField] private AudioClip cookingDone;
@@ -78,5 +79,6 @@ public class Crab : FoodClass
         return CookState.Raw;
     }
 
-    
+    public override Vector3 GetPositionOffset() => m_positionOffset;
+    public override Quaternion GetRotationOffset() => Quaternion.Euler(m_rotationOffset);
 }

@@ -105,7 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OhShip.Core.Cooking::BottleInteractable
   _interactDisplayTransform: {fileID: 305892125573744807}
-  bottleToSpawn: {fileID: 8639637011807921681}
+  bottleToSpawn:
+    m_underlyingValue: {fileID: -5644221482072922276, guid: b2c977734424ed94bbf43ce2b9971480, type: 3}
   bottleTaken: {fileID: 8639637011807921681}
 --- !u!65 &3821731496647525076
 BoxCollider:
