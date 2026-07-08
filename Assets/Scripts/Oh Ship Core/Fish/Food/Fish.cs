@@ -51,7 +51,7 @@ public class Fish : FoodClass
             audioSource.PlayOneShot(cookingDone);
         }
     }
-
+    //I forget this Event Function exists sometimes. Good use case!
     public override void Reset()
     {
         m_material = GetComponent<MeshRenderer>().material;

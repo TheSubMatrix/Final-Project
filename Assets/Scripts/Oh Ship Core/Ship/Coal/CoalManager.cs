@@ -1,4 +1,5 @@
 using System;
+using MatrixUtils.AudioSystem;
 using MatrixUtils.Extensions;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -20,6 +21,10 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
     [SerializeField] private Transform _promptVisualLocation;
     [SerializeField] UnityEvent<float> m_onPressureSent;
     [SerializeField] float m_decayRate = 0.01f;
+    [Header("Sounds")]
+    [SerializeField] SoundData m_successSound;
+    [SerializeField] SoundData m_failureSound;
+    [SerializeField] SoundData m_interactionCompletedSound;
     private IPlayerController m_activePlayerController;
     private InteractionSession m_currentInteractionSession;
     public string[] m_inputsForQTE;
@@ -90,11 +95,13 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
         {
             Debug.Log("Correct");
             m_coalUI.CorrectButtonPressed(m_index);
+            SoundManager.Instance.CreateSound().WithSoundData(m_successSound).WithPosition(transform.position).WithRandomPitch().Play();
             m_correctInputCounter++;
         }
         else
         {
             Debug.Log("Incorrect");
+            SoundManager.Instance.CreateSound().WithSoundData(m_failureSound).WithPosition(transform.position).WithRandomPitch().Play();
             m_coalUI.IncorrectButtonPressed(m_index);
         }
         m_index++;
@@ -106,6 +113,7 @@ public class CoalManager : MonoBehaviour, IInteractable, IPlayerControllable, IP
             m_totalPressure += m_pressureToSend;
             m_onPressureSent.Invoke(m_totalPressure);
             Debug.Log("Sent " + m_pressureToSend + " of pressure");
+            SoundManager.Instance.CreateSound().WithSoundData(m_interactionCompletedSound).WithPosition(transform.position).WithRandomPitch().Play();
             m_currentInteractionSession.End();
         }
     }

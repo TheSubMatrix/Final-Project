@@ -28,7 +28,7 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: 
+  m_LockedProperties: _REFLECTION_PROBE_BOX_PROJECTION
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -137,9 +137,12 @@ Material:
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _REFLECTION_PROBE_ATLAS: 1
+    - _REFLECTION_PROBE_BLENDING: 1
+    - _REFLECTION_PROBE_BOX_PROJECTION: 1
     - _Raw_Blend_End: 0.33
     - _Raw_Blend_Start: 0
-    - _Raw_Smoothness_Scale: 0
+    - _Raw_Smoothness_Scale: 1
     - _ReceiveShadows: 1
     - _SHADOWS_SOFT: 1
     - _SHADOW_MASKS: 1
