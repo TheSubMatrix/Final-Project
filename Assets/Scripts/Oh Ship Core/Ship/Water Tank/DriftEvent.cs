@@ -20,6 +20,10 @@ public class DriftEvent : IDriftingEvent
     Action m_onFailureCallback;
     CountdownTimer m_failureTimer;
 
+    ~DriftEvent()
+    {
+        m_failureTimer?.Dispose();
+    }
     public DriftEvent(Action<float> updateFillAction, Func<float, bool> evaluateStability, float fillRate, float warningThreshold, float fillTarget, float failureTime)
     {
         m_updateFillAction = updateFillAction;
