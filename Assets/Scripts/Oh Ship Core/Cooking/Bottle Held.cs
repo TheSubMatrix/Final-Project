@@ -12,4 +12,5 @@ public class BottleHeld : MonoBehaviour, IHeldItem
     public Vector3 GetPositionOffset() => m_positionOffset;
     public Quaternion GetRotationOffset() => Quaternion.Euler(m_rotationOffset);
     public GameObject GetAssociatedGameObject() => gameObject;
+    
 }

@@ -8,16 +8,17 @@ public class HungerAndThirstVisualManager : MonoBehaviour
 {
     [SerializeField] StatusBar m_hungerBar;
     [SerializeField] StatusBar m_thirstBar;
-    [SerializeField] VolumeSettings m_hungerVolume;
+    [FormerlySerializedAs("m_hungerVolume")] [SerializeField] VolumeSettings m_playerStatusVolume;
     public void UpdateHunger(float hungerPercentage)
     {
         m_hungerBar.UpdateFillPercentage(hungerPercentage);
-        m_hungerVolume.HandlePostEffects(hungerPercentage);
+        m_playerStatusVolume.HandlePostEffects(Mathf.Min(hungerPercentage, m_thirstBar.Fill.fillAmount));
     }
 
     public void UpdateThirst(float thirstPercentage)
     {
         m_thirstBar.UpdateFillPercentage(thirstPercentage);
+        m_playerStatusVolume.HandlePostEffects(Mathf.Min(thirstPercentage, m_hungerBar.Fill.fillAmount));
     }
 
     [Serializable]
@@ -32,10 +33,10 @@ public class HungerAndThirstVisualManager : MonoBehaviour
     {
         public Volume Volume;
         public float FadePoint;
-        public void HandlePostEffects(float hungerPercentage)
+        public void HandlePostEffects(float percentage)
         {
             float fadeRange = 1f - FadePoint;
-            float t = Mathf.Clamp01((FadePoint - hungerPercentage) / fadeRange);
+            float t = Mathf.Clamp01((FadePoint - percentage) / fadeRange);
             Volume.weight = t;
         }
     }

@@ -454,8 +454,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447475600237692604}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09582211, y: -0.6754944, z: 0.13380516, w: 0.718764}
-  m_LocalPosition: {x: -4.4643326, y: 3.7839916, z: -95.70217}
+  m_LocalRotation: {x: -0.001526974, y: 0.99919343, z: -0.03476905, w: -0.020032573}
+  m_LocalPosition: {x: 4.3175526, y: -25.974566, z: -5.2647176}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2210,7 +2210,7 @@ MonoBehaviour:
     Fill: {fileID: 4971578715985530211}
   m_thirstBar:
     Fill: {fileID: 7163030910490333323}
-  m_hungerVolume:
+  m_playerStatusVolume:
     Volume: {fileID: 6828565172952073661}
     FadePoint: 0.4
 --- !u!1 &5492496889448183806
@@ -2733,7 +2733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
   m_IsGlobal: 1
-  priority: 0
+  priority: 20
   blendDistance: 0
   weight: 0
   sharedProfile: {fileID: 11400000, guid: 9123054cc73e54945ad54384e96b8c8f, type: 2}
